@@ -1,0 +1,26 @@
+====== Bugs  ======		
+	* zeitangabe für filme total falsch
+  * in yarc series geht irgendwie yarcCore.sendJsonRPCrequest(); im init nicht... keine ahnung warum. also der request geht, jedoch gibt es kein binding für die Serienelemente.
+  * dj bobo : 1ster treffer kann nicht abgespielt werden. ist es evtl ein channel? muss noch rausgenommen werden	
+
+====== kleine Erweiterungen von bestehendem ======
+  * evtl. image quality setting mit slider anstatt eingabefeld machen
+
+
+====== Future Features ======
+	* application cache für bilder! : ab slilde 37 (http://html5-demos.appspot.com/static/html5storage/index.html#slide37)
+				--> grafiken in 3 qualitätsstufen vorladen: low, middle, original quality und in appch cache speichern. und dann mit 
+				--> settings einstellen welche geladen werden soll. bsp: datei xyz.jpg --> xyz_s.jpg,xyz_m.jpg & xyz_o.jpg
+				--> http://www.html5rocks.com/de/tutorials/appcache/beginner/
+  * allgemeine geschw./ram optimierungen
+  * mehr details zu einzelnen filmen
+  * evtl. alle felder mit labels (wenn nötig hidden) versehen
+  * evtl. JavaScript enabeld abfrage und falls nicht meldung 
+  * add youtube video duration (needs for each video a request in api v3 though, in api v2 it's in... so switch?) -> http://code.google.com/p/gdata-issues/issues/detail?id=4294
+  * youtube playlist fügt momentan nur die max 50 results in die playlist
+  * music viedos: evtl. als switch-button für movies? auf jedenfall ein button den man ausblenden kann!
+  * möglichkeit von manuellem setzen der breite für darstellung "small"? ist diese css umschaltung möglich?
+
+
+
+
