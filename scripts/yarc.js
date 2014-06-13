@@ -1,4 +1,4 @@
-/*
+/**
  * Yarc - Yet another Remote Control (for XBMC)
  * Copyright (C) 2014 by Esra Kummer (esra@kummer.to)
  * Version 20140414
