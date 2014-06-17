@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<addon
+  id="webinterface.yarc"
+  version="0.1.0"
+  name="yarc"
+  provider-name="3524">
+  <requires>
+    <import addon="xbmc.gui" version="4.0.0"/>
+    <import addon="xbmc.json" version="6.0.0"/>
+  </requires>
+  <extension
+    point="xbmc.gui.webinterface"/>
+  <extension point="xbmc.addon.metadata">
+  <description lang="en">This remote allows you control the XBMC with an mobile friendly webinterface. JavaScript is required.</description>
+  <language>en</language>
+  <platform>all</platform>
+  </extension>
+</addon>
+
