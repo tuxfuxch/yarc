@@ -1,4 +1,4 @@
 yarc
 ====
 
-Yarc (Yet another remote controll): a webbased remote controll for xbmc
+Yarc (Yet another remote control): a webbased remote controll for xbmc
