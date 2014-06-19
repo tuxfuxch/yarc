@@ -197,10 +197,70 @@ var yCore = {
 
 var yRemote = {
 	youtubeNextPageToken: "",
+	radioNavMed: "",
 	init: function() {
 		yS.getSettings();
 		
-			
+		if(yS.noSwipe){
+				$("#swipe").hide();
+				$("#Volume").show();
+				$("#navigation-arrows").show();
+				$("#mediacontrol1").show();
+		} else {
+				$("#swipe").show();
+				$("#Volume").hide();
+				$("#navigation-arrows").hide();
+				$("#mediacontrol1").hide();
+		}
+		
+		
+		/*-------------Swipe Area-------------------------*/
+		radioNavMed = $("input[name='nav-med']:checked").val();
+		
+		$('.nav-med').click(function(){
+				radioNavMed = $("input[name='nav-med']:checked").val();
+				if(radioNavMed == "Nav"){$(".swipe-box").css( "background-color", "#EEE" );}else{$(".swipe-box").css( "background-color", "#BBB" );}
+		});
+		
+		$('#swipe-help').click(function(){
+				$('#detailspopupSwipe').popup('open');
+		});
+		
+		$("#swipe").swipe( {
+				swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+					switch (direction) 
+							{
+								case "up":
+										if(radioNavMed == "Nav"){yRemote.navcontrol("Input.Down");} else{yRemote.playerstop("Player.stop");}
+										break;
+								case "down":
+										if(radioNavMed == "Nav"){yRemote.navcontrol("Input.Up");} else{yRemote.playpause("Player.PlayPause");}
+										break;
+								case "left":
+										if(radioNavMed == "Nav"){yRemote.navcontrol("Input.Right");} else{yRemote.playergoto("previous");}
+										break;
+								case "right":
+										if(radioNavMed == "Nav"){yRemote.navcontrol("Input.Left");} else{yRemote.playergoto("next");}
+										break;
+								default:
+									break;
+							}
+				}, 
+				tap:function(event, target) {
+						if(radioNavMed == "Nav"){yRemote.navcontrol("Input.Select");} else{yRemote.setVolume("Volume.Minus");}
+				},
+				doubleTap:function(event, target) {
+						if(radioNavMed == "Nav"){yRemote.navcontrol("Input.Back");} else{yRemote.setVolume("Volume.Plus");}
+				},
+				longTap:function(event, target) {
+						if(radioNavMed == "Nav"){yRemote.navcontrol("Input.ContextMenu");} else{yRemote.setVolume("Application.SetMute");}
+				},
+				//Default is 75px, set to 0 for demo so any distance triggers swipe
+				threshold:35,
+				doubleTapThreshold:475,
+		});
+// 		yRemote.setSpeed("increment");
+// 	yRemote.setSpeed("decrement");
 		/*-------------Index Page - Media Control Buttons-------------------------*/
 		
 		$("#playerstop").click(function(e) { //class which calls function on click
@@ -1488,6 +1548,7 @@ var yTools = {
 var yS = { //yarcSettings
 	
 		xbmcName: "yarc",
+		noSwipe: false,
 		hidePrevPics: false,
 		imageFormatSVG: false,
 		hideWatched: false,
@@ -1512,6 +1573,7 @@ var yS = { //yarcSettings
 						localStorage.setItem("listLength", "0");
 						localStorage.setItem("prevImgQualMovies", "50");
 						localStorage.setItem("imageFormatSVG", "false");
+						localStorage.setItem("noSwipe", "false");
 						
 						localStorage.setItem("localStorage_init", "true"); // to avoid that this routine runs again
 				}
@@ -1520,6 +1582,11 @@ var yS = { //yarcSettings
 				
 				$('#xbmcName').val(localStorage.getItem("xbmcName"));
 			
+				if(localStorage.getItem("noSwipe") == "true"){ //in local storage its string not boolean
+						$('input[name=noSwipe]').prop("checked", true).checkboxradio("refresh");
+				} else{
+						$('input[name=noSwipe]').prop("checked", false).checkboxradio("refresh");
+				}
 				if(localStorage.getItem("hidePrevPics") == "true"){ //in local storage its string not boolean
 						$('input[name=hidePrevPics]').prop("checked", true).checkboxradio("refresh");
 				} else{
@@ -1627,6 +1694,7 @@ var yS = { //yarcSettings
 		},
 		getSettings: function(){ //get string from local storage and save it in variable here (as boolean for checkboxes) 
 				yS.xbmcName = localStorage.getItem("xbmcName");
+				if(localStorage.getItem("noSwipe")== "true"){yS.noSwipe = true;}else{yS.noSwipe = false;}
 				if(localStorage.getItem("hidePrevPics")== "true"){yS.hidePrevPics = true;}else{yS.hidePrevPics = false;}
 				if(localStorage.getItem("imageFormatSVG")== "true"){
 						yS.imageFormatSVG = true;

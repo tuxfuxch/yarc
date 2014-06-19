@@ -2,7 +2,7 @@
 <html> 
 <head> 
 	<title>YARC</title> 
-	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link rel="stylesheet" href="jquery.mobile-1.2.0.min.css" />
 	<link rel="stylesheet" href="style.css" />
@@ -11,6 +11,7 @@
   <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
 	<script type="text/javascript" src="scripts/yarc.js"></script>
 	<script type="text/javascript" src="scripts/countryLanguages.js"></script>
+	<script type="text/javascript" src="scripts/jquery.touchSwipe.js"></script>
 	<LINK rel="SHORTCUT ICON" href="images/y.ico">
 </head>
 <body>
@@ -42,31 +43,61 @@
 					<div id="youtubelist"></div>
 					<div><button id="youTubeNext" type="button" data-theme="c">Next</button></div>
 				</div>
+				<div data-role="popup" id="detailspopupSwipe" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
+					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+					<div>Through swipe and tab gestures, you can control your XBMC. Use the grey field to do it with the folling gestures:<br />
+						<b>Navigation:</b>
+						<li>Swipe up, down, left or right for the according direction you want to navigate</li>
+						<li>Tab once to select</li>
+						<li>Tab twice to go back</li>
+						<li>Tab long for the context menu</li>
+						<b>Media:</b>
+						<li>Swipe up to stop the player</li>
+						<li>Swipe down for play/pause</li>
+						<li>Swipe left for the previous item in the playlist</li>
+						<li>Swipe right for the next item in the playlist</li>
+						<li>Tab once for volume down 10%</li>
+						<li>Tab twice for volume up 10%</li>
+						<li>Tab long to toggle mute</li><br />
+						In the settings you can replace this field with buttons
+					</div>
+				</div>
 			</div>
-			<div class ="mediacontrol" data-role="controlgroup" data-type="horizontal" data-theme="c">
+			<div id="swipe" class="swipe-box">
+				<fieldset id="nav-med-radio" data-role="controlgroup"  data-type="horizontal" data-mini="true">
+					<input type="radio" id="radioNav" class="nav-med" name="nav-med" value="Nav" checked />
+					<label for="radioNav">Navigation</label>
+					<input type="radio" id="radioMedia" class="nav-med" name="nav-med" value="Media" /> 
+					<label for="radioMedia">Media</label><br />
+					Swipe me or press <a id="swipe-help">Help!</a>
+				</fieldset>
+			</div>
+			<div id="mediacontrol1" class="mediacontrol" data-role="controlgroup" data-type="horizontal" data-theme="c">
 				<button class="playergoto" name="previous" type="button" data-theme="c">┃◀</button>
 				<button id="playpause" name="Player.PlayPause" type="button" data-theme="c">▶┃┃</button>
 				<button id="playerstop" name="Player.stop" type="button" data-theme="c">■</button>
 				<button class="playergoto" name="next" type="button" data-theme="c">▶┃</button>
 			</div>
-			<div class ="mediacontrol" data-role="controlgroup" data-type="horizontal" data-theme="c">
-				<button class="playerSetSpeed" name="decrement" type="button" data-theme="c">◀◀</button>
-				<button class="playerSetSpeed" name="increment" type="button" data-theme="c">▶▶</button>
+			<div id="mediacontrol2" class="mediacontrol" data-role="controlgroup" data-type="horizontal" data-theme="c">
+				<button class="playerSetSpeed" name="decrement" type="button" data-mini="true" data-theme="c">◀◀</button>
+				<button class="playerSetSpeed" name="increment" type="button" data-mini="true" data-theme="c">▶▶</button>
 			</div>
 			<div id="navigation-arrows" class="ui-grid-b" data-theme="a">
-				<div class="ui-block-a"><button id="toggleFullscreen" type="button" data-theme="c">FS</button></div>
+				<div class="ui-block-a"></div>
 				<div class="ui-block-b"><button class="navcontrol" name="Input.Up" type="button" data-theme="c">▲</button></div>
-				<div class="ui-block-c"><button class="navcontrol" name="Input.Home" type="button" data-theme="c">Home</button></div>     
+				<div class="ui-block-c"></div>     
 				<div class="ui-block-a"><button class="navcontrol" name="Input.Left" type="button" data-theme="c">◀</button></div>
 				<div class="ui-block-b"><button class="navcontrol" name="Input.Select" type="button" data-theme="c">✔</button></div> 
 				<div class="ui-block-c"><button class="navcontrol" name="Input.Right" type="button" data-theme="c">▶</button></div>       
 				<div class="ui-block-a"><button class="navcontrol" name="Input.ContextMenu" type="button" data-theme="c">Cont</button></div>
 				<div class="ui-block-b"><button class="navcontrol" name="Input.Down" type="button" data-theme="c">▼</button></div> 
-				<div class="ui-block-c"><button class="navcontrol" name="Input.Back" type="button" data-theme="c">Back</a></div>     
+				<div class="ui-block-c"><button class="navcontrol" name="Input.Back" type="button" data-theme="c">Back</button></div>     
 			</div><!-- /navigation-arrows -->
 			<div id="MenuButtons" data-role="controlgroup" data-type="horizontal">
-				<a  class="navcontrol" name="Input.Info" data-role="button" data-mini="true">MediaInfo</a>
-				<a  class="navcontrol" name="Input.ShowOSD" data-role="button" data-mini="true">Player Menu</a>
+				<a id="toggleFullscreen" data-role="button" data-mini="true">FS</a>
+				<a class="navcontrol" name="Input.Home" data-role="button" data-mini="true">Home</a>
+				<a class="navcontrol" name="Input.Info" data-role="button" data-mini="true">MediaInfo</a>
+				<a class="navcontrol" name="Input.ShowOSD" data-role="button" data-mini="true">Player Menu</a>
 			</div>
 			<div id ="Volume" data-role="controlgroup" data-type="horizontal" data-theme="c">
 <!-- 				<label>Volume</label> -->
@@ -87,7 +118,7 @@
 					<div class="ui-block-a"><button class="cleanAndUpdate" name="VideoLibrary.Scan"  type="button" data-theme="c">Video Lib: Scan</button></div> 
 					<div class="ui-block-b"><button class="cleanAndUpdate" name="VideoLibrary.Clean" type="button" data-theme="c">Video Lib: Clean</button></div> 
 				</div>
-					<a href="" id="quit" data-role="button" data-icon="ui-icon-power">Shutdown</a> 
+					<a href="" id="quit" data-role="button">Shutdown</a> 
 					<a href="" id="openSettings" data-role="button" data-icon="gear">Settings</a> 
 			</div><!-- /collapsible -->
 		</div><!-- /content -->
@@ -114,9 +145,11 @@
 		</div><!-- /header -->	
 		<div id="content" data-role="content">
 			<div data-role="collapsible">
-				<h3>Gerneral</h3>
+				<h3>General</h3>
 				<label for="xbmcName" id="xbmcName_label"><b>Window title:</b></label>
 				<input name="xbmcName" id="xbmcName" value=""  size="30"/>
+				<label for="noSwipe">Buttons instead of swipe area</label>
+				<input name="noSwipe" type="checkbox" id="noSwipe" value="noSwipe" />
 				<label for="hidePrevPics">Hide priview pictures</label>
 				<input name="hidePrevPics" type="checkbox" id="hidePrevPics" value="hidePrevPics" />
 				<label for="imageFormatSVG">Use SVG images where possible</label>
