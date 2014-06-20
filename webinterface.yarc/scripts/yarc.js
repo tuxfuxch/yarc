@@ -22,7 +22,7 @@ var yCore = {
 	activePlayer: -1,
 	
 	init: function(){
- 					
+ 		yS.localStorageInit();
 		yS.getSettings();
 	 
 		document.title = yS.xbmcName;
@@ -629,7 +629,7 @@ var yMovies = {
 
 		$('#detailspopupMovies').bind({  // if popup is closed, remove picture path
 			popupafterclose: function(event, ui) {
-					$("#popupImageMovies").attr("src","");
+					$("#popupImageMovies").attr("src","images/transparent.gif");
 			}
 		});
 
@@ -1007,7 +1007,7 @@ var ySeries = {
 		
 		$('#detailspopupSeries').bind({ //removes imgae of episode details popup
 			popupafterclose: function(event, ui) {
-					$("#popupImageSeries").attr("src","");
+					$("#popupImageSeries").attr("src","images/transparent.gif");
 			}
 		});
 		
@@ -1556,7 +1556,7 @@ var yS = { //yarcSettings
 		hideLanguageMovies: false,
 		hideSearchMovies: false,
 		hideFileLinkMovies: false,
-		prevImgQualMovies: "50",
+		prevImgQualMovies: "95",
 		hideGenreMusic: false,
 		hideSearchMusic: false,	
 		hideGenreAddons: false,
@@ -1566,19 +1566,6 @@ var yS = { //yarcSettings
 		imageFormat: ".png",
 		
 		init: function(){
-				//check if localstorage already set once, if not create initial setting
-				if(localStorage.getItem("localStorage_init") != "true"){ 
-						//localStorage.setItem($(this).val(), "false");  //für was ist das??
-						localStorage.setItem("xbmcName", "yarc");
-						localStorage.setItem("listLength", "0");
-						localStorage.setItem("prevImgQualMovies", "50");
-						localStorage.setItem("imageFormatSVG", "false");
-						localStorage.setItem("noSwipe", "false");
-						
-						localStorage.setItem("localStorage_init", "true"); // to avoid that this routine runs again
-				}
-				
-				
 				
 				$('#xbmcName').val(localStorage.getItem("xbmcName"));
 			
@@ -1691,6 +1678,29 @@ var yS = { //yarcSettings
 				
 				//		alert("ERST NACHER PASSIERTS....");
 				
+		},
+		localStorageInit: function(){
+			//check if localstorage already set once, if not create initial setting
+				if(localStorage.getItem("localStorage_init") === null){ 
+						localStorage.setItem("xbmcName", "yarc");
+						localStorage.setItem("noSwipe", "false");
+						localStorage.setItem("hidePrevPics", "false");
+						localStorage.setItem("imageFormatSVG", "false");
+						localStorage.setItem("hideWatched", "false");
+						localStorage.setItem("hideGenreMovies", "false");
+						localStorage.setItem("hideLanguageMovies", "false");
+						localStorage.setItem("hideSearchMovies", "false");
+						localStorage.setItem("hideFileLinkMovies", "false");
+						localStorage.setItem("prevImgQualMovies", "95");
+						localStorage.setItem("hideGenreMusic", "false");
+						localStorage.setItem("hideSearchMusic", "false");
+						localStorage.setItem("hideGenreAddons", "false");
+						localStorage.setItem("hideSearchAddons", "false");
+						localStorage.setItem("listLength", "0");
+						localStorage.setItem("imageFormat", ".png");
+						
+						localStorage.setItem("localStorage_init", "true"); // to avoid that this routine runs again
+				}	
 		},
 		getSettings: function(){ //get string from local storage and save it in variable here (as boolean for checkboxes) 
 				yS.xbmcName = localStorage.getItem("xbmcName");

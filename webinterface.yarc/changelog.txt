@@ -1,3 +1,10 @@
+Version 0.2.1:
+- xbmc.gui in addon.xml removed 
+- validated html and xml (1 Error in HTML, I believe it's an validator mistake)
+- changes in css
+- yarc settings corrected, so that initial setting gets wirten
+- update of readme
+
 Version 0.2.0:
 - added swipe field
 - added configuration to choose between swipe field and buttons

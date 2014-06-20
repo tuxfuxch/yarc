@@ -64,6 +64,7 @@ a:hover {
 		left: auto;
 		right: auto;
 }
+
 .detailspopupMusic{
 		border: 1px solid gray;
 		width: 300px;
@@ -246,9 +247,9 @@ display:inline-block; vertical-align:middle
 }
 #popupImageSeries{
 		width: 50%;
-		text-align: left;
-		left: auto;
-		right: auto;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 }
 
 /****************************** g: loading bar ********************************/
@@ -354,8 +355,9 @@ and (min-width : 700px) {
 	
 	#popupImageMovies{	
 		width: 50%;
-		left: auto;
-		right: auto;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
 	
 	.youtubeListItem{		
@@ -375,13 +377,15 @@ and (min-width : 700px) {
 	}
 	
 	/****************************** BSM: Movies ******************************/
-	
 	#movie_list li {
 			display: inline;
 			float: left;
 			width: 300px;
-			height: 300px;
-			margin-top: 20px;	
+			height: 280px;
+			margin-top: 2px;	
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
 	}
 	.moviePrevPic {
 			display: block;
@@ -423,6 +427,9 @@ and (min-width : 700px) {
 			height: 180px;
 			margin-top: 20px;	
 			cursor:pointer;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
 	}
 	.musicPrevPic {
 			display: block;
@@ -459,6 +466,9 @@ and (min-width : 700px) {
 			height: 100px;
 			margin-top: 20px;	
 			list-style-type: none;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
 	}
 	.addonlist-item {
 			height: 80px;
