@@ -2,7 +2,7 @@
 <html> 
 <head> 
 	<title>yarc</title> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link rel="stylesheet" href="jquery.mobile-1.2.0.min.css" />
 	<link rel="stylesheet" href="style.css" />
@@ -15,7 +15,7 @@
 	<LINK rel="SHORTCUT ICON" href="images/y.ico">
 </head>
 <body>
-	<div data-role="page" data-theme="c" id="remote">
+	<div data-role="page" data-theme="a" id="remote">
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
@@ -31,17 +31,17 @@
 			<div class="content-primary">  
 				<div data-role="popup" id="detailspopupRemote" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
 					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-					<button id="popupSHRS" name="Application.Quit" type="button" data-theme="c">Quit</button>
-					<button class="popupSHRS" name="System.Suspend" type="button" data-theme="c">Suspend</button>
-					<button class="popupSHRS" name="System.Hibernate" type="button" data-theme="c">Hibernate</button>
-					<button class="popupSHRS" name="System.Reboot" type="button" data-theme="c">Reboot</button>
-					<button class="popupSHRS" name="System.Shutdown" type="button" data-theme="c">Shutdown</button>
-					<button id="popupCancel" type="button" data-theme="c" name="">Cancel</button>
+					<button id="popupSHRS" name="Application.Quit" type="button">Quit</button>
+					<button class="popupSHRS" name="System.Suspend" type="button">Suspend</button>
+					<button class="popupSHRS" name="System.Hibernate" type="button">Hibernate</button>
+					<button class="popupSHRS" name="System.Reboot" type="button">Reboot</button>
+					<button class="popupSHRS" name="System.Shutdown" type="button">Shutdown</button>
+					<button id="popupCancel" type="button" name="">Cancel</button>
 				</div>
 				<div data-role="popup" id="detailspopupYoutube" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
 					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 					<div id="youtubelist"></div>
-					<div><button id="youTubeNext" type="button" data-theme="c">Next</button></div>
+					<div><button id="youTubeNext" type="button" data-theme="a">Next</button></div>
 				</div>
 				<div data-role="popup" id="detailspopupSwipe" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
 					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
@@ -68,7 +68,7 @@
 				</div>
 			</div>
 			<div id="swipe" class="swipe-box">
-				<fieldset id="nav-med-radio" data-role="controlgroup"  data-type="horizontal" data-mini="true">
+				<fieldset id="nav-med-radio" data-role="controlgroup" data-type="horizontal" data-mini="true">
 					<input type="radio" id="radioNav" class="nav-med" name="nav-med" value="Nav" checked />
 					<label for="radioNav">Navigation</label>
 					<input type="radio" id="radioMedia" class="nav-med" name="nav-med" value="Media" /> 
@@ -76,51 +76,52 @@
 					Swipe me or press <a id="swipe-help">Help!</a>
 				</fieldset>
 			</div>
-			<div id="mediacontrol1" class="mediacontrol" data-role="controlgroup" data-type="horizontal" data-theme="c">
-				<button class="playergoto" name="previous" type="button" data-theme="c">┃◀</button>
-				<button id="playpause" name="Player.PlayPause" type="button" data-theme="c">▶┃┃</button>
-				<button id="playerstop" name="Player.stop" type="button" data-theme="c">■</button>
-				<button class="playergoto" name="next" type="button" data-theme="c">▶┃</button>
+			<div id="mediacontrol1" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
+				<button class="playergoto" name="previous" type="button">┃◀</button>
+				<button id="playpause" name="Player.PlayPause" type="button">▶┃┃</button>
+				<button id="playerstop" name="Player.stop" type="button">■</button>
+				<button class="playergoto" name="next" type="button">▶┃</button>
 			</div>
-			<div id="mediacontrol2" class="mediacontrol" data-role="controlgroup" data-type="horizontal" data-theme="c">
-				<button class="playerSetSpeed" name="decrement" type="button" data-mini="true" data-theme="c">◀◀</button>
-				<button class="playerSetSpeed" name="increment" type="button" data-mini="true" data-theme="c">▶▶</button>
+			<div id="mediacontrol2" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
+				<button class="playerSetSpeed" name="decrement" type="button" data-mini="true">◀◀</button>
+				<a href="#pl" data-role="button" data-mini="true">PlayList</a>
+				<button class="playerSetSpeed" name="increment" type="button" data-mini="true">▶▶</button>
 			</div>
-			<div id="navigation-arrows" class="ui-grid-b" data-theme="a">
+			<div id="navigation-arrows" class="ui-grid-b">
 				<div class="ui-block-a"></div>
-				<div class="ui-block-b"><button class="navcontrol" name="Input.Up" type="button" data-theme="c">▲</button></div>
+				<div class="ui-block-b"><button class="navcontrol" name="Input.Up" type="button">▲</button></div>
 				<div class="ui-block-c"></div>     
-				<div class="ui-block-a"><button class="navcontrol" name="Input.Left" type="button" data-theme="c">◀</button></div>
-				<div class="ui-block-b"><button class="navcontrol" name="Input.Select" type="button" data-theme="c">✔</button></div> 
-				<div class="ui-block-c"><button class="navcontrol" name="Input.Right" type="button" data-theme="c">▶</button></div>       
-				<div class="ui-block-a"><button class="navcontrol" name="Input.ContextMenu" type="button" data-theme="c">Cont</button></div>
-				<div class="ui-block-b"><button class="navcontrol" name="Input.Down" type="button" data-theme="c">▼</button></div> 
-				<div class="ui-block-c"><button class="navcontrol" name="Input.Back" type="button" data-theme="c">Back</button></div>     
+				<div class="ui-block-a"><button class="navcontrol" name="Input.Left" type="button">◀</button></div>
+				<div class="ui-block-b"><button class="navcontrol" name="Input.Select" type="button">✔</button></div> 
+				<div class="ui-block-c"><button class="navcontrol" name="Input.Right" type="button">▶</button></div>       
+				<div class="ui-block-a"><button class="navcontrol" name="Input.ContextMenu" type="button">Cont</button></div>
+				<div class="ui-block-b"><button class="navcontrol" name="Input.Down" type="button">▼</button></div> 
+				<div class="ui-block-c"><button class="navcontrol" name="Input.Back" type="button">Back</button></div>     
 			</div><!-- /navigation-arrows -->
 			<div id="MenuButtons" data-role="controlgroup" data-type="horizontal">
 				<a id="toggleFullscreen" data-role="button" data-mini="true">FS</a>
 				<a class="navcontrol" name="Input.Home" data-role="button" data-mini="true">Home</a>
 				<a class="navcontrol" name="Input.Info" data-role="button" data-mini="true">MediaInfo</a>
-				<a class="navcontrol" name="Input.ShowOSD" data-role="button" data-mini="true">Player Menu</a>
+				<a class="navcontrol" name="Input.ShowOSD" data-role="button" data-mini="true">PlayerMenu</a>
 			</div>
-			<div id ="Volume" data-role="controlgroup" data-type="horizontal" data-theme="c">
+			<div id ="Volume" data-role="controlgroup" data-type="horizontal">
 <!-- 				<label>Volume</label> -->
-				<button class="volume-group" name="Volume.Minus" type="button" data-theme="c">-</button>
-				<button id="SetMute" class="volume-group" name="Application.SetMute" type="button" data-theme="c">((∙))</button>
-				<button class="volume-group" name="Volume.Plus" type="button" data-theme="c">+</button>
+				<button class="volume-group" name="Volume.Minus" type="button">-</button>
+				<button id="SetMute" class="volume-group" name="Application.SetMute" type="button">((∙))</button>
+				<button class="volume-group" name="Volume.Plus" type="button">+</button>
 			</div><!-- /Volume -->
-			<div id="SendText" class="ui-grid-b" data-theme="a">
+			<div id="SendText" class="ui-grid-b">
 				<div class="ui-block-a"><input id="SendTextField" name="SendTextField" type="text" placeholder="Text or Youtube search term"></div>
-				<div class="ui-block-b"><button id="SendTextButton" type="button" data-theme="c">Send Text</button></div>
-				<div class="ui-block-c"><button id="searchYoutubeButton" type="button" data-theme="c">Search Youtube</button></div>
+				<div class="ui-block-b"><button id="SendTextButton" type="button">Send Text</button></div>
+				<div class="ui-block-c"><button id="searchYoutubeButton" type="button">Search Youtube</button></div>
 			</div>
 			<div data-role="collapsible">
 				<h3>Tools</h3>
-				<div id ="cleanAndUpdate" class="ui-grid-a" data-theme="a">
-					<div class="ui-block-a"><button class="cleanAndUpdate" name="AudioLibrary.Scan"  type="button" data-theme="c">Audio Lib: Scan</button></div> 
-					<div class="ui-block-b"><button class="cleanAndUpdate" name="AudioLibrary.Clean" type="button" data-theme="c">Audio Lib: Clean</button></div> 
-					<div class="ui-block-a"><button class="cleanAndUpdate" name="VideoLibrary.Scan"  type="button" data-theme="c">Video Lib: Scan</button></div> 
-					<div class="ui-block-b"><button class="cleanAndUpdate" name="VideoLibrary.Clean" type="button" data-theme="c">Video Lib: Clean</button></div> 
+				<div id ="cleanAndUpdate" class="ui-grid-a">
+					<div class="ui-block-a"><button class="cleanAndUpdate" name="AudioLibrary.Scan"  type="button">Audio Lib: Scan</button></div> 
+					<div class="ui-block-b"><button class="cleanAndUpdate" name="AudioLibrary.Clean" type="button">Audio Lib: Clean</button></div> 
+					<div class="ui-block-a"><button class="cleanAndUpdate" name="VideoLibrary.Scan"  type="button">Video Lib: Scan</button></div> 
+					<div class="ui-block-b"><button class="cleanAndUpdate" name="VideoLibrary.Clean" type="button">Video Lib: Clean</button></div> 
 				</div>
 					<a href="" id="quit" data-role="button">Shutdown</a> 
 					<a href="" id="openSettings" data-role="button" data-icon="gear">Settings</a> 
@@ -135,7 +136,7 @@
 			</span>
 		</div><!-- /footer -->
 	</div><!-- /page -->
-	<div data-role="page" data-theme="c" id="settings">
+	<div data-role="page" data-theme="a" id="settings">
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
@@ -152,8 +153,8 @@
 				<h3>General</h3>
 				<label for="xbmcName" id="xbmcName_label"><b>Window title:</b></label>
 				<input name="xbmcName" id="xbmcName" value=""  size="30"/>
-				<label for="noSwipe">Buttons instead of swipe area</label>
-				<input name="noSwipe" type="checkbox" id="noSwipe" value="noSwipe" />
+				<label for="ySkin">Use dark theme</label>
+				<input name="ySkin" type="checkbox" id="ySkin" value="ySkin" />
 				<label for="hidePrevPics">Hide priview pictures</label>
 				<input name="hidePrevPics" type="checkbox" id="hidePrevPics" value="hidePrevPics" />
 				<label for="imageFormatSVG">Use SVG images where possible</label>
@@ -164,6 +165,13 @@
 				<input name="listLength" type="number" id="listLength" value=""/>
 				<label for="hideLanguageMovies">Hide language functions and flags</label>
 				<input name="hideLanguageMovies" type="checkbox" id="hideLanguageMovies" value="hideLanguageMovies" />
+			</div>
+			<div data-role="collapsible">
+				<h3>Remote</h3>
+				<label for="noSwipe">Buttons instead of swipe area</label>
+				<input name="noSwipe" type="checkbox" id="noSwipe" value="noSwipe" />
+				<label for="swipeHight" id="swipeHight_label"><b>Set hight of swipe area. Examples: 300px, 60vh (not supported by all browsers)</b></label>
+				<input name="swipeHight" type="text" id="swipeHight" value=""/>				
 			</div>
 			<div data-role="collapsible">
 				<h3>Movies</h3>
@@ -185,7 +193,7 @@
 			</div>
 			<div data-role="collapsible">
 				<h3>Addons</h3>
-				<label for="hideGenreAddons">Hide genre selection</label>
+				<label for="hideGenreAddons">Hide group selection</label>
 				<input name="hideGenreAddons" type="checkbox" id="hideGenreAddons" value="hideGenreAddons" />
 				<label for="hideSearchAddons">Hide searchfield</label>
 				<input name="hideSearchAddons" type="checkbox" id="hideSearchAddons" value="hideSearchAddons" />
@@ -193,7 +201,7 @@
 			<button id="saveSettings" data-role="button" data-icon="back">Save and close</button> 
 		</div><!-- /content -->
 	</div><!-- /page -->
-	<div data-role="page" data-theme="c" id="movies">
+	<div data-role="page" data-theme="a" id="movies">
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
@@ -218,14 +226,13 @@
 					<div id="popupGenreMovies"></div>
 					<div id="popupPlotMovies"></div>
  					<div id="popupFilelink"></div> 
-					<button id="popupTrailer" type="button" data-theme="c" name="">Trailer</button>
-					<button id="popupPlay" type="button" data-theme="c" name="">Play</button>
+					<button id="popupTrailer" type="button" name="">Trailer</button>
+					<button id="popupPlay" type="button" name="">Play</button>
 				</div>
 			</div>
 			<ul class="ulbar" data-role="listview">
 				<li>
-					<div class='ui-btn-inner ui-li movieItem'>
-						<div class="ui-grid-a" data-theme="a">
+						<div class="ui-grid-a">
 							<div class="ui-block-a">
 								<select id="genreSelect" name="genre_list" data-mini="true">
 									<option value="all" >all genres</option>
@@ -237,7 +244,6 @@
 								</select>
 							</div>
 						</div>
-					</div>
 					<input type="search" name="search" id="searchMovies" placeholder="Search for movietitle" value="" />
 				</li>
 				<li class='loading'>loading...</li>
@@ -254,7 +260,7 @@
 			</span>
 		</div><!-- /footer -->
 	</div><!-- /page -->
-	<div data-role="page" data-theme="c" id="series">
+	<div data-role="page" data-theme="a" id="series">
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
@@ -276,7 +282,7 @@
 					<div id="popupLanguagesFlagsSeries"></div>
 					<div id="popupGenreSeries"></div>
 					<div id="popupPlotSeries"></div>
-					<button id="popupPlaySeries" type="button" data-theme="c" name="">Play</button>
+					<button id="popupPlaySeries" type="button" name="">Play</button>
 				</div>
 				<ul class="ulbar" data-role="listview">
 					<li class='loading'>loading...</li><!--<li id='series_loading'>loading...</li>-->
@@ -294,7 +300,7 @@
 			</span>
 		</div><!-- /footer -->
 	</div><!-- /page -->
-	<div data-role="page" data-theme="c" id="music">
+	<div data-role="page" data-theme="a" id="music">
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
@@ -312,9 +318,9 @@
 					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 					<img id="popupImageMusic" alt="Musicalbum preview image" src="images/transparent.gif"/>
 					<h2 id="popupTitleMusic"></h2>
-					<button id="popupUnselectMusic" type="button" data-theme="c" name="">(un-)select all</button>
+					<button id="popupUnselectMusic" type="button" name="">(un-)select all</button>
 					<div id="popupContainerMusic"></div> <!--container for song list items -->
-					<button id="popupAddToPlaylist" type="button" data-theme="c" name="">Add to Playlist</button>
+					<button id="popupAddToPlaylist" type="button" name="">Add to Playlist</button>
 				</div><!-- /detailspopup -->
 			</div>
 			<ul class="ulbar" data-role="listview">
@@ -323,8 +329,8 @@
 						<select id="genreSelectMusic" name="genre_list" data-mini="true"><option value="all" >all genres</option></select>
 						<input type="search" name="search" id="searchMusic" placeholder="Search for album title or artist" value="" />
 						<div class="ui-grid-a" data-theme="a">
-							<div class="ui-block-a"><button id="playPlaylist" class="PlayList" type="button" data-theme="c" name="" data-mini="true">Play Playlist</button></div> 
-							<div class="ui-block-b"><button id="emptyPlaylist" class="PlayList" type="button" data-theme="c" name="" data-mini="true">Empty Playlist</button></div> 
+							<div class="ui-block-a"><button id="playPlaylist" class="PlayList" type="button" name="" data-mini="true">Play Playlist</button></div> 
+							<div class="ui-block-b"><button id="emptyPlaylist" class="PlayList" type="button" name="" data-mini="true">Empty Playlist</button></div> 
 						</div>
 					</div>
 				</li>
@@ -342,7 +348,7 @@
 			</span>
 		</div><!-- /footer -->
 	</div><!-- /page -->
-	<div data-role="page" data-theme="c" id="addons">
+	<div data-role="page" data-theme="a" id="addons">
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
@@ -372,6 +378,37 @@
 				<li class='loading'>loading...</li><!--<li id="addon_loading" class='addonLoading' name='" + addonsJSON["result"]["addons"][i]["addonid"] + "'><div class='ui-btn-inner ui-li'><h4 class='ui-li-heading addontitle'>loading...</h4></div></li>-->
 			</ul>
 			<ul id="addonlist"></ul>
+		</div><!-- /content -->
+		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
+			<span class="footer-left">&minus;&minus;&gt;</span>
+			<span class="footer-right" data-role="none">
+				<img class="footerImage" alt="" src="images/transparent.gif" />
+				<span class="footerTime"></span>
+				<span class="footerTitle"></span>
+			</span>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+	<div data-role="page" data-theme="a" id="pl">
+		<div data-role="header" data-theme="a">
+			<div class="navbar" data-role="navbar">
+				<ul>
+					<li><a href="#remote" data-icon="grid">Remote</a></li>
+					<li><a href="#movies" data-icon="star">Movies</a></li>
+					<li><a href="#series" data-icon="star">Series</a></li>
+					<li><a href="#music" data-icon="arrow-r">Music</a></li>
+					<li><a href="#addons" data-icon="alert">Addons</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /header -->	
+		<div class="content" data-role="content">
+				<fieldset id="plType" data-role="controlgroup"  data-type="horizontal" data-mini="true">
+					<input type="radio" id="plAudio" class="plRadio" name="plType" value="0" checked />
+					<label for="plAudio">Audio</label>
+					<input type="radio" id="plVideo" class="plRadio" name="plType" value="1" /> 
+					<label for="plVideo">Video</label>
+				</fieldset>
+			<ul id="currentplaylist"></ul>
+			<button id="plBack" type="button">Back</button>
 		</div><!-- /content -->
 		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
 			<span class="footer-left">&minus;&minus;&gt;</span>

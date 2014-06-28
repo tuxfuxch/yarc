@@ -39,7 +39,6 @@ a:hover {
 		text-decoration: none; 
 		color: black;
 }
-
 #navbar {/*http://stackoverflow.com/questions/1216114/how-can-i-make-a-div-stick-to-the-top-of-the-screen-once-its-been-scrolled-to*/
 		background-color: #c0c0c0;
 		position:fixed;
@@ -64,7 +63,12 @@ a:hover {
 		left: auto;
 		right: auto;
 }
-
+#popupImageMovies{	
+	width: 50%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 .detailspopupMusic{
 		border: 1px solid gray;
 		width: 300px;
@@ -81,25 +85,24 @@ a:hover {
 		left: auto;
 		right: auto;
 }
-
 /*.songItem for detailspopupMusic*/
 .songItem {
 		text-align: left;		
 }
-
 .youtubeListItem{		
 		list-style-type: none;
 		list-style-position: inside;
-		border: 1px solid #9f9fa6;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+			border: 1px solid #c8c8d1;
 		overflow: hidden;
 		cursor: pointer;
   	white-space: nowrap;   
 }
-
 .youtubeListItem:hover { 
 		background-color: #c8c8d1;
 }
-
 .youtubeTitle { 
 		font-size: 20px;	
  		margin-left: 10px; 
@@ -111,15 +114,12 @@ a:hover {
 		height: 80px;
 		width: auto;
 }
-
 #popupPlotMovies {
 		margin-top: 15px;
 }
-
 #popupFilelink {
 		margin-top: 15px;
 }
-
 #popupPlotSeries {
 		margin-top: 15px;
 }
@@ -131,13 +131,14 @@ a:hover {
 
 /*swipe function*/
 .swipe-box
-{
-	margin-bottom:10px;
-	margin-right:10%;
-	width:90%;
-	height:300px;
+{	
+	overflow:hidden;
+	margin-bottom: 10px;
+	margin-right: 10%;
+	width: 90%;
+	height: 300px; /* will be altered trough setting */
 	
-	background-color: #EEE;
+	background-color: #444;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
@@ -147,14 +148,12 @@ a:hover {
 	font-size: 20px;
 	line-height: 36px;
 	
-	overflow:hidden;
+	color: #FFF;
+	text-shadow: 0 1px 1px #111111;
 }
 
 #nav-med-radio {
 		text-align: center;
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
 }
 
 /*Index Page upper Buttons*/
@@ -175,7 +174,6 @@ a:hover {
 /*Index Page lower Buttons*/
 #MenuButtons {
 		text-align: center;
-		width: 300px;
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
@@ -194,7 +192,6 @@ a:hover {
 #shutdownbuttons .ui-block-b { 
 		width: 33.3%;
 } 
-
 .plainLabel{ 
 		height: 50px;
 		line-height: 50px;
@@ -216,12 +213,14 @@ img.movieRating{
 /****************************** g: Series Page ********************************/
 .series-item{
 		list-style-position: inside;
-		border: 1px solid #9f9fa6;
-		cursor:pointer;
-		text-align:left;
-		height: 40px;
-		white-space:nowrap; 
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid #c8c8d1;
 		overflow:hidden;
+		cursor:pointer;
+		height: 40px;
+		white-space: nowrap;
 }
 .series-item:hover{
 			background-color: #c8c8d1;
@@ -229,10 +228,9 @@ img.movieRating{
 .series-item h4{
 		display: inline;
 		height: 40px;
-		text-align: center;
 }
 .series-item span{
-display:inline-block; vertical-align:middle
+		overflow: hidden;
 }
 .seriesThumb{
 		width: 100%;
@@ -255,11 +253,14 @@ display:inline-block; vertical-align:middle
 /****************************** g: loading bar ********************************/
 
 	.loading .nomedia{
-			list-style-position: inside;
-			border: 1px solid #9f9fa6;
-			background-color: #e0e0e0;
-			text-align: center;
-			list-style-type: none;
+		list-style-position: inside;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid #c8c8d1;
+		background-color: #e0e0e0;
+		text-align: center;
+		list-style-type: none;
 	}
 
 /****************************** g: Footer Bar ********************************/
@@ -271,13 +272,11 @@ display:inline-block; vertical-align:middle
 		line-height: 40px; 
 		white-space:nowrap; 
 }
-
 .footer-right {
 		text-decoration: none;
 		font-size: 11px;
 		height: 40px;  
 }
-
 .footer-left {
 		cursor: pointer;
 		background-color: #6E6E6E;
@@ -288,13 +287,11 @@ display:inline-block; vertical-align:middle
 		padding-right: 0px; 
 		height: 40px;  
 }
-
 .footerImage {
 		height: 41px;
 		line-height: 40px;    
 		vertical-align: top; 
 }
-
 .footerTime {
 		display: inline-block;
 		width: 46px;
@@ -302,12 +299,32 @@ display:inline-block; vertical-align:middle
 		vertical-align: middle;
 		line-height:17px;  
 }
-
 .footerTitle{
 		overflow:hidden;
 		height:40px;
 		line-height:40px;	
 }
+/****************************** g:Playlist ********************************/
+
+#plType {
+ 	text-align: center; 
+}
+.plItem{
+			padding-top: 10px;	
+			padding-bottom: 10px;	
+			padding-left: 5px;	
+			list-style-type: none;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+			border: 1px solid #c8c8d1;
+}
+.plItem:hover{
+			background-color: #c8c8d1;
+}
+
+
+
 
 /************************************************************************************* 
  *															Big Screen Media (BSM)															 *
@@ -321,8 +338,6 @@ and (min-width : 700px) {
 	#navigation-arrows {
 			width: 500px;
 	}
-	
-		
 	#SendText .ui-block-a {
 			width: 50%;
 	}
@@ -352,31 +367,24 @@ and (min-width : 700px) {
 	.detailspopup{	
 			width: 500px;
 	}
-	
-	#popupImageMovies{	
-		width: 50%;
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-	}
-	
 	.youtubeListItem{		
 		height: 80px;
 	}
-	
 	.youtubeTitle { 
 		width: 380px;
 		height: 80px;
 		float: left;
 		text-align: left;
 	}
-	
 	.youtubeImage {		
 		display: inline;
 		float: left; 
 	}
 	
 	/****************************** BSM: Movies ******************************/
+	#movie_list {
+			margin-top: 15px; 
+	}
 	#movie_list li {
 			display: inline;
 			float: left;
@@ -473,7 +481,6 @@ and (min-width : 700px) {
 	.addonlist-item {
 			height: 80px;
 			list-style-position: inside;
-/* 				border: 1px solid #9f9fa6; */
 			white-space:nowrap; 
 			overflow:hidden;	
 			cursor:pointer;
@@ -489,6 +496,11 @@ and (min-width : 700px) {
 			margin-right: auto;
 	}
 }
+
+
+
+
+
 /************************************************************************************* 
  *															Small Screen Media (SSM)  													 *
  *************************************************************************************/
@@ -498,65 +510,62 @@ and (max-width : 700px) {
 	.footer-right { 
 			font-size: 11px;
 	}
-	
-	.youtubeListItem{		
-/* 		height: 80px; */
-	}
-	
 	.youtubeImage {		
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
 	}
 			
 	
 	/****************************** SSM: Remote Page ******************************/
 	
 	#SendText .ui-block-a {
-		clear:both; /* for linebrak */
-		width: 100%;
+			clear:both; /* for linebrak */
+			width: 100%;
 	}
 	#SendText .ui-block-b { 
-		clear:both; /* for linebrak */
-		width: 100%;
+			clear:both; /* for linebrak */
+			width: 100%;
 	} 
 	#SendText .ui-block-c { 
-		clear:both; /* for linebrak */
-		width: 100%;
+			clear:both; /* for linebrak */
+			width: 100%;
 	} 
 	#cleanAndUpdate .ui-block-a { 
-		clear:both; /* for linebrak */
-		width: 100%;
+			clear:both; /* for linebrak */
+			width: 100%;
 	} 
 	#cleanAndUpdate .ui-block-b { 
-		clear:both; /* for linebrak */
-		width: 100%;
+			clear:both; /* for linebrak */
+			width: 100%;
 	} 
 	
 	/****************************** SSM: Movies ******************************/
 	.moviedetails { 
 			height: 80px;
 			list-style-position: inside;
-			border: 1px solid #9f9fa6;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+			border: 1px solid #c8c8d1;
 			cursor:pointer;
-			white-space:nowrap; 
 			overflow:hidden;
-			width: 40000px;  /*to avoid linebrak */
+			
+		/*	width: 4000px;   ugly hack to prevent linebreak */
 	}
 	.moviedetails:hover { 
 			background-color: #c8c8d1;
 	}
-	.movieItemRight{
-			float: left;
-	}
-	.movieItemLeft{
-		width: 60px;
-		float: left;
-	}	
 	#movie_list {	
-			margin-top: 20px;
+			margin-top: 15px;
 			line-height: 18px;
 	}	
+	#movie_list li div{
+			margin: 0px;
+			white-space:nowrap;  
+			vertical-align: top; 
+			display: inline-block;
+	} 
 	#movie_list li h4{
 			display: inline;
 			vertical-align: top;		
@@ -566,20 +575,24 @@ and (max-width : 700px) {
 			white-space: pre;
 			content:'\A';
 	}
-
 	#movie_list li p {
+			white-space:normal;  
 			display: inline;
 			font-size: 10px;
 			padding-left: 2px;
 	}
   #movie_list li p:after {
-			white-space: pre;
+			white-space:normal;  
+			white-space:pre;  
 			content:'\A';
 	}
-	
 	.moviePrevPic {
-			padding-left: 10px;
+			display: inline;
 			width: 50px;
+	}
+	.moviePrevPicArrow {
+			display: inline;
+			height: 80px;
 	}
 	.greenMovies {
 			display: block;
@@ -588,49 +601,46 @@ and (max-width : 700px) {
 			width: 20px;
 			height: auto;
 	}
-	.movieItem h4, p{ 
-			padding-left: 50px;
-	}
 		/****************************** SSM: Music ******************************/
 	.album_Item, .album_Item_Nav { 
 			height: 73px;
 			list-style-position: inside;
-			border: 1px solid #9f9fa6;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+			border: 1px solid #c8c8d1;
 			cursor:pointer;
-			white-space:nowrap; 
-			overflow:hidden;
-			width: 40000px; /* nasty hack to avoid linebrak */
+			overflow: hidden;
 	}
 	.album_Item:hover, .album_Item_Nav:hover  { 
 			background-color: #c8c8d1;
 	}
-	.albumItemRight{
-			float: left;
-	}
-	.albumItemLeft{
-			float: left;
-	}	
 	#album_list {	
 			line-height: 18px;
 			margin-top:20px;
 	}	
+	#album_list li div{
+			white-space:nowrap;  
+			vertical-align: top; 
+			display: inline-block;
+	} 
 	#album_list li h4{
 			display: inline;
 			vertical-align: top;
-			padding-left: 12px;
+			padding-left: 5px;
 	}
   #album_list li h4:after {
-			white-space: pre;content:'\A';
+			white-space: pre;
+			content:'\A';
 	}
-
 	#album_list li p {
-			display: inline;
+			display: inline-block;
 			font-size: 10px;
-			padding-left: 12px;
+			padding-left: 5px;
 	}
-	
 	.musicPrevPic {
 			height: 73px;
+			display: inline-block;
 	}
 	
 	/****************************** SSM: Addons Page ********************************/
@@ -642,7 +652,10 @@ and (max-width : 700px) {
 	}
 	.addonlist-item, #addonListPrev, #addonListNext {
 			list-style-position: inside;
-			border: 1px solid #9f9fa6;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+			border: 1px solid #c8c8d1;
 			overflow:hidden;
 			cursor:pointer;
 	}
@@ -650,11 +663,11 @@ and (max-width : 700px) {
 			background-color: #c8c8d1;
 	}
 	.addonImage{
-		display: block;
-		height: 50px;
-		width: auto;
-		margin-left: auto;
-		margin-right: auto;
+			display: block;
+			height: 50px;
+			width: auto;
+			margin-left: auto;
+			margin-right: auto;
 	}
 
 }

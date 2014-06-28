@@ -26,6 +26,7 @@ https://github.com/tuxfuxch/yarc
 
   * Minimum XBMC Frodo (should work with Gotham according to others)
   * Internet connection to see preview images of movies.
+  * I heard: it's still usable on a mobile with Symbian, Opera Mobile12, 42mb free ram and ARM 11 CPU @ 434 MHz
 
 ###Tested on
 
@@ -35,17 +36,20 @@ https://github.com/tuxfuxch/yarc
      - no keyboard use
      - SVG images (default setting is use of *.png images)
      - Swipe-area not working perfectly (long-touch doesn't work and sometimes it scrolls where it should not)
+  * I heard: it's working fine on IE10
 
 ###Settings
 
   * General
     - **Window title**: if you have multiple XBMC's around, you can give a name to the Window title
-    - **Buttons instead of touch area**: get rid of the swipe area and get in return buttons with that functionality
     - **Hide preview pictures**: if your browser crashes because of to many pictures or you just don't want them, you can get rid of them
     - **Use SVG**: just because I like it, if you want some pictures to be SVG, you can set this. Some mobile browsers don't support them
     - **Hide watched movies and series**
     - **Max list length (0 for no limit)**: if you want to reduce the items shown in the GUI you can say here what you like. Set to 0 if you don't want a limit
     - **Hide language functions and flags**: if you don't use this feature, you don't need to see it and can make some space on the screen
+  * Remote
+    - **Buttons instead of touch area**: get rid of the swipe area and get in return buttons with that functionality
+    - **Set hight of swipe area**: set a css value for hight. Supported: em, ex, px, vh (% of viewport height)
   * Movies
     - **Hide genre selection**: if you don't need this feature, get rid of it and make some space on the screen
     - **Hide search field**: if you don't need this feature, get rid of it and make some space on the screen
@@ -145,6 +149,7 @@ I needed to apply for the API and can use "only" 1 million transaction per day. 
   * TochSwipe Plugin for jquery (https://github.com/mattbryson/TouchSwipe-Jquery-Plugin)
   * Kabooga for first testing help in buxfixing, author of webinterface.xrc
   * Martijn for correction of addon.xml, XBMC Team Member
+  * ruth440 for feedback and helping to go the right direction
 
 ###Contact me
 

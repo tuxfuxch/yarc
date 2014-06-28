@@ -15,8 +15,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+
+//that Intervals run only once, also after Pageswitch
 var zeroInit = false;
 
+//set skin according to setting
+if(localStorage.getItem("ySkin")== "false"){
+		$(document).delegate('[data-role="page"]', 'pagecreate', function (e) {
+			$(this).removeClass('ui-body-a ui-body-b ui-body-c ui-body-d ui-body-e').addClass('ui-body-c').attr('data-theme', 'c');
+		});
+}
 
 var yCore = {
 	activePlayer: -1,
@@ -27,8 +35,8 @@ var yCore = {
 	 
 		document.title = yS.xbmcName;
 		
-    if(!zeroInit){setInterval(yCore.getActivePlayer, 1000);}
-    if(!zeroInit){setInterval(yCore.getPlayerGetItem, 1000);}
+        if(!zeroInit){setInterval(yCore.getActivePlayer, 1000);}
+        if(!zeroInit){setInterval(yCore.getPlayerGetItem, 1000);}
    
 	zeroInit = true; //that Intervals run only once, also after Pageswitch
 
@@ -149,7 +157,7 @@ var yCore = {
 						'{ "jsonrpc": "2.0", "method": "Player.GetItem", "params": { "playerid": '
 								+ yCore.activePlayer + ', "properties": [ "title", "showtitle", "artist", "thumbnail" ] }, "id": 1 }',
 						function(resultGetItem){
-								if(!("error" in resultGetItem)){    // if "error" is not in return set info
+								if(!("error" in resultGetItem)){// if "error" is not in return set info
 										if(resultGetItem["result"]["item"]["title"] == ""){ //only set label if titel is not there and info in label
 											var label = " " +resultGetItem["result"]["item"]["label"];
 										} else { label = "";}
@@ -201,6 +209,9 @@ var yRemote = {
 	init: function() {
 		yS.getSettings();
 		
+		
+		
+		
 		if(yS.noSwipe){
 				$("#swipe").hide();
 				$("#Volume").show();
@@ -213,13 +224,15 @@ var yRemote = {
 				$("#mediacontrol1").hide();
 		}
 		
+		$(".swipe-box").css( "height", yS.swipeHight );
+		
 		
 		/*-------------Swipe Area-------------------------*/
 		radioNavMed = $("input[name='nav-med']:checked").val();
 		
 		$('.nav-med').click(function(){
 				radioNavMed = $("input[name='nav-med']:checked").val();
-				if(radioNavMed == "Nav"){$(".swipe-box").css( "background-color", "#EEE" );}else{$(".swipe-box").css( "background-color", "#BBB" );}
+				if(radioNavMed == "Nav"){$(".swipe-box").css( "background-color", "#444" );}else{$(".swipe-box").css( "background-color", "#666" );}
 		});
 		
 		$('#swipe-help').click(function(){
@@ -255,12 +268,10 @@ var yRemote = {
 				longTap:function(event, target) {
 						if(radioNavMed == "Nav"){yRemote.navcontrol("Input.ContextMenu");} else{yRemote.setVolume("Application.SetMute");}
 				},
-				//Default is 75px, set to 0 for demo so any distance triggers swipe
 				threshold:35,
 				doubleTapThreshold:475,
 		});
-// 		yRemote.setSpeed("increment");
-// 	yRemote.setSpeed("decrement");
+		
 		/*-------------Index Page - Media Control Buttons-------------------------*/
 		
 		$("#playerstop").click(function(e) { //class which calls function on click
@@ -652,14 +663,14 @@ var yMovies = {
 				yMovies.listPos -= yS.listLength;
 				$("#movie_list").empty();
 				yMovies.createMovieList(yMovies.listPos, $('#genreSelect option:selected').attr('value'),$('#languageSelect option:selected').attr('value'), $("#searchMovies").attr('value')); 
-				window.location.href = "index.html#movies"; //go to top
+				window.location.href = "#movies"; //go to top
 		});
 
 		$("body").delegate("#movieListNext", "click", function(e){  //checkbox select/unselect reverser
 				yMovies.listPos += yS.listLength;
 				$("#movie_list").empty();
 				yMovies.createMovieList(yMovies.listPos, $('#genreSelect option:selected').attr('value'),$('#languageSelect option:selected').attr('value'), $("#searchMovies").attr('value'));
-				window.location.href = "index.html#movies"; //go to top
+				window.location.href = "#movies"; //go to top
 		});
 	},
 	getMovies: function(){
@@ -709,8 +720,8 @@ var yMovies = {
 				if(!yS.hideLanguageMovies){
 					document.getElementById('popupLanguagesFlags').innerHTML = yMovies.pathToFlags(yMovies.moviesJSON["result"]["movies"][movieNr]["file"]);
 				}
-				$("#popupPlayMovies").attr("name", movieNr);
-				$("#popupTrailerMovies").attr("name", movieNr);
+				$("#popupPlay").attr("name", movieNr);
+				$("#popupTrailer").attr("name", movieNr);
 				if(!yS.hideFileLinkMovies){$("div#popupFilelink").text("Filelink: " + yMovies.moviesJSON["result"]["movies"][movieNr]["file"]);}
 				$('#detailspopupMovies').popup('open');	
 	},	
@@ -745,10 +756,10 @@ var yMovies = {
 								"<a id='movieListPrev' name='movieListPrev'>"
 										+"<li class='moviedetails'>"
 											+" <div class='movieItem'>" 
-												+ "<div class='movieItemLeft'>"
-														+ "<img class='moviePrevPic' alt='Previous items in list button' src='images/listPrev" + yS.imageFormat + "' />" 
+												+ "<div>"
+														+ "<img class='moviePrevPicArrow' alt='Previous items in list button' src='images/listPrev" + yS.imageFormat + "' />" 
 												+ "</div>" 
-												+ "<div class='movieItemRight'>"
+												+ "<div>"
 														+ "<h4>Previous</h4>"
 														+" <p></p>"
 												+ "</div>" 
@@ -802,13 +813,13 @@ var yMovies = {
 									"<a class='openMovieItem' name='" + i + "'>"
 											+ "<li class='moviedetails'>"
 													+ "<div class='movieItem' name='" + i + "'>"
-															+ "<div class='movieItemLeft'>"
-																	+ "<img class='moviePrevPic' alt='Movie preview image' src='http://images.weserv.nl/?url=" 
+															+ "<div>"
+																	+ "<img class='moviePrevPic' alt='' src='http://images.weserv.nl/?url=" 
 																	+ decodeURIComponent(yMovies.moviesJSON["result"]["movies"][i]["thumbnail"]).substring(15) 
 																	+ "&h=80&w=50&t=absolute&q=" + yS.prevImgQualMovies + "' />"
 																	+ isSeen 
 															+ "</div>" 
-															+ "<div class='movieItemRight'>"
+															+ "<div>"
 																	+ "<h4>" + yMovies.moviesJSON["result"]["movies"][i]["title"] + "</h4>"
 																	+ "<p>Year: " + m_year + " Runtime: " + m_runtime + "</p>"
 																	+ "<p>" + "Rating: " + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][i]["rating"]) + "</p>"
@@ -842,18 +853,18 @@ var yMovies = {
 															"<a class='openMovieItem' name='" + i + "'>"
 																	+ "<li class='moviedetails'>"
 																			+ "<div class='movieItem' name='" + i + "'>"
-																					+ "<div class='movieItemLeft'>"
-																							+ "<img class='moviePrevPic' alt='movie preview image' src='http://images.weserv.nl/?url=" 
-																							+ decodeURIComponent(yMovies.moviesJSON["result"]["movies"][i]["thumbnail"]).substring(15) 
-																							+ "&h=80&w=50&t=absolute&q=" + yS.prevImgQualMovies + "' />"
-																							+ isSeen 
-																					+ "</div>" 
-																					+ "<div class='movieItemRight'>"
-																							+ "<h4>" + yMovies.moviesJSON["result"]["movies"][i]["title"] + "</h4>"
-																							+ "<p>Year: " + m_year + " Runtime: " + m_runtime + "</p>"
-																							+ "<p>" + "Rating: " + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][i]["rating"]) + "</p>"
-																							+ "<p>" + yMovies.pathToFlags(m_filePath)	+ "</p>"
-																					+ "</div>" 
+																				+ "<div>"
+																					+ "<img class='moviePrevPic' alt='' src='http://images.weserv.nl/?url=" 
+																					+ decodeURIComponent(yMovies.moviesJSON["result"]["movies"][i]["thumbnail"]).substring(15) 
+																					+ "&h=80&w=50&t=absolute&q=" + yS.prevImgQualMovies + "' />"
+																					+ isSeen 
+																				+ "</div>" 
+																				+ "<div>"
+																					+ "<h4>" + yMovies.moviesJSON["result"]["movies"][i]["title"] + "</h4>"
+																					+ "<p>Year: " + m_year + " Runtime: " + m_runtime + "</p>"
+																					+ "<p>" + "Rating: " + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][i]["rating"]) + "</p>"
+																					+ "<p>" + yMovies.pathToFlags(m_filePath)	+ "</p>"
+																				+ "</div>" 
 																			+ "</div>"
 																	+ "</li>"
 															+"</a>"
@@ -878,10 +889,10 @@ var yMovies = {
 								"<a id='movieListNext' name='movieListNext'>"
 										+"<li class='moviedetails'>"
 											+" <div class='movieItem' >" 
-												+ "<div class='movieItemLeft'>"
-														+ "<img class='moviePrevPic' alt='Next items in list button' src='images/listNext" + yS.imageFormat + "' />"  
+												+ "<div>"
+														+ "<img class='moviePrevPicArrow' alt='Next items in list button' src='images/listNext" + yS.imageFormat + "' />"  
 												+ "</div>" 
-												+ "<div class='movieItemRight'>"
+												+ "<div>"
 														+ "<h4>Next</h4>"
 														+" <p></p>"
 												+ "</div>" 
@@ -917,9 +928,9 @@ var yMovies = {
 	popupPlay: function(movieNr){
 			$('#popupPlay').text('Please wait...').button("refresh"); // change button text because of long JSON Call time
 			yCore.sendJsonRPC(
-					'{ "jsonrpc": "2.0", "method": "Player.Open", "params": { "item": { "file":  "' 
-							+ yMovies.moviesJSON["result"]["movies"][movieNr]["file"] + '" } }, "id": 1 }',
-					function(){ window.location.href = "index.html";}
+					'{ "jsonrpc": "2.0", "method": "Player.Open", "params": { "item": { "movieid": '
+             + yMovies.moviesJSON["result"]["movies"][movieNr]["movieid"] + ' } }, "id": 1 }',
+					function(){ window.location.href = "#remote";}
 			);
 	},	
 	popupTrailer: function(movieNr){
@@ -1110,7 +1121,7 @@ var ySeries = {
 			$('#popupPlaySeries').text('Please wait...').button("refresh"); // change button text because of long JSON Call time			
 			yCore.sendJsonRPC(
 					'{ "jsonrpc": "2.0", "method": "Player.Open", "params": { "item": { "file":  "' + pathToFile + '" } }, "id": 1 }',
-					function(){ window.location.href = "index.html";}
+					function(){ window.location.href = "#remote";}
 			);
 	},
 	pathToFlags: function(filePath){  //create image tags for languages and add language option to selection
@@ -1192,14 +1203,14 @@ var yMusic = {
 				yMusic.listPos -= yS.listLength;
 				$('#album_list').empty();
 				yMusic.createAlbumList(yMusic.listPos, $('#genreSelectMusic').val(), $("#searchMusic").attr('value'));
-				window.location.href = "index.html#music"; //go to top of list
+				window.location.href = "#music"; //go to top of list
 		});
 
 		$("body").delegate("#albumListNext", "click", function(e){  //checkbox select/unselect reverser
 				yMusic.listPos += yS.listLength;
 				$('#album_list').empty();
 				yMusic.createAlbumList(yMusic.listPos, $('#genreSelectMusic').val(), $("#searchMusic").attr('value'));
-				window.location.href = "index.html#music"; //go to top of list
+				window.location.href = "#music"; //go to top of list
 		});
 	},
 	createAlbumList: function (listStart, genre, searchval) {
@@ -1228,13 +1239,9 @@ var yMusic = {
 								"<a id='albumListPrev' name='albumListPrev'>"
 										+"<li class='album_Item_Nav'>"
 											+" <div class='' name='albumListPrev'>" 
-												+ "<div class='albumItemLeft'>"
 														+ "<img class='musicPrevPic' alt='Previous items in list button' src='images/listPrev" + yS.imageFormat + "' />" 
-												+ "</div>" 
-												+ "<div class='albumItemRight'>"
 														+ "<h4>Previous</h4>"
 														+" <p class='musicListArtist'></p>"
-												+ "</div>" 
 											+ "</div>"
 										+"</li>"
 								+"</a>" 
@@ -1258,9 +1265,9 @@ var yMusic = {
 								if(searchval === undefined || yMusic.albumJSON["result"]["albums"][i]["title"].toLowerCase().indexOf(searchval.toLowerCase()) != -1 || yMusic.albumJSON["result"]["albums"][i]["artist"]["0"].toLowerCase().indexOf(searchval.toLowerCase()) != -1){
 										var imagetag = "";		// prepare image in advance. if there is no image in DB replace with a placeholder image		
 										if(yMusic.albumJSON["result"]["albums"][i]["thumbnail"] == ""){
-											imagetag = "<img class='musicPrevPic' alt='album preview image (not found)' src='images/NoFile" + yS.imageFormat +"' />";
+											imagetag = "<img class='musicPrevPic' alt='' src='images/NoFile" + yS.imageFormat +"' />";
 										} else {
-											imagetag = "<img class='musicPrevPic' alt='album preview image' src='http://"+ $(location).attr('host') 
+											imagetag = "<img class='musicPrevPic' alt='' src='http://"+ $(location).attr('host') 
 																			+ "/image/"+ encodeURIComponent(yMusic.albumJSON["result"]["albums"][i]["thumbnail"]) 
 																	+"' />";
 										}
@@ -1271,13 +1278,9 @@ var yMusic = {
 											"<a class='showAlbum' name='" + yMusic.albumJSON["result"]["albums"][i]["albumid"] + "'>"
 													+"<li class='album_Item' name='" + i + "'>"
 														+" <div class='' name='" + yMusic.albumJSON["result"]["albums"][i]["albumid"] + "'>" 
-															+ "<div class='albumItemLeft'>"
 																	+ imagetag 
-															+ "</div>" 
-															+ "<div class='albumItemRight'>"
-																	+ "<h4>" + yMusic.albumJSON["result"]["albums"][i]["title"] + "</h4>"
-																	+" <p class='musicListArtist'>" + yMusic.artistString + "</p>"
-															+ "</div>" 
+																	+ "<div><h4>" + yMusic.albumJSON["result"]["albums"][i]["title"] + "</h4>"
+																	+" <p class='musicListArtist'>" + yMusic.artistString + "</p></div>"
 														+ "</div>"
 													+"</li>"
 											+"</a>" 
@@ -1295,13 +1298,9 @@ var yMusic = {
 								"<a id='albumListNext' name='albumListNext'>"
 										+"<li class='album_Item_Nav'>"
 											+" <div>" 
-												+ "<div class='albumItemLeft'>"
 														+ "<img class='musicPrevPic' alt='Next items in list button' src='images/listNext" + yS.imageFormat + "' />"  
-												+ "</div>" 
-												+ "<div class='albumItemRight'>"
 														+ "<h4>Next</h4>"
 														+" <p class='musicListArtist'></p>"
-												+ "</div>" 
 											+ "</div>"
 										+"</li>"
 								+"</a>" 
@@ -1363,7 +1362,7 @@ var yMusic = {
 			$('#playPlaylist').text('Please wait...').button("refresh");
 			yCore.sendJsonRPC(
 					'{ "jsonrpc": "2.0", "method": "Player.Open", "params": {"item":{"playlistid":0},"options":{"repeat":"all"}}, "id": 1 }',
-					function(){ window.location.href = "index.html";}
+					function(){ window.location.href = "#remote";}
 			);
 	},
 	emptyPlaylist: function () {
@@ -1437,14 +1436,14 @@ var yAddons = {
 				yAddons.listPos -= yS.listLength;
 				$("#addonlist").empty();
 				yAddons.createAddonList(yAddons.listPos, $('#addonSelect option:selected').attr('value'), $("#searchAddon").attr('value'));
-				window.location.href = "index.html#addons"; //go to top of list
+				window.location.href = "#addons"; //go to top of list
 		});
 
 		$("body").delegate("#addonListNext", "click", function(e){  //checkbox select/unselect reverser
 				yAddons.listPos += yS.listLength;
 				$("#addonlist").empty();
 				yAddons.createAddonList(yAddons.listPos, $('#addonSelect option:selected').attr('value'), $("#searchAddon").attr('value'));
-				window.location.href = "index.html#addons"; //go to top of list
+				window.location.href = "#addons"; //go to top of list
 		});
 	},
 	createAddonList: function(listStart, addonTypeSelected, searchval){
@@ -1485,7 +1484,7 @@ var yAddons = {
 								if(searchval === undefined || yAddons.addonJSON["result"]["addons"][i]["name"].toLowerCase().indexOf(searchval.toLowerCase()) != -1){
 										$("#addonlist").append(
 											"<li class='addonlist-item' name='" + yAddons.addonJSON["result"]["addons"][i]["addonid"] + "'> "
-													+ "<span class='addonImage-box'><img alt='Addon preview image' class='addonImage' src='http://"+ $(location).attr('host') 
+													+ "<span class='addonImage-box'><img alt='' class='addonImage' src='http://"+ $(location).attr('host') 
 																+ "/image/"+ encodeURIComponent(yAddons.addonJSON["result"]["addons"][i]["thumbnail"]) 
 													+ "' /></span>"
 													+	"<h4 class='ui-li-heading addontitle'>" + yAddons.addonJSON["result"]["addons"][i]["name"] + "</h4>"
@@ -1514,7 +1513,7 @@ var yAddons = {
 	openAddon: function(actionname){
 			yCore.sendJsonRPC(
 					'{"jsonrpc": "2.0", "method": "Addons.ExecuteAddon", "params": { "addonid": "' + actionname + '" }, "id": 1}',
-					function(){ window.location.href = "index.html";}
+					function(){ window.location.href = "#remote";}
 			);
 	}
 }
@@ -1525,9 +1524,9 @@ var yTools = {
 			for (var i = 0; i <= 9; i++){
 				if (stars == 0) { htmlString = "No rating"; break;}
 				if (i < stars){
-						htmlString += "<img class='movieRating' alt='Rating star active' src='images/star2" + yS.imageFormat +"' />"
+						htmlString += "<img class='movieRating' alt='' src='images/star2" + yS.imageFormat +"' />"
 				} else {
-						htmlString += "<img class='movieRating' alt='Rating star not active' src='images/star1" + yS.imageFormat +"' />"
+						htmlString += "<img class='movieRating' alt='' src='images/star1" + yS.imageFormat +"' />"
 				}
 				
 			}
@@ -1548,12 +1547,14 @@ var yTools = {
 var yS = { //yarcSettings
 	
 		xbmcName: "yarc",
-		noSwipe: false,
+		ySkin: false,
 		hidePrevPics: false,
 		imageFormatSVG: false,
 		hideWatched: false,
 		hideGenreMovies: false,
 		hideLanguageMovies: false,
+		noSwipe: false,
+		swipeHight: "300px",
 		hideSearchMovies: false,
 		hideFileLinkMovies: false,
 		prevImgQualMovies: "95",
@@ -1568,16 +1569,15 @@ var yS = { //yarcSettings
 		init: function(){
 				
 				$('#xbmcName').val(localStorage.getItem("xbmcName"));
-			
-				if(localStorage.getItem("noSwipe") == "true"){ //in local storage its string not boolean
-						$('input[name=noSwipe]').prop("checked", true).checkboxradio("refresh");
-				} else{
-						$('input[name=noSwipe]').prop("checked", false).checkboxradio("refresh");
-				}
 				if(localStorage.getItem("hidePrevPics") == "true"){ //in local storage its string not boolean
 						$('input[name=hidePrevPics]').prop("checked", true).checkboxradio("refresh");
 				} else{
 						$('input[name=hidePrevPics]').prop("checked", false).checkboxradio("refresh");
+				}
+				if(localStorage.getItem("ySkin") == "true"){ //in local storage its string not boolean
+						$('input[name=ySkin]').prop("checked", true).checkboxradio("refresh");
+				} else{
+						$('input[name=ySkin]').prop("checked", false).checkboxradio("refresh");
 				}
 				if(localStorage.getItem("imageFormatSVG") == "true"){ //in local storage its string not boolean
 						$('input[name=imageFormatSVG]').prop("checked", true).checkboxradio("refresh");
@@ -1607,7 +1607,14 @@ var yS = { //yarcSettings
 				} else{
 						$('input[name=hideSearchMovies]').prop("checked", false).checkboxradio("refresh");
 				}
+			
+				if(localStorage.getItem("noSwipe") == "true"){ //in local storage its string not boolean
+						$('input[name=noSwipe]').prop("checked", true).checkboxradio("refresh");
+				} else{
+						$('input[name=noSwipe]').prop("checked", false).checkboxradio("refresh");
+				}
 				
+				$('#swipeHight').val(localStorage.getItem("swipeHight"));
 				
 				if(localStorage.getItem("hideFileLinkMovies") == "true"){ //in local storage its string not boolean
 						$('input[name=hideFileLinkMovies]').prop("checked", true).checkboxradio("refresh");
@@ -1667,28 +1674,37 @@ var yS = { //yarcSettings
 								return false;
 						}
 				});
+				
+				$("#swipeHight").blur(function(e) {
+						$("#swipeHight_label").css('color', 'black');
+						$("#saveSettings").button('enable');
+						var rangeReg = /^[0-9]+(em|ex|px|vh)/;
+						if (!rangeReg.test($('[name=swipeHight]').val())) {
+								alert("It's a css height property. It needs to be a number with the ending 'em', 'ex', 'px' or 'vh'");
+								$("#saveSettings").button('disable');
+								$("#swipeHight_label").css('color', 'red');
+								return false;
+						}
+				});
 			
 				$("#saveSettings").click(function(e) {
 						e.stopImmediatePropagation();
 						yS.setSettings();
 				});
 				
-				
-				
-				
-				//		alert("ERST NACHER PASSIERTS....");
-				
 		},
 		localStorageInit: function(){
 			//check if localstorage already set once, if not create initial setting
 				if(localStorage.getItem("localStorage_init") === null){ 
 						localStorage.setItem("xbmcName", "yarc");
-						localStorage.setItem("noSwipe", "false");
+						localStorage.setItem("ySkin", "false");
 						localStorage.setItem("hidePrevPics", "false");
 						localStorage.setItem("imageFormatSVG", "false");
 						localStorage.setItem("hideWatched", "false");
 						localStorage.setItem("hideGenreMovies", "false");
 						localStorage.setItem("hideLanguageMovies", "false");
+						localStorage.setItem("noSwipe", "false");
+						localStorage.setItem("swipeHight", "300px");
 						localStorage.setItem("hideSearchMovies", "false");
 						localStorage.setItem("hideFileLinkMovies", "false");
 						localStorage.setItem("prevImgQualMovies", "95");
@@ -1704,7 +1720,7 @@ var yS = { //yarcSettings
 		},
 		getSettings: function(){ //get string from local storage and save it in variable here (as boolean for checkboxes) 
 				yS.xbmcName = localStorage.getItem("xbmcName");
-				if(localStorage.getItem("noSwipe")== "true"){yS.noSwipe = true;}else{yS.noSwipe = false;}
+				if(localStorage.getItem("ySkin")== "true"){yS.hidePrevPics = true;}else{yS.hidePrevPics = false;}
 				if(localStorage.getItem("hidePrevPics")== "true"){yS.hidePrevPics = true;}else{yS.hidePrevPics = false;}
 				if(localStorage.getItem("imageFormatSVG")== "true"){
 						yS.imageFormatSVG = true;
@@ -1716,7 +1732,9 @@ var yS = { //yarcSettings
 				if(localStorage.getItem("hideWatched")== "true"){yS.hideWatched = true;}else{yS.hideWatched = false;}
 				if(localStorage.getItem("listLength")== "0"){yS.listLength = 99999999;} else{yS.listLength = parseInt(localStorage.getItem("listLength"));}
 				if(localStorage.getItem("hideGenreMovies")== "true"){yS.hideGenreMovies = true;}else{yS.hideGenreMovies = false;}
-				if(localStorage.getItem("hideLanguageMovies")== "true"){yS.hideLanguageMovies = true;}else{yS.hideLanguageMovies = false;}
+				if(localStorage.getItem("hideLanguageMovies")== "true"){yS.hideLanguageMovies = true;}else{yS.hideLanguageMovies = false;}				
+				if(localStorage.getItem("noSwipe")== "true"){yS.noSwipe = true;}else{yS.noSwipe = false;}
+				yS.swipeHight = localStorage.getItem("swipeHight");
 				if(localStorage.getItem("hideSearchMovies")== "true"){yS.hideSearchMovies = true;}else{yS.hideSearchMovies = false;} 
 				if(localStorage.getItem("hideFileLinkMovies")== "true"){yS.hideFileLinkMovies = true;}else{yS.hideFileLinkMovies = false;} 
 				yS.prevImgQualMovies = localStorage.getItem("prevImgQualMovies");
@@ -1724,11 +1742,6 @@ var yS = { //yarcSettings
 				if(localStorage.getItem("hideSearchMusic")== "true"){yS.hideSearchMusic = true;}else{yS.hideSearchMusic = false;} 
 				if(localStorage.getItem("hideGenreAddons")== "true"){yS.hideGenreAddons = true;}else{yS.hideGenreAddons = false;} 
 				if(localStorage.getItem("hideSearchAddons")== "true"){yS.hideSearchAddons = true;}else{yS.hideSearchAddons = false;} 
-				
-					//	alert(" vorher PASSIERTS....");
-				
-				
-				
 		},
 		setSettings: function(){
 				$('#settings input[type=checkbox]').each(function () {
@@ -1740,6 +1753,7 @@ var yS = { //yarcSettings
 				});
 				
 				localStorage.setItem("xbmcName", $('[name=xbmcName]').val());
+				localStorage.setItem("swipeHight", $('[name=swipeHight]').val());
 				localStorage.setItem("listLength", $('[name=listLength]').val());
 				localStorage.setItem("prevImgQualMovies", $('[name=prevImgQualMovies]').val());
 				
@@ -1749,6 +1763,95 @@ var yS = { //yarcSettings
 }
 
 
+var yPl = { //yarc Playlist
+		init: function(){
+				yPl.getPlaylist();
+				
+				$("#plBack").click(function(e) { 
+						window.location.href = "#remote";
+				});
+				
+				$('.plRadio').click(function(e){
+						e.stopImmediatePropagation();
+						yPl.getPlaylist();
+				});
+				$("body").delegate(".plItem", "click", function(e){
+						e.stopImmediatePropagation();
+						yPl.goto($(this).attr('name'));
+				});
+		},
+		getPlaylist: function(){
+				$("#currentplaylist").empty();
+				var currentPlayingtitle = "";
+				var isPlaying = "";
+				
+				yCore.sendJsonRPC(	
+						'{ "jsonrpc": "2.0", "method": "Player.GetItem", "params": { "playerid": '+$("input[name='plType']:checked").val()+', "properties": [ "title"] }, "id": 1 }',
+						function(resultGetItem){
+								if(!("error" in resultGetItem)){currentPlayingtitle = resultGetItem["result"]["item"]["title"];}
+						}
+				);
+				
+				if($("input[name='plType']:checked").val() == "0"){
+						yCore.sendJsonRPC(						
+								'{"jsonrpc": "2.0", "method": "Playlist.GetItems", "params": { "properties": ["title", "album", "artist", "duration"], "playlistid": 0 }, "id": 1}',				
+								function(resultPl){
+										for (var i = 0; i < (resultPl["result"]["limits"]["end"]); i++) {
+													if(currentPlayingtitle == resultPl["result"]["items"][i]["title"]){
+															isPlaying = "▶ ";
+													} else {
+															isPlaying = "";
+													}
+													var minutes = Math.floor(resultPl["result"]["items"][i]["duration"] / 60);
+													var seconds = resultPl["result"]["items"][i]["duration"] - minutes * 60;
+													$("#currentplaylist").append(
+															"<li class='plItem' name='" + i + "'><b>" +isPlaying 
+															+ yTools.addZeroTwoDigits(minutes) +":"+yTools.addZeroTwoDigits(seconds) +"</b> "
+															+ resultPl["result"]["items"][i]["title"] 
+															+ " <i>(" + resultPl["result"]["items"][i]["artist"]  + ")</i></li>"
+													);
+										}
+								}
+						);
+				} else if($("input[name='plType']:checked").val() == "1"){
+				yCore.sendJsonRPC(							
+						'{"jsonrpc": "2.0", "method": "Playlist.GetItems", "params": { "properties": [ "runtime", "showtitle", "season", "title", "artist" ], "playlistid": 1}, "id": 1}',				
+						function(resultPl){
+								for (var i = 0; i < (resultPl["result"]["limits"]["end"]); i++) {
+										if(currentPlayingtitle == resultPl["result"]["items"][i]["title"]){
+												isPlaying = "▶ ";
+										} else {
+												isPlaying = "";
+										}
+										var minutes = Math.floor(resultPl["result"]["items"][i]["runtime"] / 60);
+										var seconds = resultPl["result"]["items"][i]["runtime"] - minutes * 60;
+										$("#currentplaylist").append(
+												"<li class='plItem' name='" + i + "'><b>" +isPlaying
+												+ yTools.addZeroTwoDigits(minutes) +":"+yTools.addZeroTwoDigits(seconds) +"</b> "
+												+ resultPl["result"]["items"][i]["title"] 
+												+ " <i>(" + resultPl["result"]["items"][i]["showtitle"]  + ")</i></li>"
+										);									
+								}
+						}
+				);
+				} else {
+						//Space for other possible players
+				}
+		},
+		goto: function(plNumber){			
+				yCore.sendJsonRPC(
+						'{ "jsonrpc": "2.0", "method": "Player.Open", "params": {"item":{"playlistid":' + $("input[name='plType']:checked").val() + '},"options":{"repeat":"all"}}, "id": 1 }',
+						function(){
+								yCore.sendJsonRPC(
+											'{"jsonrpc": "2.0", "method": "Player.GoTo", "params": { "playerid": ' + $("input[name='plType']:checked").val() + ', "to": '+plNumber+'}, "id": 1}',
+											function(result){
+													window.setTimeout(yPl.getPlaylist(),1000);
+											}
+								);
+						}
+				);
+		}
+}
 
 $(document).delegate(document, 'pageshow', yFooter.init);
 $(document).delegate(document, 'pageshow', yCore.init);
@@ -1757,5 +1860,6 @@ $(document).delegate('#movies', 'pageshow', yMovies.init);
 $(document).delegate('#series', 'pageshow', ySeries.init);
 $(document).delegate('#music', 'pageshow', yMusic.init);
 $(document).delegate('#addons', 'pageshow', yAddons.init);
+$(document).delegate('#pl', 'pageshow', yPl.init);//playlist
 $(document).delegate('#settings', 'pageshow', yS.init);
 

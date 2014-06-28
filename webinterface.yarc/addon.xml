@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon
   id="webinterface.yarc"
-  version="0.2.1"
+  version="0.3.0"
   name="yarc"
   provider-name="3524">
   <requires>
@@ -10,7 +10,7 @@
   <extension
     point="xbmc.gui.webinterface"/>
   <extension point="xbmc.addon.metadata">
-  <description lang="en">This remote allows you control the XBMC with an mobile friendly webinterface. JavaScript is required.</description>
+  <description lang="en">This remote allows you to control the XBMC with gestures in a mobile friendly webinterface. It can use language tags from your source filenames. JavaScript is required.</description>
   <language>en</language>
   <platform>all</platform>
   </extension>

@@ -1,3 +1,12 @@
+Version 0.3.0:
+- setting for swipe area hight added
+- dark theme and setting added
+- faster pagetransition
+- bugfix: trailers and movies works now again
+- some inter-face-lifting
+- some css bug's fixed
+- update of readme
+
 Version 0.2.1:
 - xbmc.gui in addon.xml removed 
 - validated html and xml (1 Error in HTML, I believe it's an validator mistake)
