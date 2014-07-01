@@ -1,6 +1,6 @@
 /**
  * Yarc - Yet another Remote Control (for XBMC)
- * Copyright (C) 2014 by Esra Kummer (esra@kummer.to)
+ * Copyright (C) 2014 by Esra Kummer
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -91,7 +91,6 @@ a:hover {
 }
 .youtubeListItem{		
 		list-style-type: none;
-		list-style-position: inside;
 			-webkit-border-radius: 6px;
 			-moz-border-radius: 6px;
 			border-radius: 6px;
@@ -212,7 +211,6 @@ img.movieRating{
 
 /****************************** g: Series Page ********************************/
 .series-item{
-		list-style-position: inside;
 		-webkit-border-radius: 6px;
 		-moz-border-radius: 6px;
 		border-radius: 6px;
@@ -253,7 +251,6 @@ img.movieRating{
 /****************************** g: loading bar ********************************/
 
 	.loading .nomedia{
-		list-style-position: inside;
 		-webkit-border-radius: 6px;
 		-moz-border-radius: 6px;
 		border-radius: 6px;
@@ -307,20 +304,25 @@ img.movieRating{
 /****************************** g:Playlist ********************************/
 
 #plType {
- 	text-align: center; 
+		text-align: center; 
 }
 .plItem{
-			padding-top: 10px;	
-			padding-bottom: 10px;	
-			padding-left: 5px;	
-			list-style-type: none;
-			-webkit-border-radius: 6px;
-			-moz-border-radius: 6px;
-			border-radius: 6px;
-			border: 1px solid #c8c8d1;
+		margin: 0px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 5px;	
+		list-style-type: none;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid #c8c8d1;
 }
 .plItem:hover{
-			background-color: #c8c8d1;
+		background-color: #c8c8d1;
+}
+#currentplaylist{
+		margin-top: 10px;
+		margin-bottom: 10px;
 }
 
 
@@ -351,7 +353,6 @@ and (min-width : 700px) {
 	#series_list { 
 			width: 70%;  /* for centering */
 			margin: auto;  /* for centering */
-			text-align: center;
 			position: relative;
 			width: 700px;
 	}
@@ -480,7 +481,6 @@ and (min-width : 700px) {
 	}
 	.addonlist-item {
 			height: 80px;
-			list-style-position: inside;
 			white-space:nowrap; 
 			overflow:hidden;	
 			cursor:pointer;
@@ -543,7 +543,6 @@ and (max-width : 700px) {
 	/****************************** SSM: Movies ******************************/
 	.moviedetails { 
 			height: 80px;
-			list-style-position: inside;
 			-webkit-border-radius: 6px;
 			-moz-border-radius: 6px;
 			border-radius: 6px;
@@ -604,7 +603,6 @@ and (max-width : 700px) {
 		/****************************** SSM: Music ******************************/
 	.album_Item, .album_Item_Nav { 
 			height: 73px;
-			list-style-position: inside;
 			-webkit-border-radius: 6px;
 			-moz-border-radius: 6px;
 			border-radius: 6px;
@@ -649,9 +647,9 @@ and (max-width : 700px) {
 	}
 	#addonlist {
 			list-style-type: none;
+			margin-top: 20px;
 	}
 	.addonlist-item, #addonListPrev, #addonListNext {
-			list-style-position: inside;
 			-webkit-border-radius: 6px;
 			-moz-border-radius: 6px;
 			border-radius: 6px;

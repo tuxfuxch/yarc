@@ -147,9 +147,9 @@ I needed to apply for the API and can use "only" 1 million transaction per day. 
   * jquery (http://jquery.com/)
   * Wikipedia and it contributors: for the flags (all public domain or similiar licence)
   * TochSwipe Plugin for jquery (https://github.com/mattbryson/TouchSwipe-Jquery-Plugin)
-  * Kabooga for first testing help in buxfixing, author of webinterface.xrc
+  * Kabooga for first testing and help in buxfixing, author of webinterface.xrc
   * Martijn for correction of addon.xml, XBMC Team Member
-  * ruth440 for feedback and helping to go the right direction
+  * ruth440 for testing and feedback. I was helped to go into the right direction
 
 ###Contact me
 
@@ -159,4 +159,4 @@ Tell me what you think could be done better, or what features you would like to 
 
 Feedback about the code is also appreciated, since I am not yet that much of a programmer.
 
-Please contact me over email: esra[a]kummer.to.
+Please contact me on github with bug reports or feature requests: https://github.com/tuxfuxch/yarc/issues

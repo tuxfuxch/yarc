@@ -1,3 +1,12 @@
+Version 0.3.1:
+- bugfix: Movie time now showing right mintues value
+- bugfix: all key's in local storage get's checked if set, otherwise default setting gets written
+- bugfix: footer content sometimes still visible after disabling it: does not happen anymore
+- Addons get sorted by how may times they got started (from the given device and browser)
+- if previewpictures sould not be shown, they are now removed rather than only hidden
+- some css adjustments
+- update of readme
+
 Version 0.3.0:
 - setting for swipe area hight added
 - dark theme and setting added

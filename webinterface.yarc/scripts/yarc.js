@@ -1,6 +1,6 @@
 /**
  * Yarc - Yet another Remote Control (for XBMC)
- * Copyright (C) 2014 by Esra Kummer (esra@kummer.to)
+ * Copyright (C) 2014 by Esra Kummer
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -133,6 +133,7 @@ var yCore = {
 		);
 	},
 	getPlayerGetItem: function(){
+		
 		yCore.sendJsonRPC( //need also when footer is invisible to get state of play/pause button
 				'{"jsonrpc":"2.0","method":"Player.GetProperties", "params": { "playerid": '
 					+ yCore.activePlayer + ', "properties": ["time", "totaltime", "shuffled", "speed"] }, "id": 1}',
@@ -175,10 +176,11 @@ var yCore = {
 											$(".footerTitle").show();
 										} else {//other Player
 											$(".footerTitle").text(resultGetItem["result"]["item"]["title"] + label);
-											$(".footerImage").hide();
 											$(".footerImage").show();
 											$(".footerTitle").show();
 										}
+										//if footer get's disabled while rpc call active, hide footer content
+										if(!yFooter.footerVisible){$(".footerImage").hide();$(".footerTitle").hide();$(".footerTime").hide();}
 								} else { //if "error" exists set props that nothing is in it
 										$(".footerImage").hide();
 										$(".footerTitle").text("");
@@ -580,7 +582,7 @@ var yRemote = {
 
 var yFooter = {
 	footerVisible: false,
-	init: function() {	
+	init: function() {
 		
 			yS.getSettings();
 		
@@ -590,25 +592,27 @@ var yFooter = {
 				$(".footerTime").hide();
 			}
 		
-		$(".footer-left").click(function(e) {
-			
-			e.stopImmediatePropagation();
-			if (!yFooter.footerVisible){
-				yFooter.footerVisible = true;
-				$(".footer-left").text('<−−');
-				$(".footer").css( "width", "100%" );				
-				if(yCore.activePlayer != -1)$(".footerImage").show();
-				$(".footerTime").show();
-				if(yCore.activePlayer != -1)$(".footerTitle").show();
-			} else {
-				yFooter.footerVisible = false;
-				$(".footer-left").text('−−>');
-				$(".footer").css( "width", "0px" );
-				$(".footerImage").hide();
-				$(".footerTitle").hide();
-				$(".footerTime").hide();
-			}
-		});
+			$(".footer-left").click(function(e) {
+				e.stopImmediatePropagation();
+				
+				if (!yFooter.footerVisible){
+					yFooter.footerVisible = true;
+					$(".footer-left").text('<−−');
+					$(".footer").css( "width", "100%" );
+					
+					if(yCore.activePlayer != -1)$(".footerImage").show();
+					$(".footerTime").show();					
+					if(yCore.activePlayer != -1)$(".footerTitle").show();
+				} else {
+					yFooter.footerVisible = false;
+					$(".footer-left").text('−−>');
+					$(".footer").css( "width", "0px" );
+					
+					$(".footerImage").hide();
+					$(".footerTitle").hide();
+					$(".footerTime").hide();
+				}
+			});
 	}
 }
 
@@ -675,7 +679,7 @@ var yMovies = {
 	},
 	getMovies: function(){
 		yCore.sendJsonRPC(
-				'{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": { "limits": { "start": 0 }, "properties": [ "plot", "trailer", "title", "runtime", "year", 				"genre", "rating", "thumbnail", "file", "playcount", "streamdetails"], "sort": { "method": "sorttitle", "ignorearticle": true }}, "id": 1}',				
+				'{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": { "limits": { "start": 0 }, "properties": [ "plot", "trailer", "title", "runtime", "year", "genre", "rating", "thumbnail", "file", "playcount", "streamdetails"], "sort": { "method": "sorttitle", "ignorearticle": true }}, "id": 1}',				
 				function(result){
 						yMovies.moviesJSON = result; //write result in Array for further use 
 						yMovies.createMovieList(0, "all", "all",$("#searchMovies").attr('value'));
@@ -699,7 +703,7 @@ var yMovies = {
 				var md_year = yMovies.moviesJSON["result"]["movies"][movieNr]["year"];
 				if(md_year > 0){md_year = " (" + md_year + ")";}else{md_year="";}
 				
-				var md_runtime = yMovies.moviesJSON["result"]["movies"][movieNr]["runtime"];
+				var md_runtime = yMovies.moviesJSON["result"]["movies"][movieNr]["runtime"]/60;
 				if (md_runtime > 0){md_runtime += "min.";}else{ md_runtime = "unknown";}
 				
 				$("#popupImageMovies").attr("src","http://images.weserv.nl/?url=" + decodeURIComponent(yMovies.moviesJSON["result"]["movies"][movieNr]["thumbnail"]).substring(15) + "&h=200");
@@ -797,7 +801,7 @@ var yMovies = {
 							
 							//first check if searchfield Value is undefinde (no input yet) and then if the title is matching (in lowercase)
 							if(searchval === undefined || yMovies.moviesJSON["result"]["movies"][i]["title"].toLowerCase().indexOf(searchval.toLowerCase()) != -1){
-								var m_runtime = yMovies.moviesJSON["result"]["movies"][i]["runtime"];
+								var m_runtime = yMovies.moviesJSON["result"]["movies"][i]["runtime"]/60;
 								if (m_runtime > 0){m_runtime += "min.";}else{ m_runtime = "unknown";} //makes runtime string if aviable
 								
 								var m_year = yMovies.moviesJSON["result"]["movies"][i]["year"];
@@ -837,7 +841,7 @@ var yMovies = {
 										if(m_filePath.indexOf(langToCode[lcifp]) > 0){
 														//first check if searchfield Value is undefinde (no input yet) and then if the title is matching (in lowercase)
 													if(searchval === undefined || yMovies.moviesJSON["result"]["movies"][i]["title"].toLowerCase().indexOf(searchval.toLowerCase()) != -1){
-														var m_runtime = yMovies.moviesJSON["result"]["movies"][i]["runtime"];
+														var m_runtime = yMovies.moviesJSON["result"]["movies"][i]["runtime"]/60;
 														if (m_runtime > 0){m_runtime += "min.";}else{ m_runtime = "unknown";} //makes runtime string if aviable
 														
 														var m_year = yMovies.moviesJSON["result"]["movies"][i]["year"];
@@ -878,8 +882,8 @@ var yMovies = {
 						}
 					}	
 					
-					if(yS.hidePrevPics){$(".moviePrevPic").hide();} //hide previmage if set in settings
-					if(yS.hidePrevPics){$(".greenMovies").hide();}  //hide green arrow if set in settings
+					if(yS.hidePrevPics){$(".moviePrevPic").remove();} //hide previmage if set in settings
+					if(yS.hidePrevPics){$(".greenMovies").remove();}  //hide green arrow if set in settings
 				}
 				
 				
@@ -1289,7 +1293,7 @@ var yMusic = {
 								}
 						}
 						albumGenreInItem = 0;
-						if(yS.hidePrevPics){$(".musicPrevPic").hide();} //hide previmage if set in settings
+						if(yS.hidePrevPics){$(".musicPrevPic").remove();} //hide previmage if set in settings
 				}
 				
 				//only show if not at the end of the list, and no more items in the list to show
@@ -1360,6 +1364,7 @@ var yMusic = {
 	},	
 	playPlaylist: function () {
 			$('#playPlaylist').text('Please wait...').button("refresh");
+			setTimeout(function(){$('#playPlaylist').text('Play Playlist').button("refresh");}, 1500);
 			yCore.sendJsonRPC(
 					'{ "jsonrpc": "2.0", "method": "Player.Open", "params": {"item":{"playlistid":0},"options":{"repeat":"all"}}, "id": 1 }',
 					function(){ window.location.href = "#remote";}
@@ -1410,6 +1415,13 @@ var yAddons = {
 						'{"jsonrpc": "2.0", "method": "Addons.GetAddons", "params": { "enabled": true, "type" : "xbmc.python.pluginsource", "properties": ["name", "thumbnail"]}, "id": 1}',
 						function(resultGetAddons){
 											yAddons.addonJSON = resultGetAddons;
+											
+											for (var i = 0; i < (yAddons.addonJSON["result"]["limits"]["end"]); i++) {
+													//check if there is a localStorage key for this addon. if not, create one...
+													if (localStorage.getItem(yAddons.addonJSON["result"]["addons"][i]["addonid"]) === null) {
+															localStorage.setItem(yAddons.addonJSON["result"]["addons"][i]["addonid"], "0");					
+													}
+											}
 											
 											$(".loading").hide();
 											
@@ -1483,7 +1495,8 @@ var yAddons = {
 						if (addonTypeSelected == "all" || stringparts[1] == addonTypeSelected){ 
 								if(searchval === undefined || yAddons.addonJSON["result"]["addons"][i]["name"].toLowerCase().indexOf(searchval.toLowerCase()) != -1){
 										$("#addonlist").append(
-											"<li class='addonlist-item' name='" + yAddons.addonJSON["result"]["addons"][i]["addonid"] + "'> "
+											"<li class='addonlist-item' name='" 
+													+ yAddons.addonJSON["result"]["addons"][i]["addonid"] + "' value='" + localStorage.getItem(yAddons.addonJSON["result"]["addons"][i]["addonid"]) + "'> "
 													+ "<span class='addonImage-box'><img alt='' class='addonImage' src='http://"+ $(location).attr('host') 
 																+ "/image/"+ encodeURIComponent(yAddons.addonJSON["result"]["addons"][i]["thumbnail"]) 
 													+ "' /></span>"
@@ -1492,9 +1505,17 @@ var yAddons = {
 											itemsInList++;
 								}
 						}
-						if(yS.hidePrevPics){$(".addonImage").hide();} //hide previmage if set in settings
+						if(yS.hidePrevPics){$(".addonImage").remove();} //hide previmage if set in settings
 				}
-					
+				
+				//sort the addonlist <ul> by value, descending
+				$("#addonlist").html(
+            $("#addonlist").children("li").sort(function (a, b) {
+                return $(b).val() - $(a).val();
+            })
+        );
+				
+				
 				//only show if not at the end of the list, and no more items in the list to show
 				if((yAddons.listPos + yAddons.listLength) < yAddons.addonJSON["result"]["limits"]["end"] && (yAddons.listPos + yAddons.listLength) < itemsInList){		
 						$("#addonlist").append(
@@ -1513,7 +1534,13 @@ var yAddons = {
 	openAddon: function(actionname){
 			yCore.sendJsonRPC(
 					'{"jsonrpc": "2.0", "method": "Addons.ExecuteAddon", "params": { "addonid": "' + actionname + '" }, "id": 1}',
-					function(){ window.location.href = "#remote";}
+					function(){ 
+						//get localStorage Key for addon-startcount, increment by one and save it again.
+						localStorage.setItem(actionname, JSON.stringify(JSON.parse(localStorage.getItem(actionname))+1));	
+						
+						window.location.href = "#remote";
+						
+					}
 			);
 	}
 }
@@ -1694,29 +1721,61 @@ var yS = { //yarcSettings
 				
 		},
 		localStorageInit: function(){
-			//check if localstorage already set once, if not create initial setting
-				if(localStorage.getItem("localStorage_init") === null){ 
-						localStorage.setItem("xbmcName", "yarc");
-						localStorage.setItem("ySkin", "false");
-						localStorage.setItem("hidePrevPics", "false");
-						localStorage.setItem("imageFormatSVG", "false");
-						localStorage.setItem("hideWatched", "false");
-						localStorage.setItem("hideGenreMovies", "false");
-						localStorage.setItem("hideLanguageMovies", "false");
-						localStorage.setItem("noSwipe", "false");
-						localStorage.setItem("swipeHight", "300px");
-						localStorage.setItem("hideSearchMovies", "false");
-						localStorage.setItem("hideFileLinkMovies", "false");
-						localStorage.setItem("prevImgQualMovies", "95");
-						localStorage.setItem("hideGenreMusic", "false");
-						localStorage.setItem("hideSearchMusic", "false");
-						localStorage.setItem("hideGenreAddons", "false");
-						localStorage.setItem("hideSearchAddons", "false");
-						localStorage.setItem("listLength", "0");
-						localStorage.setItem("imageFormat", ".png");
-						
-						localStorage.setItem("localStorage_init", "true"); // to avoid that this routine runs again
-				}	
+			//check if localstorage key set, if not, create initial setting
+				if (localStorage.getItem("xbmcName") === null) {
+						localStorage.setItem("xbmcName", "yarc");					
+				}
+				if (localStorage.getItem("ySkin") === null) {	
+						localStorage.setItem("ySkin", "true");			
+				}
+				if (localStorage.getItem("hidePrevPics") === null) {	
+						localStorage.setItem("hidePrevPics", "false");			
+				}
+				if (localStorage.getItem("imageFormatSVG") === null) {
+						localStorage.setItem("imageFormatSVG", "false");				
+				}
+				if (localStorage.getItem("hideWatched") === null) {
+						localStorage.setItem("hideWatched", "false");				
+				}
+				if (localStorage.getItem("hideGenreMovies") === null) {	
+						localStorage.setItem("hideGenreMovies", "false");			
+				}
+				if (localStorage.getItem("hideLanguageMovies") === null) {
+						localStorage.setItem("hideLanguageMovies", "false");				
+				}
+				if (localStorage.getItem("noSwipe") === null) {	
+						localStorage.setItem("noSwipe", "false");			
+				}
+				if (localStorage.getItem("swipeHight") === null) {
+						localStorage.setItem("swipeHight", "300px");				
+				}
+				if (localStorage.getItem("hideSearchMovies") === null) {
+						localStorage.setItem("hideSearchMovies", "false");				
+				}
+				if (localStorage.getItem("hideFileLinkMovies") === null) {
+						localStorage.setItem("hideFileLinkMovies", "false");				
+				}
+				if (localStorage.getItem("prevImgQualMovies") === null) {
+						localStorage.setItem("prevImgQualMovies", "95");				
+				}
+				if (localStorage.getItem("hideGenreMusic") === null) {	
+						localStorage.setItem("hideGenreMusic", "false");			
+				}
+				if (localStorage.getItem("hideSearchMusic") === null) {
+						localStorage.setItem("hideSearchMusic", "false");				
+				}
+				if (localStorage.getItem("hideGenreAddons") === null) {	
+						localStorage.setItem("hideGenreAddons", "false");			
+				}
+				if (localStorage.getItem("hideSearchAddons") === null) {	
+						localStorage.setItem("hideSearchAddons", "false");			
+				}
+				if (localStorage.getItem("listLength") === null) {	
+						localStorage.setItem("listLength", "0");			
+				}
+				if (localStorage.getItem("imageFormat") === null) {
+						localStorage.setItem("imageFormat", ".png");				
+				}
 		},
 		getSettings: function(){ //get string from local storage and save it in variable here (as boolean for checkboxes) 
 				yS.xbmcName = localStorage.getItem("xbmcName");

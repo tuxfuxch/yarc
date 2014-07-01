@@ -155,7 +155,7 @@
 				<input name="xbmcName" id="xbmcName" value=""  size="30"/>
 				<label for="ySkin">Use dark theme</label>
 				<input name="ySkin" type="checkbox" id="ySkin" value="ySkin" />
-				<label for="hidePrevPics">Hide priview pictures</label>
+				<label for="hidePrevPics">Hide preview pictures</label>
 				<input name="hidePrevPics" type="checkbox" id="hidePrevPics" value="hidePrevPics" />
 				<label for="imageFormatSVG">Use SVG images where possible</label>
 				<input name="imageFormatSVG" type="checkbox" id="imageFormatSVG" value="imageFormatSVG" />
@@ -377,7 +377,7 @@
 				</li>
 				<li class='loading'>loading...</li><!--<li id="addon_loading" class='addonLoading' name='" + addonsJSON["result"]["addons"][i]["addonid"] + "'><div class='ui-btn-inner ui-li'><h4 class='ui-li-heading addontitle'>loading...</h4></div></li>-->
 			</ul>
-			<ul id="addonlist"></ul>
+			<ul id="addonlist" class="ui-listview"></ul>
 		</div><!-- /content -->
 		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
 			<span class="footer-left">&minus;&minus;&gt;</span>
@@ -407,7 +407,7 @@
 					<input type="radio" id="plVideo" class="plRadio" name="plType" value="1" /> 
 					<label for="plVideo">Video</label>
 				</fieldset>
-			<ul id="currentplaylist"></ul>
+			<ul id="currentplaylist" class="ui-listview"></ul>
 			<button id="plBack" type="button">Back</button>
 		</div><!-- /content -->
 		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
