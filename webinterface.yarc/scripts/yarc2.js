@@ -35,8 +35,8 @@ var yCore = {
 	 
 		document.title = yS.xbmcName;
 		
-        if(!zeroInit){setInterval(yCore.getActivePlayer, 1000);}
-        if(!zeroInit){setInterval(yCore.getPlayerGetItem, 1000);}
+//         if(!zeroInit){setInterval(yCore.getActivePlayer, 1000);}
+//         if(!zeroInit){setInterval(yCore.getPlayerGetItem, 1000);}
    
 	zeroInit = true; //that Intervals run only once, also after Pageswitch
 
@@ -624,8 +624,6 @@ var yMovies = {
 	documentReadyAlreadyRun: false,
 	listPos: 0,
 	listLength: 0,
-	lastListItem: 0,
-	firstListItem: [0],
 	init: function() {
 		
 		yS.getSettings();
@@ -662,26 +660,18 @@ var yMovies = {
 		
 		$("#searchMovies").keyup(function() {
 				$('#movie_list').empty(); //empty ul to update list with new choices
-				yMovies.firstListItem = [0]; //to get track of what was search to go back with button
 				yMovies.createMovieList(0, $('#genreSelect option:selected').attr('value'),$('#languageSelect option:selected').attr('value'), $("#searchMovies").attr('value')); 
 		});
 		
 		$("body").delegate("#movieListPrev", "click", function(e){  //checkbox select/unselect reverser
-				yMovies.listPos = yMovies.firstListItem.pop(); //if one back, remove item from trail-array
+				yMovies.listPos -= yS.listLength;
 				$("#movie_list").empty();
 				yMovies.createMovieList(yMovies.listPos, $('#genreSelect option:selected').attr('value'),$('#languageSelect option:selected').attr('value'), $("#searchMovies").attr('value')); 
 				window.location.href = "#movies"; //go to top
 		});
 
 		$("body").delegate("#movieListNext", "click", function(e){  //checkbox select/unselect reverser
-				yMovies.listPos = yMovies.lastListItem + 1; //befor creating new list remeber the position where to start
-				
-				//if first item back button, remember frist item of list in trail-array to go back later
-				if( $( "#movie_list" ).children().eq(0).attr('name') == "movieListPrev"){
-						yMovies.firstListItem.push(parseInt($( "#movie_list" ).children().eq(1).attr('name')));	
-				} else {//else it was the beginning of the list
-						yMovies.firstListItem = [0];
-				}
+				yMovies.listPos += yS.listLength;
 				$("#movie_list").empty();
 				yMovies.createMovieList(yMovies.listPos, $('#genreSelect option:selected').attr('value'),$('#languageSelect option:selected').attr('value'), $("#searchMovies").attr('value'));
 				window.location.href = "#movies"; //go to top
@@ -695,14 +685,12 @@ var yMovies = {
 						yMovies.createMovieList(0, "all", "all",$("#searchMovies").attr('value'));
 
 						$('#genreSelect').change(function() {  //create Action Listener for list with selection choice
-							$('#movie_list').empty(); //empty ul to update list with new choices
-							yMovies.firstListItem = [0]; //if selection changed, start from the beginning
+							$('#movie_list').empty(); //empty ul to update list with new items
 							yMovies.createMovieList(0, $(this).val(), $('#languageSelect option:selected').attr('value'),$("#searchMovies").attr('value')); //create movieslist accouding to options
 						});
 
 						$('#languageSelect').change(function() {  //create Action Listener for list with selection choice
-							$('#movie_list').empty(); //empty ul to update list with new choices
-							yMovies.firstListItem = [0];//if selection changed, start from the beginning
+							$('#movie_list').empty(); //empty ul to update list with new items
 							yMovies.createMovieList(0, $('#genreSelect option:selected').attr('value'),$(this).val(), $("#searchMovies").attr('value')); //create movieslist according to options
 						});
 				}
@@ -750,7 +738,7 @@ var yMovies = {
 		
 		itemsInList = 0; //needed to find out, how many items are shown, so that if list is restricted we know if next button has to be shown
 		
-		yMovies.listPos = listStart; //needed, that in initalaition by restriction, list starts at 0, but not if next or prev button
+		yMovies.listPos = listStart; //needed, that in initialaition by restriction, list starts at 0, but not if next or prev button
 		
 		
 		//check if there is anything in the lib. eigther show info or hide loading bar
@@ -785,23 +773,10 @@ var yMovies = {
 						);	
 				}
 				
-				
-				for (var i = 0; i < (yMovies.moviesJSON["result"]["limits"]["end"]); i++) { //all movies
+				for (var i = yMovies.listPos; i < (yMovies.moviesJSON["result"]["limits"]["end"]); i++) { //all movies
 					langToCode = [];
-					movieGenreInItem = -1;				
-					
+					movieGenreInItem = -1;
 					var m_filePath = yMovies.moviesJSON["result"]["movies"][i]["file"];
-
-					//go trough file name and add an option to selection if nessesary
-					for (var k=0; k < countrycodes.length; k++){//each country
-							for (var l=0; l < countrycodes[k].codes.length; l++){//each code for country
-									if (m_filePath.indexOf(countrycodes[k].codes[l].code) > 0) {
-											if ( $("#languageSelect option[value=" + countrycodes[k].language + "]").length == 0 ){
-													$('#languageSelect').append("<option value='"	+ countrycodes[k].language + "'>" + countrycodes[k].language + "</option>");
-											}
-									}
-						}
-					}
 					
 					for (var j=0; j < yMovies.moviesJSON["result"]["movies"][i]["genre"].length; j++){ //all genres in movie
 						if (!(jQuery.inArray(yMovies.moviesJSON["result"]["movies"][i]["genre"][j], yMovies.genres) > -1)){ //push if already not theredetail
@@ -825,45 +800,39 @@ var yMovies = {
 							
 							//first check if searchfield Value is undefinde (no input yet) and then if the title is matching (in lowercase)
 							if(searchval === undefined || yMovies.moviesJSON["result"]["movies"][i]["title"].toLowerCase().indexOf(searchval.toLowerCase()) != -1){
+								var m_runtime = yMovies.moviesJSON["result"]["movies"][i]["runtime"]/60;
+								if (m_runtime > 0){m_runtime += "min.";}else{ m_runtime = "unknown";} //makes runtime string if aviable
 								
-								//skip what should not be seen
-								if(i >= yMovies.listPos && itemsInList < yMovies.listLength){
-									
-										var m_runtime = yMovies.moviesJSON["result"]["movies"][i]["runtime"]/60;
-										if (m_runtime > 0){m_runtime += "min.";}else{ m_runtime = "unknown";} //makes runtime string if aviable
-										
-										var m_year = yMovies.moviesJSON["result"]["movies"][i]["year"];
-										if (m_year < 1){m_year = "unknown";} //makes year string if unaviable
-										
-										if(yMovies.moviesJSON["result"]["movies"][i]["playcount"]>0){
-											if(yS.hideWatched){continue;}//if setting says to not show seen movies, go to next iteration
-											var isSeen = "<img class='greenMovies' alt='Movie is seen' src='images/Green_Tick" + yS.imageFormat +"' />";
-										}
-										else {var isSeen = "";} //add img tag if movie is registered as min. seen once
-															
-										$("#movie_list").append(
-											"<a class='openMovieItem' name='" + i + "'>"
-													+ "<li class='moviedetails'>"
-															+ "<div class='movieItem' name='" + i + "'>"
-																	+ "<div>"
-																			+ "<img class='moviePrevPic' alt='' src='http://images.weserv.nl/?url=" 
-																			+ decodeURIComponent(yMovies.moviesJSON["result"]["movies"][i]["thumbnail"]).substring(15) 
-																			+ "&h=80&w=50&t=absolute&q=" + yS.prevImgQualMovies + "' />"
-																			+ isSeen 
-																	+ "</div>" 
-																	+ "<div>"
-																			+ "<h4>" + yMovies.moviesJSON["result"]["movies"][i]["title"] + "</h4>"
-																			+ "<p>Year: " + m_year + " Runtime: " + m_runtime + "</p>"
-																			+ "<p>" + "Rating: " + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][i]["rating"]) + "</p>"
-																			+ "<p>" + yMovies.pathToFlags(m_filePath)	+ "</p>"
-																	+ "</div>" 
-															+ "</div>"
-													+ "</li>"
-											+"</a>"
-										);
-										itemsInList++; 
-										yMovies.lastListItem = i; //remember last item of the list
+								var m_year = yMovies.moviesJSON["result"]["movies"][i]["year"];
+								if (m_year < 1){m_year = "unknown";} //makes year string if unaviable
+								
+								if(yMovies.moviesJSON["result"]["movies"][i]["playcount"]>0){
+									if(yS.hideWatched){continue;}//if setting says to not show seen movies, go to next iteration
+									var isSeen = "<img class='greenMovies' alt='Movie is seen' src='images/Green_Tick" + yS.imageFormat +"' />";
 								}
+								else {var isSeen = "";} //add img tag if movie is registered as min. seen once
+													
+								$("#movie_list").append(
+									"<a class='openMovieItem' name='" + i + "'>"
+											+ "<li class='moviedetails'>"
+													+ "<div class='movieItem' name='" + i + "'>"
+															+ "<div>"
+																	+ "<img class='moviePrevPic' alt='' src='http://images.weserv.nl/?url=" 
+																	+ decodeURIComponent(yMovies.moviesJSON["result"]["movies"][i]["thumbnail"]).substring(15) 
+																	+ "&h=80&w=50&t=absolute&q=" + yS.prevImgQualMovies + "' />"
+																	+ isSeen 
+															+ "</div>" 
+															+ "<div>"
+																	+ "<h4>" + yMovies.moviesJSON["result"]["movies"][i]["title"] + "</h4>"
+																	+ "<p>Year: " + m_year + " Runtime: " + m_runtime + "</p>"
+																	+ "<p>" + "Rating: " + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][i]["rating"]) + "</p>"
+																	+ "<p>" + yMovies.pathToFlags(m_filePath)	+ "</p>"
+															+ "</div>" 
+													+ "</div>"
+											+ "</li>"
+									+"</a>"
+								);
+								itemsInList++; 
 							}
 							//movieGenreInItem = 0; //set Movie in Genre again to 0 for next run
 						} else {
@@ -871,45 +840,39 @@ var yMovies = {
 										if(m_filePath.indexOf(langToCode[lcifp]) > 0){
 														//first check if searchfield Value is undefinde (no input yet) and then if the title is matching (in lowercase)
 													if(searchval === undefined || yMovies.moviesJSON["result"]["movies"][i]["title"].toLowerCase().indexOf(searchval.toLowerCase()) != -1){
+														var m_runtime = yMovies.moviesJSON["result"]["movies"][i]["runtime"]/60;
+														if (m_runtime > 0){m_runtime += "min.";}else{ m_runtime = "unknown";} //makes runtime string if aviable
 														
-
-														//skip what should not be seen
-														if(i >= yMovies.listPos && itemsInList < yMovies.listLength){
-																var m_runtime = yMovies.moviesJSON["result"]["movies"][i]["runtime"]/60;
-																if (m_runtime > 0){m_runtime += "min.";}else{ m_runtime = "unknown";} //makes runtime string if aviable
-																
-																var m_year = yMovies.moviesJSON["result"]["movies"][i]["year"];
-																if (m_year < 1){m_year = "unknown";} //makes year string if unaviable
-																
-																if(yMovies.moviesJSON["result"]["movies"][i]["playcount"]>0){
-																	if(yS.hideWatched){continue;}//if setting says to not show seen movies, go to next iteration
-																	var isSeen = "<img class='greenMovies' alt='movie is marked as seen' src='images/Green_Tick" + yS.imageFormat +"' />";
-																}
-																else {var isSeen = "";} //add img tag if movie is registered as min. seen once
-																					
-																$("#movie_list").append(
-																	"<a class='openMovieItem' name='" + i + "'>"
-																			+ "<li class='moviedetails'>"
-																					+ "<div class='movieItem' name='" + i + "'>"
-																						+ "<div>"
-																							+ "<img class='moviePrevPic' alt='' src='http://images.weserv.nl/?url=" 
-																							+ decodeURIComponent(yMovies.moviesJSON["result"]["movies"][i]["thumbnail"]).substring(15) 
-																							+ "&h=80&w=50&t=absolute&q=" + yS.prevImgQualMovies + "' />"
-																							+ isSeen 
-																						+ "</div>" 
-																						+ "<div>"
-																							+ "<h4>" + yMovies.moviesJSON["result"]["movies"][i]["title"] + "</h4>"
-																							+ "<p>Year: " + m_year + " Runtime: " + m_runtime + "</p>"
-																							+ "<p>" + "Rating: " + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][i]["rating"]) + "</p>"
-																							+ "<p>" + yMovies.pathToFlags(m_filePath)	+ "</p>"
-																						+ "</div>" 
-																					+ "</div>"
-																			+ "</li>"
-																	+"</a>"
-																);
-																itemsInList++; 
-																yMovies.lastListItem = i; //remember last item of the list
+														var m_year = yMovies.moviesJSON["result"]["movies"][i]["year"];
+														if (m_year < 1){m_year = "unknown";} //makes year string if unaviable
+														
+														if(yMovies.moviesJSON["result"]["movies"][i]["playcount"]>0){
+															if(yS.hideWatched){continue;}//if setting says to not show seen movies, go to next iteration
+															var isSeen = "<img class='greenMovies' alt='movie is marked as seen' src='images/Green_Tick" + yS.imageFormat +"' />";
 														}
+														else {var isSeen = "";} //add img tag if movie is registered as min. seen once
+																			
+														$("#movie_list").append(
+															"<a class='openMovieItem' name='" + i + "'>"
+																	+ "<li class='moviedetails'>"
+																			+ "<div class='movieItem' name='" + i + "'>"
+																				+ "<div>"
+																					+ "<img class='moviePrevPic' alt='' src='http://images.weserv.nl/?url=" 
+																					+ decodeURIComponent(yMovies.moviesJSON["result"]["movies"][i]["thumbnail"]).substring(15) 
+																					+ "&h=80&w=50&t=absolute&q=" + yS.prevImgQualMovies + "' />"
+																					+ isSeen 
+																				+ "</div>" 
+																				+ "<div>"
+																					+ "<h4>" + yMovies.moviesJSON["result"]["movies"][i]["title"] + "</h4>"
+																					+ "<p>Year: " + m_year + " Runtime: " + m_runtime + "</p>"
+																					+ "<p>" + "Rating: " + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][i]["rating"]) + "</p>"
+																					+ "<p>" + yMovies.pathToFlags(m_filePath)	+ "</p>"
+																				+ "</div>" 
+																			+ "</div>"
+																	+ "</li>"
+															+"</a>"
+														);
+														itemsInList++; 
 												}
 												movieGenreInItem = 0; //set Movie in Genre again to 0 for next run
 											
@@ -920,8 +883,10 @@ var yMovies = {
 					
 					if(yS.hidePrevPics){$(".moviePrevPic").remove();} //hide previmage if set in settings
 					if(yS.hidePrevPics){$(".greenMovies").remove();}  //hide green arrow if set in settings
+
+					if(itemsInList == yS.listLength){break;}
 				}
-				
+
 				
 				//only show if not at the end of the list, or no more items in the list to show
 				if((yMovies.listPos + yMovies.listLength) < yMovies.moviesJSON["result"]["limits"]["end"]){	
@@ -951,6 +916,7 @@ var yMovies = {
 						$('#genreSelect').append("<option value='" + yMovies.genres[i] + "'>" + yMovies.genres[i] + "</option>");
 					}
 				}
+				
 			}//end else of check if there is something in the library
 	},
 	genresToString: function(movieNr){
@@ -1065,7 +1031,7 @@ var ySeries = {
 		});
 		
 		$('.openSeries').bind('collapse',function(e){ //removes episodes from DOM if series is closed
-			var TvShowId = $(this).attr('name');
+			var TvShowId = $(this).attr('name')
 			var node = document.getElementById(TvShowId);
 			if ( node.hasChildNodes() ){
 				while ( node.childNodes.length >= 1 ){
@@ -1184,8 +1150,6 @@ var yMusic = {
 	listPos: 0,
 	listLength: 0,
 	artistString: "",
-	lastListItem: 0,
-	firstListItem: [0], //keep track of trail when mooving forward in restricted list
 	init: function() {
 				
 		yS.getSettings();
@@ -1204,8 +1168,6 @@ var yMusic = {
 
 							$('#genreSelectMusic').change(function() {  //create Action Listener for list with selection choice
 								$('#album_list').empty(); //empty ul to update list with new choices
-								
-								yMusic.firstListItem = [0];  //if selection changed, start from the beginning
 								yMusic.createAlbumList(0, $('#genreSelectMusic').val(), $("#searchMusic").attr('value')); //create albumlist according to options
 							});
 					}
@@ -1214,7 +1176,7 @@ var yMusic = {
 		
 		$("body").delegate(".showAlbum", "click", function(e){
 				e.stopImmediatePropagation();	
-				yMusic.showAlbum($(this).attr('name')); //give in first attr xbmc-album-id and in the second internal reference		
+				yMusic.showAlbum($(this).attr('name'), $(this).find(">:first-child").attr('name')); //give in first attr xbmc-album-id and in the second internal reference		
 		});
 
 		$("body").delegate("#popupAddToPlaylist", "click", function(e){
@@ -1224,7 +1186,6 @@ var yMusic = {
 		
 		$("#searchMusic").keyup(function() {
 				$('#album_list').empty(); //empty ul to update list with new choices
-				yMusic.firstListItem = [0];//if selection changed, start from the beginning
 				yMusic.createAlbumList(0, $('#genreSelectMusic').val(), $("#searchMusic").attr('value'));
 		});
 		
@@ -1241,22 +1202,14 @@ var yMusic = {
 		});
 		
 		$("body").delegate("#albumListPrev", "click", function(e){  //checkbox select/unselect reverser
-				yMusic.listPos = yMusic.firstListItem.pop();//if one back, remove item from trail-array
+				yMusic.listPos -= yS.listLength;
 				$('#album_list').empty();
 				yMusic.createAlbumList(yMusic.listPos, $('#genreSelectMusic').val(), $("#searchMusic").attr('value'));
 				window.location.href = "#music"; //go to top of list
 		});
 
 		$("body").delegate("#albumListNext", "click", function(e){  //checkbox select/unselect reverser
-				yMusic.listPos = yMusic.lastListItem + 1;//befor creating new list remeber the position where to start
-				
-				//if first item back button, remember frist item of list in trail-array to go back later
-				if( $( "#album_list" ).children().eq(0).attr('name') == "albumListPrev"){
-						yMusic.firstListItem.push(parseInt($( "#album_list" ).children().eq(1).attr('name')));	
-				} else {//else it was the beginning of the list
-						yMusic.firstListItem = [0];
-				}
-				
+				yMusic.listPos += yS.listLength;
 				$('#album_list').empty();
 				yMusic.createAlbumList(yMusic.listPos, $('#genreSelectMusic').val(), $("#searchMusic").attr('value'));
 				window.location.href = "#music"; //go to top of list
@@ -1283,7 +1236,7 @@ var yMusic = {
 						yMusic.listLength = yS.listLength;
 				}
 				
-				if(yMusic.listPos > 1){		
+				if(yMusic.listPos != 0){		
 						$("#album_list").append(
 								"<a id='albumListPrev' name='albumListPrev'>"
 										+"<li class='album_Item_Nav'>"
@@ -1298,7 +1251,7 @@ var yMusic = {
 				}
 				
 				
-				for (var i = 0; i < (yMusic.albumJSON["result"]["limits"]["end"]); i++) { //all albums
+				for (var i = yMusic.listPos; i < (yMusic.albumJSON["result"]["limits"]["end"]); i++) { //all albums
 						for (var j=0; j < yMusic.albumJSON["result"]["albums"][i]["genre"].length; j++){ //all genres in movie
 							if (!(jQuery.inArray(yMusic.albumJSON["result"]["albums"][i]["genre"][j], yMusic.genres) > -1)){ //push if already not therel
 								yMusic.genres.push(yMusic.albumJSON["result"]["albums"][i]["genre"][j]);	
@@ -1312,40 +1265,35 @@ var yMusic = {
 						if($('#genreSelectMusic option:selected').attr('value') == "all" || albumGenreInItem == 1){
 								// show only titles and artists (so far only first in artistsarray) matched to searchstring, also partly
 								if(searchval === undefined || yMusic.albumJSON["result"]["albums"][i]["title"].toLowerCase().indexOf(searchval.toLowerCase()) != -1 || yMusic.albumJSON["result"]["albums"][i]["artist"]["0"].toLowerCase().indexOf(searchval.toLowerCase()) != -1){
-									
-
-										//skip what should not be seen
-										if(i >= yMusic.listPos && itemsInList < yMusic.listLength){
-
-												var imagetag = "";		// prepare image in advance. if there is no image in DB replace with a placeholder image		
-												if(yMusic.albumJSON["result"]["albums"][i]["thumbnail"] == ""){
-													imagetag = "<img class='musicPrevPic' alt='' src='images/NoFile" + yS.imageFormat +"' />";
-												} else {
-													imagetag = "<img class='musicPrevPic' alt='' src='http://"+ $(location).attr('host') 
-																					+ "/image/"+ encodeURIComponent(yMusic.albumJSON["result"]["albums"][i]["thumbnail"]) 
-																			+"' />";
-												}
-												
-											yMusic.artistsToString(i);
-												
-												$("#album_list").append(
-													"<a class='showAlbum' name='" + i + "'>"
-															+"<li class='album_Item' name='"+i+"'>"
-																+" <div class='' name='" + i + "'>" 
-																			+ imagetag 
-																			+ "<div><h4>" + yMusic.albumJSON["result"]["albums"][i]["title"] + "</h4>"
-																			+" <p class='musicListArtist'>" + yMusic.artistString + "</p></div>"
-																+ "</div>"
-															+"</li>"
-													+"</a>" 
-												);
-												itemsInList++; 
-												yMusic.lastListItem = i; //remember last item of the list
+										var imagetag = "";		// prepare image in advance. if there is no image in DB replace with a placeholder image		
+										if(yMusic.albumJSON["result"]["albums"][i]["thumbnail"] == ""){
+											imagetag = "<img class='musicPrevPic' alt='' src='images/NoFile" + yS.imageFormat +"' />";
+										} else {
+											imagetag = "<img class='musicPrevPic' alt='' src='http://"+ $(location).attr('host') 
+																			+ "/image/"+ encodeURIComponent(yMusic.albumJSON["result"]["albums"][i]["thumbnail"]) 
+																	+"' />";
 										}
+										
+									yMusic.artistsToString(i);
+										
+										$("#album_list").append(
+											"<a class='showAlbum' name='" + yMusic.albumJSON["result"]["albums"][i]["albumid"] + "'>"
+													+"<li class='album_Item' name='" + i + "'>"
+														+" <div class='' name='" + yMusic.albumJSON["result"]["albums"][i]["albumid"] + "'>" 
+																	+ imagetag 
+																	+ "<div><h4>" + yMusic.albumJSON["result"]["albums"][i]["title"] + "</h4>"
+																	+" <p class='musicListArtist'>" + yMusic.artistString + "</p></div>"
+														+ "</div>"
+													+"</li>"
+											+"</a>" 
+										);
+										itemsInList++; 
 								}
 						}
 						albumGenreInItem = 0;
 						if(yS.hidePrevPics){$(".musicPrevPic").remove();} //hide previmage if set in settings
+						
+						if(itemsInList == yS.listLength){break;}
 				}
 				
 				//only show if not at the end of the list, and no more items in the list to show
@@ -1365,17 +1313,17 @@ var yMusic = {
 
 				$(".loading").hide();
 				if(tempGenreLenth <= 0){ //only populate if it is the first time
-						yMusic.genres.sort()
-						for (var i=0; i < yMusic.genres.length; i++){  //add genre Options to selection
-								$('#genreSelectMusic').append("<option value='" + yMusic.genres[i] + "'>" + yMusic.genres[i] + "</option>");
-						}
+					yMusic.genres.sort()
+					for (var i=0; i < yMusic.genres.length; i++){  //add genre Options to selection
+						$('#genreSelectMusic').append("<option value='" + yMusic.genres[i] + "'>" + yMusic.genres[i] + "</option>");
+					}
 				}
 		}
 	},
-	showAlbum: function (albumJsonNr) {	
+	showAlbum: function (albumNr, albumJsonNr) {	
 			$("#popupContainerMusic").empty();
 			yCore.sendJsonRPC(
-					'{"jsonrpc": "2.0", "method": "AudioLibrary.GetSongs", "params": { "properties": ["title", "artist", "genre", "track", "duration", "album", "thumbnail"], 				"filter": { "albumid" : ' + yMusic.albumJSON["result"]["albums"][albumJsonNr]["albumid"] + '} }, "id": 1}',
+					'{"jsonrpc": "2.0", "method": "AudioLibrary.GetSongs", "params": { "properties": ["title", "artist", "genre", "track", "duration", "album", "thumbnail"], 				"filter": { "albumid" : ' + albumNr + '} }, "id": 1}',
 					function(resultGetSongsAlbum){
 							yMusic.artistsToString(albumJsonNr);
 							
@@ -1403,11 +1351,11 @@ var yMusic = {
 			$('#detailspopupMusic').popup('open');		
 	},
 
-	artistsToString: function(albumJsonNr){
+	artistsToString: function(albumNr){
 			yMusic.artistString = ""; //empty, to remove previous content, to avoid wrong or multiple informations
-			for (var j=0; j < yMusic.albumJSON["result"]["albums"][albumJsonNr]["artist"].length; j++){ //all genres in movie
-					yMusic.artistString += yMusic.albumJSON["result"]["albums"][albumJsonNr]["artist"][j];
-					if (j !=  (yMusic.albumJSON["result"]["albums"][albumJsonNr]["artist"].length -1)) { yMusic.artistString += ", "; }
+			for (var j=0; j < yMusic.albumJSON["result"]["albums"][albumNr]["artist"].length; j++){ //all genres in movie
+					yMusic.artistString += yMusic.albumJSON["result"]["albums"][albumNr]["artist"][j];
+					if (j !=  (yMusic.albumJSON["result"]["albums"][albumNr]["artist"].length -1)) { yMusic.artistString += ", "; }
 			}
 			if (yMusic.artistString==""){yMusic.artistString += "unknown"};			
 	},	
@@ -1453,6 +1401,7 @@ var yAddons = {
 	init: function() {
 		
 		yS.getSettings();
+		
 		
 		if(yS.hideSearchAddons){$("#searchAddon").parent().hide();} //hide Search field if set in settings
 		if(yS.hideGenreAddons){$("#addonSelect").parent().hide();} //hide  genre selection  field if set in settings
@@ -1530,7 +1479,7 @@ var yAddons = {
 				
 				if(yAddons.listPos != 0){	 
 							$("#addonlist").append(
-								"<li id='addonListPrev' name='addonListPrev' value='999999'> "
+								"<li id='addonListPrev' name='addonListPrev' value='9999999'> "
 										+ "<span class='addonImage-box'><img class='addonImage' alt='Previous items in list button' src='images/listPrev" + yS.imageFormat + "' /></span>"
 										+	"<h4 class='ui-li-heading addontitle'>Previous</h4>"
 								+ "</li>"
@@ -1540,25 +1489,20 @@ var yAddons = {
 				for (var i = 0; i < (yAddons.addonJSON["result"]["limits"]["end"]); i++) {
 						var stringparts = yAddons.addonJSON["result"]["addons"][i]["addonid"].split('.');
 						
-						var imagetag = "";
-						
-						if(!yS.hidePrevPics){
-								imagetag ="<img alt='' class='addonImage' src='http://"+ $(location).attr('host') 
-																+ "/image/"+ encodeURIComponent(yAddons.addonJSON["result"]["addons"][i]["thumbnail"]) 
-													+ "' />";
-						}
-						
 						if (addonTypeSelected == "all" || stringparts[1] == addonTypeSelected){ 
 								if(searchval === undefined || yAddons.addonJSON["result"]["addons"][i]["name"].toLowerCase().indexOf(searchval.toLowerCase()) != -1){
 										$("#addonlist").append(
 											"<li class='addonlist-item' name='" 
 													+ yAddons.addonJSON["result"]["addons"][i]["addonid"] + "' value='" + localStorage.getItem(yAddons.addonJSON["result"]["addons"][i]["addonid"]) + "'> "
-													+ "<span class='addonImage-box'>"+imagetag+"</span>"
+													+ "<span class='addonImage-box'><img alt='' class='addonImage' src='http://"+ $(location).attr('host') 
+																+ "/image/"+ encodeURIComponent(yAddons.addonJSON["result"]["addons"][i]["thumbnail"]) 
+													+ "' /></span>"
 													+	"<h4 class='ui-li-heading addontitle'>" + yAddons.addonJSON["result"]["addons"][i]["name"] + "</h4>"
 											+ "</li>");
 											itemsInList++;
 								}
 						}
+						if(yS.hidePrevPics){$(".addonImage").remove();} //hide previmage if set in settings
 				}
 				
 				//sort the addonlist <ul> by value, descending
@@ -1870,6 +1814,8 @@ var yS = { //yarcSettings
 				localStorage.setItem("prevImgQualMovies", $('[name=prevImgQualMovies]').val());
 				
 				yS.getSettings();
+				
+				//reload whole page so that skin gets loaded
 				window.location.href = "index.html";
 		}
 }

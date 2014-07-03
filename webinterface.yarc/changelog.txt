@@ -1,3 +1,9 @@
+Version 0.3.2:
+- Movie and Music List: now, only the relevant items get loaded into the html
+- bugfix: in addonspage the prev and next button are always in the right place
+- bugfix: in addonspage the prev and next button are always shown, also when "hide Preview Image" set.
+- css: prev and next pictures are now centred again in Moviepage "Big Screen Mode"
+
 Version 0.3.1:
 - bugfix: Movie time now showing right mintues value
 - bugfix: all key's in local storage get's checked if set, otherwise default setting gets written

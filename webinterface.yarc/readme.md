@@ -149,7 +149,7 @@ I needed to apply for the API and can use "only" 1 million transaction per day. 
   * TochSwipe Plugin for jquery (https://github.com/mattbryson/TouchSwipe-Jquery-Plugin)
   * Kabooga for first testing and help in buxfixing, author of webinterface.xrc
   * Martijn for correction of addon.xml, XBMC Team Member
-  * ruth440 for testing and feedback. I was helped to go into the right direction
+  * ruth440 for testing and feedback. I was pointed into the right direction
 
 ###Contact me
 
