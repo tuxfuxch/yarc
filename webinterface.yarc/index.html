@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link rel="stylesheet" href="jquery.mobile-1.2.0.min.css" />
 	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="font-awesome-4.1.0/css/font-awesome.min.css">
 	<script src="jquery-1.8.2.min.js"></script>
 	<script src="jquery.mobile-1.2.0.min.js"></script>
   <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
@@ -45,10 +46,10 @@
 				</div>
 				<div data-role="popup" id="detailspopupSwipe" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
 					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-					<div>Through swipe and tab gestures, you can control your XBMC. Use the grey field to do it with the folling gestures:<br />
+					<div>Through swipe and tab gestures, you can control your XBMC. Use the grey field to do it with the following gestures:<br />
 						<b>Navigation:</b>
 						<ul>
-							<li>Swipe up, down, left or right for the according direction you want to navigate</li>
+							<li>Swipe up, down, left or right like you would scoll on a mobile-phone list</li>
 							<li>Tab once to select</li>
 							<li>Tab twice to go back</li>
 							<li>Tab long for the context menu</li>
@@ -77,37 +78,39 @@
 				</fieldset>
 			</div>
 			<div id="mediacontrol1" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
-				<button class="playergoto" name="previous" type="button">┃◀</button>
-				<button id="playpause" name="Player.PlayPause" type="button">▶┃┃</button>
-				<button id="playerstop" name="Player.stop" type="button">■</button>
-				<button class="playergoto" name="next" type="button">▶┃</button>
+				<button class="playergoto" name="previous" type="button"><i class="fa fa-step-backward"></i></button>
+				<button id="playpause" name="Player.PlayPause" type="button"><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
+				<button id="playerstop" name="Player.stop" type="button"><i class="fa fa-stop"></i></button>
+				<button class="playergoto" name="next" type="button"><i class="fa fa-step-forward"></i></button>
 			</div>
 			<div id="mediacontrol2" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
-				<button class="playerSetSpeed" name="decrement" type="button" data-mini="true">◀◀</button>
+				<button class="playerSetSpeed" name="decrement" type="button" data-mini="true"><i class="fa fa-backward"></i></button>
 				<a href="#pl" data-role="button" data-mini="true">PlayList</a>
-				<button class="playerSetSpeed" name="increment" type="button" data-mini="true">▶▶</button>
+				<button class="playerSetSpeed" name="increment" type="button" data-mini="true"><i class="fa fa-forward"></i></button>
 			</div>
 			<div id="navigation-arrows" class="ui-grid-b">
 				<div class="ui-block-a"></div>
-				<div class="ui-block-b"><button class="navcontrol" name="Input.Up" type="button">▲</button></div>
+				<div class="ui-block-b"><button class="navcontrol" name="Input.Up" type="button"><i class="fa fa-caret-up"></i></button></div>
 				<div class="ui-block-c"></div>     
-				<div class="ui-block-a"><button class="navcontrol" name="Input.Left" type="button">◀</button></div>
-				<div class="ui-block-b"><button class="navcontrol" name="Input.Select" type="button">✔</button></div> 
-				<div class="ui-block-c"><button class="navcontrol" name="Input.Right" type="button">▶</button></div>       
-				<div class="ui-block-a"><button class="navcontrol" name="Input.ContextMenu" type="button">Cont</button></div>
-				<div class="ui-block-b"><button class="navcontrol" name="Input.Down" type="button">▼</button></div> 
-				<div class="ui-block-c"><button class="navcontrol" name="Input.Back" type="button">Back</button></div>     
+				<div class="ui-block-a"><button class="navcontrol" name="Input.Left" type="button"><i class="fa fa-caret-left"></i></button></div>
+				<div class="ui-block-b"><button class="navcontrol" name="Input.Select" type="button"><i class="fa fa-check"></i></button></div> 
+				<div class="ui-block-c"><button class="navcontrol" name="Input.Right" type="button"><i class="fa fa-caret-right"></i></button></div>       
+				<div class="ui-block-a"><button class="navcontrol" name="Input.ContextMenu" type="button"><i class="fa fa-list-alt"></i></button></div>
+				<div class="ui-block-b"><button class="navcontrol" name="Input.Down" type="button"><i class="fa fa-caret-down"></i></button></div> 
+				<div class="ui-block-c"><button class="navcontrol" name="Input.Back" type="button"><i class="fa fa-reply"></i></button></div>     
 			</div><!-- /navigation-arrows -->
 			<div id="MenuButtons" data-role="controlgroup" data-type="horizontal">
-				<a id="toggleFullscreen" data-role="button" data-mini="true">FS</a>
-				<a class="navcontrol" name="Input.Home" data-role="button" data-mini="true">Home</a>
-				<a class="navcontrol" name="Input.Info" data-role="button" data-mini="true">MediaInfo</a>
-				<a class="navcontrol" name="Input.ShowOSD" data-role="button" data-mini="true">PlayerMenu</a>
+				<a id="toggleFullscreen" data-role="button" data-mini="true"><i class="fa fa-picture-o"></i></a>
+				<a class="navcontrol" name="Input.Home" data-role="button" data-mini="true"><i class="fa fa-home"></i></a>
+				<a class="navcontrol" name="Input.Info" data-role="button" data-mini="true"><i class="fa fa-info-circle"></i></a>
+				<a class="navcontrol" name="Input.ShowOSD" data-role="button" data-mini="true">
+					<i class="fa fa-step-backward"></i>&nbsp;<i class="fa fa-pause"></i>&nbsp;<i class="fa fa-stop"></i>&nbsp;<i class="fa fa-step-forward"></i>
+				</a>
 			</div>
 			<div id ="Volume" data-role="controlgroup" data-type="horizontal">
 <!-- 				<label>Volume</label> -->
 				<button class="volume-group" name="Volume.Minus" type="button">-</button>
-				<button id="SetMute" class="volume-group" name="Application.SetMute" type="button">((∙))</button>
+				<button id="SetMute" class="volume-group" name="Application.SetMute" type="button"><i class="fa fa-volume-up"></i></button>
 				<button class="volume-group" name="Volume.Plus" type="button">+</button>
 			</div><!-- /Volume -->
 			<div id="SendText" class="ui-grid-b">
@@ -128,7 +131,7 @@
 			</div><!-- /collapsible -->
 		</div><!-- /content -->
 		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left">&minus;&minus;&gt;</span>
+			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -252,7 +255,7 @@
 			</ul>
 		</div><!-- /content -->
 		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left">&minus;&minus;&gt;</span>
+			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -292,7 +295,7 @@
 			</div>
 		</div><!-- /content -->
 		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left">&minus;&minus;&gt;</span>
+			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif"/>
 				<span class="footerTime"></span>
@@ -316,7 +319,7 @@
 			<div class="content-primary">
 				<div data-role="popup" id="detailspopupMusic" data-overlay-theme="a" data-theme="a" class="ui-content detailspopupMovies">
 					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-					<img id="popupImageMusic" alt="Musicalbum preview image" src="images/transparent.gif"/>
+					<img id="popupImageMusic" alt="" src="images/transparent.gif"/>
 					<h2 id="popupTitleMusic"></h2>
 					<button id="popupUnselectMusic" type="button" name="">(un-)select all</button>
 					<div id="popupContainerMusic"></div> <!--container for song list items -->
@@ -340,7 +343,7 @@
 			</ul>
 		</div><!-- /content -->
 		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left">&minus;&minus;&gt;</span>
+			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -380,7 +383,7 @@
 			<ul id="addonlist" class="ui-listview"></ul>
 		</div><!-- /content -->
 		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left">&minus;&minus;&gt;</span>
+			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -411,7 +414,7 @@
 			<button id="plBack" type="button">Back</button>
 		</div><!-- /content -->
 		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left">&minus;&minus;&gt;</span>
+			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>

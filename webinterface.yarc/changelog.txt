@@ -1,3 +1,12 @@
+Version 0.3.3
+- bugfix: addonspage: listpos listpos init fixed
+- get rid of some redundant code
+- switched color of swipefied-navigation and swipefield-media
+- some css tweaks in BSM
+- say if playlist empty
+- in Playlist, indicate if plaing song is on pause or playing
+- change symbols on buttons to fontawesome for higher browser compatibility
+
 Version 0.3.2:
 - Movie and Music List: now, only the relevant items get loaded into the html
 - bugfix: in addonspage the prev and next button are always in the right place

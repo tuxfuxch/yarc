@@ -147,6 +147,7 @@ I needed to apply for the API and can use "only" 1 million transaction per day. 
   * jquery (http://jquery.com/)
   * Wikipedia and it contributors: for the flags (all public domain or similiar licence)
   * TochSwipe Plugin for jquery (https://github.com/mattbryson/TouchSwipe-Jquery-Plugin)
+  * Font Awesome for the very good symbol-font (http://fontawesome.io)
   * Kabooga for first testing and help in buxfixing, author of webinterface.xrc
   * Martijn for correction of addon.xml, XBMC Team Member
   * ruth440 for testing and feedback. I was pointed into the right direction

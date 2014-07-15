@@ -137,7 +137,7 @@ a:hover {
 	width: 90%;
 	height: 300px; /* will be altered trough setting */
 	
-	background-color: #444;
+	background-color: #666;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
@@ -278,10 +278,10 @@ img.movieRating{
 		cursor: pointer;
 		background-color: #6E6E6E;
 		width: 0px; 
-		padding-top: 11px;  
-		padding-bottom: 12px;  
+		padding-top: 8px;  
+		padding-bottom: 8px;  
 		padding-left: 9px;  
-		padding-right: 0px; 
+		padding-right: 9px; 
 		height: 40px;  
 }
 .footerImage {
@@ -384,14 +384,13 @@ and (min-width : 700px) {
 	
 	/****************************** BSM: Movies ******************************/
 	#movie_list {
-			margin-top: 15px; 
+			margin-top: 20px; 
 	}
 	#movie_list li {
-			display: inline;
-			float: left;
+			display: inline-block;
+			vertical-align: top;
 			width: 300px;
-			height: 280px;
-			margin-top: 2px;	
+			padding: 10px;
 			-webkit-border-radius: 6px;
 			-moz-border-radius: 6px;
 			border-radius: 6px;
@@ -436,12 +435,15 @@ and (min-width : 700px) {
 	
 	/****************************** BSM: Music ******************************/
 	
+	#album_list{
+		margin-top: 20px;
+	}
+	
 	#album_list li {
-			display: inline;
-			float: left;
+			display: inline-block;
+			vertical-align: top;
 			width: 300px;
-			height: 180px;
-			margin-top: 20px;	
+			padding: 10px;
 			cursor:pointer;
 			-webkit-border-radius: 6px;
 			-moz-border-radius: 6px;
@@ -474,13 +476,13 @@ and (min-width : 700px) {
 	}
 	#addonlist{
 			display:block;
+			margin-top: 20px;
 	}
 	#addonlist li {
-			display: inline;
-			float: left;
+			display: inline-block;
+			vertical-align: top;
 			width: 300px;
-			height: 100px;
-			margin-top: 20px;	
+			padding: 10px;
 			list-style-type: none;
 			-webkit-border-radius: 6px;
 			-moz-border-radius: 6px;
