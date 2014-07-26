@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon
-  id="webinterface.yarc"
+  id="plugin.webinterface.yarc"
   version="0.3.3"
   name="yarc"
   provider-name="tuxfuxch">
