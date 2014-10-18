@@ -1,0 +1,662 @@
+/**
+ * Yarc - Yet another Remote Control (for Kodi)
+ * Copyright (C) 2014 by Esra Kummer
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+
+
+
+
+/************************************************************************************* 
+ *															General (G)								 													 *
+ *************************************************************************************/
+
+a:link {
+		text-decoration: none;
+		color: black;
+}
+a:visited {
+		text-decoration: none; 
+		color: black;
+}
+a:active {
+		text-decoration: none; 
+		color: black;
+}
+a:hover {
+		text-decoration: none; 
+		color: black;
+}
+#navbar {/*http://stackoverflow.com/questions/1216114/how-can-i-make-a-div-stick-to-the-top-of-the-screen-once-its-been-scrolled-to*/
+		background-color: #c0c0c0;
+		position:fixed;
+		top:0;
+		width:100%;
+		z-index:100;
+}
+#content{
+		padding-top: 76px;	
+}
+.buttonRight{
+		float: right;
+		margin-top:-37px;
+}
+.simpleList{
+		margin: 0px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 5px;	
+		list-style-type: none;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid #c8c8d1;
+		overflow: hidden !important;
+  	white-space: nowrap;   
+}
+.simpleList:hover{
+		background-color: #c8c8d1;
+}
+
+
+/****************************** g:Popups ********************************/
+
+.detailspopup{
+		overflow: hidden !important;
+		padding: 0px;
+}
+.popupImage{	
+		width: 100% !important;
+		height: Auto !important;
+		position:absolute;
+	 	-khtml-opacity:.250;
+		-moz-opacity:.250;
+		-ms-filter:"alpha(opacity=250)";
+ 		filter:alpha(opacity=250);
+ 		filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.25);
+ 		opacity:.250;
+		max-height: none !important;
+}
+/*.songItem for detailspopupMusic*/
+.songItem {
+		text-align: left;		
+}
+.youtubeListItem{		
+		list-style-type: none;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid #c8c8d1;
+		overflow: hidden;
+		cursor: pointer;
+  	white-space: nowrap;   
+}
+.youtubeListItem:hover { 
+		background-color: #c8c8d1;
+}
+.youtubeTitle { 
+		font-size: 20px;	
+ 		margin-left: 10px; 
+		white-space:normal;
+ 		overflow: hidden; 
+}
+
+.youtubeImage {		
+		height: 80px;
+		width: auto;
+}
+#popupPlotMovies {
+		margin-top: 15px;
+}
+#popupFilelink {
+		margin-top: 15px;
+}
+#popupPlotSeries {
+		margin-top: 15px;
+}
+
+
+
+/****************************** g:Index Page ********************************/
+
+
+/*swipe function*/
+.swipe-box{	
+		overflow:hidden;
+		margin-bottom: 10px;
+		margin-right: 10%;
+		width: 90%;
+		height: 300px; /* will be altered trough setting */
+	
+		background-color: #666;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+	
+		text-align:center;
+		font-weight: 300;
+		font-size: 20px;
+		line-height: 36px;
+	
+		color: #FFF;
+		text-shadow: 0 1px 1px #111111;
+}
+
+#nav-med-radio {
+		text-align: center;
+}
+
+/*Index Page upper Buttons*/
+.mediacontrol { 
+		text-align: center;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+}
+
+/*Index Page Navigation arrows*/
+#navigation-arrows {
+		text-align: center;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+}
+/*Index Page lower Buttons*/
+#MenuButtons {
+		text-align: center;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+}
+/*Index Page Volume Buttons*/
+#Volume{
+		text-align: center;
+		width: 300px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+}
+#shutdownbuttons .ui-block-a {
+		width: 66.6%;
+}
+#shutdownbuttons .ui-block-b { 
+		width: 33.3%;
+} 
+.plainLabel{ 
+		height: 50px;
+		line-height: 50px;
+}
+
+
+/****************************** g: Language Flags ********************************/
+
+.pathToFlags {
+		border-width: 1px !important; 
+		height: 15px;
+		width: auto;
+		border:1px solid #333333;
+}
+img.movieRating{
+		width: 10px;
+}
+
+/****************************** g: Series Page ********************************/
+.series-item{
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid #c8c8d1;
+		overflow:hidden;
+		cursor:pointer;
+		height: 40px;
+		white-space: nowrap;
+}
+.series-item:hover{
+			background-color: #c8c8d1;
+}
+.series-item h4{
+		display: inline;
+		height: 40px;
+}
+.series-item span{
+		overflow: hidden;
+}
+.seriesThumb{
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+}
+.green {
+		height: 40px;
+		width: 40px;
+		vertical-align:middle
+}
+
+/****************************** g: loading bar ********************************/
+
+	.loading .nomedia{
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid #c8c8d1;
+		background-color: #e0e0e0;
+		text-align: center;
+		list-style-type: none;
+	}
+
+/****************************** g: Footer Bar ********************************/
+
+.footer {
+		width: 0px;
+		height: 40px;    
+		vertical-align: top;
+		line-height: 40px; 
+		white-space:nowrap; 
+}
+.footer-right {
+		text-decoration: none;
+		font-size: 11px;
+		height: 40px;  
+}
+.footer-left {
+		cursor: pointer;
+		background-color: #6E6E6E;
+		width: 0px; 
+		padding-top: 8px;  
+		padding-bottom: 8px;  
+		padding-left: 9px;  
+		padding-right: 9px; 
+		height: 40px;  
+}
+.footerImage {
+		height: 41px;
+		line-height: 40px;    
+		vertical-align: top; 
+}
+.footerTime {
+		display: inline-block;
+		width: 46px;
+		font-size: 11px;
+		vertical-align: middle;
+		line-height:17px;  
+}
+.footerTitle{
+		overflow:hidden;
+		height:40px;
+		line-height:40px;	
+}
+/****************************** g:Playlist ********************************/
+
+#plType {
+		text-align: center; 
+}
+#currentplaylist{
+		margin-top: 10px;
+		margin-bottom: 10px;
+}
+
+
+
+/************************************************************************************* 
+ *															Big Screen Media (BSM)															 *
+ *************************************************************************************/
+@media only screen
+and (min-width : 700px) {
+	
+
+	
+		/****************************** BSM : Index Page ********************************/
+	#navigation-arrows {
+			width: 500px;
+	}
+	#SendText .ui-block-a {
+			width: 50%;
+	}
+	#SendText .ui-block-b { 
+			width: 25%;
+	} 
+	#SendText .ui-block-c { 
+			width: 25%;
+	} 
+		/****************************** BSM : Series ********************************/
+	#series_list { 
+			width: 70%;  /* for centering */
+			margin: auto;  /* for centering */
+			position: relative;
+			width: 700px;
+	}
+	
+		/****************************** BSM : Footer ********************************/
+	
+	.footer-right { 
+			font-size: 17px;
+	}
+	
+		/****************************** BSM :Popup ********************************/
+		
+	.detailspopup{	
+			width: 500px;
+	}
+	.youtubeListItem{		
+		height: 80px;
+	}
+	.youtubeTitle { 
+		width: 380px;
+		height: 80px;
+		float: left;
+		text-align: left;
+	}
+	.youtubeImage {		
+		display: inline;
+		float: left; 
+	}
+	
+	/****************************** BSM: Movies ******************************/
+	#movie_list {
+			margin-top: 20px; 
+	}
+	#movie_list li {
+			display: inline-block;
+			vertical-align: top;
+			width: 300px;
+			padding: 10px;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+	}
+	.moviePrevPic {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 80px;
+			height: auto;
+	}
+	#movie_list h4 {
+			text-align: center;
+			margin:2px 2px 2px 2px;
+			font-size: 25px	
+	}
+	#movie_list p {
+			text-align: center;
+			margin:2px 2px 2px 2px;
+	}
+	.moviedetails:hover { 
+			background-color: #c8c8d1;
+	}
+	.moviedetails { 
+			cursor:pointer;
+	}
+	.greenMovies {
+			display: block;
+			position: absolute; 
+			margin-top: -22px;	 
+			padding-left: 135px;	 
+			width: 30px;
+			height: auto;
+	}	
+	.moviePrevPicArrow {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 80px;
+			height: auto;
+	}
+	
+	/****************************** BSM: Music ******************************/
+	
+	#album_list{
+		margin-top: 20px;
+	}
+	
+	#album_list li {
+			display: inline-block;
+			vertical-align: top;
+			width: 300px;
+			padding: 10px;
+			cursor:pointer;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+	}
+	.musicPrevPic {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 80px;
+			height: auto;
+	}
+	#album_list h4 {
+			text-align: center;
+			margin:2px 2px 2px 2px;
+			font-size: 18px	
+	}
+	#album_list p {
+			text-align: center;
+			margin:2px 2px 2px 2px;
+	}
+	.album_Item:hover, .album_Item_Nav:hover { 
+			background-color: #c8c8d1;
+	}
+	
+	
+	/****************************** BSM: Addons Page ********************************/
+	.addontitle {
+			text-align: center;
+	}
+	#addonlist{
+			display:block;
+			margin-top: 20px;
+	}
+	#addonlist li {
+			display: inline-block;
+			vertical-align: top;
+			width: 300px;
+			padding: 10px;
+			list-style-type: none;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+	}
+	.addonlist-item {
+			height: 80px;
+			white-space:nowrap; 
+			overflow:hidden;	
+			cursor:pointer;
+	}
+	.addonlist-item:hover, #addonListPrev:hover, #addonListNext:hover { 
+			background-color: #c8c8d1;
+	}
+	.addonImage{
+			display: block;
+			height: 50px;
+			width: auto;
+			margin-left: auto;
+			margin-right: auto;
+	}
+}
+
+
+
+
+
+/************************************************************************************* 
+ *															Small Screen Media (SSM)  													 *
+ *************************************************************************************/
+@media only screen
+and (max-width : 700px) {	
+	
+	.footer-right { 
+			font-size: 11px;
+	}
+	.youtubeImage {		
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+	}
+			
+	
+	/****************************** SSM: Remote Page ******************************/
+	
+	#SendText .ui-block-a {
+			clear:both; /* for linebrak */
+			width: 100%;
+	}
+	#SendText .ui-block-b { 
+			clear:both; /* for linebrak */
+			width: 100%;
+	} 
+	#SendText .ui-block-c { 
+			clear:both; /* for linebrak */
+			width: 100%;
+	} 
+	#cleanAndUpdate .ui-block-a { 
+			clear:both; /* for linebrak */
+			width: 100%;
+	} 
+	#cleanAndUpdate .ui-block-b { 
+			clear:both; /* for linebrak */
+			width: 100%;
+	} 
+	
+	/****************************** SSM: Movies ******************************/
+	.moviedetails { 
+		height: 80px;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid #c8c8d1;
+		cursor:pointer;
+		overflow:hidden;
+			
+		/*	width: 4000px;   ugly hack to prevent linebreak */
+	}
+	.moviedetails:hover { 
+			background-color: #c8c8d1;
+	}
+	#movie_list {	
+			margin-top: 15px;
+			line-height: 18px;
+	}	
+	#movie_list li div{
+			margin: 0px;
+			white-space:nowrap;  
+			vertical-align: top; 
+			display: inline-block;
+	} 
+	#movie_list li h4{
+			display: inline;
+			vertical-align: top;		
+			padding-left:2px;
+	}
+	#movie_list li h4:after {
+			white-space: pre;
+			content:'\A';
+	}
+	#movie_list li p {
+			white-space:normal;  
+			display: inline;
+			font-size: 10px;
+			padding-left: 2px;
+	}
+  	#movie_list li p:after {
+			white-space:normal;  
+			white-space:pre;  
+			content:'\A';
+	}
+	.moviePrevPic {
+			display: inline;
+			width: 50px;
+	}
+	.moviePrevPicArrow {
+			display: inline;
+			height: 80px;
+	}
+	.greenMovies {
+			display: block;
+			margin-top: -20px;	 
+			padding-left: 35px;	 
+			width: 20px;
+			height: auto;
+	}
+		/****************************** SSM: Music ******************************/
+	.album_Item, .album_Item_Nav { 
+			height: 73px;
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+			border: 1px solid #c8c8d1;
+			cursor:pointer;
+			overflow: hidden;
+	}
+	.album_Item:hover, .album_Item_Nav:hover  { 
+			background-color: #c8c8d1;
+	}
+	#album_list {	
+			line-height: 18px;
+			margin-top:20px;
+	}	
+	#album_list li div{
+			white-space:nowrap;  
+			vertical-align: top; 
+			display: inline-block;
+	} 
+	#album_list li h4{
+			display: inline;
+			vertical-align: top;
+			padding-left: 5px;
+	}
+	#album_list li h4:after {
+			white-space: pre;
+			content:'\A';
+	}
+	#album_list li p {
+			display: inline-block;
+			font-size: 10px;
+			padding-left: 5px;
+	}
+	.musicPrevPic {
+			height: 73px;
+			display: inline-block;
+	}
+	
+	/****************************** SSM: Addons Page ********************************/
+	.addontitle {
+			text-align: center;
+	}
+	#addonlist {
+			list-style-type: none;
+			margin-top: 20px;
+	}
+	.addonlist-item, #addonListPrev, #addonListNext {
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+			border: 1px solid #c8c8d1;
+			overflow:hidden;
+			cursor:pointer;
+	}
+	.addonlist-item:hover, #addonListPrev:hover, #addonListNext:hover { 
+			background-color: #c8c8d1;
+	}
+	.addonImage{
+			display: block;
+			height: 50px;
+			width: auto;
+			margin-left: auto;
+			margin-right: auto;
+	}
+
+}

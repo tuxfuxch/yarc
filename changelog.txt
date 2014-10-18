@@ -1,5 +1,20 @@
+Version 0.4.0
+- Moved Shutdown button to top of Tools list
+- Show/Hide of Footer on tab on empty area disabled
+- added button into album popup to emptly playlist and play the whole album
+- remove functionality to choose skin. now it's only dark theme
+- css: move preview images of popups in the background
+- bugfix: movietimes gets now rounded on mintues
+- bugfix: language selection double running and wrong adding removed
+- bugfix: double entry "FM" in countryLanguages removed
+- added shuffle and repeat buttons
+- changed XBMC to Kodi in readme
+- Refresh button for Playlist added
+- Delete button for Playlistitems in Playlist added
+- Search for song functionality added
+
 Version 0.3.3
-- bugfix: addonspage: listpos listpos init fixed
+- bugfix: addonspage: listpos init fixed
 - get rid of some redundant code
 - switched color of swipefied-navigation and swipefield-media
 - some css tweaks in BSM

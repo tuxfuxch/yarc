@@ -1,6 +1,6 @@
 #About yarc (yet another remote control)
 
-A webbased remote control for XBMC optimised for mobile friendly use.
+A webbased remote control for Kodi (former XBMC) optimised for mobile friendly use.
 
 This document is still work in progress.
 
@@ -14,9 +14,9 @@ I have done what I need and how I want it. Forgive me if it is not yet how you l
   * Set how many items are shown in lists (so that you mobile browser does not crash because of an image overload)
   * Preview pictures for movies are compressed (tell in settings how much)
   * Reads languages out of the file name in your collection (read more about in the according chapter)
-  * Search directly in YouTube and let it play on XBMC (still beta)
+  * Search directly in YouTube and let it play on Kdoi (still beta)
   * Start add-ons without navigating through the menu
-  * Send a text-string from the yarc-GUI to a text field in XBMC
+  * Send a text-string from the yarc-GUI to a text field in Kodi
 
 ###Download
 
@@ -41,7 +41,7 @@ https://github.com/tuxfuxch/yarc
 ###Settings
 
   * General
-    - **Window title**: if you have multiple XBMC's around, you can give a name to the Window title
+    - **Window title**: if you have multiple Kodi's around, you can give a name to the Window title
     - **Hide preview pictures**: if your browser crashes because of to many pictures or you just don't want them, you can get rid of them
     - **Use SVG**: just because I like it, if you want some pictures to be SVG, you can set this. Some mobile browsers don't support them
     - **Hide watched movies and series**
@@ -67,7 +67,7 @@ https://github.com/tuxfuxch/yarc
 For screens with less than 700px width, the list items are shown not as tiles, it is a list with one item per line.
 
 ###Swipe gestures
-Through swipe and tab gestures, you can control your XBMC. Use the grey field to do it with the following gestures. 
+Through swipe and tab gestures, you can control your Kodi. Use the grey field to do it with the following gestures. 
 Multi touch gestures (two fingers or pinch) are not implemented due to support of old devices.... sorry. 
 
 Make sure, that you don't accidentally stop the playing media when you want to scroll down. Use the space on the right side to scroll.
@@ -112,10 +112,10 @@ If you want or need more functions. Contact me, I might change that.
 
 ###Language "detection" Feature
 
-Some ppl tag in a movie file name the languages directly. I did it for my whole DVD collection and wanted to use this because the language tagging in XBMC is not suitable for me. Multiple tags per filename are supported.
-If you want use the XBMC language solution within a webinterface, give AWXi a try.
+Some ppl tag in a movie file name the languages directly. I did it for my whole DVD collection and wanted to use this because the language tagging in Kodi is not suitable for me. Multiple tags per filename are supported.
+If you want use the Kodi language solution within a webinterface, give AWXi a try.
 
-I tried to include most languages. As a standard it looks for (example for French):
+I tried to include most languages. As a standard it looks like this (example for French):
   * [FR]
   * _FR
 
@@ -149,7 +149,7 @@ I needed to apply for the API and can use "only" 1 million transaction per day. 
   * TochSwipe Plugin for jquery (https://github.com/mattbryson/TouchSwipe-Jquery-Plugin)
   * Font Awesome for the very good symbol-font (http://fontawesome.io)
   * Kabooga for first testing and help in buxfixing, author of webinterface.xrc
-  * Martijn for correction of addon.xml, XBMC Team Member
+  * Martijn for correction of addon.xml, Kodi (former XBMC) Team Member
   * ruth440 for testing and feedback. I was pointed into the right direction
 
 ###Contact me
@@ -161,3 +161,4 @@ Tell me what you think could be done better, or what features you would like to 
 Feedback about the code is also appreciated, since I am not yet that much of a programmer.
 
 Please contact me on github with bug reports or feature requests: https://github.com/tuxfuxch/yarc/issues
+or alternatively in the Forum Thread: http://forum.xbmc.org/showthread.php?tid=198217

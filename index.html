@@ -4,15 +4,15 @@
 	<title>yarc</title> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-	<link rel="stylesheet" href="jquery.mobile-1.2.0.min.css" />
-	<link rel="stylesheet" href="style.css" />
-	<link rel="stylesheet" href="font-awesome-4.1.0/css/font-awesome.min.css">
-	<script src="jquery-1.8.2.min.js"></script>
-	<script src="jquery.mobile-1.2.0.min.js"></script>
+	<link rel="stylesheet" href="css/jquery/jquery.mobile-1.2.0.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css">
+	<script src="scripts/jquery-1.8.2.min.js"></script>
+	<script src="scripts/jquery.mobile-1.2.0.min.js"></script>
   <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
 	<script type="text/javascript" src="scripts/yarc.js"></script>
 	<script type="text/javascript" src="scripts/countryLanguages.js"></script>
-	<script type="text/javascript" src="scripts/jquery.touchSwipe.js"></script>
+	<script type="text/javascript" src="scripts/jquery.touchSwipe.js"></script> 
 	<LINK rel="SHORTCUT ICON" href="images/y.ico">
 </head>
 <body>
@@ -30,7 +30,7 @@
 		</div><!-- /header -->	
 		<div class="content" data-role="content">
 			<div class="content-primary">  
-				<div data-role="popup" id="detailspopupRemote" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
+				<div data-role="popup" id="detailspopupRemote" data-theme="a" data-theme="a" class="ui-content">
 					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 					<button id="popupSHRS" name="Application.Quit" type="button">Quit</button>
 					<button class="popupSHRS" name="System.Suspend" type="button">Suspend</button>
@@ -40,13 +40,12 @@
 					<button id="popupCancel" type="button" name="">Cancel</button>
 				</div>
 				<div data-role="popup" id="detailspopupYoutube" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
-					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
 					<div id="youtubelist"></div>
 					<div><button id="youTubeNext" type="button" data-theme="a">Next</button></div>
 				</div>
 				<div data-role="popup" id="detailspopupSwipe" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
 					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-					<div>Through swipe and tab gestures, you can control your XBMC. Use the grey field to do it with the following gestures:<br />
+					<div>Through swipe and tab gestures, you can control your Kodi. Use the grey field to do it with the following gestures:<br />
 						<b>Navigation:</b>
 						<ul>
 							<li>Swipe up, down, left or right like you would scoll on a mobile-phone list</li>
@@ -79,13 +78,15 @@
 			</div>
 			<div id="mediacontrol1" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
 				<button class="playergoto" name="previous" type="button"><i class="fa fa-step-backward"></i></button>
-				<button id="playpause" name="Player.PlayPause" type="button"><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
-				<button id="playerstop" name="Player.stop" type="button"><i class="fa fa-stop"></i></button>
+				<button class="playercontrol" name="Player.PlayPause" type="button"><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
+				<button class="playercontrol" name="Player.stop" type="button"><i class="fa fa-stop"></i></button>
 				<button class="playergoto" name="next" type="button"><i class="fa fa-step-forward"></i></button>
 			</div>
 			<div id="mediacontrol2" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
 				<button class="playerSetSpeed" name="decrement" type="button" data-mini="true"><i class="fa fa-backward"></i></button>
+				<button id="SetRepeat" name="Player.SetRepeat" type="button" data-mini="true"><i class="fa fa-refresh"></i></button>
 				<a href="#pl" data-role="button" data-mini="true">PlayList</a>
+				<button id="SetShuffle" name="Player.SetShuffle" type="button" data-mini="true"><i class="fa fa-random"></i></button>
 				<button class="playerSetSpeed" name="increment" type="button" data-mini="true"><i class="fa fa-forward"></i></button>
 			</div>
 			<div id="navigation-arrows" class="ui-grid-b">
@@ -120,18 +121,50 @@
 			</div>
 			<div data-role="collapsible">
 				<h3>Tools</h3>
+				<a href="" id="quit" data-role="button">Shutdown</a> 
 				<div id ="cleanAndUpdate" class="ui-grid-a">
 					<div class="ui-block-a"><button class="cleanAndUpdate" name="AudioLibrary.Scan"  type="button">Audio Lib: Scan</button></div> 
 					<div class="ui-block-b"><button class="cleanAndUpdate" name="AudioLibrary.Clean" type="button">Audio Lib: Clean</button></div> 
 					<div class="ui-block-a"><button class="cleanAndUpdate" name="VideoLibrary.Scan"  type="button">Video Lib: Scan</button></div> 
 					<div class="ui-block-b"><button class="cleanAndUpdate" name="VideoLibrary.Clean" type="button">Video Lib: Clean</button></div> 
 				</div>
-					<a href="" id="quit" data-role="button">Shutdown</a> 
 					<a href="" id="openSettings" data-role="button" data-icon="gear">Settings</a> 
 			</div><!-- /collapsible -->
 		</div><!-- /content -->
-		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
+		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<span class="footer-left">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
+			<span class="footer-right" data-role="none">
+				<img class="footerImage" alt="" src="images/transparent.gif" />
+				<span class="footerTime"></span>
+				<span class="footerTitle"></span>
+			</span>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+	<div data-role="page" data-theme="a" id="pl">
+		<div data-role="header" data-theme="a">
+			<div class="navbar" data-role="navbar">
+				<ul>
+					<li><a href="#remote" data-icon="grid">Remote</a></li>
+					<li><a href="#movies" data-icon="star">Movies</a></li>
+					<li><a href="#series" data-icon="star">Series</a></li>
+					<li><a href="#music" data-icon="arrow-r">Music</a></li>
+					<li><a href="#addons" data-icon="alert">Addons</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /header -->	
+		<div class="content" data-role="content">
+				<fieldset id="plType" data-role="controlgroup"  data-type="horizontal" data-mini="true">
+					<input type="radio" id="plAudio" class="plRadio" name="plType" value="0" checked />
+					<label for="plAudio">Audio</label>
+					<input type="radio" id="plVideo" class="plRadio" name="plType" value="1" /> 
+					<label for="plVideo">Video</label>
+				</fieldset>
+			<ul id="currentplaylist" class="ui-listview"></ul>
+			<button id="plRefresh" type="button" data-icon="refresh">Refresh</button>
+			<button id="plBack" type="button" data-icon="back">Back</button>
+		</div><!-- /content -->
+		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<span class="footer-left">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -156,8 +189,6 @@
 				<h3>General</h3>
 				<label for="xbmcName" id="xbmcName_label"><b>Window title:</b></label>
 				<input name="xbmcName" id="xbmcName" value=""  size="30"/>
-				<label for="ySkin">Use dark theme</label>
-				<input name="ySkin" type="checkbox" id="ySkin" value="ySkin" />
 				<label for="hidePrevPics">Hide preview pictures</label>
 				<input name="hidePrevPics" type="checkbox" id="hidePrevPics" value="hidePrevPics" />
 				<label for="imageFormatSVG">Use SVG images where possible</label>
@@ -218,9 +249,8 @@
 		</div><!-- /header -->	
 		<div class="content" data-role="content">	
 			<div class="content-primary">
-				<div data-role="popup" id="detailspopupMovies" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
-					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-					<img id="popupImageMovies" src="images/transparent.gif" alt="[Movie preview image]"/>
+				<div data-role="popup" id="detailspopupMovies" data-overlay-theme="a" class="ui-content detailspopup">
+					<img id="popupImageMovies" class="popupImage" src="images/transparent.gif" />
 					<h2 id="popupTitleMovies"></h2>
 					<img id="popupGreenTick" src="images/transparent.gif" alt="[Media played]"/>
 					<div id="popupRating"></div>
@@ -243,7 +273,7 @@
 							</div>
 							<div class="ui-block-b">
 								<select id="languageSelect" name="language_list" data-mini="true">
-									<option value="all" >all Languages</option>
+									<option value="all"> all Languages</option>
 								</select>
 							</div>
 						</div>
@@ -254,8 +284,8 @@
 			<ul id="movie_list" data-role="listview">
 			</ul>
 		</div><!-- /content -->
-		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
+		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<span class="footer-left">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -278,8 +308,7 @@
 		<div class="content" data-role="content">	
 			<div class="content-primary">
 				<div data-role="popup" id="detailspopupSeries" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
-					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-					<img id="popupImageSeries" alt="[Series preview image]" src="images/transparent.gif"/>
+					<img id="popupImageSeries" class="popupImage" src="images/transparent.gif"/>
 					<h2 id="popupTitleSeries"></h2>
 					<div id="popupRatingSeries"></div>
 					<div id="popupLanguagesFlagsSeries"></div>
@@ -294,8 +323,8 @@
 				</ul>
 			</div>
 		</div><!-- /content -->
-		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
+		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<span class="footer-left">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif"/>
 				<span class="footerTime"></span>
@@ -315,15 +344,21 @@
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#music" class="ui-btn-active ui-state-persist">Albums</a></li>
+				<li><a href="#music-songsearch">Search Song</a></li>
+			</ul>
+		</div><!-- /navbar -->
 		<div class="content" data-role="content">	
 			<div class="content-primary">
-				<div data-role="popup" id="detailspopupMusic" data-overlay-theme="a" data-theme="a" class="ui-content detailspopupMovies">
-					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-					<img id="popupImageMusic" alt="" src="images/transparent.gif"/>
+				<div data-role="popup" id="detailspopupMusic" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
+					<img id="popupImageMusic" class="popupImage" alt="" src="images/transparent.gif"/>
 					<h2 id="popupTitleMusic"></h2>
+					<button id="popupAddAlbum" type="button" name="">Empty playlist &amp; play album</button>
 					<button id="popupUnselectMusic" type="button" name="">(un-)select all</button>
+					<button id="popupAddToPlaylist" type="button" name="">Add to playlist</button>
 					<div id="popupContainerMusic"></div> <!--container for song list items -->
-					<button id="popupAddToPlaylist" type="button" name="">Add to Playlist</button>
 				</div><!-- /detailspopup -->
 			</div>
 			<ul class="ulbar" data-role="listview">
@@ -337,13 +372,46 @@
 						</div>
 					</div>
 				</li>
-				<li class='loading'>loading...</li><!--<li id='music_loading'>loading...</li>-->
+				<li class='loading'>loading...</li>
 			</ul>
 			<ul id="album_list" data-role="listview">
 			</ul>
 		</div><!-- /content -->
-		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
+		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<span class="footer-left">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
+			<span class="footer-right" data-role="none">
+				<img class="footerImage" alt="" src="images/transparent.gif" />
+				<span class="footerTime"></span>
+				<span class="footerTitle"></span>
+			</span>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+	<div data-role="page" data-theme="a" id="music-songsearch">
+		<div data-role="header" data-theme="a">
+			<div class="navbar" data-role="navbar">
+				<ul>
+					<li><a href="#remote" data-icon="grid">Remote</a></li>
+					<li><a href="#movies" data-icon="star">Movies</a></li>
+					<li><a href="#series" data-icon="star">Series</a></li>
+					<li><a href="#music" data-icon="arrow-r">Music</a></li>
+					<li><a href="#addons" data-icon="alert">Addons</a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /header -->	
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#music">Albums</a></li>
+				<li><a href="#music-songsearch" class="ui-btn-active ui-state-persist">Search Song</a></li>
+			</ul>
+		</div><!-- /navbar -->
+		<div class="content" data-role="content">
+			<input type="search" name="search" id="songsearch-searchfield" placeholder="Search for song title" value="" />
+			<button id="music-search" type="button" data-icon="search">Search!</button>
+			<br />
+			<ul id="songsearch-list" class="ui-listview"></ul>
+		</div><!-- /content -->
+		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<span class="footer-left">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -382,39 +450,8 @@
 			</ul>
 			<ul id="addonlist" class="ui-listview"></ul>
 		</div><!-- /content -->
-		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="images/transparent.gif" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
-		</div><!-- /footer -->
-	</div><!-- /page -->
-	<div data-role="page" data-theme="a" id="pl">
-		<div data-role="header" data-theme="a">
-			<div class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote" data-icon="grid">Remote</a></li>
-					<li><a href="#movies" data-icon="star">Movies</a></li>
-					<li><a href="#series" data-icon="star">Series</a></li>
-					<li><a href="#music" data-icon="arrow-r">Music</a></li>
-					<li><a href="#addons" data-icon="alert">Addons</a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /header -->	
-		<div class="content" data-role="content">
-				<fieldset id="plType" data-role="controlgroup"  data-type="horizontal" data-mini="true">
-					<input type="radio" id="plAudio" class="plRadio" name="plType" value="0" checked />
-					<label for="plAudio">Audio</label>
-					<input type="radio" id="plVideo" class="plRadio" name="plType" value="1" /> 
-					<label for="plVideo">Video</label>
-				</fieldset>
-			<ul id="currentplaylist" class="ui-listview"></ul>
-			<button id="plBack" type="button">Back</button>
-		</div><!-- /content -->
-		<div data-role="footer" data-position="fixed" class="footer" data-id="myfooter">
-			<span class="footer-left"><i class="fa fa-arrows-h"></i></span>
+		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<span class="footer-left">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>

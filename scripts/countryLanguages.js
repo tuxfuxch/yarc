@@ -1,5 +1,5 @@
 /**
- * Yarc - Yet another Remote Control (for XBMC)
+ * Yarc - Yet another Remote Control (for Kodi)
  * Copyright (C) 2014 by Esra Kummer (esra@kummer.to)
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -190,7 +190,6 @@ var countrycodes = [
 		{"code":"[FM]"},
 		{"code":"_FM"}
 	], "language":"Chuukese/Kosraean/Pohnpeian/Ulithian/Yapese", "flagpath": "FM" },
-	{ "codes":[{"code":"[FM]"}], "language":"FM", "flagpath": "FM" },
 	{ "codes":[//France
 		{"code":"[FR]"}, 
 		{"code":"_FR"}, 
@@ -577,3 +576,10 @@ var countrycodes = [
 		{"code":".LATIN."}
 	], "language":"Latin", "flagpath": "VA" }
 ];
+
+/*
+ * [AF][AL][AM][AQ][AT][AZ][BD][BF][BG][BI][BN][BO][BR][BT][BW][BY][BZ][CA][CD][CF][CG][CH][CN][CO][CV][CZ][DE][DK][DZ][EC][EE][EG][US][ER][ES][ET][FI][FJ][FM]
+[FR[GE][GH][GN][GR][GY][HN][HR][HT][HU][ID][IE][IL][IN][IQ][IR][IS][IT][JP][KE][KG][KH][KI][KM][KR][KZ][LA][LK][LT][LS][LU][LV][MA][MD][ME][MG][MH][MK]
+[ML][MM][MN][MR][MT][MV][MW][MY][NA][NE][NG][NL][NO][NP][NR][NZ][PE][PG][PH][PK][PL][PT][PW][PY][RO]RS][RU][RW][SC][SE][SI][SK][SN][SO][SZ][TH][TJ][TL]
+[TM][TO][TR][TV][TZ][UA][UG][UZ][VU][VN][WS][ZA][ZW][Arabic][CATALAN][LATIN]
+*/
