@@ -22,6 +22,9 @@
 /************************************************************************************* 
  *															General (G)								 													 *
  *************************************************************************************/
+.ui-btn-text{
+		color: white;
+}
 
 a:link {
 		text-decoration: none;
@@ -89,7 +92,6 @@ a:hover {
  		opacity:.250;
 		max-height: none !important;
 }
-/*.songItem for detailspopupMusic*/
 .songItem {
 		text-align: left;		
 }

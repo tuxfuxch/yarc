@@ -12,7 +12,8 @@
   <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
 	<script type="text/javascript" src="scripts/yarc.js"></script>
 	<script type="text/javascript" src="scripts/countryLanguages.js"></script>
-	<script type="text/javascript" src="scripts/jquery.touchSwipe.js"></script> 
+	<script type="text/javascript" src="scripts/jquery.touchSwipe.js"></script>
+	<script type="text/javascript" src="scripts/translations.js"></script>
 	<LINK rel="SHORTCUT ICON" href="images/y.ico">
 </head>
 <body>
@@ -20,60 +21,66 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid">Remote</a></li>
-					<li><a href="#movies" data-icon="star">Movies</a></li>
-					<li><a href="#series" data-icon="star">Series</a></li>
-					<li><a href="#music" data-icon="arrow-r">Music</a></li>
-					<li><a href="#addons" data-icon="alert">Addons</a></li>
+					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
+					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
+					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
+					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
 		<div class="content" data-role="content">
 			<div class="content-primary">  
-				<div data-role="popup" id="detailspopupRemote" data-theme="a" data-theme="a" class="ui-content">
-					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-					<button id="popupSHRS" name="Application.Quit" type="button">Quit</button>
-					<button class="popupSHRS" name="System.Suspend" type="button">Suspend</button>
-					<button class="popupSHRS" name="System.Hibernate" type="button">Hibernate</button>
-					<button class="popupSHRS" name="System.Reboot" type="button">Reboot</button>
-					<button class="popupSHRS" name="System.Shutdown" type="button">Shutdown</button>
-					<button id="popupCancel" type="button" name="">Cancel</button>
+				<div data-role="popup" id="detailspopupRemote" data-theme="a" class="ui-content">
+					<button class="popupSHRS" name="Application.Quit" type="button"><span data-yts="QUIT"></span></button>
+					<button class="popupSHRS" name="System.Suspend" type="button"><span data-yts="SUSPEND"></span></button>
+					<button class="popupSHRS" name="System.Hibernate" type="button"><span data-yts="HIBERNATE"></span></button>
+					<button class="popupSHRS" name="System.Reboot" type="button"><span data-yts="REBOOT"></span></button>
+					<button class="popupSHRS" name="System.Shutdown" type="button"><span data-yts="SHUTDOWN"></span></button>
+					<button id="popupCancel" type="button" name=""><span data-yts="CANCEL"></span></button>
 				</div>
 				<div data-role="popup" id="detailspopupYoutube" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
+					<div>
+							<label for="youtubeAddPL" data-mini="true"><span data-yts="ADD_PLAYLIST"></span></label>
+							<input name="youtubeAddPL" type="checkbox" id="youtubeAddPL" value="1"  data-mini="true"/>
+							<button id="YoutubeplayPlaylist" class="PlayList" type="button" name="" data-mini="true"><span data-yts="PLAY_PL"></span></button>
+					</div>
 					<div id="youtubelist"></div>
-					<div><button id="youTubeNext" type="button" data-theme="a">Next</button></div>
+					<div id="navigation-arrows" class="ui-grid-a">
+						<div class="ui-block-a"><button id="youTubePrev" type="button" data-theme="a"><span data-yts="BACK"></button></div>
+						<div class="ui-block-b"><button id="youTubeNext" type="button" data-theme="a"><span data-yts="NEXT"></button></div>
+					</div>
 				</div>
 				<div data-role="popup" id="detailspopupSwipe" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
-					<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-					<div>Through swipe and tab gestures, you can control your Kodi. Use the grey field to do it with the following gestures:<br />
-						<b>Navigation:</b>
+					<div><span data-yts="POPUP_SWIPE_1"></span><br />
+						<b><span data-yts="NAVIGATION"></span></b>
 						<ul>
-							<li>Swipe up, down, left or right like you would scoll on a mobile-phone list</li>
-							<li>Tab once to select</li>
-							<li>Tab twice to go back</li>
-							<li>Tab long for the context menu</li>
+							<li><span data-yts="POPUP_SWIPE_3"></span></li>
+							<li><span data-yts="POPUP_SWIPE_4"></span></li>
+							<li><span data-yts="POPUP_SWIPE_5"></li>
+							<li><span data-yts="POPUP_SWIPE_6"></li>
 						</ul>
-						<b>Media:</b>
+						<b><span data-yts="PLAYER"></b>
 						<ul>
-							<li>Swipe up to stop the player</li>
-							<li>Swipe down for play/pause</li>
-							<li>Swipe left for the previous item in the playlist</li>
-							<li>Swipe right for the next item in the playlist</li>
-							<li>Tab once for volume down 10%</li>
-							<li>Tab twice for volume up 10%</li>
-							<li>Tab long to toggle mute</li>
+							<li><span data-yts="POPUP_SWIPE_8"></li>
+							<li><span data-yts="POPUP_SWIPE_9"></li>
+							<li><span data-yts="POPUP_SWIPE_10"></li>
+							<li><span data-yts="POPUP_SWIPE_11"></li>
+							<li><span data-yts="POPUP_SWIPE_12"></li>
+							<li><span data-yts="POPUP_SWIPE_13"></li>
+							<li><span data-yts="POPUP_SWIPE_14"></li>
 						</ul>
-						In the settings you can replace this field with buttons
+						<span data-yts="POPUP_SWIPE_15">
 					</div>
 				</div>
 			</div>
 			<div id="swipe" class="swipe-box">
 				<fieldset id="nav-med-radio" data-role="controlgroup" data-type="horizontal" data-mini="true">
 					<input type="radio" id="radioNav" class="nav-med" name="nav-med" value="Nav" checked />
-					<label for="radioNav">Navigation</label>
+					<label for="radioNav"><span data-yts="NAVIGATION"></span></label>
 					<input type="radio" id="radioMedia" class="nav-med" name="nav-med" value="Media" /> 
-					<label for="radioMedia">Media</label><br />
-					Swipe me or press <a id="swipe-help">Help!</a>
+					<label for="radioMedia"><span data-yts="PLAYER"></span></label><br />
+					<span data-yts="SWIPE_OR_PRESS"></span><a id="swipe-help"><span data-yts="HELP"></span></a>
 				</fieldset>
 			</div>
 			<div id="mediacontrol1" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
@@ -85,7 +92,7 @@
 			<div id="mediacontrol2" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
 				<button class="playerSetSpeed" name="decrement" type="button" data-mini="true"><i class="fa fa-backward"></i></button>
 				<button id="SetRepeat" name="Player.SetRepeat" type="button" data-mini="true"><i class="fa fa-refresh"></i></button>
-				<a href="#pl" data-role="button" data-mini="true">PlayList</a>
+				<a href="#pl" type="button" data-mini="true">&nbsp;&nbsp;<i class="fa fa-list">&nbsp;&nbsp;</i></span></a>
 				<button id="SetShuffle" name="Player.SetShuffle" type="button" data-mini="true"><i class="fa fa-random"></i></button>
 				<button class="playerSetSpeed" name="increment" type="button" data-mini="true"><i class="fa fa-forward"></i></button>
 			</div>
@@ -116,19 +123,19 @@
 			</div><!-- /Volume -->
 			<div id="SendText" class="ui-grid-b">
 				<div class="ui-block-a"><input id="SendTextField" name="SendTextField" type="text" placeholder="Text or Youtube search term"></div>
-				<div class="ui-block-b"><button id="SendTextButton" type="button">Send Text</button></div>
-				<div class="ui-block-c"><button id="searchYoutubeButton" type="button">Search Youtube</button></div>
+				<div class="ui-block-b"><a id="SendTextButton" type="button"><span data-yts="SEND_TEXT"></span></span></a></div>
+				<div class="ui-block-c"><a id="searchYoutubeButton" type="button"><span data-yts="SEARCH_YOUTUBE"></span></span></a></div>
 			</div>
 			<div data-role="collapsible">
-				<h3>Tools</h3>
-				<a href="" id="quit" data-role="button">Shutdown</a> 
+				<h3><span data-yts="TOOLS"></span></h3>
+				<a href="" id="quit" data-role="button"><span data-yts="TURN_OFF"></span></a> 
 				<div id ="cleanAndUpdate" class="ui-grid-a">
-					<div class="ui-block-a"><button class="cleanAndUpdate" name="AudioLibrary.Scan"  type="button">Audio Lib: Scan</button></div> 
-					<div class="ui-block-b"><button class="cleanAndUpdate" name="AudioLibrary.Clean" type="button">Audio Lib: Clean</button></div> 
-					<div class="ui-block-a"><button class="cleanAndUpdate" name="VideoLibrary.Scan"  type="button">Video Lib: Scan</button></div> 
-					<div class="ui-block-b"><button class="cleanAndUpdate" name="VideoLibrary.Clean" type="button">Video Lib: Clean</button></div> 
+					<div class="ui-block-a"><button class="cleanAndUpdate" name="AudioLibrary.Scan"  type="button"><span data-yts="AUDIO_LIB_SCAN"></span></button></div> 
+					<div class="ui-block-b"><button class="cleanAndUpdate" name="AudioLibrary.Clean" type="button"><span data-yts="AUDIO_LIB_CLEAN"></span></button></div> 
+					<div class="ui-block-a"><button class="cleanAndUpdate" name="VideoLibrary.Scan"  type="button"><span data-yts="VIDEO_LIB_SCAN"></span></button></div> 
+					<div class="ui-block-b"><button class="cleanAndUpdate" name="VideoLibrary.Clean" type="button"><span data-yts="VIDEO_LIB_CLEAN"></span></button></div> 
 				</div>
-					<a href="" id="openSettings" data-role="button" data-icon="gear">Settings</a> 
+					<a href="" id="openSettings" data-role="button" data-icon="gear"><span data-yts="SETTINGS"></span></button></a> 
 			</div><!-- /collapsible -->
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
@@ -144,24 +151,24 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid">Remote</a></li>
-					<li><a href="#movies" data-icon="star">Movies</a></li>
-					<li><a href="#series" data-icon="star">Series</a></li>
-					<li><a href="#music" data-icon="arrow-r">Music</a></li>
-					<li><a href="#addons" data-icon="alert">Addons</a></li>
+					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
+					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
+					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
+					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
 		<div class="content" data-role="content">
 				<fieldset id="plType" data-role="controlgroup"  data-type="horizontal" data-mini="true">
 					<input type="radio" id="plAudio" class="plRadio" name="plType" value="0" checked />
-					<label for="plAudio">Audio</label>
+					<label for="plAudio"><span data-yts="AUDIO"></span></label>
 					<input type="radio" id="plVideo" class="plRadio" name="plType" value="1" /> 
-					<label for="plVideo">Video</label>
+					<label for="plVideo"><span data-yts="VIDEO"></span></label>
 				</fieldset>
 			<ul id="currentplaylist" class="ui-listview"></ul>
-			<button id="plRefresh" type="button" data-icon="refresh">Refresh</button>
-			<button id="plBack" type="button" data-icon="back">Back</button>
+			<button id="plRefresh" type="button" data-icon="refresh"><span data-yts="REFRESH"></span></button>
+			<button id="plBack" type="button" data-icon="back"><span data-yts="BACK"></span></button>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
 			<span class="footer-left">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
@@ -176,74 +183,82 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid">Remote</a></li>
-					<li><a href="#movies" data-icon="star">Movies</a></li>
-					<li><a href="#series" data-icon="star">Series</a></li>
-					<li><a href="#music" data-icon="arrow-r">Music</a></li>
-					<li><a href="#addons" data-icon="alert">Addons</a></li>
+					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
+					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
+					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
+					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
 		<div class="content" data-role="content">
 			<div data-role="collapsible">
-				<h3>General</h3>
-				<label for="xbmcName" id="xbmcName_label"><b>Window title:</b></label>
+				<h3><span data-yts="GENERAL"></h3>
+				<label for="language" id="language_label"><b><span data-yts="LANGUAGE"></span></b></label>
+				<select name="language" id="language">
+					<option value="en">English</option>
+					<option value="de">Deutsch</option>
+					<option value="kling">Klingon</option>
+					<option value="es">Español</option>
+					<!--<option value="it">Italiano</option>-->
+				</select>
+				<label for="xbmcName" id="xbmcName_label"><b><span data-yts="WINDOW_TITLE"></span></b></label>
 				<input name="xbmcName" id="xbmcName" value=""  size="30"/>
-				<label for="hidePrevPics">Hide preview pictures</label>
+				<label for="hidePrevPics"><span data-yts="HIDE_PREV_PICS"></span></label>
 				<input name="hidePrevPics" type="checkbox" id="hidePrevPics" value="hidePrevPics" />
-				<label for="imageFormatSVG">Use SVG images where possible</label>
+				<label for="imageFormatSVG"><span data-yts="USE_SVG"></span></label>
 				<input name="imageFormatSVG" type="checkbox" id="imageFormatSVG" value="imageFormatSVG" />
-				<label for="hideWatched">Hide watched movies and series</label>
+				<label for="hideWatched"><span data-yts="HIDE_WATCHED"></span></label>
 				<input name="hideWatched" type="checkbox" id="hideWatched" value="hideWatched" />
-				<label for="listLength" id="listLength_label"><b>Max list Length (0 for no limit):</b></label>
+				<label for="listLength" id="listLength_label"><b><span data-yts="MAX_LISTLENGTH"></span></b></label>
 				<input name="listLength" type="number" id="listLength" value=""/>
-				<label for="hideLanguageMovies">Hide language functions and flags</label>
+				<label for="hideLanguageMovies"><span data-yts="HIDE_FLAGS"></span></label>
 				<input name="hideLanguageMovies" type="checkbox" id="hideLanguageMovies" value="hideLanguageMovies" />
 			</div>
 			<div data-role="collapsible">
-				<h3>Remote</h3>
-				<label for="noSwipe">Buttons instead of swipe area</label>
+				<h3><span data-yts="REMOTE"></h3>
+				<label for="noSwipe"><span data-yts="NO_SWIPE"></span></label>
 				<input name="noSwipe" type="checkbox" id="noSwipe" value="noSwipe" />
-				<label for="swipeHight" id="swipeHight_label"><b>Set hight of swipe area. Examples: 300px, 60vh (not supported by all browsers)</b></label>
+				<label for="swipeHight" id="swipeHight_label"><b><span data-yts="SET_SWIPE_HIGHT"></span></b></label>
 				<input name="swipeHight" type="text" id="swipeHight" value=""/>				
 			</div>
 			<div data-role="collapsible">
-				<h3>Movies</h3>
-				<label for="hideGenreMovies">Hide genre selection</label>
+				<h3><span data-yts="MOVIES"></h3>
+				<label for="hideGenreMovies"><span data-yts="HIDE_GENRE_SELECT"></span></label>
 				<input name="hideGenreMovies" type="checkbox" id="hideGenreMovies" value="hideGenreMovies" />
-				<label for="hideSearchMovies">Hide searchfield</label>
+				<label for="hideSearchMovies"><span data-yts="HIDE_SEARCH"></span></label>
 				<input name="hideSearchMovies" type="checkbox" id="hideSearchMovies" value="hideSearchMovies" />
-				<label for="hideFileLinkMovies">Hide filelink in popup</label>
+				<label for="hideFileLinkMovies"><span data-yts="HIDE_FILELINK"></span></label>
 				<input name="hideFileLinkMovies" type="checkbox" id="hideFileLinkMovies" value="hideFileLinkMovies" />
-				<label for="prevImgQualMovies" id="prevImgQualMovies_label"><b>Preview image quality rate (can be between 10 and 95; higher is better quality):</b></label>
+				<label for="prevImgQualMovies" id="prevImgQualMovies_label"><b><span data-yts="PREV_IMG_QUAL"></span></b></label>
 				<input name="prevImgQualMovies" type="number" id="prevImgQualMovies" value="" maxlength="2"/>
 			</div>
 			<div data-role="collapsible">
-				<h3>Music</h3>
-				<label for="hideGenreMusic">Hide genre selection</label>
+				<h3><span data-yts="MUSIC"></h3>
+				<label for="hideGenreMusic"><span data-yts="HIDE_GENRE_SELECT"></span></label>
 				<input name="hideGenreMusic" type="checkbox" id="hideGenreMusic" value="hideGenreMusic" />
-				<label for="hideSearchMusic">Hide searchfield</label>
+				<label for="hideSearchMusic"><span data-yts="HIDE_SEARCH"></span></label>
 				<input name="hideSearchMusic" type="checkbox" id="hideSearchMusic" value="hideSearchMusic" />
 			</div>
 			<div data-role="collapsible">
-				<h3>Addons</h3>
-				<label for="hideGenreAddons">Hide group selection</label>
+				<h3><span data-yts="ADDONS"></h3>
+				<label for="hideGenreAddons"><span data-yts="HIDE_GROUP_SELECT"></span></label>
 				<input name="hideGenreAddons" type="checkbox" id="hideGenreAddons" value="hideGenreAddons" />
-				<label for="hideSearchAddons">Hide searchfield</label>
+				<label for="hideSearchAddons"><span data-yts="HIDE_SEARCH"></span></label>
 				<input name="hideSearchAddons" type="checkbox" id="hideSearchAddons" value="hideSearchAddons" />
 			</div>
-			<button id="saveSettings" data-role="button" data-icon="back">Save and close</button> 
+			<button id="saveSettings" data-role="button" data-icon="back"><span data-yts="SAVE_CLOSE"></span></button> 
 		</div><!-- /content -->
 	</div><!-- /page -->
 	<div data-role="page" data-theme="a" id="movies">
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid">Remote</a></li>
-					<li><a href="#movies" data-icon="star">Movies</a></li>
-					<li><a href="#series" data-icon="star">Series</a></li>
-					<li><a href="#music" data-icon="arrow-r">Music</a></li>
-					<li><a href="#addons" data-icon="alert">Addons</a></li>
+					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
+					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
+					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
+					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
@@ -259,8 +274,8 @@
 					<div id="popupGenreMovies"></div>
 					<div id="popupPlotMovies"></div>
  					<div id="popupFilelink"></div> 
-					<button id="popupTrailer" type="button" name="">Trailer</button>
-					<button id="popupPlay" type="button" name="">Play</button>
+					<button id="popupTrailer" type="button" name=""><span data-yts="TRAILER"></span></button>
+					<button id="popupPlay" type="button" name=""><span data-yts="PLAY"></span></button>
 				</div>
 			</div>
 			<ul class="ulbar" data-role="listview">
@@ -268,18 +283,18 @@
 						<div class="ui-grid-a">
 							<div class="ui-block-a">
 								<select id="genreSelect" name="genre_list" data-mini="true">
-									<option value="all" >all genres</option>
+									<option value="all" name="all">- all genres -</option>
 								</select>
 							</div>
 							<div class="ui-block-b">
 								<select id="languageSelect" name="language_list" data-mini="true">
-									<option value="all"> all Languages</option>
+									<option value="all">- all languages -</option>
 								</select>
 							</div>
 						</div>
 					<input type="search" name="search" id="searchMovies" placeholder="Search for movietitle" value="" />
 				</li>
-				<li class='loading'>loading...</li>
+				<li class='loading'><span data-yts="LOADING"></span></li>
 			</ul>
 			<ul id="movie_list" data-role="listview">
 			</ul>
@@ -297,11 +312,11 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid">Remote</a></li>
-					<li><a href="#movies" data-icon="star">Movies</a></li>
-					<li><a href="#series" data-icon="star">Series</a></li>
-					<li><a href="#music" data-icon="arrow-r">Music</a></li>
-					<li><a href="#addons" data-icon="alert">Addons</a></li>
+					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
+					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
+					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
+					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
@@ -314,10 +329,10 @@
 					<div id="popupLanguagesFlagsSeries"></div>
 					<div id="popupGenreSeries"></div>
 					<div id="popupPlotSeries"></div>
-					<button id="popupPlaySeries" type="button" name="">Play</button>
+					<button id="popupPlaySeries" type="button" name=""><span data-yts="PLAY"></span></button>
 				</div>
 				<ul class="ulbar" data-role="listview">
-					<li class='loading'>loading...</li><!--<li id='series_loading'>loading...</li>-->
+					<li class='loading'><span data-yts="LOADING"></span></li>
 				</ul>
 				<ul id="series_list" data-role="listview">
 				</ul>
@@ -336,18 +351,18 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid">Remote</a></li>
-					<li><a href="#movies" data-icon="star">Movies</a></li>
-					<li><a href="#series" data-icon="star">Series</a></li>
-					<li><a href="#music" data-icon="arrow-r">Music</a></li>
-					<li><a href="#addons" data-icon="alert">Addons</a></li>
+					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
+					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
+					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
+					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
 		<div data-role="navbar">
 			<ul>
-				<li><a href="#music" class="ui-btn-active ui-state-persist">Albums</a></li>
-				<li><a href="#music-songsearch">Search Song</a></li>
+				<li><a href="#music" class="ui-btn-active ui-state-persist"><span data-yts="ALBUMS"></span></a></li>
+				<li><a href="#music-songsearch"><span data-yts="SEARCH_SONG"></span></a></li>
 			</ul>
 		</div><!-- /navbar -->
 		<div class="content" data-role="content">	
@@ -355,24 +370,26 @@
 				<div data-role="popup" id="detailspopupMusic" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
 					<img id="popupImageMusic" class="popupImage" alt="" src="images/transparent.gif"/>
 					<h2 id="popupTitleMusic"></h2>
-					<button id="popupAddAlbum" type="button" name="">Empty playlist &amp; play album</button>
-					<button id="popupUnselectMusic" type="button" name="">(un-)select all</button>
-					<button id="popupAddToPlaylist" type="button" name="">Add to playlist</button>
+					<button id="popupAddAlbum" type="button" name=""><span data-yts="EMPTY_PLAY_ALBUM"></span></button>
+					<button id="popupUnselectMusic" type="button" name=""><span data-yts="UN_SELECT_ALL"></span></button>
+					<button id="popupAddToPlaylist" type="button" name=""><span data-yts="ADD_PLAYLIST"></span></button>
 					<div id="popupContainerMusic"></div> <!--container for song list items -->
 				</div><!-- /detailspopup -->
 			</div>
 			<ul class="ulbar" data-role="listview">
 				<li>
 					<div class='movieItem'>
-						<select id="genreSelectMusic" name="genre_list" data-mini="true"><option value="all" >all genres</option></select>
+						<select id="genreSelectMusic" name="genre_list" data-mini="true"><option value="all" >- all genres -</option></select>
 						<input type="search" name="search" id="searchMusic" placeholder="Search for album title or artist" value="" />
 						<div class="ui-grid-a" data-theme="a">
-							<div class="ui-block-a"><button id="playPlaylist" class="PlayList" type="button" name="" data-mini="true">Play Playlist</button></div> 
-							<div class="ui-block-b"><button id="emptyPlaylist" class="PlayList" type="button" name="" data-mini="true">Empty Playlist</button></div> 
+							<div class="ui-block-a">
+									<button id="playPlaylist" class="PlayList" type="button" name="" data-mini="true"><span data-yts="PLAY_PL"></span></button>
+							</div> 
+							<div class="ui-block-b"><button id="emptyPlaylist" class="PlayList" type="button" name="" data-mini="true"><span data-yts="EMPTY_PL"></span></button></div> 
 						</div>
 					</div>
 				</li>
-				<li class='loading'>loading...</li>
+				<li class='loading'><span data-yts="LOADING"></span></li>
 			</ul>
 			<ul id="album_list" data-role="listview">
 			</ul>
@@ -390,23 +407,23 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid">Remote</a></li>
-					<li><a href="#movies" data-icon="star">Movies</a></li>
-					<li><a href="#series" data-icon="star">Series</a></li>
-					<li><a href="#music" data-icon="arrow-r">Music</a></li>
-					<li><a href="#addons" data-icon="alert">Addons</a></li>
+					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
+					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
+					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
+					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
 		<div data-role="navbar">
 			<ul>
-				<li><a href="#music">Albums</a></li>
-				<li><a href="#music-songsearch" class="ui-btn-active ui-state-persist">Search Song</a></li>
+				<li><a href="#music"><span data-yts="ALBUMS"></span></a></li>
+				<li><a href="#music-songsearch" class="ui-btn-active ui-state-persist"><span data-yts="SEARCH_SONG"></span></a></li>
 			</ul>
 		</div><!-- /navbar -->
 		<div class="content" data-role="content">
-			<input type="search" name="search" id="songsearch-searchfield" placeholder="Search for song title" value="" />
-			<button id="music-search" type="button" data-icon="search">Search!</button>
+			<input type="search" name="songsearch-searchfield" id="songsearch-searchfield" placeholder="Search for song title" value="" />
+			<button id="music-search" type="button" data-icon="search"><span data-yts="SEARCH"></span></button>
 			<br />
 			<ul id="songsearch-list" class="ui-listview"></ul>
 		</div><!-- /content -->
@@ -423,11 +440,11 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid">Remote</a></li>
-					<li><a href="#movies" data-icon="star">Movies</a></li>
-					<li><a href="#series" data-icon="star">Series</a></li>
-					<li><a href="#music" data-icon="arrow-r">Music</a></li>
-					<li><a href="#addons" data-icon="alert">Addons</a></li>
+					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
+					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
+					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
+					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
@@ -436,7 +453,7 @@
 				<li>
 					<div>
 						<select id="addonSelect" name="addon_List" data-mini="true">
-								<option value="all" >all Plugins</option>
+								<option value="all" >- all plugins -</option>
 								<option value="video" >Videos</option>
 								<option value="audio" >Audio</option>
 								<option value="other" >other</option>
@@ -446,7 +463,7 @@
 						<input type="search" name="searchAddon" id="searchAddon" placeholder="Search for Addon" value="" />
 					</div>
 				</li>
-				<li class='loading'>loading...</li><!--<li id="addon_loading" class='addonLoading' name='" + addonsJSON["result"]["addons"][i]["addonid"] + "'><div class='ui-btn-inner ui-li'><h4 class='ui-li-heading addontitle'>loading...</h4></div></li>-->
+				<li class='loading'><span data-yts="LOADING"></li>
 			</ul>
 			<ul id="addonlist" class="ui-listview"></ul>
 		</div><!-- /content -->

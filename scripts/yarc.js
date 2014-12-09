@@ -16,6 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
+
+
+
+
 //that Intervals run only once, also after Pageswitch
 var zeroInit = false;
 
@@ -24,6 +28,7 @@ var yCore = {
 	activePlayer: -1,
 	
 	init: function(){
+				
  		yS.localStorageInit();  //if some settings are not made, set default
 		yS.getSettings();  //get settings from local storage
 	 
@@ -115,6 +120,57 @@ var yCore = {
 		$(document).focus(function(e) { 
 			allowed = true;
 		});
+		
+		//go throug all "Yarc TranSlate"-span-tags and set text according to constant and chosen langugage
+		$('[data-yts]').each(function() {
+				$(this).html(yTools.ts($(this).attr("data-yts"), yS.l));
+		});
+		
+		//if the language is not english and the according page is active translate. otherwise the english default in the html stay
+		if(yS.l != "en"){
+				
+				if($(location).attr('hash') == ""){
+						$("#SendTextField").attr("placeholder", yTools.ts("SEARCH_TEXT_YOUTUBE", yS.l));
+				}
+				
+				if($(location).attr('hash') == "#movies"){
+						$("#searchMovies").attr("placeholder", yTools.ts("SEARCH_MOVIE", yS.l));
+						
+						$('#genreSelect option[value="all"]').text(yTools.ts("SELECT_OPTION_ALL_GENRES", yS.l));
+						if($('#genreSelect').val()=="all"){$("#genreSelect").val("all").selectmenu('refresh', true);}
+						
+						$('#languageSelect option[value="all"]').text(yTools.ts("SELECT_OPTION_ALL_LANGS", yS.l));
+						if($('#languageSelect').val()=="all"){$("#languageSelect").val("all").selectmenu('refresh', true);}
+				}
+				
+				if($(location).attr('hash') == "#music"){
+						$("#searchMusic").attr("placeholder", yTools.ts("SEARCH_ALBUM_ARTIST", yS.l));
+						
+						$('#genreSelectMusic option[value="all"]').text(yTools.ts("SELECT_OPTION_ALL_GENRES", yS.l));
+						if($('#genreSelectMusic').val()=="all"){$("#genreSelectMusic").val("all").selectmenu('refresh', true);}
+				}
+				
+				if($(location).attr('hash') == "#music-songsearch"){
+						$("#songsearch-searchfield").attr("placeholder", yTools.ts("SEARCH_SONGTITLE", yS.l));
+				}
+				
+				if($(location).attr('hash') == "#addons"){
+						$("#searchAddon").attr("placeholder", yTools.ts("SEARCH_ADDON", yS.l));
+						
+						$('#addonSelect option[value="all"]').text(yTools.ts("SELECT_OPTION_ALL_PLUGINS", yS.l));
+						if($('#addonSelect').val()=="all"){$("#addonSelect").val("all").selectmenu('refresh', true);}
+						
+						$('#addonSelect option[value="video"]').text(yTools.ts("VIDEO", yS.l));
+						if($('#addonSelect').val()=="video"){$("#addonSelect").val("video").selectmenu('refresh', true);}
+						
+						$('#addonSelect option[value="audio"]').text(yTools.ts("AUDIO", yS.l));
+						if($('#addonSelect').val()=="audio"){$("#addonSelect").val("audio").selectmenu('refresh', true);}
+						
+						$('#addonSelect option[value="other"]').text(yTools.ts("SELECT_OPTION_OTHER", yS.l));
+						if($('#addonSelect').val()=="other"){$("#addonSelect").val("other").selectmenu('refresh', true);}
+				}
+		}
+		
 	},	/*   /init    */	
 	//get active player and save it
 	getActivePlayer: function(){
@@ -210,7 +266,7 @@ var yCore = {
 }
 
 var yRemote = {
-	youtubeNextPageToken: "", //var to get next items in searchlist
+	youtubeNextPageToken: [], //array to get next items in searchlist and store previous ones
 	radioNavMed: "",
 	init: function() {
 		yS.getSettings();
@@ -351,18 +407,30 @@ var yRemote = {
 				e.stopImmediatePropagation();
 				yRemote.searchYoutube($('#SendTextField').val());
 		});
-		
+		$("#youTubePrev").click(function(e) { //next button in youtube popup
+				e.stopImmediatePropagation();
+				yRemote.youtubeNextPageToken.pop(); //find better way to pop 2, has to be so, because 
+				yRemote.youtubeNextPageToken.pop(); //next token already in array
+				yRemote.searchYoutube($('#SendTextField').val());
+		});
 		$('#detailspopupYoutube').bind({ //removes next Page Token
 			popupafterclose: function(event, ui) {
-					yRemote.youtubeNextPageToken	= "";
+					yRemote.youtubeNextPageToken	= [];
 			}
 		});
 		
 		$("body").delegate(".playYoutubeVideo", "click", function(e){ 
 				e.stopImmediatePropagation();
+				if($("input[name='youtubeAddPL']:checked").val() == "1"){
+						$(this).fadeTo(500, 0.2); //grey out if added to playlist
+				}
 				yRemote.playYoutube($(this).attr('name'));
 		});
 		
+		$("body").delegate("#YoutubeplayPlaylist", "click", function(e){ 
+				e.stopImmediatePropagation();
+				yRemote.youtubePlayPlaylist();
+		});
 		/*-------------Index Page - cleanAndUpdate  Clean and Update Audio and Video Library  -------------------------*/
 		$(".cleanAndUpdate").click(function(e) {
 				e.stopImmediatePropagation();
@@ -472,14 +540,7 @@ var yRemote = {
 									$('#SetShuffle').button("refresh");
 							}
 					}
-			);	
-				/*
-
-{"jsonrpc":"2.0","method":"Player.SetShuffle","params":{"playerid":0,"shuffle":true},"id":1} -- shuffle on
-
-{"jsonrpc":"2.0","method":"Player.SetShuffle","params":{"playerid":0,"shuffle":false},"id":1} -- shuffle false
-
-*/
+			);
 	},	
 	simpleJsonRequest: function(actionname) {
 		yCore.sendJsonRPC(
@@ -497,12 +558,11 @@ var yRemote = {
 	},	
 	playYoutube: function(youtubeVideoId) { //runs if a youtube item in search result gets pressed
 			
-		
 			/*
 			 * if it's a youtube playlist: add all items of youtube-playlist to xbmc-playlist
 			 * and start the xbmc-playlist
 			 */
-			if(youtubeVideoId.indexOf("playlist_") != -1){
+			if(youtubeVideoId.indexOf("playlist_") != -1){ //if playlist
 				
  				yCore.sendJsonRPC( //empty playlist prior to use
  						'ClearPlaylist',
@@ -538,16 +598,34 @@ var yRemote = {
 					request.execute(onSearchResponse);
 					
 					//waiting timer so that yarc has plenty time to add youtube-items to xbmc-playlist
-					window.setTimeout(function(){yCore.sendJsonRPC('PlayerOpen','{ "jsonrpc": "2.0", "method": "Player.Open", "params": {"item":{"playlistid":0},"options":{"repeat":"off"}}, "id": 1 }','');}, 4000);
+					window.setTimeout(function(){yCore.sendJsonRPC('PlayerOpen','{ "jsonrpc": "2.0", "method": "Player.Open", "params": {"item":{"playlistid":1},"options":{"repeat":"off"}}, "id": 1 }','');}, 4000);
  					
 			} else {//if video item play video directly
-					yCore.sendJsonRPC(
-							'PlayerOpen',
-							'{"jsonrpc": "2.0", "method": "Player.Open", "params":{"item": {"file" : "plugin://plugin.video.youtube/?action=play_video&videoid=' 
-								+ youtubeVideoId + '" }}, "id" : "1"}',
-							' '
-					);
+					if($("input[name='youtubeAddPL']:checked").val() == "1"){//if add to pl set
+							yCore.sendJsonRPC(
+										'PlaylistAdd',
+										'{"jsonrpc": "2.0", "method": "Playlist.Add", "params": { "playlistid" : 1 , "item" : {"file" : "plugin://plugin.video.youtube/?action=play_video&videoid=' 
+											+ youtubeVideoId + '" } }, "id": 1}',
+										''
+								);
+					} else {//else play directly
+							yCore.sendJsonRPC(
+									'PlayerOpen',
+									'{"jsonrpc": "2.0", "method": "Player.Open", "params":{"item": {"file" : "plugin://plugin.video.youtube/?action=play_video&videoid=' 
+										+ youtubeVideoId + '" }}, "id" : "1"}',
+									' '
+							);
+					}
 			}
+	},
+	youtubePlayPlaylist: function () {
+			$('#YoutubeplayPlaylist').text(yTools.ts("LOADING", yS.l)).button("refresh");
+			setTimeout(function(){$('#YoutubeplayPlaylist').text(yTools.ts("PLAY_PL", yS.l)).button("refresh");}, 1500);
+			yCore.sendJsonRPC(
+					'PlayerOpen',
+					'{ "jsonrpc": "2.0", "method": "Player.Open", "params": {"item":{"playlistid":1},"options":{"repeat":"off"}}, "id": 1 }',
+					function(){ window.location.href = "#remote";}
+			);
 	},
 	searchYoutube: function(searchString) { //run youtube search query
 					
@@ -555,8 +633,16 @@ var yRemote = {
 					gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
 					
 					function showResponse(response) {
+							
+							yRemote.youtubeNextPageToken.push(response["result"]["nextPageToken"]);
+							
+							if(yRemote.youtubeNextPageToken.length == 1){
+									$("#youTubePrev").button('disable');
+							} else {
+									$("#youTubePrev").button('enable');
+							}
+							
 							for (var i=0; i < 5; i++){
-									yRemote.youtubeNextPageToken = response["result"]["nextPageToken"];
 									if(response["result"]["items"][i]["id"]["kind"] == "youtube#playlist"){
 											$("#youtubelist").append(
 												"<li class='playYoutubeVideo youtubeListItem' name='playlist_" + response["result"]["items"][i]["id"]["playlistId"] + "'> "
@@ -594,7 +680,7 @@ var yRemote = {
 							// Use the JavaScript client library to create a search.list() API call.
 							var request = gapi.client.youtube.search.list({
 									part: 'snippet',
-									pageToken: yRemote.youtubeNextPageToken,
+									pageToken: yRemote.youtubeNextPageToken[yRemote.youtubeNextPageToken.length - 1],
 									type: 'video,playlist', //no channels
 									q: searchString
 							});
@@ -736,7 +822,7 @@ var yPl = {
 										
  										if(resultPl["result"]["limits"]["end"] == "0"){//check first if playlist empty
 												$("#currentplaylist").append(
-														"<li>Music playlist is empty</li>"
+														"<li>" + yTools.ts("PL_EMPTY", yS.l) + "</li>"
 												);
 										}
 									
@@ -756,7 +842,7 @@ var yPl = {
 															"<li class='plItem simpleList' name='" + i + "'><b>" +isPlaying 
 															+ yTools.addZeroTwoDigits(minutes) +":"+yTools.addZeroTwoDigits(seconds) +"</b> "
 															+ resultPl["result"]["items"][i]["title"] 
-															+ " <i>(" + resultPl["result"]["items"][i]["artist"]  + ")</i><span class='buttonRight'><button class='plRemove' name='" + i + "' data-inline='true' data-theme='b' data-mini='true'>Remove</button></span></li>"
+															+ " <i>(" + resultPl["result"]["items"][i]["artist"]  + ")</i><span class='buttonRight'><button class='plRemove' name='" + i + "' data-inline='true' data-theme='b' data-mini='true'>" + yTools.ts("REMOVE", yS.l) + "</button></span></li>"
 													).trigger( "create" );
 										}
 								}
@@ -769,7 +855,7 @@ var yPl = {
 												
 										if(resultPl["result"]["limits"]["end"] == "0"){//check first if playlist empty
 												$("#currentplaylist").append(
-														"<li>Video Playlist is empty</li>"
+														"<li>" + yTools.ts("PL_EMPTY", yS.l) + "</li>"
 												);
 										}
 									
@@ -789,7 +875,7 @@ var yPl = {
 														"<li class='plItem simpleList' name='" + i + "'><b>" +isPlaying
 														+ yTools.addZeroTwoDigits(minutes) +":"+yTools.addZeroTwoDigits(seconds) +"</b> "
 														+ resultPl["result"]["items"][i]["title"] 
-														+ " <i>(" + resultPl["result"]["items"][i]["showtitle"]  + ")</i><span class='buttonRight'><button class='plRemove' name='" + i + "' data-inline='true' data-theme='b' data-mini='true'>Remove</button></button></li>"
+														+ " <i>(" + resultPl["result"]["items"][i]["showtitle"]  + ")</i><span class='buttonRight'><button class='plRemove' name='" + i + "' data-inline='true' data-theme='b' data-mini='true'>" + yTools.ts("REMOVE", yS.l) + "</button></button></li>"
 												).trigger( "create" );									
 										}
 								}
@@ -820,7 +906,7 @@ var yPl = {
 							function(resultPlaylistRemove){
 									
 									if("error" in resultPlaylistRemove){
-											alert("You can't remove a currenty playing item... sorry");
+											alert(yTools.ts("ALERT_CANT_REMOVE_PLAYING", yS.l));
 									}
 									window.setTimeout(yPl.getPlaylist(),1000);
 							}
@@ -990,9 +1076,9 @@ var yMovies = {
 				}
 				
 				$("#popupTitleMovies").text(yMovies.moviesJSON["result"]["movies"][movieNr]["title"] + md_year);	
-				document.getElementById('popupRating').innerHTML = ("Rating: "  + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][movieNr]["rating"]) + " (" + Math.round(yMovies.moviesJSON["result"]["movies"][movieNr]["rating"] * 100 ) / 100 + ")");
-				$("div#popupRuntimeMovies").text("Runtime: " + md_runtime);	
-				$("div#popupGenreMovies").text("Genres: " + yMovies.genreString);
+				document.getElementById('popupRating').innerHTML = (yTools.ts("RATING", yS.l) + ": "  + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][movieNr]["rating"]) + " (" + Math.round(yMovies.moviesJSON["result"]["movies"][movieNr]["rating"] * 100 ) / 100 + ")");
+				$("div#popupRuntimeMovies").text(yTools.ts("RUNTIME", yS.l) + ": " + md_runtime);	
+				$("div#popupGenreMovies").text(yTools.ts("GENRES", yS.l) + ": " + yMovies.genreString);
 				$("div#popupPlotMovies").text(yMovies.moviesJSON["result"]["movies"][movieNr]["plot"]);
 				if(!yS.hideLanguageMovies){
 					document.getElementById('popupLanguagesFlags').innerHTML = yMovies.pathToFlags(yMovies.moviesJSON["result"]["movies"][movieNr]["file"]);
@@ -1027,7 +1113,7 @@ var yMovies = {
 		//check if there is anything in the lib. eigther hide loading bar and show info
 		if(yMovies.moviesJSON["result"]["limits"]["total"] == 0)
 		{
-				$("#movie_list").append("<li><h3>No Movies in the library</h3></li>").trigger( "create" );
+				$("#movie_list").append("<li><h3>" + yTools.ts("LIB_EMPTY", yS.l) + "</h3></li>").trigger( "create" );
 				$(".loading").hide();
 				
 		} else {//or start list filling
@@ -1047,7 +1133,7 @@ var yMovies = {
 														+ "<img class='moviePrevPicArrow' alt='Previous items in list button' src='images/listPrev" + yS.imageFormat + "' />" 
 												+ "</div>" 
 												+ "<div>"
-														+ "<h4>Previous</h4>"
+														+ "<h4>" + yTools.ts("BACK", yS.l) +"</h4>"
 														+" <p></p>"
 												+ "</div>" 
 											+ "</div>"
@@ -1132,8 +1218,8 @@ var yMovies = {
 																	+ "</div>" 
 																	+ "<div>"
 																			+ "<h4>" + yMovies.moviesJSON["result"]["movies"][i]["title"] + "</h4>"
-																			+ "<p>Year: " + m_year + " Runtime: " + m_runtime + "</p>"
-																			+ "<p>" + "Rating: " + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][i]["rating"]) + "</p>"
+																			+ "<p>" + yTools.ts("YEAR", yS.l) + ": " + m_year + " " + yTools.ts("RUNTIME", yS.l) + ": " + m_runtime + "</p>"
+																			+ "<p>" + yTools.ts("RATING", yS.l)+ ": "  + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][i]["rating"]) + "</p>"
 																			+ "<p>" + flags	+ "</p>"
 																	+ "</div>" 
 															+ "</div>"
@@ -1178,8 +1264,8 @@ var yMovies = {
 																						+ "</div>" 
 																						+ "<div>"
 																							+ "<h4>" + yMovies.moviesJSON["result"]["movies"][i]["title"] + "</h4>"
-																							+ "<p>Year: " + m_year + " Runtime: " + m_runtime + "</p>"
-																							+ "<p>" + "Rating: " + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][i]["rating"]) + "</p>"
+																							+ "<p>Year: " + m_year + " " + yTools.ts("RUNTIME", yS.l) + ": " + m_runtime + "</p>"
+																							+ "<p>" + yTools.ts("RATING", yS.l) + ": "  + yTools.ratingToStars(~~yMovies.moviesJSON["result"]["movies"][i]["rating"]) + "</p>"
 																							+ "<p>" + yMovies.pathToFlags(m_filePath)	+ "</p>"
 																						+ "</div>" 
 																					+ "</div>"
@@ -1212,7 +1298,7 @@ var yMovies = {
 														+ "<img class='moviePrevPicArrow' alt='Next items' src='images/listNext" + yS.imageFormat + "' />"  
 												+ "</div>" 
 												+ "<div>"
-														+ "<h4>Next</h4>"
+														+ "<h4>" + yTools.ts("NEXT", yS.l) +"</h4>"
 														+" <p></p>"
 												+ "</div>" 
 											+ "</div>"
@@ -1321,7 +1407,7 @@ var ySeries = {
 										//check if there is anything in the lib. eigther show info or hide loading bar
 										if(resultGetTVShows["result"]["limits"]["total"] == 0)
 										{
-												$("#series_list").append("<li><h3>No shows in the library</h3></li>").trigger( "create" );
+												$("#series_list").append("<li><h3>" + yTools.ts("LIB_EMPTY", yS.l) + "</h3></li>").trigger( "create" );
 												$(".loading").hide();
 										} else {
 												
@@ -1455,7 +1541,7 @@ var ySeries = {
 								+ decodeURIComponent(resultGetEpisodeDetails["result"]["episodedetails"]["thumbnail"]).substring(15).slice(0, -1) 
 								+ "&h=150&q=95");
 							$("#popupTitleSeries").text(resultGetEpisodeDetails["result"]["episodedetails"]["showtitle"] + " - " + resultGetEpisodeDetails["result"]["episodedetails"]["label"]+" - Season "+ resultGetEpisodeDetails["result"]["episodedetails"]["season"] + " Episode " + resultGetEpisodeDetails["result"]["episodedetails"]["episode"]);	
-							document.getElementById('popupRatingSeries').innerHTML = ("Rating: "  + yTools.ratingToStars(~~resultGetEpisodeDetails["result"]["episodedetails"]["rating"]) 
+							document.getElementById('popupRatingSeries').innerHTML = (yTools.ts("RATING", yS.l)+ ": "  +  yTools.ratingToStars(~~resultGetEpisodeDetails["result"]["episodedetails"]["rating"]) 
 								+ " (" + Math.round(resultGetEpisodeDetails["result"]["episodedetails"]["rating"] * 100 ) / 100 + ")");
 							$("div#popupPlotSeries").text(resultGetEpisodeDetails["result"]["episodedetails"]["plot"]);
 							if(!yS.hideLanguageMovies){
@@ -1604,7 +1690,7 @@ var yMusic = {
 		itemsInList = 0; //needed to find out, how many items are shown, so that if list is restricted we know if next button has to be shown
 		
 		if(yMusic.albumJSON["result"]["limits"]["total"] == 0){
-				$("#album_list").append("<li><h3>No music in the library</h3></li>").trigger( "create" );
+				$("#album_list").append("<li><h3>" + yTools.ts("LIB_EMPTY", yS.l) + "</h3></li>").trigger( "create" );
 				$(".loading").hide();
 		} else {
 		
@@ -1622,7 +1708,7 @@ var yMusic = {
 										+"<li class='album_Item_Nav'>"
 											+" <div class='' name='albumListPrev'>" 
 														+ "<img class='musicPrevPic' alt='Previous items in list button' src='images/listPrev" + yS.imageFormat + "' />" 
-														+ "<h4>Previous</h4>"
+														+ "<h4>" + yTools.ts("BACK", yS.l) +"</h4>"
 														+" <p class='musicListArtist'></p>"
 											+ "</div>"
 										+"</li>"
@@ -1688,7 +1774,7 @@ var yMusic = {
 										+"<li class='album_Item_Nav'>"
 											+" <div>" 
 														+ "<img class='musicPrevPic' alt='Next items in list button' src='images/listNext" + yS.imageFormat + "' />"  
-														+ "<h4>Next</h4>"
+														+ "<h4>" + yTools.ts("NEXT", yS.l) +"</h4>"
 														+" <p class='musicListArtist'></p>"
 											+ "</div>"
 										+"</li>"
@@ -1754,8 +1840,8 @@ var yMusic = {
 			if (yMusic.artistString==""){yMusic.artistString += "unknown"};			
 	},
 	playPlaylist: function () {
-			$('#playPlaylist').text('Please wait...').button("refresh");
-			setTimeout(function(){$('#playPlaylist').text('Play Playlist').button("refresh");}, 1500);
+			$('#playPlaylist').text(yTools.ts("LOADING", yS.l)).button("refresh");
+			setTimeout(function(){$('#playPlaylist').text(yTools.ts("PLAY_PL", yS.l)).button("refresh");}, 1500);
 			yCore.sendJsonRPC(
 					'PlayerOpen',
 					'{ "jsonrpc": "2.0", "method": "Player.Open", "params": {"item":{"playlistid":0},"options":{"repeat":"off"}}, "id": 1 }',
@@ -1763,7 +1849,7 @@ var yMusic = {
 			);
 	},
 	emptyPlaylist: function () {
-			$('#emptyPlaylist').text('Done!').button("refresh");
+			$('#emptyPlaylist').text(yTools.ts("DONE", yS.l)).button("refresh");
 			setTimeout(function(){$('#emptyPlaylist').text('Empty Playlist').button("refresh");}, 1500); //change text back in 1.5 seconds
 			yCore.sendJsonRPC(
 					'PlaylistClear',
@@ -1827,6 +1913,7 @@ var ySongSearch = {
 						'GetSongs',
 						'{"jsonrpc": "2.0", "method": "AudioLibrary.GetSongs", "params": { "properties": [ "album", "track" ], "sort": { "order": "ascending", "method": "track", "ignorearticle": true } }, "id": "libSongs"}',
 						function(resultGetSongs){
+								
 								ySongSearch.songs = resultGetSongs;
 						}
 				);
@@ -1835,6 +1922,14 @@ var ySongSearch = {
 						e.stopImmediatePropagation();
 						$('#songsearch-list').empty();
 						ySongSearch.searchPrintSong($("#songsearch-searchfield").attr('value'));
+				});
+				
+				$("#songsearch-searchfield").blur(function(e) {
+						var rangeReg = /.{3}(.+ ?)*/;//at least 3 characters
+						if (!rangeReg.test($('[name=songsearch-searchfield]').val())) {
+								alert(yTools.ts("ALERT_SONGSEARCH", yS.l));
+								return false;
+						}
 				});
 				
 				$("body").delegate(".songlistItem", "click", function(e){
@@ -1849,7 +1944,7 @@ var ySongSearch = {
 				
 				$("body").delegate(".songSearchAddPl", "click", function(e){
 						e.stopImmediatePropagation();
-						$(this).text('Done!').button("refresh");
+						$(this).button('disable');
 						yCore.sendJsonRPC(
 								'PlaylistAdd',
 								'{"jsonrpc": "2.0", "method": "Playlist.Add", "params": { "playlistid" : 0 , "item" : {"songid" : ' + $(this).attr('name') + '} }, "id": 1}',
@@ -1869,8 +1964,14 @@ var ySongSearch = {
 												+ ySongSearch.songs["result"]["songs"][i]["label"] 
 												+ " </b><i>(" + ySongSearch.songs["result"]["songs"][i]["album"]  
 												+ ")</i><span class='buttonRight'><button class='songSearchAddPl' name='" + ySongSearch.songs["result"]["songs"][i]["songid"] 
-												+ "' data-inline='true' data-theme='b' data-mini='true'>to playlist</button></span></li>").trigger( "create" );
+												+ "' data-inline='true' data-theme='b' data-mini='true'>" 
+												+ yTools.ts("ADD_PLAYLIST", yS.l) + "</button></span></li>").trigger( "create" );
 						}
+				}
+				if ($('#songsearch-list li').length == 0){//if there are no results found, say so
+								$('#songsearch-list').append(
+										"<li>" + yTools.ts("NO_MATCH", yS.l) + "</li>"
+								);
 				}
 		}
 }
@@ -1951,7 +2052,7 @@ var yAddons = {
 		
 		if(yAddons.addonJSON["result"]["limits"]["total"] == 0)
 		{
-				$("#addonlist").append("<li><h3>No addons in the library</h3></li>").trigger( "create" );
+				$("#addonlist").append("<li><h3>" + yTools.ts("LIB_EMPTY", yS.l) + "</h3></li>").trigger( "create" );
 				$(".loading").hide();
 				
 		} else {
@@ -1967,7 +2068,7 @@ var yAddons = {
 							$("#addonlist").append(
 								"<li id='addonListPrev' name='addonListPrev' value='9999999999'> "
 										+ "<span class='addonImage-box'><img class='addonImage' alt='Previous items in list button' src='images/listPrev" + yS.imageFormat + "' /></span>"
-										+	"<h4 class='ui-li-heading addontitle'>Previous</h4>"
+										+	"<h4 class='ui-li-heading addontitle'>" + yTools.ts("BACK", yS.l) +"</h4>"
 								+ "</li>"
 							);	
 				}		
@@ -2009,7 +2110,7 @@ var yAddons = {
 						$("#addonlist").append(//value 0 makes button the last one in list
 							"<li id='addonListNext' name='addonListNext' value='0'> "
 									+ "<span class='addonImage-box'><img class='addonImage' alt='Next items in list button'  src='images/listNext" + yS.imageFormat + "' /></span>"
-									+	"<h4 class='ui-li-heading addontitle'>Next</h4>"
+									+	"<h4 class='ui-li-heading addontitle'>" + yTools.ts("NEXT", yS.l) +"</h4>"
 							+ "</li>"
 						);	
 				}
@@ -2051,6 +2152,18 @@ var yTools = {
 			}
 			return htmlString;
 	},
+	/*
+ * Yarc TraSlate - to translate interface
+ */	
+	ts: function(transConst, interfaceLanguage){
+		try{
+				return translations[transConst][interfaceLanguage];	
+		}
+				catch(e){
+				alert('ERROR: ' +transConst + ": " + e.message)
+		}
+		return true;
+	},	
 	removeLastCharIf: function(url, toRemove){
 		if (url.substring(url.length-1) == toRemove){
 					url = url.substring(0, url.length-1);
@@ -2067,7 +2180,7 @@ var yTools = {
  * manages everything in connection with Settings in localstorage
  */
 var yS = {
-	
+		l: "",
 		xbmcName: "yarc",
 		hidePrevPics: false,
 		imageFormatSVG: false,
@@ -2092,6 +2205,9 @@ var yS = {
 		 */
 		init: function(){
 				
+				$("#language").val(localStorage.getItem("language"));
+				$("#language").selectmenu("refresh");
+			
 				$('#xbmcName').val(localStorage.getItem("xbmcName"));
 				if(localStorage.getItem("hidePrevPics") == "true"){ //in local storage its string not boolean
 						$('input[name=hidePrevPics]').prop("checked", true).checkboxradio("refresh");
@@ -2165,17 +2281,17 @@ var yS = {
 				}				
 				
 				$("#listLength").blur(function(e) {
-						$("#listLength_label").css('color', 'black');
+						$("#listLength_label").css('color', 'white');
 						$("#saveSettings").button('enable');
 						var numericReg = /^\d*[0-9]?$/;
 						if (!numericReg.test($('[name=listLength]').val())) {
-								alert("Needs to be a full number. Please change this in order to be able to save!");
+								alert(yTools.ts("ALERT_LISTLENGTH", yS.l));
 								$("#saveSettings").button('disable');
 								$("#listLength_label").css('color', 'red');
 								return false;
 						}
 						if ($('[name=listLength]').val() == "") {
-								alert("Needs to be a full number. Please change this in order to be able to save!");
+								alert(yTools.ts("ALERT_LISTLENGTH", yS.l));
 								$("#saveSettings").button('disable');
 								$("#listLength_label").css('color', 'red');
 								return false;
@@ -2183,11 +2299,11 @@ var yS = {
 				});
 				
 				$("#prevImgQualMovies").blur(function(e) {
-						$("#prevImgQualMovies_label").css('color', 'black');
+						$("#prevImgQualMovies_label").css('color', 'white');
 						$("#saveSettings").button('enable');
 						var rangeReg = /(9[0-5]|[1-8][0-9])/;//0?[0-9]|[0-9]|[1-8][0-9]|9[0-5]
 						if (!rangeReg.test($('[name=prevImgQualMovies]').val())) {
-								alert("Needs to be a full number between (including) 10 and 95. Please change this in order to be able to save!");
+								alert(yTools.ts("ALERT_IMAGE_QUAL", yS.l));
 								$("#saveSettings").button('disable');
 								$("#prevImgQualMovies_label").css('color', 'red');
 								return false;
@@ -2195,11 +2311,11 @@ var yS = {
 				});
 				
 				$("#swipeHight").blur(function(e) {
-						$("#swipeHight_label").css('color', 'black');
+						$("#swipeHight_label").css('color', 'white');
 						$("#saveSettings").button('enable');
 						var rangeReg = /^[0-9]+(em|ex|px|vh)/;
 						if (!rangeReg.test($('[name=swipeHight]').val())) {
-								alert("It's a css height property. It needs to be a number with the ending 'em', 'ex', 'px' or 'vh'");
+								alert(yTools.ts("ALERT_SWIPEHIGHT", yS.l));
 								$("#saveSettings").button('disable');
 								$("#swipeHight_label").css('color', 'red');
 								return false;
@@ -2216,6 +2332,9 @@ var yS = {
 		 * check if localstorage key set, if not, create initial setting
 		 */
 		localStorageInit: function(){
+				if (localStorage.getItem("language") === null) {
+						localStorage.setItem("language", "en");					
+				}
 				if (localStorage.getItem("xbmcName") === null) {
 						localStorage.setItem("xbmcName", "yarc");					
 				}
@@ -2272,6 +2391,7 @@ var yS = {
 		 * get string from local storage and save it in yarc-variable (as boolean for checkboxes) 
 		 */
 		getSettings: function(){
+				yS.l = localStorage.getItem("language");
 				yS.xbmcName = localStorage.getItem("xbmcName");
 				if(localStorage.getItem("hidePrevPics")== "true"){yS.hidePrevPics = true;}else{yS.hidePrevPics = false;}
 				if(localStorage.getItem("imageFormatSVG")== "true"){
@@ -2307,6 +2427,7 @@ var yS = {
 						}
 				});
 				
+				localStorage.setItem("language", $('[name=language]').val());
 				localStorage.setItem("xbmcName", $('[name=xbmcName]').val());
 				localStorage.setItem("swipeHight", $('[name=swipeHight]').val());
 				localStorage.setItem("listLength", $('[name=listLength]').val());
@@ -2316,6 +2437,7 @@ var yS = {
 				window.location.href = "index.html";
 		}
 }
+
 /*
  * manages everything which has to be run, eighter in general, or if page gets called 
  */
@@ -2329,6 +2451,14 @@ $(document).delegate('#music', 'pageshow', yMusic.init);
 $(document).delegate('#music-songsearch', 'pageshow', ySongSearch.init);
 $(document).delegate('#addons', 'pageshow', yAddons.init);
 $(document).delegate('#settings', 'pageshow', yS.init);
+var client = new XMLHttpRequest();
+$('style').text("@media screen and (min-width:700px) {" + client.open('GET', 'css/minw.css') + "}");
+
+$('style').text("@media screen and (max-width:700px) {" + client.open('GET', 'css/maxw.css') + "}");
+
+
+
+
 
 
 		

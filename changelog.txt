@@ -1,3 +1,13 @@
+Version 0.5.0
+- Added translation functionality with German, English, klingon and Spanish
+- palceholder for non existing covers and back and forth arrow pircture: without black-white frame
+- restrict songsearch to allow only at least 3 chars
+- Design-bug-fix: collapsable titles are now allways white
+- Disable Button after adding a song to the playlist in songsearch and remove "Done!" information
+- Add "Back Button" in Youtube Search
+- added posibility to add youtube videos to playlist
+- added play-playlist button to youtube popup
+
 Version 0.4.0
 - Moved Shutdown button to top of Tools list
 - Show/Hide of Footer on tab on empty area disabled
