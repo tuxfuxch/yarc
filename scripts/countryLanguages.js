@@ -242,12 +242,17 @@ var countrycodes = [
 	], "language":"Irish", "flagpath": "IE" },
 	{ "codes":[//Israel
 		{"code":"_IL"},
-		{"code":"[IL]"}
+		{"code":"_Hebrew"},
+		{"code":"_ĤEBREW"},
+		{"code":"[IL]"},
+		{"code":"[HEBREW]"},
+		{"code":"[Hebrew]"},
+		{"code":"_HEBREW"}
 	], "language":"Hebrew", "flagpath": "IL" },
 	{ "codes":[//India / Hindi
 		{"code":"[IN]"},
 		{"code":"_IN"},
-		{"code":"_Hindi_"},
+		{"code":"_Hindi"},
 		{"code":"_HINDI_"},
 		{"code":"[HINDI]"},
 		{"code":"[Hindi]"}

@@ -1,3 +1,17 @@
+Version 0.6.0
+- Device Orientation Navigation: navigate through changing the oriantation of your device
+		* works with mobiles/tablets and it's browsers who support the deviceOriantion API
+		* Navigate up down left right and also go to next or previous songs
+		* if you lay your device facing down on the table it pauses, take it in you hands again to play
+- send now all  Youtube Vidos to Video Playlist instead of music playlist
+- Say it if in searches (addons, movies, music) no items are found
+- remove season in tv Series, if thre are no items to show and write information
+- replaced star-rating function: now it only displays one star with rating
+- some cleaning up / optimise java script code
+- Footer Bar: toggle button now bigger and slightly transparent when footer not visible
+- don't show preview images im popup backgrounds, for TV-Show-Titles, footer and youtube items
+- in some browsers (mostly non-mobile) the playlist can be sortet with drag-and-drop
+
 Version 0.5.0
 - Added translation functionality with German, English, klingon and Spanish
 - palceholder for non existing covers and back and forth arrow pircture: without black-white frame

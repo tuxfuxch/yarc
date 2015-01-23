@@ -72,7 +72,12 @@ a:hover {
 .simpleList:hover{
 		background-color: #c8c8d1;
 }
-
+.label{
+		float: right;
+		padding-right: 5px;
+		font: normal 10px Verdana !important;
+		vertical-align: middle;
+}
 
 /****************************** g:Popups ********************************/
 
@@ -263,7 +268,7 @@ img.movieRating{
 
 .footer {
 		width: 0px;
-		height: 40px;    
+		height: 60px;    
 		vertical-align: top;
 		line-height: 40px; 
 		white-space:nowrap; 
@@ -273,20 +278,34 @@ img.movieRating{
 		font-size: 11px;
 		height: 40px;  
 }
-.footer-left {
+.footer-left-in {
+		display: inline-block;
 		cursor: pointer;
 		background-color: #6E6E6E;
-		width: 0px; 
-		padding-top: 8px;  
-		padding-bottom: 8px;  
-		padding-left: 9px;  
-		padding-right: 9px; 
-		height: 40px;  
+		width: 35px; 
+		padding-top: 10px;
+		padding-left: 19px;  
+		padding-right: 10px; 
+		height: 60px;  
+ 		opacity:.70;
 }
+.footer-left-out {
+		display: inline-block;
+		cursor: pointer;
+		background-color: #6E6E6E;
+		width: 35px; 
+		padding-top: 0px;
+		padding-left: 14px;  
+		padding-right: 5px; 
+		height: 40px;  
+ 		opacity: 1;
+}
+
 .footerImage {
 		height: 41px;
 		line-height: 40px;    
-		vertical-align: top; 
+		vertical-align: top;
+		margin-left: -4px;
 }
 .footerTime {
 		display: inline-block;
@@ -308,6 +327,14 @@ img.movieRating{
 #currentplaylist{
 		margin-top: 10px;
 		margin-bottom: 10px;
+		width: 95%;
+}
+.plItem{
+		cursor: move;
+}
+.plItemDragging{
+	
+		background-color: #c8c8d1;
 }
 
 
