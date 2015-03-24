@@ -8,21 +8,18 @@
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css">
 	<script src="scripts/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
 	<script src="scripts/jquery.mobile-1.2.0.min.js"></script>
   <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
 	<script type="text/javascript" src="scripts/yarc.js"></script>
+	<script type="text/javascript" src="scripts/translations.js"></script>
 	<script type="text/javascript" src="scripts/countryLanguages.js"></script>
 	<script type="text/javascript" src="scripts/jquery.touchSwipe.js"></script>
-	<script type="text/javascript" src="scripts/translations.js"></script>
-
-
-	<script type="text/javascript" src="scripts/Sortable.min.js"></script>
-
-
-
-	<LINK rel="SHORTCUT ICON" href="images/y.ico">
+  <script type="text/javascript" src="scripts/jquery.ui.touch-punch.min.js"></script> 
+	<LINK rel="SHORTCUT ICON" href="images/y_logo.ico">
 </head>
 <body>
+	<div id="seek-overlay">&nbsp;</div>
 	<div data-role="page" data-theme="a" id="remote">
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
@@ -38,11 +35,11 @@
 		<div class="content" data-role="content">
 			<div class="content-primary">  
 				<div data-role="popup" id="detailspopupRemote" data-theme="a" class="ui-content">
-					<button class="popupSHRS" name="Application.Quit" type="button"><span data-yts="QUIT"></span></button>
-					<button class="popupSHRS" name="System.Suspend" type="button"><span data-yts="SUSPEND"></span></button>
-					<button class="popupSHRS" name="System.Hibernate" type="button"><span data-yts="HIBERNATE"></span></button>
-					<button class="popupSHRS" name="System.Reboot" type="button"><span data-yts="REBOOT"></span></button>
-					<button class="popupSHRS" name="System.Shutdown" type="button"><span data-yts="SHUTDOWN"></span></button>
+					<button class="popupSHRS" data-yJsonFunction="Application.Quit" type="button"><span data-yts="QUIT"></span></button>
+					<button class="popupSHRS" data-yJsonFunction="System.Suspend" type="button"><span data-yts="SUSPEND"></span></button>
+					<button class="popupSHRS" data-yJsonFunction="System.Hibernate" type="button"><span data-yts="HIBERNATE"></span></button>
+					<button class="popupSHRS" data-yJsonFunction="System.Reboot" type="button"><span data-yts="REBOOT"></span></button>
+					<button class="popupSHRS" data-yJsonFunction="System.Shutdown" type="button"><span data-yts="SHUTDOWN"></span></button>
 					<button id="popupCancel" type="button" name=""><span data-yts="CANCEL"></span></button>
 				</div>
 				<div data-role="popup" id="detailspopupYoutube" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
@@ -52,31 +49,32 @@
 							<button id="YoutubeplayPlaylist" class="PlayList" type="button" name="" data-mini="true"><span data-yts="PLAY_PL"></span></button>
 					</div>
 					<div id="youtubelist"></div>
-					<div id="navigation-arrows" class="ui-grid-a">
-						<div class="ui-block-a"><button id="youTubePrev" type="button" data-theme="a"><span data-yts="BACK"></button></div>
-						<div class="ui-block-b"><button id="youTubeNext" type="button" data-theme="a"><span data-yts="NEXT"></button></div>
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><button id="youTubePrev" type="button" data-theme="a"><span data-yts="BACK"></span></button></div>
+						<div class="ui-block-b"><button id="youTubeNext" type="button" data-theme="a"><span data-yts="NEXT"></span></button></div>
 					</div>
 				</div>
 				<div data-role="popup" id="detailspopupSwipe" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
-					<div><span data-yts="POPUP_SWIPE_1"></span><br />
+					<div>
+						<i><span data-yts="POPUP_SWIPE_15"></span></i><br />
+						<span data-yts="POPUP_SWIPE_1"></span><br />
 						<b><span data-yts="NAVIGATION"></span></b>
 						<ul>
 							<li><span data-yts="POPUP_SWIPE_3"></span></li>
 							<li><span data-yts="POPUP_SWIPE_4"></span></li>
-							<li><span data-yts="POPUP_SWIPE_5"></li>
-							<li><span data-yts="POPUP_SWIPE_6"></li>
+							<li><span data-yts="POPUP_SWIPE_5"></span></li>
+							<li><span data-yts="POPUP_SWIPE_6"></span></li>
 						</ul>
-						<b><span data-yts="PLAYER"></b>
+						<b><span data-yts="PLAYER"></span></b>
 						<ul>
-							<li><span data-yts="POPUP_SWIPE_8"></li>
-							<li><span data-yts="POPUP_SWIPE_9"></li>
-							<li><span data-yts="POPUP_SWIPE_10"></li>
-							<li><span data-yts="POPUP_SWIPE_11"></li>
-							<li><span data-yts="POPUP_SWIPE_12"></li>
-							<li><span data-yts="POPUP_SWIPE_13"></li>
-							<li><span data-yts="POPUP_SWIPE_14"></li>
+							<li><span data-yts="POPUP_SWIPE_8"></span></li>
+							<li><span data-yts="POPUP_SWIPE_9"></span></li>
+							<li><span data-yts="POPUP_SWIPE_10"></span></li>
+							<li><span data-yts="POPUP_SWIPE_11"></span></li>
+							<li><span data-yts="POPUP_SWIPE_12"></span></li>
+							<li><span data-yts="POPUP_SWIPE_13"></span></li>
+							<li><span data-yts="POPUP_SWIPE_14"></span></li>
 						</ul>
-						<span data-yts="POPUP_SWIPE_15">
 					</div>
 				</div>
 			</div>
@@ -87,44 +85,44 @@
 			<div id="dataContainerMotion">
 				No device motion data
 			</div>-->
-			<div id="swipe" class="swipe-box">
+			<div id="swipe" class="swipe-box" unselectable='on' onselectstart='return false;'  onmousedown='return false;'>
 				<fieldset id="nav-med-radio" data-role="controlgroup" data-type="horizontal" data-mini="true">
 					<input type="radio" id="radioNav" class="nav-med" name="nav-med" value="Nav" checked />
 					<label for="radioNav"><span data-yts="NAVIGATION"></span></label>
 					<input type="radio" id="radioMedia" class="nav-med" name="nav-med" value="Media" /> 
 					<label for="radioMedia"><span data-yts="PLAYER"></span></label><br />
-					<span data-yts="SWIPE_OR_PRESS"></span><a id="swipe-help"><span data-yts="HELP"></span></a>
 				</fieldset>
+				<span data-yts="SWIPE_OR_PRESS"></span><a id="swipe-help"><span data-yts="HELP"></span></a>
 			</div>
 			<div id="mediacontrol1" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
-				<button class="playergoto" name="previous" type="button"><i class="fa fa-step-backward"></i></button>
-				<button class="playercontrol" name="Player.PlayPause" type="button"><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
-				<button class="playercontrol" name="Player.stop" type="button"><i class="fa fa-stop"></i></button>
-				<button class="playergoto" name="next" type="button"><i class="fa fa-step-forward"></i></button>
+				<button class="playergoto" data-yJsonFunction="previous"><i class="fa fa-step-backward"></i></button>
+				<button class="playercontrol" data-yJsonFunction="Player.PlayPause"><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
+				<button class="playercontrol" data-yJsonFunction="Player.stop"><i class="fa fa-stop"></i></button>
+				<button class="playergoto" data-yJsonFunction="next"><i class="fa fa-step-forward"></i></button>
 			</div>
 			<div id="mediacontrol2" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
-				<button class="playerSetSpeed" name="decrement" type="button" data-mini="true"><i class="fa fa-backward"></i></button>
+				<button class="playerSetSpeed" data-yJsonFunction="decrement" type="button" data-mini="true"><i class="fa fa-backward"></i></button>
 				<button id="SetRepeat" name="Player.SetRepeat" type="button" data-mini="true"><i class="fa fa-refresh"></i></button>
-				<a href="#pl" type="button" data-mini="true">&nbsp;&nbsp;<i class="fa fa-list">&nbsp;&nbsp;</i></span></a>
+				<a href="#pl" data-role="button" data-mini="true">&nbsp;&nbsp;<i class="fa fa-list">&nbsp;&nbsp;</i></a>
 				<button id="SetShuffle" name="Player.SetShuffle" type="button" data-mini="true"><i class="fa fa-random"></i></button>
-				<button class="playerSetSpeed" name="increment" type="button" data-mini="true"><i class="fa fa-forward"></i></button>
+				<button class="playerSetSpeed" data-yJsonFunction="increment" type="button" data-mini="true"><i class="fa fa-forward"></i></button>
 			</div>
 			<div id="navigation-arrows" class="ui-grid-b">
 				<div class="ui-block-a"></div>
-				<div class="ui-block-b"><button class="navcontrol" name="Input.Up" type="button"><i class="fa fa-caret-up"></i></button></div>
+				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Up" type="button"><i class="fa fa-caret-up"></i></button></div>
 				<div class="ui-block-c"></div>     
-				<div class="ui-block-a"><button class="navcontrol" name="Input.Left" type="button"><i class="fa fa-caret-left"></i></button></div>
-				<div class="ui-block-b"><button class="navcontrol" name="Input.Select" type="button"><i class="fa fa-check"></i></button></div> 
-				<div class="ui-block-c"><button class="navcontrol" name="Input.Right" type="button"><i class="fa fa-caret-right"></i></button></div>       
-				<div class="ui-block-a"><button class="navcontrol" name="Input.ContextMenu" type="button"><i class="fa fa-list-alt"></i></button></div>
-				<div class="ui-block-b"><button class="navcontrol" name="Input.Down" type="button"><i class="fa fa-caret-down"></i></button></div> 
-				<div class="ui-block-c"><button class="navcontrol" name="Input.Back" type="button"><i class="fa fa-reply"></i></button></div>     
+				<div class="ui-block-a"><button class="navcontrol" data-yJsonFunction="Input.Left" type="button"><i class="fa fa-caret-left"></i></button></div>
+				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Select" type="button"><i class="fa fa-check"></i></button></div> 
+				<div class="ui-block-c"><button class="navcontrol" data-yJsonFunction="Input.Right" type="button"><i class="fa fa-caret-right"></i></button></div>       
+				<div class="ui-block-a"><button class="navcontrol" data-yJsonFunction="Input.ContextMenu" type="button"><i class="fa fa-list-alt"></i></button></div>
+				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Down" type="button"><i class="fa fa-caret-down"></i></button></div> 
+				<div class="ui-block-c"><button class="navcontrol" data-yJsonFunction="Input.Back" type="button"><i class="fa fa-reply"></i></button></div>     
 			</div><!-- /navigation-arrows -->
 			<div id="MenuButtons" data-role="controlgroup" data-type="horizontal">
 				<a id="toggleFullscreen" data-role="button" data-mini="true"><i class="fa fa-picture-o"></i></a>
-				<a class="navcontrol" name="Input.Home" data-role="button" data-mini="true"><i class="fa fa-home"></i></a>
-				<a class="navcontrol" name="Input.Info" data-role="button" data-mini="true"><i class="fa fa-info-circle"></i></a>
-				<a class="navcontrol" name="Input.ShowOSD" data-role="button" data-mini="true">
+				<a class="navcontrol" data-yJsonFunction="Input.Home" data-role="button" data-mini="true"><i class="fa fa-home"></i></a>
+				<a class="navcontrol" data-yJsonFunction="Input.Info" data-role="button" data-mini="true"><i class="fa fa-info-circle"></i></a>
+				<a class="navcontrol" data-yJsonFunction="Input.ShowOSD" data-role="button" data-mini="true">
 					<i class="fa fa-step-backward"></i>&nbsp;<i class="fa fa-pause"></i>&nbsp;<i class="fa fa-stop"></i>&nbsp;<i class="fa fa-step-forward"></i>
 				</a>
 			</div>
@@ -139,29 +137,33 @@
 			</div>
 			<div id ="Volume" data-role="controlgroup" data-type="horizontal">
 <!-- 				<label>Volume</label> -->
-				<button class="volume-group" name="Volume.Minus" type="button">-</button>
-				<button id="SetMute" class="volume-group" name="Application.SetMute" type="button"><i class="fa fa-volume-up"></i></button>
-				<button class="volume-group" name="Volume.Plus" type="button">+</button>
+				<button class="volume-group" data-yJsonFunction="Volume.Minus" type="button">-</button>
+				<button id="SetMute" class="volume-group" data-yJsonFunction="Application.SetMute" type="button"><i class="fa fa-volume-up"></i></button>
+				<button class="volume-group" data-yJsonFunction="Volume.Plus" type="button">+</button>
 			</div><!-- /Volume -->
 			<div id="SendText" class="ui-grid-b">
 				<div class="ui-block-a"><input id="SendTextField" name="SendTextField" type="text" placeholder="Text or Youtube search term"></div>
-				<div class="ui-block-b"><a id="SendTextButton" type="button"><span data-yts="SEND_TEXT"></span></span></a></div>
-				<div class="ui-block-c"><a id="searchYoutubeButton" type="button"><span data-yts="SEARCH_YOUTUBE"></span></span></a></div>
+				<div class="ui-block-b"><a id="SendTextButton" data-role="button"><span data-yts="SEND_TEXT"></span></a></div>
+				<div class="ui-block-c"><a id="searchYoutubeButton" data-role="button" ><span data-yts="SEARCH_YOUTUBE"></span></a></div>
 			</div>
 			<div data-role="collapsible">
 				<h3><span data-yts="TOOLS"></span></h3>
 				<a href="" id="quit" data-role="button"><span data-yts="TURN_OFF"></span></a> 
 				<div id ="cleanAndUpdate" class="ui-grid-a">
-					<div class="ui-block-a"><button class="cleanAndUpdate" name="AudioLibrary.Scan"  type="button"><span data-yts="AUDIO_LIB_SCAN"></span></button></div> 
-					<div class="ui-block-b"><button class="cleanAndUpdate" name="AudioLibrary.Clean" type="button"><span data-yts="AUDIO_LIB_CLEAN"></span></button></div> 
-					<div class="ui-block-a"><button class="cleanAndUpdate" name="VideoLibrary.Scan"  type="button"><span data-yts="VIDEO_LIB_SCAN"></span></button></div> 
-					<div class="ui-block-b"><button class="cleanAndUpdate" name="VideoLibrary.Clean" type="button"><span data-yts="VIDEO_LIB_CLEAN"></span></button></div> 
+					<div class="ui-block-a"><button class="cleanAndUpdate" data-yJsonFunction="AudioLibrary.Scan"  type="button"><span data-yts="AUDIO_LIB_SCAN"></span></button></div> 
+					<div class="ui-block-b"><button class="cleanAndUpdate" data-yJsonFunction="AudioLibrary.Clean" type="button"><span data-yts="AUDIO_LIB_CLEAN"></span></button></div> 
+					<div class="ui-block-a"><button class="cleanAndUpdate" data-yJsonFunction="VideoLibrary.Scan"  type="button"><span data-yts="VIDEO_LIB_SCAN"></span></button></div> 
+					<div class="ui-block-b"><button class="cleanAndUpdate" data-yJsonFunction="VideoLibrary.Clean" type="button"><span data-yts="VIDEO_LIB_CLEAN"></span></button></div> 
 				</div>
-					<!--<a href="" id="yarcDemoVid" data-role="button" data-icon="info"><span data-yts="YARC_DEMO_VID"></span></button></a> -->
-					<a href="" id="openSettings" data-role="button" data-icon="gear"><span data-yts="SETTINGS"></span></button></a> 
+				<!--<a href="" id="yarcDemoVid" data-role="button" data-icon="info"><span data-yts="YARC_DEMO_VID"></span></button></a> -->
+				<a href="" id="openSettings" data-role="button" data-icon="gear"><span data-yts="SETTINGS"></span></a> 
 			</div><!-- /collapsible -->
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<div class="seek-bubble">
+				<div class="bubble-arrow bubble-bottom"></div>
+				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+			</div>
 			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
@@ -194,6 +196,10 @@
 			<button id="plBack" type="button" data-icon="back"><span data-yts="BACK"></span></button>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<div class="seek-bubble">
+				<div class="bubble-arrow bubble-bottom"></div>
+				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+			</div>
 			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
@@ -215,16 +221,17 @@
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
 		<div class="content" data-role="content">
+			<a target="_blank"  href="https://github.com/tuxfuxch/yarc"><img id="fanart" src="fanart.jpg" alt="fanart picture" /></a>
 			<div data-role="collapsible">
-				<h3><span data-yts="GENERAL"></h3>
+				<h3><span data-yts="GENERAL"></span></h3>
 				<label for="language" id="language_label"><b><span data-yts="LANGUAGE"></span></b></label>
 				<select name="language" id="language">
 					<option value="en">English</option>
 					<option value="de">Deutsch</option>
 					<option value="kling">Klingon</option>
 					<option value="es">Español</option>
-					<option value="it">Italiano</option>
-					<option value="fr">Français</option>
+<!-- 					<option value="it">Italiano</option> -->
+<!-- 					<option value="fr">Français</option> -->
 				</select>
 				<label for="xbmcName" id="xbmcName_label"><b><span data-yts="WINDOW_TITLE"></span></b></label>
 				<input name="xbmcName" id="xbmcName" value=""  size="30"/>
@@ -240,7 +247,7 @@
 				<input name="hideLanguageMovies" type="checkbox" id="hideLanguageMovies" value="hideLanguageMovies" />
 			</div>
 			<div data-role="collapsible">
-				<h3><span data-yts="REMOTE"></h3>
+				<h3><span data-yts="REMOTE"></span></h3>
 				<label for="noSwipe"><span data-yts="NO_SWIPE"></span></label>
 				<input name="noSwipe" type="checkbox" id="noSwipe" value="noSwipe" />
 				<label for="swipeHight" id="swipeHight_label"><b><span data-yts="SET_SWIPE_HIGHT"></span></b></label>
@@ -249,7 +256,7 @@
 				<input name="hideOrientNav" type="checkbox" id="hideOrientNav" value="hideOrientNav" />
 			</div>
 			<div data-role="collapsible">
-				<h3><span data-yts="MOVIES"></h3>
+				<h3><span data-yts="MOVIES"></span></h3>
 				<label for="hideGenreMovies"><span data-yts="HIDE_GENRE_SELECT"></span></label>
 				<input name="hideGenreMovies" type="checkbox" id="hideGenreMovies" value="hideGenreMovies" />
 				<label for="hideSearchMovies"><span data-yts="HIDE_SEARCH"></span></label>
@@ -260,14 +267,14 @@
 				<input name="prevImgQualMovies" type="number" id="prevImgQualMovies" value="" maxlength="2"/>
 			</div>
 			<div data-role="collapsible">
-				<h3><span data-yts="MUSIC"></h3>
+				<h3><span data-yts="MUSIC"></span></h3>
 				<label for="hideGenreMusic"><span data-yts="HIDE_GENRE_SELECT"></span></label>
 				<input name="hideGenreMusic" type="checkbox" id="hideGenreMusic" value="hideGenreMusic" />
 				<label for="hideSearchMusic"><span data-yts="HIDE_SEARCH"></span></label>
 				<input name="hideSearchMusic" type="checkbox" id="hideSearchMusic" value="hideSearchMusic" />
 			</div>
 			<div data-role="collapsible">
-				<h3><span data-yts="ADDONS"></h3>
+				<h3><span data-yts="ADDONS"></span></h3>
 				<label for="hideGenreAddons"><span data-yts="HIDE_GROUP_SELECT"></span></label>
 				<input name="hideGenreAddons" type="checkbox" id="hideGenreAddons" value="hideGenreAddons" />
 				<label for="hideSearchAddons"><span data-yts="HIDE_SEARCH"></span></label>
@@ -291,7 +298,7 @@
 		<div class="content" data-role="content">	
 			<div class="content-primary">
 				<div data-role="popup" id="detailspopupMovies" data-overlay-theme="a" class="ui-content detailspopup">
-					<img id="popupImageMovies" class="popupImage" src="images/transparent.gif" />
+					<img id="popupImageMovies" class="popupImage" src="images/transparent.gif" alt=""/>
 					<h2 id="popupTitleMovies"></h2>
 					<img id="popupGreenTick" src="images/transparent.gif" alt="[Media played]"/>
 					<div id="popupRating"></div>
@@ -326,6 +333,10 @@
 			</ul>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<div class="seek-bubble">
+				<div class="bubble-arrow bubble-bottom"></div>
+				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+			</div>
 			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
@@ -349,7 +360,7 @@
 		<div class="content" data-role="content">	
 			<div class="content-primary">
 				<div data-role="popup" id="detailspopupSeries" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
-					<img id="popupImageSeries" class="popupImage" src="images/transparent.gif"/>
+					<img id="popupImageSeries" class="popupImage" src="images/transparent.gif" alt="" />
 					<h2 id="popupTitleSeries"></h2>
 					<div id="popupRatingSeries"></div>
 					<div id="popupLanguagesFlagsSeries"></div>
@@ -365,6 +376,10 @@
 			</div>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<div class="seek-bubble">
+				<div class="bubble-arrow bubble-bottom"></div>
+				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+			</div>
 			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif"/>
@@ -397,8 +412,8 @@
 					<img id="popupImageMusic" class="popupImage" alt="" src="images/transparent.gif"/>
 					<h2 id="popupTitleMusic"></h2>
 					<button id="popupAddAlbum" type="button" name=""><span data-yts="EMPTY_PLAY_ALBUM"></span></button>
-					<button id="popupUnselectMusic" type="button" name=""><span data-yts="UN_SELECT_ALL"></span></button>
-					<button id="popupAddToPlaylist" type="button" name=""><span data-yts="ADD_PLAYLIST"></span></button>
+					<label for="popupMusicAddPL" data-mini="true"><span data-yts="ADD_PLAYLIST"></span></label>
+					<input name="popupMusicAddPL" type="checkbox" id="popupMusicAddPL" value="1"  data-mini="true"/>
 					<div id="popupContainerMusic"></div> <!--container for song list items -->
 				</div><!-- /detailspopup -->
 			</div>
@@ -421,6 +436,10 @@
 			</ul>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<div class="seek-bubble">
+				<div class="bubble-arrow bubble-bottom"></div>
+				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+			</div>
 			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
@@ -449,11 +468,15 @@
 		</div><!-- /navbar -->
 		<div class="content" data-role="content">
 			<input type="search" name="songsearch-searchfield" id="songsearch-searchfield" placeholder="Search for song title" value="" />
-			<button id="music-search" type="button" data-icon="search"><span data-yts="SEARCH"></span></button>
+			<a id="music-search" type="button" data-icon="search"><span data-yts="SEARCH"></span></a>
 			<br />
 			<ul id="songsearch-list" class="ui-listview"></ul>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<div class="seek-bubble">
+				<div class="bubble-arrow bubble-bottom"></div>
+				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+			</div>
 			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
@@ -489,11 +512,15 @@
 						<input type="search" name="searchAddon" id="searchAddon" placeholder="Search for Addon" value="" />
 					</div>
 				</li>
-				<li class='loading'><span data-yts="LOADING"></li>
+				<li class='loading'><span data-yts="LOADING"></span></li>
 			</ul>
 			<ul id="addonlist" class="ui-listview"></ul>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
+			<div class="seek-bubble">
+				<div class="bubble-arrow bubble-bottom"></div>
+				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+			</div>
 			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />

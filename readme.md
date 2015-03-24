@@ -14,7 +14,7 @@ I have done what I need and how I want it. Forgive me if it is not yet how you l
   * Set how many items are shown in lists (so that you mobile browser does not crash because of an image overload)
   * Preview pictures for movies are compressed (tell in settings how much)
   * Reads languages out of the file name in your collection (read more about in the according chapter)
-  * Search directly in YouTube and let it play on Kodi (still a little beta)
+  * Search directly in YouTube and let it play on Kodi
   * Start add-ons without navigating through the menu
   * Send a text-string from the yarc-GUI to a text field in Kodi
 
@@ -35,7 +35,6 @@ https://github.com/tuxfuxch/yarc
   * Maxthon
      - no keyboard use
      - no SVG images (default setting is use of *.png images)
-     - Swipe-area not working perfectly (long-touch doesn't work and sometimes it scrolls where it should not)
   * I heard: it's working fine on IE10
 
 ###Settings
@@ -138,7 +137,7 @@ If you use another tagging scheme and want it included in my official version (s
 
 ###Search YouTube Feature
 
-This is still beta. Some things don't work. It will return in maximum the first 50 search result. But you can play also playlists which are indicated with the string **[PL]** before the title. The playtime of an item is not shown, because I need to request it for every item separately. I Hope you can live with that.
+It will return in maximum the first 50 search result. But you can play also playlists which are indicated with the string **[PL]** before the title. The playtime of an item is not shown, because I need to request it for every item separately. I Hope you can live with that.
 
 I needed to apply for the API and can use "only" 1 million transaction per day. This is enough for sure for a while or forever. If it's been misused, I have to close it down. In this case it won't work any more. Maybe I would provide a possibility to set your own key.
 
@@ -147,8 +146,9 @@ I needed to apply for the API and can use "only" 1 million transaction per day. 
   * jquery (http://jquery.com/; MIT Licence)
   * Wikipedia and it contributors: for the flags (all public domain or similiar licence)
   * TochSwipe Plugin for jquery (https://github.com/mattbryson/TouchSwipe-Jquery-Plugin; GPL 2 or MIT Licence)
-  * Sortable Plugin (https://github.com/RubaXa/Sortable; MIT Licence)
   * Font Awesome for the very good symbol-font (http://fontawesome.io; SIL OFL 1.1 Licence (Font) and MIT License (Code))
+  * jquery UI (http://jqueryui.com/; MIT License)
+  * jQuery UI Touch Punch Plugin/Fix; Touch Event Support for jQuery UI (http://touchpunch.furf.com/;  GPL 2 or MIT Licence)
   * Kabooga for first testing and help in buxfixing, author of webinterface.xrc
   * Martijn for correction of addon.xml, Kodi (former XBMC) Team Member
   * ruth440 for testing and feedback. I was multiple times pointed into the right direction

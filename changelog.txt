@@ -1,3 +1,15 @@
+Version 0.7.0
+- add a seek playing file position functionality: while Footer bar open, press on it and a seek media bubble appears
+- while the seek-bubble is moved, it prints out where it would jumpt to, and the time difference to current position (at time of start moving bubble)
+- add progress bar in footerbackground for better progress visability from distance
+- album popup now adds now songs in the same way as youtube popup
+- search song textfield runs now also with pressing enter
+- added jqueryUI (only sortable and dragable)
+- replaced Sortable Plugin with functions from jqueryUI, since i need jqueryUI anyway
+- text and buttons within swipe field should not be selected anymore on long pressing in upper part
+- some html cleanup
+- new logo, icon and fanart
+
 Version 0.6.0
 - Device Orientation Navigation: navigate through changing the oriantation of your device
 		* works with mobiles/tablets and it's browsers who support the deviceOriantion API

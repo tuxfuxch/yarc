@@ -1,6 +1,6 @@
 /**
  * Yarc - Yet another Remote Control (for Kodi)
- * Copyright (C) 2014 by Esra Kummer
+ * Copyright (C) 2015 by Esra Kummer
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,14 @@
 /************************************************************************************* 
  *															General (G)								 													 *
  *************************************************************************************/
+
+#fanart {
+		height: 140px; 
+    margin-left: auto;
+    margin-right: auto;
+		display: block;
+}
+
 .ui-btn-text{
 		color: white;
 }
@@ -84,6 +92,8 @@ a:hover {
 .detailspopup{
 		overflow: hidden !important;
 		padding: 0px;
+		position: relative;
+		display:block;
 }
 .popupImage{	
 		width: 100% !important;
@@ -133,6 +143,21 @@ a:hover {
 #popupPlotSeries {
 		margin-top: 15px;
 }
+.playSong {
+		position:relative;
+		margin-left: 5px;
+		margin-right: 5px;
+		list-style-type: none;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid #c8c8d1;
+		cursor: pointer;
+		z-index: 9999; /*get element infront of background image*/
+}
+.playSong:hover { 
+		background-color: #c8c8d1;
+}
 
 
 
@@ -159,6 +184,12 @@ a:hover {
 	
 		color: #FFF;
 		text-shadow: 0 1px 1px #111111;
+		
+		/* that text within the swipe box can't be selected */
+		-moz-user-select: none; 
+		-webkit-user-select: none; 
+		-ms-user-select:none; user-select:none;
+		-o-user-select:none;
 }
 
 #nav-med-radio {
@@ -266,12 +297,21 @@ img.movieRating{
 
 /****************************** g: Footer Bar ********************************/
 
+
 .footer {
 		width: 0px;
 		height: 60px;    
-		vertical-align: top;
 		line-height: 40px; 
 		white-space:nowrap; 
+		padding-top: 3px;
+		
+		background-position: right top;
+		background-color: #685300;
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+}
+.footer:hover {
+		cursor: pointer;	
 }
 .footer-right {
 		text-decoration: none;
@@ -279,8 +319,8 @@ img.movieRating{
 		height: 40px;  
 }
 .footer-left-in {
+	vertical-align: top;
 		display: inline-block;
-		cursor: pointer;
 		background-color: #6E6E6E;
 		width: 35px; 
 		padding-top: 10px;
@@ -290,8 +330,8 @@ img.movieRating{
  		opacity:.70;
 }
 .footer-left-out {
+	vertical-align: top;
 		display: inline-block;
-		cursor: pointer;
 		background-color: #6E6E6E;
 		width: 35px; 
 		padding-top: 0px;
@@ -302,23 +342,63 @@ img.movieRating{
 }
 
 .footerImage {
-		height: 41px;
-		line-height: 40px;    
-		vertical-align: top;
-		margin-left: -4px;
+		height: 40px;  
+		margin-left: -5px;
 }
 .footerTime {
+	vertical-align: top;
 		display: inline-block;
 		width: 46px;
 		font-size: 11px;
-		vertical-align: middle;
-		line-height:17px;  
+		line-height:19px;  
 }
 .footerTitle{
+	vertical-align: top;
 		overflow:hidden;
 		height:40px;
 		line-height:40px;	
 }
+
+#seek-overlay{	
+    position: fixed;
+    width: 100px;
+    height: 50px;
+    top: 20%;
+		z-index:100;
+		color: #685300;
+		font-size: 60px;
+    font-family: "Verdana", Georgia, sans-serif;
+}
+
+.seek-bubble {
+		font-size: 11px;
+    background-color: #6E6E6E;
+    border-radius: 5px;
+    width: 50px;
+    text-align: center;
+    position: relative;
+		margin-top: -41.5px;
+		top: -7px;
+		left: 0px;
+		border: 1px solid #fff;
+}
+.seek-bubble:hover {
+		cursor: move;
+}
+
+.seek-bubble .bubble-arrow {
+    border-style: solid;
+    position: absolute;
+}
+ 
+.bubble-bottom { /*belongs to seek-buuble*/
+    border-color: #fff transparent transparent transparent;
+    border-width: 7px 7px 0px 8px;
+    bottom: -7px;
+		left: 17px;
+}
+
+
 /****************************** g:Playlist ********************************/
 
 #plType {
@@ -333,7 +413,6 @@ img.movieRating{
 		cursor: move;
 }
 .plItemDragging{
-	
 		background-color: #c8c8d1;
 }
 
@@ -392,7 +471,6 @@ and (min-width : 700px) {
 		display: inline;
 		float: left; 
 	}
-	
 	/****************************** BSM: Movies ******************************/
 	#movie_list {
 			margin-top: 20px; 

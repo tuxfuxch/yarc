@@ -1,6 +1,6 @@
 /*
  * Yarc - Yet another Remote Control (for Kodi)
- * Copyright (C) 2014 by Esra Kummer
+ * Copyright (C) 2015 by Esra Kummer
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -808,7 +808,8 @@ var translations = {
 			fr: "Éteindre",
 			gr: ""
 	},
-	UN_SELECT_ALL:{//select or unselect a set of choice boxes
+	/*not used right now!
+	/*UN_SELECT_ALL:{//select or unselect a set of choice boxes
 			en: "(un-)select all",
 			de: "(de-)selektiere alle",
 			kling: "Hoch wIv",
@@ -816,7 +817,7 @@ var translations = {
 			it: "(de-)selezionare tutti",
 			fr: "(dé-) sélectionner tous",
 			gr: ""
-	},
+	},*/
 	USE_SVG:{//svg is an image filetype
 			en: "Use SVG images where possible",
 			de: "Verwende SVG Bilder wo immer möglich",
