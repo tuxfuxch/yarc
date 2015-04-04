@@ -4,19 +4,20 @@
 	<title>yarc</title> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-	<link rel="stylesheet" href="css/jquery/jquery.mobile-1.2.0.min.css" />
+ 	<link rel="stylesheet" href="css/jquery/jquery.mobile-1.2.0.min.css" /> 
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/font-awesome-4.1.0/css/font-awesome.min.css">
-	<script src="scripts/jquery-1.8.2.min.js"></script>
+ 	<script src="scripts/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
-	<script src="scripts/jquery.mobile-1.2.0.min.js"></script>
+ 	<script src="scripts/jquery.mobile-1.2.0.min.js"></script> 
   <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
 	<script type="text/javascript" src="scripts/yarc.js"></script>
 	<script type="text/javascript" src="scripts/translations.js"></script>
 	<script type="text/javascript" src="scripts/countryLanguages.js"></script>
 	<script type="text/javascript" src="scripts/jquery.touchSwipe.js"></script>
   <script type="text/javascript" src="scripts/jquery.ui.touch-punch.min.js"></script> 
-	<LINK rel="SHORTCUT ICON" href="images/y_logo.ico">
+
+	<link rel="icon" type="image/x-icon" href="images/ylogo.ico">
 </head>
 <body>
 	<div id="seek-overlay">&nbsp;</div>
@@ -24,11 +25,11 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
-					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
-					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
-					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
-					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
+					<li><a href="#remote"><span class="fa fa-th"></span><span class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies"><span class="fa fa-film"></span><span class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><span class="yheadermenuitem" data-yts="SERIES"></span></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><span class="yheadermenuitem" data-yts="MUSIC"></span></a></li>
+					<li><a href="#addons"><span class="fa fa-plus"></span><span class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
@@ -40,7 +41,7 @@
 					<button class="popupSHRS" data-yJsonFunction="System.Hibernate" type="button"><span data-yts="HIBERNATE"></span></button>
 					<button class="popupSHRS" data-yJsonFunction="System.Reboot" type="button"><span data-yts="REBOOT"></span></button>
 					<button class="popupSHRS" data-yJsonFunction="System.Shutdown" type="button"><span data-yts="SHUTDOWN"></span></button>
-					<button id="popupCancel" type="button" name=""><span data-yts="CANCEL"></span></button>
+					<button id="popupCancel" type="button" data-icon="delete"><span data-yts="CANCEL"></span></button>
 				</div>
 				<div data-role="popup" id="detailspopupYoutube" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
 					<div>
@@ -53,19 +54,19 @@
 						<div class="ui-block-a"><button id="youTubePrev" type="button" data-theme="a"><span data-yts="BACK"></span></button></div>
 						<div class="ui-block-b"><button id="youTubeNext" type="button" data-theme="a"><span data-yts="NEXT"></span></button></div>
 					</div>
+					<button id="detailspopupYoutubeClose" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
 				</div>
 				<div data-role="popup" id="detailspopupSwipe" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
-					<div>
-						<i><span data-yts="POPUP_SWIPE_15"></span></i><br />
+						<span class="italic" data-yts="POPUP_SWIPE_15"></span><br />
 						<span data-yts="POPUP_SWIPE_1"></span><br />
-						<b><span data-yts="NAVIGATION"></span></b>
+						<span class="bold" data-yts="NAVIGATION"></span>
 						<ul>
 							<li><span data-yts="POPUP_SWIPE_3"></span></li>
 							<li><span data-yts="POPUP_SWIPE_4"></span></li>
 							<li><span data-yts="POPUP_SWIPE_5"></span></li>
 							<li><span data-yts="POPUP_SWIPE_6"></span></li>
 						</ul>
-						<b><span data-yts="PLAYER"></span></b>
+						<span class="bold" data-yts="PLAYER"></span>
 						<ul>
 							<li><span data-yts="POPUP_SWIPE_8"></span></li>
 							<li><span data-yts="POPUP_SWIPE_9"></span></li>
@@ -75,7 +76,7 @@
 							<li><span data-yts="POPUP_SWIPE_13"></span></li>
 							<li><span data-yts="POPUP_SWIPE_14"></span></li>
 						</ul>
-					</div>
+					<button id="detailspopupSwipeClose" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
 				</div>
 			</div>
 			<!--Device motion | leave for Device orientation debugging 
@@ -95,35 +96,35 @@
 				<span data-yts="SWIPE_OR_PRESS"></span><a id="swipe-help"><span data-yts="HELP"></span></a>
 			</div>
 			<div id="mediacontrol1" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
-				<button class="playergoto" data-yJsonFunction="previous"><i class="fa fa-step-backward"></i></button>
-				<button class="playercontrol" data-yJsonFunction="Player.PlayPause"><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
-				<button class="playercontrol" data-yJsonFunction="Player.stop"><i class="fa fa-stop"></i></button>
-				<button class="playergoto" data-yJsonFunction="next"><i class="fa fa-step-forward"></i></button>
+				<button class="playergoto" data-yJsonFunction="previous"><span class="fa fa-step-backward"></span></button>
+				<button class="playercontrol" data-yJsonFunction="Player.PlayPause"><span class="fa fa-play"></span><span class="fa fa-pause"></span></button>
+				<button class="playercontrol" data-yJsonFunction="Player.stop"><span class="fa fa-stop"></span></button>
+				<button class="playergoto" data-yJsonFunction="next"><span class="fa fa-step-forward"></span></button>
 			</div>
 			<div id="mediacontrol2" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
-				<button class="playerSetSpeed" data-yJsonFunction="decrement" type="button" data-mini="true"><i class="fa fa-backward"></i></button>
-				<button id="SetRepeat" name="Player.SetRepeat" type="button" data-mini="true"><i class="fa fa-refresh"></i></button>
-				<a href="#pl" data-role="button" data-mini="true">&nbsp;&nbsp;<i class="fa fa-list">&nbsp;&nbsp;</i></a>
-				<button id="SetShuffle" name="Player.SetShuffle" type="button" data-mini="true"><i class="fa fa-random"></i></button>
-				<button class="playerSetSpeed" data-yJsonFunction="increment" type="button" data-mini="true"><i class="fa fa-forward"></i></button>
+				<button class="playerSetSpeed" data-yJsonFunction="decrement" type="button" data-mini="true"><span class="fa fa-backward"></span></button>
+				<button id="SetRepeat" name="Player.SetRepeat" type="button" data-mini="true"><span class="fa fa-refresh"></span></button>
+				<a href="#pl" data-role="button" data-mini="true">&nbsp;&nbsp;<span class="fa fa-list">&nbsp;&nbsp;</span></a>
+				<button id="SetShuffle" name="Player.SetShuffle" type="button" data-mini="true"><span class="fa fa-random"></span></button>
+				<button class="playerSetSpeed" data-yJsonFunction="increment" type="button" data-mini="true"><span class="fa fa-forward"></span></button>
 			</div>
 			<div id="navigation-arrows" class="ui-grid-b">
 				<div class="ui-block-a"></div>
-				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Up" type="button"><i class="fa fa-caret-up"></i></button></div>
+				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Up" type="button"><span class="fa fa-caret-up"></span></button></div>
 				<div class="ui-block-c"></div>     
-				<div class="ui-block-a"><button class="navcontrol" data-yJsonFunction="Input.Left" type="button"><i class="fa fa-caret-left"></i></button></div>
-				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Select" type="button"><i class="fa fa-check"></i></button></div> 
-				<div class="ui-block-c"><button class="navcontrol" data-yJsonFunction="Input.Right" type="button"><i class="fa fa-caret-right"></i></button></div>       
-				<div class="ui-block-a"><button class="navcontrol" data-yJsonFunction="Input.ContextMenu" type="button"><i class="fa fa-list-alt"></i></button></div>
-				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Down" type="button"><i class="fa fa-caret-down"></i></button></div> 
-				<div class="ui-block-c"><button class="navcontrol" data-yJsonFunction="Input.Back" type="button"><i class="fa fa-reply"></i></button></div>     
+				<div class="ui-block-a"><button class="navcontrol" data-yJsonFunction="Input.Left" type="button"><span class="fa fa-caret-left"></span></button></div>
+				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Select" type="button"><span class="fa fa-check"></span></button></div> 
+				<div class="ui-block-c"><button class="navcontrol" data-yJsonFunction="Input.Right" type="button"><span class="fa fa-caret-right"></span></button></div>       
+				<div class="ui-block-a"><button class="navcontrol" data-yJsonFunction="Input.ContextMenu" type="button"><span class="fa fa-list-alt"></span></button></div>
+				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Down" type="button"><span class="fa fa-caret-down"></span></button></div> 
+				<div class="ui-block-c"><button class="navcontrol" data-yJsonFunction="Input.Back" type="button"><span class="fa fa-reply"></span></button></div>     
 			</div><!-- /navigation-arrows -->
 			<div id="MenuButtons" data-role="controlgroup" data-type="horizontal">
-				<a id="toggleFullscreen" data-role="button" data-mini="true"><i class="fa fa-picture-o"></i></a>
-				<a class="navcontrol" data-yJsonFunction="Input.Home" data-role="button" data-mini="true"><i class="fa fa-home"></i></a>
-				<a class="navcontrol" data-yJsonFunction="Input.Info" data-role="button" data-mini="true"><i class="fa fa-info-circle"></i></a>
+				<a id="toggleFullscreen" data-role="button" data-mini="true"><span class="fa fa-picture-o"></span></a>
+				<a class="navcontrol" data-yJsonFunction="Input.Home" data-role="button" data-mini="true"><span class="fa fa-home"></span></a>
+				<a class="navcontrol" data-yJsonFunction="Input.Info" data-role="button" data-mini="true"><span class="fa fa-info-circle"></span></a>
 				<a class="navcontrol" data-yJsonFunction="Input.ShowOSD" data-role="button" data-mini="true">
-					<i class="fa fa-step-backward"></i>&nbsp;<i class="fa fa-pause"></i>&nbsp;<i class="fa fa-stop"></i>&nbsp;<i class="fa fa-step-forward"></i>
+					<span class="fa fa-step-backward"></span>&nbsp;<span class="fa fa-pause"></span>&nbsp;<span class="fa fa-stop"></span>&nbsp;<span class="fa fa-step-forward"></span>
 				</a>
 			</div>
 			<div id="devOrientBlock" class="ui-grid-a">
@@ -138,7 +139,7 @@
 			<div id ="Volume" data-role="controlgroup" data-type="horizontal">
 <!-- 				<label>Volume</label> -->
 				<button class="volume-group" data-yJsonFunction="Volume.Minus" type="button">-</button>
-				<button id="SetMute" class="volume-group" data-yJsonFunction="Application.SetMute" type="button"><i class="fa fa-volume-up"></i></button>
+				<button id="SetMute" class="volume-group" data-yJsonFunction="Application.SetMute" type="button"><span class="fa fa-volume-up"></span></button>
 				<button class="volume-group" data-yJsonFunction="Volume.Plus" type="button">+</button>
 			</div><!-- /Volume -->
 			<div id="SendText" class="ui-grid-b">
@@ -156,15 +157,16 @@
 					<div class="ui-block-b"><button class="cleanAndUpdate" data-yJsonFunction="VideoLibrary.Clean" type="button"><span data-yts="VIDEO_LIB_CLEAN"></span></button></div> 
 				</div>
 				<!--<a href="" id="yarcDemoVid" data-role="button" data-icon="info"><span data-yts="YARC_DEMO_VID"></span></button></a> -->
+				<!-- 				<a href="readme.md" data-role="button" data-icon="info">Readme (English)</a> -->
 				<a href="" id="openSettings" data-role="button" data-icon="gear"><span data-yts="SETTINGS"></span></a> 
 			</div><!-- /collapsible -->
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
 			<div class="seek-bubble">
 				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
 			</div>
-			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
+			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -176,11 +178,11 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
-					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
-					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
-					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
-					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
+					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
@@ -198,9 +200,9 @@
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
 			<div class="seek-bubble">
 				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
 			</div>
-			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
+			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -212,11 +214,11 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
-					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
-					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
-					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
-					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
+					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
@@ -224,7 +226,7 @@
 			<a target="_blank"  href="https://github.com/tuxfuxch/yarc"><img id="fanart" src="fanart.jpg" alt="fanart picture" /></a>
 			<div data-role="collapsible">
 				<h3><span data-yts="GENERAL"></span></h3>
-				<label for="language" id="language_label"><b><span data-yts="LANGUAGE"></span></b></label>
+				<label for="language" id="language_label"><span class="bold" data-yts="LANGUAGE"></span></label>
 				<select name="language" id="language">
 					<option value="en">English</option>
 					<option value="de">Deutsch</option>
@@ -233,15 +235,17 @@
 <!-- 					<option value="it">Italiano</option> -->
 <!-- 					<option value="fr">Français</option> -->
 				</select>
-				<label for="xbmcName" id="xbmcName_label"><b><span data-yts="WINDOW_TITLE"></span></b></label>
+				<label for="xbmcName" id="xbmcName_label"><span class="bold" data-yts="WINDOW_TITLE"></span></label>
 				<input name="xbmcName" id="xbmcName" value=""  size="30"/>
+				<label for="hideMenuText"><span data-yts="HIDE_MENU_TEXT"></span></label>
+				<input name="hideMenuText" type="checkbox" id="hideMenuText" value="hideMenuText" />
 				<label for="hidePrevPics"><span data-yts="HIDE_PREV_PICS"></span></label>
 				<input name="hidePrevPics" type="checkbox" id="hidePrevPics" value="hidePrevPics" />
 				<label for="imageFormatSVG"><span data-yts="USE_SVG"></span></label>
 				<input name="imageFormatSVG" type="checkbox" id="imageFormatSVG" value="imageFormatSVG" />
 				<label for="hideWatched"><span data-yts="HIDE_WATCHED"></span></label>
 				<input name="hideWatched" type="checkbox" id="hideWatched" value="hideWatched" />
-				<label for="listLength" id="listLength_label"><b><span data-yts="MAX_LISTLENGTH"></span></b></label>
+				<label for="listLength" id="listLength_label"><span class="bold" data-yts="MAX_LISTLENGTH"></span></label>
 				<input name="listLength" type="number" id="listLength" value=""/>
 				<label for="hideLanguageMovies"><span data-yts="HIDE_FLAGS"></span></label>
 				<input name="hideLanguageMovies" type="checkbox" id="hideLanguageMovies" value="hideLanguageMovies" />
@@ -250,9 +254,9 @@
 				<h3><span data-yts="REMOTE"></span></h3>
 				<label for="noSwipe"><span data-yts="NO_SWIPE"></span></label>
 				<input name="noSwipe" type="checkbox" id="noSwipe" value="noSwipe" />
-				<label for="swipeHight" id="swipeHight_label"><b><span data-yts="SET_SWIPE_HIGHT"></span></b></label>
+				<label for="swipeHight" id="swipeHight_label"><span class="bold" data-yts="SET_SWIPE_HIGHT"></span></label>
 				<input name="swipeHight" type="text" id="swipeHight" value=""/>		
-				<label for="hideOrientNav" id="hideOrientNav_label"><b><span data-yts="HIDE_ORIENT_NAV"></span></b></label>	
+				<label for="hideOrientNav" id="hideOrientNav_label"><span class="bold" data-yts="HIDE_ORIENT_NAV"></span></label>	
 				<input name="hideOrientNav" type="checkbox" id="hideOrientNav" value="hideOrientNav" />
 			</div>
 			<div data-role="collapsible">
@@ -263,11 +267,11 @@
 				<input name="hideSearchMovies" type="checkbox" id="hideSearchMovies" value="hideSearchMovies" />
 				<label for="hideFileLinkMovies"><span data-yts="HIDE_FILELINK"></span></label>
 				<input name="hideFileLinkMovies" type="checkbox" id="hideFileLinkMovies" value="hideFileLinkMovies" />
-				<label for="prevImgQualMovies" id="prevImgQualMovies_label"><b><span data-yts="PREV_IMG_QUAL"></span></b></label>
+				<label for="prevImgQualMovies" id="prevImgQualMovies_label"><span class="bold" data-yts="PREV_IMG_QUAL"></span></label>
 				<input name="prevImgQualMovies" type="number" id="prevImgQualMovies" value="" maxlength="2"/>
 			</div>
 			<div data-role="collapsible">
-				<h3><span data-yts="MUSIC"></span></h3>
+				<h3><span data-yts="MUSIC"></h3>
 				<label for="hideGenreMusic"><span data-yts="HIDE_GENRE_SELECT"></span></label>
 				<input name="hideGenreMusic" type="checkbox" id="hideGenreMusic" value="hideGenreMusic" />
 				<label for="hideSearchMusic"><span data-yts="HIDE_SEARCH"></span></label>
@@ -287,11 +291,11 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
-					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
-					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
-					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
-					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
+					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
@@ -307,8 +311,9 @@
 					<div id="popupGenreMovies"></div>
 					<div id="popupPlotMovies"></div>
  					<div id="popupFilelink"></div> 
-					<button id="popupTrailer" type="button" name=""><span data-yts="TRAILER"></span></button>
-					<button id="popupPlay" type="button" name=""><span data-yts="PLAY"></span></button>
+					<button id="popupTrailer" type="button" data-yMovieTrailer=""><span data-yts="TRAILER"></span></button>
+					<button id="popupPlay" type="button" data-yMovieID=""><span data-yts="PLAY"></span></button>
+					<button id="detailspopupMoviesClose" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
 				</div>
 			</div>
 			<ul class="ulbar" data-role="listview">
@@ -327,7 +332,7 @@
 						</div>
 					<input type="search" name="search" id="searchMovies" placeholder="Search for movietitle" value="" />
 				</li>
-				<li class='loading'><span data-yts="LOADING"></span></li>
+				<li id="loading_movie" class='loading'><span data-yts="LOADING"></span></li>
 			</ul>
 			<ul id="movie_list" data-role="listview">
 			</ul>
@@ -335,9 +340,9 @@
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
 			<div class="seek-bubble">
 				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
 			</div>
-			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
+			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -349,11 +354,11 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
-					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
-					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
-					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
-					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
+					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
@@ -366,10 +371,11 @@
 					<div id="popupLanguagesFlagsSeries"></div>
 					<div id="popupGenreSeries"></div>
 					<div id="popupPlotSeries"></div>
-					<button id="popupPlaySeries" type="button" name=""><span data-yts="PLAY"></span></button>
+					<button id="popupPlaySeries" type="button" data-yPlaySeriesPath=""><span data-yts="PLAY"></span></button>
+					<button id="detailspopupSeriesClose" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
 				</div>
 				<ul class="ulbar" data-role="listview">
-					<li class='loading'><span data-yts="LOADING"></span></li>
+					<li id="loading_series" class='loading'><span data-yts="LOADING"></span></li>
 				</ul>
 				<ul id="series_list" data-role="listview">
 				</ul>
@@ -378,9 +384,9 @@
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
 			<div class="seek-bubble">
 				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
 			</div>
-			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
+			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif"/>
 				<span class="footerTime"></span>
@@ -392,11 +398,11 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
-					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
-					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
-					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
-					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
+					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
@@ -411,10 +417,11 @@
 				<div data-role="popup" id="detailspopupMusic" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
 					<img id="popupImageMusic" class="popupImage" alt="" src="images/transparent.gif"/>
 					<h2 id="popupTitleMusic"></h2>
-					<button id="popupAddAlbum" type="button" name=""><span data-yts="EMPTY_PLAY_ALBUM"></span></button>
+					<button id="popupAddAlbum" type="button" data-yAlbumArrayNr=""><span data-yts="EMPTY_PLAY_ALBUM"></span></button>
 					<label for="popupMusicAddPL" data-mini="true"><span data-yts="ADD_PLAYLIST"></span></label>
 					<input name="popupMusicAddPL" type="checkbox" id="popupMusicAddPL" value="1"  data-mini="true"/>
 					<div id="popupContainerMusic"></div> <!--container for song list items -->
+					<button id="detailspopupMusicClose" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
 				</div><!-- /detailspopup -->
 			</div>
 			<ul class="ulbar" data-role="listview">
@@ -430,7 +437,7 @@
 						</div>
 					</div>
 				</li>
-				<li class='loading'><span data-yts="LOADING"></span></li>
+				<li id="loading_music" class='loading'><span data-yts="LOADING"></span></li>
 			</ul>
 			<ul id="album_list" data-role="listview">
 			</ul>
@@ -438,9 +445,9 @@
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
 			<div class="seek-bubble">
 				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
 			</div>
-			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
+			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -452,11 +459,11 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
-					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
-					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
-					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
-					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
+					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
@@ -467,17 +474,21 @@
 			</ul>
 		</div><!-- /navbar -->
 		<div class="content" data-role="content">
-			<input type="search" name="songsearch-searchfield" id="songsearch-searchfield" placeholder="Search for song title" value="" />
-			<a id="music-search" type="button" data-icon="search"><span data-yts="SEARCH"></span></a>
-			<br />
-			<ul id="songsearch-list" class="ui-listview"></ul>
+			<ul class="ulbar" data-role="listview">
+				<input type="search" name="songsearch-searchfield" id="songsearch-searchfield" placeholder="Search for song title" value="" />
+				<a id="music-search" type="button" data-icon="search"><span data-yts="SEARCH"></span></a>
+				<br />
+				<li id="loading_songsearch" class='loading'><span data-yts="LOADING"></span></li>
+			</ul>
+			<ul id="songsearch-list" class="ui-listview">
+			</ul>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
 			<div class="seek-bubble">
 				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
 			</div>
-			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
+			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>
@@ -489,11 +500,11 @@
 		<div data-role="header" data-theme="a">
 			<div class="navbar" data-role="navbar">
 				<ul>
-					<li><a href="#remote" data-icon="grid"><span data-yts="REMOTE"></span></a></li>
-					<li><a href="#movies" data-icon="star"><span data-yts="MOVIES"></span></a></li>
-					<li><a href="#series" data-icon="star"><span data-yts="SERIES"></span></a></li>
-					<li><a href="#music" data-icon="arrow-r"><span data-yts="MUSIC"></span></a></li>
-					<li><a href="#addons" data-icon="alert"><span data-yts="ADDONS"></span></a></li>
+					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
@@ -512,16 +523,16 @@
 						<input type="search" name="searchAddon" id="searchAddon" placeholder="Search for Addon" value="" />
 					</div>
 				</li>
-				<li class='loading'><span data-yts="LOADING"></span></li>
+				<li id="loading_addon" class='loading'><span data-yts="LOADING"></span></li>
 			</ul>
 			<ul id="addonlist" class="ui-listview"></ul>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
 			<div class="seek-bubble">
 				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><i class="fa fa-chevron-left "></i>&nbsp;<i class="fa fa-search fa-2x"></i>&nbsp;<i class="fa fa-chevron-right "></i></span>
+				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
 			</div>
-			<span class="footer-left footer-left-in">&nbsp;<i class="fa fa-arrows-h"></i>&nbsp;</span>
+			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
 			<span class="footer-right" data-role="none">
 				<img class="footerImage" alt="" src="images/transparent.gif" />
 				<span class="footerTime"></span>

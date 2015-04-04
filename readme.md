@@ -35,6 +35,9 @@ https://github.com/tuxfuxch/yarc
   * Maxthon
      - no keyboard use
      - no SVG images (default setting is use of *.png images)
+     - removing form playlist: button get's often not activated (firefox-mobile is fine)
+  * Chrome for Android:
+     - removing form playlist: button get's often not activated (firefox-mobile is fine)
   * I heard: it's working fine on IE10
 
 ###Settings
@@ -144,13 +147,13 @@ I needed to apply for the API and can use "only" 1 million transaction per day. 
 ###Credits
 
   * jquery (http://jquery.com/; MIT Licence)
-  * Wikipedia and it contributors: for the flags (all public domain or similiar licence)
-  * TochSwipe Plugin for jquery (https://github.com/mattbryson/TouchSwipe-Jquery-Plugin; GPL 2 or MIT Licence)
-  * Font Awesome for the very good symbol-font (http://fontawesome.io; SIL OFL 1.1 Licence (Font) and MIT License (Code))
+  * Wikipedia and it contributors: for the flags (all public domain or similiar license)
+  * TochSwipe Plugin for jquery (https://github.com/mattbryson/TouchSwipe-Jquery-Plugin; GPL 2 or MIT License)
+  * Font Awesome for the very good symbol-font (http://fontawesome.io; SIL OFL 1.1 License (Font) and MIT License (Code))
   * jquery UI (http://jqueryui.com/; MIT License)
-  * jQuery UI Touch Punch Plugin/Fix; Touch Event Support for jQuery UI (http://touchpunch.furf.com/;  GPL 2 or MIT Licence)
+  * jQuery UI Touch Punch Plugin/Fix; Touch Event Support for jQuery UI (http://touchpunch.furf.com/;  GPL 2 or MIT License)
   * Kabooga for first testing and help in buxfixing, author of webinterface.xrc
-  * Martijn for correction of addon.xml, Kodi (former XBMC) Team Member
+  * Martijn for correction of addon.xml, Kodi Team Member
   * ruth440 for testing and feedback. I was multiple times pointed into the right direction
   * and for the spanish translation
 

@@ -133,6 +133,15 @@ var translations = {
 			fr: "Annuler",
 			gr: ""
 	},
+	CLOSE:{//Simply a close Button in a dialog, to close something
+			en: "Close",
+			de: "Schliessen",
+			kling: "SoQmoH",
+			es: "Cerrar",
+			it: "Chiudere",
+			fr: "Fermer",
+			gr: ""
+	},
 	DEVICE_ORIENTATION:{//if you want to navigate to right, change mobile orientation to right....
 			en: "Device Orientation Navigation",
 			de: "Gerätelage Navigation",
@@ -241,7 +250,16 @@ var translations = {
 			fr: "Masquer la sélection du type",
 			gr: ""
 	},
-	HIDE_ORIENT_NAV:{//todo
+	HIDE_MENU_TEXT:{//Hide the text in the menu  //TODO: check es, it und fr
+			en: "Hide menu text",
+			de: "Menütext ausblenden",
+			kling: "HIDjolev bIngDaq ghItlh leghlu' So'",
+			es: "Ocultar texto del menú",
+			it: "Nascondere il testo del menu",
+			fr: "Cacher le texte de menu",
+			gr: ""
+	},
+	HIDE_ORIENT_NAV:{//todo: es it fr
 			en: "Hide device orientation navigation switch (and save battery life)",
 			de: "Gerätelage Navigation Schalter ausblenden (und spare Batterie) ",
 			kling: "Hide device orientation navigation switch (and save battery life)",
@@ -349,7 +367,7 @@ var translations = {
 			fr: "Prochaine",
 			gr: ""
 	},
-	NO_MATCH:{//An information, when there is no match found for a search
+	NO_MATCH:{//Information, when there is no match found for a search
 			en: "There is no matching item found",
 			de: "Keine übereinstimmenden Elemente gefunden",
 			kling: "tu'lu' pagh qul naQmey vItu'",
@@ -358,7 +376,7 @@ var translations = {
 			fr: "Il n'y a aucune correspondance article trouvé",
 			gr: ""
 	},
-	NO_SWIPE:{//Label to setting to replace a swipefield (or touchfield) with buttons
+	NO_SWIPE:{//Label for setting to replace a swipefield (or touchfield) with buttons
 			en: "Buttons instead of swipe area",
 			de: "Zeige Knöpfe anstatt Wischfeld",
 			kling: "pagh Hot yoS",

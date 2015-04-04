@@ -1,3 +1,25 @@
+Version 0.7.1
+- Now there is a setting to get rid of the header menu text, to save space on mobiles
+- Play/Pause with DeviceOrientation works now only in Nav-Mode, to prevent accidental skip media
+- Icon get's now also shown in tab in firefox
+- provide linces for yarc and plugins/scipts in a according folder
+- replaced depriciated bold and italic html tags
+- website icon was not good enough for placement on android desktop (shortcut), so actualised from 16x16 -> 64x64
+- bugfix: in Show Album Popup: add zero before if mintues is single-digit
+- removed ugly inline style in yTools.ratingToStars()
+- buttons in simple list are now always shown at a better position
+- add close popup button to the popup where there was none
+- some text's who where not translated fixed
+- change name attributes in html tags to proper data-attribute where missused
+- new images for next, previous and missing file. now fitting with hoover and border colors
+- if Playlist opened go to section of active Player
+- new icons in header bar
+- Header is now smaller in height
+- some html cleanup and small changes
+- bugfix: loading bar now always shown and hidden when needed
+- bugfix: seek-buuble is not toggling on/off after pageswitch: solved
+- Music now gets sorted by Artits and TV-Series by Title
+
 Version 0.7.0
 - add a seek playing file position functionality: while Footer bar open, press on it and a seek media bubble appears
 - while the seek-bubble is moved, it prints out where it would jumpt to, and the time difference to current position (at time of start moving bubble)
