@@ -1,3 +1,19 @@
+Version 0.8.0
+- Addon Menues are now accessible on yarc. consider it still beta. if a addon does not work for you, please tell me about in the kodi forum
+- skip song with deviceOrientation removed
+- playpause for "player" mode added again with devie Orientation
+- Youtube part is now removed, since you can use the youtube addon easy in the addon section.
+- language function (streamdetails) of kodi is used together with my own parsing from filename
+		* To tag in filenames, you need to comply with iso639-2 (or -1), sorry for that inconvenience
+		* complete list: http://www.loc.gov/standards/iso639-2/php/code_list.php
+- "No Language" and "No Rating" are now translated too
+- some css changes so that there are shown same amount of elements in Movies, Music and Addon section, with "large screens"
+- some more css changes: addon overview on a small screen (list not tiles) are shown as in the music or movie section
+- setting to swap swipe directions. default: navigates in the direction you swipe (the opposite you are used to from previous versions)
+- Demo video Button in tools added
+- added a link to the readme in the settings.
+- dropped support of SVG. It's now PNG only (because of shitty browsers who don't support SVG fully).
+
 Version 0.7.1
 - Now there is a setting to get rid of the header menu text, to save space on mobiles
 - Play/Pause with DeviceOrientation works now only in Nav-Mode, to prevent accidental skip media
@@ -33,7 +49,7 @@ Version 0.7.0
 - new logo, icon and fanart
 
 Version 0.6.0
-- Device Orientation Navigation: navigate through changing the oriantation of your device
+- Device Orientation Navigation: navigate by changing the oriantation of your device
 		* works with mobiles/tablets and it's browsers who support the deviceOriantion API
 		* Navigate up down left right and also go to next or previous songs
 		* if you lay your device facing down on the table it pauses, take it in you hands again to play

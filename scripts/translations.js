@@ -1,5 +1,5 @@
 /*
- * Yarc - Yet another Remote Control (for Kodi)
+ * yarc - Yet another Remote Control (for Kodi)
  * Copyright (C) 2015 by Esra Kummer
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,15 @@ var translations = {
 			es: "+lista de reproducción",
 			it: "+giocare elenco",
 			fr: "+jouer liste",
+			gr: ""
+	},
+	ADDON_INTRO:{//TODO: fr, it, es
+			en: "Addons are made differently. If something doesn't work or behaves strangely, you met some limitations. Sorry.",
+			de: "Erweiterungen sind unterschiedlich gemacht. Wenn etwas nicht geht oder sich seltsam verhält, willkommen an den Grenzen des machbaren. Entschuldigung.",
+			kling: "Sorgh qaS", //sabotage happens
+			es: "Addons se hacen diferente. Si algo no funciona o se comporta de manera extraña, te encontraste con algunas limitaciones. Lo siento.",
+			it: "Addons sono fatti in modo diverso. Se qualcosa non funziona o si comporta stranamente alto, hai incontrato alcune limitazioni. Mi dispiace.",
+			fr: "Addons sont faites différemment. Si quelque chose ne fonctionne pas ou se comporte étrangement de vers le haut, vous avez rencontré quelques limitations. Désolé.",
 			gr: ""
 	},
 	ADDONS:{//as in Addons or Extensions for the Program, its a menuitem -> Plural
@@ -216,7 +225,7 @@ var translations = {
 	},
 	HIDE_FILELINK:{//Hide in a dialog the information where the file actualy is stored
 			en: "Hide filelink in popup",
-			de: "Dateipfad in Pop ausblenden",
+			de: "Dateipfad in Popup ausblenden",
 			kling: "teywI' pong So'",
 			es: "Ocultar el archivo de enlace en popup",
 			it: "Nascondere file collegamento nel popup",
@@ -260,12 +269,12 @@ var translations = {
 			gr: ""
 	},
 	HIDE_ORIENT_NAV:{//todo: es it fr
-			en: "Hide device orientation navigation switch (and save battery life)",
-			de: "Gerätelage Navigation Schalter ausblenden (und spare Batterie) ",
-			kling: "Hide device orientation navigation switch (and save battery life)",
-			es: "Hide device orientation navigation switch (and save battery life)",
-			it: "Hide device orientation navigation switch (and save battery life)",
-			fr: "Hide device orientation navigation switch (and save battery life)",
+			en: "Hide device orientation navigation switch",
+			de: "Gerätelage Navigation Schalter ausblenden",
+			kling: "Hide device orientation navigation switch",
+			es: "Hide device orientation navigation switch",
+			it: "Hide device orientation navigation switch",
+			fr: "Hide device orientation navigation switch",
 			gr: ""
 	},
 	HIDE_PREV_PICS:{//Setting to hide the preview pictures of medias (album cover, or movie cover)
@@ -293,6 +302,15 @@ var translations = {
 			es: "Ocultar películas y Shows de TV ya vistos",
 			it: "Nascondi guardato film e spettacoli TV",
 			fr: "Masquer regardé les films et émissions de télévision",
+			gr: ""
+	},
+	LANG_UNKNOWN:{//Label for the language setting TODO fr it es
+			en: "Language(s) unknown",
+			de: "Sprache(n) unbekannt",
+			kling: "Hol vul",
+			es: "Idioma desconocido",
+			it: "Lingua sconosciuta",
+			fr: "Langue inconnue",
 			gr: ""
 	},
 	LANGUAGE:{//Label for the language setting
@@ -376,6 +394,15 @@ var translations = {
 			fr: "Il n'y a aucune correspondance article trouvé",
 			gr: ""
 	},
+	NO_RATING:{//Rating of media, for example a movie (how good it is) TODO ES IT FR
+			en: "No Rating",
+			de: "Keine Bewertung",
+			kling: "pagh ngI'",
+			es: "sin Evaluación",
+			it: "Nessuna Valutazione",
+			fr: "Pas de Popularité",
+			gr: ""
+	},
 	NO_SWIPE:{//Label for setting to replace a swipefield (or touchfield) with buttons
 			en: "Buttons instead of swipe area",
 			de: "Zeige Knöpfe anstatt Wischfeld",
@@ -383,6 +410,15 @@ var translations = {
 			es: "Teclas en lugar de área de contacto",
 			it: "Pulsanti invece di zona swipe",
 			fr: "Boutons au lieu de la zone de balayage",
+			gr: ""
+	},
+	OPEN_ADDON:{//TODO ES IT FR
+			en: "Open Addon",
+			de: "Öffne Erweiterung",
+			kling: "ghIt DuywI",
+			es: "Extensión abierta",
+			it: "Estensione aperta",
+			fr: "Extension ouverte",
 			gr: ""
 	},
 	PLAY:{//Play a song, or movie
@@ -439,13 +475,13 @@ var translations = {
 			fr: "À travers des gestes par balayage et onglet, vous pouvez contrôler votre Kodi. Utilisez le champ gris pour faire avec les gestes suivants:",
 			gr: ""
 	},
-	POPUP_SWIPE_3:{
-			en: "Swipe up, down, left or right like you would scroll on a mobile-phone list",
-			de: "Wische nach oben, unten, links oder rechts, wie gewohnt bei der Navigation auf einem Smartphone",
+	POPUP_SWIPE_3:{//TODO fr, es, it
+			en: "Swipe up, down, left or right (according to your setting)",
+			de: "Wische nach oben, unten, links oder rechts (gemäss Einstellungen)",
 			kling: "",
-			es: "Deslizar hacia arriba, abajo, izquierda o derecha como usted pasa una lista de teléfonos móviles",
-			it: "Swipe su, giù, sinistra o destra come te sarebbe scorri su un elenco di telefoni cellulari",
-			fr: "Balayez vers le haut, bas, gauche ou droite comme vous serait faire défiler sur une liste de téléphones mobiles",
+			es: "Deslizar hacia arriba, abajo, izquierda o derecha (de acuerdo a su entorno)",
+			it: "Swipe su, giù, sinistra o destra (secondo l'impostazione)",
+			fr: "Balayez vers le haut, bas, gauche ou droite (selon vos paramètres)",
 			gr: ""
 	},
 	POPUP_SWIPE_4:{
@@ -682,24 +718,6 @@ var translations = {
 			fr: "Recherche titre de chanson",
 			gr: ""
 	},
-	SEARCH_TEXT_YOUTUBE:{//Helptext for a searchfield
-			en: "Text or search term for Youtube",
-			de: "Text oder Suchbegriff für Youtube",
-			kling: "bIngDaq ghItlh leghlu' vItu' pagh wabmey Youtube",
-			es: "Texto o búsqueda por Youtube",
-			it: "Testo o ricerca termine per Youtube",
-			fr: "Terme de texte ou de la recherche pour Youtube",
-			gr: ""
-	},
-	SEARCH_YOUTUBE:{//Button which triggers a search on youtube
-			en: "Search Youtube",
-			de: "Auf Youtube suchen",
-			kling: "tu'  Youtube",
-			es: "Buscar en Youtube",
-			it: "Ricerca Youtube",
-			fr: "Recherche Youtube",
-			gr: ""
-	},
 	SELECT_OPTION_ALL_GENRES:{//for example movie genres
 			en: "- all genres -",
 			de: "- Alle Genres -",
@@ -754,9 +772,18 @@ var translations = {
 			fr: "émission TV",
 			gr: ""
 	},
+	SHOW_DESCRITION:{//checkbox to turn on plot/descritions in addons //TODO it fr es
+			en: "Show description",
+			de: "Beschreibung anzeigen",
+			kling: "Del cha'",
+			es: "Mostrar descripción",
+			it: "Visualizza la descrizione",
+			fr: "Voir la description",
+			gr: ""
+	},
 	SHUTDOWN:{//shutdown (turn off) the computer
 			en: "Shutdown",
-			de: " Ausschaltent",
+			de: "Ausschalten",
 			kling: "rIgh bIH",
 			es: "Cierre",
 			it: "Arresto",
@@ -781,6 +808,15 @@ var translations = {
 			fr: "Paramètres",
 			gr: ""
 	},
+	STAY_IN_ADDON_POPUP:{//a checkbox, if checket, the popup will not be left after action //TODO fr es it
+			en: "Stay in popup after opening file",
+			de: "Bleibe im Popup nach Datei öffnen",
+			kling: "pa' 'emDaq",
+			es: "Alojarte en popup después abrir archivo",
+			it: "Soggiornare nel popup dopo apertura file",
+			fr: "Soggiornare nel popup dopo apertura file",
+			gr: ""
+	},
 	SUSPEND:{//suspend the computer (sleep), like the option you can choose in windows instead of shutting down
 			en: "Suspend",
 			de: "Schlafmodus",
@@ -788,6 +824,15 @@ var translations = {
 			es: "Suspender",
 			it: "Sospendere",
 			fr: "Suspendre",
+			gr: ""
+	},
+	SWAP_SWIPE_DIRECTIONS:{//TODO es, it, fr
+			en: "Swap swipe directions",
+			de: "kehre Wisch richtungen",
+			kling: "tlhong joq lurgh",
+			es: "Intercambiar direcciones de golpe",
+			it: "Scambiare le direzioni swipe",
+			fr: "Échanger des directions de glissement",
 			gr: ""
 	},
 	SWIPE_OR_PRESS:{//do a swipe gesture like on a touch field on the laptop or on a touchscreen
@@ -827,7 +872,7 @@ var translations = {
 			gr: ""
 	},
 	/*not used right now!
-	/*UN_SELECT_ALL:{//select or unselect a set of choice boxes
+	UN_SELECT_ALL:{//select or unselect a set of choice boxes
 			en: "(un-)select all",
 			de: "(de-)selektiere alle",
 			kling: "Hoch wIv",
@@ -836,6 +881,7 @@ var translations = {
 			fr: "(dé-) sélectionner tous",
 			gr: ""
 	},*/
+	/*not used right now!
 	USE_SVG:{//svg is an image filetype
 			en: "Use SVG images where possible",
 			de: "Verwende SVG Bilder wo immer möglich",
@@ -844,7 +890,7 @@ var translations = {
 			it: "Utilizzare immagini SVG ove possibile",
 			fr: "Utiliser les images SVG si possible",
 			gr: ""
-	},
+	},*/
 	VIDEO:{
 			en: "Video",
 			de: "Video",
@@ -881,13 +927,13 @@ var translations = {
 			fr: "Titre de la fenêtre:",
 			gr: ""
 	},
-	YARC_DEMO_VID:{//TODO: play a demo video of yarc in xbmc/kodi
-			en: "yarc demo video",
-			de: "yarc Demonstrationsvideo",
+	YARC_DEMO_VID:{//play a demo video of yarc in xbmc/kodi TODO:es, it, fr
+			en: "yarc demonstration video ",
+			de: "yarc Demonstrations-Video (Englisch)",
 			kling: "DIS",
-			es: "yarc demo video",
-			it: "yarc demo video",
-			fr: "yarc demo video",
+			es: "video de demostración de yarc (Inglés)",
+			it: "yarc video dimostrativo (inglese)",
+			fr: "yarc démonstration vidéo (en anglais)",
 			gr: ""
 	},
 	YEAR:{

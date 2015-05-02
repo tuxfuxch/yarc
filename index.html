@@ -13,7 +13,7 @@
   <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
 	<script type="text/javascript" src="scripts/yarc.js"></script>
 	<script type="text/javascript" src="scripts/translations.js"></script>
-	<script type="text/javascript" src="scripts/countryLanguages.js"></script>
+	<script type="text/javascript" charset="utf-8" src="scripts/langCodeToDescFlag.js"></script>
 	<script type="text/javascript" src="scripts/jquery.touchSwipe.js"></script>
   <script type="text/javascript" src="scripts/jquery.ui.touch-punch.min.js"></script> 
 
@@ -23,7 +23,7 @@
 	<div id="seek-overlay">&nbsp;</div>
 	<div data-role="page" data-theme="a" id="remote">
 		<div data-role="header" data-theme="a">
-			<div class="navbar" data-role="navbar">
+			<nav class="navbar" data-role="navbar">
 				<ul>
 					<li><a href="#remote"><span class="fa fa-th"></span><span class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
 					<li><a href="#movies"><span class="fa fa-film"></span><span class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
@@ -31,11 +31,11 @@
 					<li><a href="#music"><span class="fa fa-music"></span><span class="yheadermenuitem" data-yts="MUSIC"></span></a></li>
 					<li><a href="#addons"><span class="fa fa-plus"></span><span class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
-			</div><!-- /navbar -->
+			</nav><!-- /navbar -->
 		</div><!-- /header -->	
 		<div class="content" data-role="content">
-			<div class="content-primary">  
-				<div data-role="popup" id="detailspopupRemote" data-theme="a" class="ui-content">
+			<div class="content-primary">
+				<div data-role="popup" id="detailspopupRemote" data-theme="a" class="ui-content" data-position-to="window">
 					<button class="popupSHRS" data-yJsonFunction="Application.Quit" type="button"><span data-yts="QUIT"></span></button>
 					<button class="popupSHRS" data-yJsonFunction="System.Suspend" type="button"><span data-yts="SUSPEND"></span></button>
 					<button class="popupSHRS" data-yJsonFunction="System.Hibernate" type="button"><span data-yts="HIBERNATE"></span></button>
@@ -43,20 +43,7 @@
 					<button class="popupSHRS" data-yJsonFunction="System.Shutdown" type="button"><span data-yts="SHUTDOWN"></span></button>
 					<button id="popupCancel" type="button" data-icon="delete"><span data-yts="CANCEL"></span></button>
 				</div>
-				<div data-role="popup" id="detailspopupYoutube" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
-					<div>
-							<label for="youtubeAddPL" data-mini="true"><span data-yts="ADD_PLAYLIST"></span></label>
-							<input name="youtubeAddPL" type="checkbox" id="youtubeAddPL" value="1"  data-mini="true"/>
-							<button id="YoutubeplayPlaylist" class="PlayList" type="button" name="" data-mini="true"><span data-yts="PLAY_PL"></span></button>
-					</div>
-					<div id="youtubelist"></div>
-					<div class="ui-grid-a">
-						<div class="ui-block-a"><button id="youTubePrev" type="button" data-theme="a"><span data-yts="BACK"></span></button></div>
-						<div class="ui-block-b"><button id="youTubeNext" type="button" data-theme="a"><span data-yts="NEXT"></span></button></div>
-					</div>
-					<button id="detailspopupYoutubeClose" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
-				</div>
-				<div data-role="popup" id="detailspopupSwipe" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
+				<div data-role="popup" id="detailspopupSwipe" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup" data-position-to="window">
 						<span class="italic" data-yts="POPUP_SWIPE_15"></span><br />
 						<span data-yts="POPUP_SWIPE_1"></span><br />
 						<span class="bold" data-yts="NAVIGATION"></span>
@@ -143,9 +130,8 @@
 				<button class="volume-group" data-yJsonFunction="Volume.Plus" type="button">+</button>
 			</div><!-- /Volume -->
 			<div id="SendText" class="ui-grid-b">
-				<div class="ui-block-a"><input id="SendTextField" name="SendTextField" type="text" placeholder="Text or Youtube search term"></div>
+				<div class="ui-block-a"><input id="SendTextField" name="SendTextField" type="text" placeholder="Send Text"></div>
 				<div class="ui-block-b"><a id="SendTextButton" data-role="button"><span data-yts="SEND_TEXT"></span></a></div>
-				<div class="ui-block-c"><a id="searchYoutubeButton" data-role="button" ><span data-yts="SEARCH_YOUTUBE"></span></a></div>
 			</div>
 			<div data-role="collapsible">
 				<h3><span data-yts="TOOLS"></span></h3>
@@ -156,7 +142,7 @@
 					<div class="ui-block-a"><button class="cleanAndUpdate" data-yJsonFunction="VideoLibrary.Scan"  type="button"><span data-yts="VIDEO_LIB_SCAN"></span></button></div> 
 					<div class="ui-block-b"><button class="cleanAndUpdate" data-yJsonFunction="VideoLibrary.Clean" type="button"><span data-yts="VIDEO_LIB_CLEAN"></span></button></div> 
 				</div>
-				<!--<a href="" id="yarcDemoVid" data-role="button" data-icon="info"><span data-yts="YARC_DEMO_VID"></span></button></a> -->
+				<a href="" id="yarcDemoVid" data-role="button" data-icon="info"><span data-yts="YARC_DEMO_VID"></span></button></a>
 				<!-- 				<a href="readme.md" data-role="button" data-icon="info">Readme (English)</a> -->
 				<a href="" id="openSettings" data-role="button" data-icon="gear"><span data-yts="SETTINGS"></span></a> 
 			</div><!-- /collapsible -->
@@ -224,6 +210,7 @@
 		</div><!-- /header -->	
 		<div class="content" data-role="content">
 			<a target="_blank"  href="https://github.com/tuxfuxch/yarc"><img id="fanart" src="fanart.jpg" alt="fanart picture" /></a>
+			<a class="text-center" target="_blank"  href="https://github.com/tuxfuxch/yarc/blob/master/readme.md">Readme</a>
 			<div data-role="collapsible">
 				<h3><span data-yts="GENERAL"></span></h3>
 				<label for="language" id="language_label"><span class="bold" data-yts="LANGUAGE"></span></label>
@@ -232,8 +219,6 @@
 					<option value="de">Deutsch</option>
 					<option value="kling">Klingon</option>
 					<option value="es">Español</option>
-<!-- 					<option value="it">Italiano</option> -->
-<!-- 					<option value="fr">Français</option> -->
 				</select>
 				<label for="xbmcName" id="xbmcName_label"><span class="bold" data-yts="WINDOW_TITLE"></span></label>
 				<input name="xbmcName" id="xbmcName" value=""  size="30"/>
@@ -241,8 +226,6 @@
 				<input name="hideMenuText" type="checkbox" id="hideMenuText" value="hideMenuText" />
 				<label for="hidePrevPics"><span data-yts="HIDE_PREV_PICS"></span></label>
 				<input name="hidePrevPics" type="checkbox" id="hidePrevPics" value="hidePrevPics" />
-				<label for="imageFormatSVG"><span data-yts="USE_SVG"></span></label>
-				<input name="imageFormatSVG" type="checkbox" id="imageFormatSVG" value="imageFormatSVG" />
 				<label for="hideWatched"><span data-yts="HIDE_WATCHED"></span></label>
 				<input name="hideWatched" type="checkbox" id="hideWatched" value="hideWatched" />
 				<label for="listLength" id="listLength_label"><span class="bold" data-yts="MAX_LISTLENGTH"></span></label>
@@ -254,6 +237,8 @@
 				<h3><span data-yts="REMOTE"></span></h3>
 				<label for="noSwipe"><span data-yts="NO_SWIPE"></span></label>
 				<input name="noSwipe" type="checkbox" id="noSwipe" value="noSwipe" />
+				<label for="swapSwipeDirections" id="swapSwipeDirections_label"><span class="bold" data-yts="SWAP_SWIPE_DIRECTIONS"></span></label>	
+				<input name="swapSwipeDirections" type="checkbox" id="swapSwipeDirections" value="swapSwipeDirections" />
 				<label for="swipeHight" id="swipeHight_label"><span class="bold" data-yts="SET_SWIPE_HIGHT"></span></label>
 				<input name="swipeHight" type="text" id="swipeHight" value=""/>		
 				<label for="hideOrientNav" id="hideOrientNav_label"><span class="bold" data-yts="HIDE_ORIENT_NAV"></span></label>	
@@ -301,7 +286,7 @@
 		</div><!-- /header -->	
 		<div class="content" data-role="content">	
 			<div class="content-primary">
-				<div data-role="popup" id="detailspopupMovies" data-overlay-theme="a" class="ui-content detailspopup">
+				<div data-role="popup" id="detailspopupMovies" data-overlay-theme="a" class="ui-content detailspopup" data-position-to="window">
 					<img id="popupImageMovies" class="popupImage" src="images/transparent.gif" alt=""/>
 					<h2 id="popupTitleMovies"></h2>
 					<img id="popupGreenTick" src="images/transparent.gif" alt="[Media played]"/>
@@ -364,7 +349,7 @@
 		</div><!-- /header -->	
 		<div class="content" data-role="content">	
 			<div class="content-primary">
-				<div data-role="popup" id="detailspopupSeries" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
+				<div data-role="popup" id="detailspopupSeries" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup" data-position-to="window">
 					<img id="popupImageSeries" class="popupImage" src="images/transparent.gif" alt="" />
 					<h2 id="popupTitleSeries"></h2>
 					<div id="popupRatingSeries"></div>
@@ -414,12 +399,12 @@
 		</div><!-- /navbar -->
 		<div class="content" data-role="content">	
 			<div class="content-primary">
-				<div data-role="popup" id="detailspopupMusic" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup">
-					<img id="popupImageMusic" class="popupImage" alt="" src="images/transparent.gif"/>
+				<div data-role="popup" id="detailspopupMusic" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup" data-position-to="window">
 					<h2 id="popupTitleMusic"></h2>
 					<button id="popupAddAlbum" type="button" data-yAlbumArrayNr=""><span data-yts="EMPTY_PLAY_ALBUM"></span></button>
 					<label for="popupMusicAddPL" data-mini="true"><span data-yts="ADD_PLAYLIST"></span></label>
 					<input name="popupMusicAddPL" type="checkbox" id="popupMusicAddPL" value="1"  data-mini="true"/>
+					<img id="popupImageMusic" class="popupImage" alt="" src="images/transparent.gif"/>
 					<div id="popupContainerMusic"></div> <!--container for song list items -->
 					<button id="detailspopupMusicClose" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
 				</div><!-- /detailspopup -->
@@ -509,8 +494,33 @@
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
 		<div class="content" data-role="content">
+			<div class="content-primary">
+				<div data-role="popup" id="detailspopupAddons" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup" data-position-to="window" data-yAddonname="">
+					<div id="SendTextAddon" class="ui-grid-a">
+						<div class="ui-block-a"><form name="myform2"><input id="SendTextFieldAddon" name="SendTextFieldAddon" type="text" placeholder="Send Text" data-mini="true"></div>
+						<div class="ui-block-b"><a id="SendTextButtonAddon" data-role="button" data-mini="true"><span data-yts="SEND_TEXT"></span></a></form></div>
+                    </div>
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<label for="addonpopshowplot" data-mini="true"><span data-yts="SHOW_DESCRITION"></span></label>
+							<input name="addonpopshowplot" type="checkbox" id="addonpopshowplot" value="1" data-mini="true"/>
+						</div>
+						<div class="ui-block-b">
+							<label for="stayInAddonPopup" data-mini="true"><span data-yts="STAY_IN_ADDON_POPUP"></span></label>
+							<input name="stayInAddonPopup" type="checkbox" id="stayInAddonPopup" value="1" data-mini="true"/>
+						</div>
+					</div>
+ 					<img id="popupImageAddons" class="popupImage" alt="" src="images/transparent.gif"/>
+					<ul id="loading_addonPopup" class="ulbar" data-role="listview"><li class='loading addonpopupload'><span data-yts="LOADING"></span></li></ul>
+					<ul id="addonspopupList" class="ui-listview"></ul>
+					<button id="addonspopupRefresh" type="button" data-icon="refresh" data-yAddonDirPath=""><span data-yts="REFRESH"></span></button>
+					<button id="addonspopupopenaddon" type="button" data-yAddonDirPath=""><span data-yts="OPEN_ADDON"></span></button>
+					<button id="detailspopupAddonsClose" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
+				</div>
+			</div>
 			<ul class="ulbar" data-role="listview">
 				<li>
+			<div class="info"><span data-yts="ADDON_INTRO"></span></div>
 					<div>
 						<select id="addonSelect" name="addon_List" data-mini="true">
 								<option value="all" >- all plugins -</option>
