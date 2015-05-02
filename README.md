@@ -3,7 +3,7 @@
 A webbased remote control for Kodi (former XBMC) optimised for mobile friendly use.
 
 An introduction video can be found here:
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/yltMcKJFewE/0.jpg)]
+[![Yarc 0.8.0 Demo Video](http://img.youtube.com/vi/yltMcKJFewE/0.jpg)](https://www.youtube.com/watch?v=yltMcKJFewE)
 
 WARNING: This Addon may contain content which might be illigal in your country (example: flag of Tibet is illigal China)
 
