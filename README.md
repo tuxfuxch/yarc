@@ -1,24 +1,25 @@
 #About yarc (yet another remote control)
 
-A webbased remote control for Kodi (former XBMC) optimised for mobile friendly use.
+A web based remote control for Kodi (former XBMC) optimized for mobile friendly use.
 
 An introduction video can be found here:
+
 [![Yarc 0.8.0 Demo Video](http://img.youtube.com/vi/yltMcKJFewE/0.jpg)](https://www.youtube.com/watch?v=yltMcKJFewE)
 
-WARNING: This Addon may contain content which might be illigal in your country (example: flag of Tibet is illigal China)
+WARNING: This Addon may contain content illegal in your country (example: flag of Tibet is illegal China)
 
 First things first: if you want a fancy GUI and/or a lot of functions, only for use on PC or tablet (give AWXi or Chorus a try), you might like other solutions better.
 I have done what I need and how I want it. Forgive me if it is not yet how you like it and what you want. Contact me to change that, I might agree with you.
 
 ###Key Features (what might be better than in other solutions)
 
-  * GUI is optimised for smart phones
+  * GUI is optimized for smart phones
   * Swipe-area for gesture navigation/control
-  * Navigate by changing the oriantation of your device: more in the according chapter
+  * Navigate by changing the orientation of your device: more in the according chapter
   * Set how many items are shown in lists (so that you mobile browser does not crash because of an image overload)
   * Preview from the internet are compressed (tell in settings how much)
   * Reads languages out of the file name in your collection (read more about in the according chapter)
-  * Browse addons within the webinterface
+  * Browse addons within the web interface
   * Send a text-string from the yarc-GUI to a text field in Kodi
 
 ###Download
@@ -28,8 +29,8 @@ https://github.com/tuxfuxch/yarc
 ###Requirements
 
   * Minimum XBMC Frodo (should work with Gotham according to others)
-  * Internet connection to see preview images of movies.
-  * I heard: it's still usable on a mobile with Symbian, Opera Mobile12, 42mb free ram and ARM 11 CPU @ 434 MHz
+  * Internet connection to see preview images of movies, readme and demo Video
+  * Youtube Plugin
 
 ###Tested on (assumed latest version)
 
@@ -39,12 +40,10 @@ https://github.com/tuxfuxch/yarc
 Not entirely tested:
   * Android: Maxthon
      - no keyboard use
-     - no SVG images (default setting is use of *.png images)
-     - removing form playlist: button get's often not activated
+     - removing form play-list: button gets often not activated
   *  Android: Chrome
-     - removing form playlist: button get's often not activated
+     - removing form play-list: button gets often not activated
   * Ubuntu Touch Browser
-	 - svg don't work
 	 - Deviceorienation doesn't work (yet)
 
 ###Settings
@@ -55,7 +54,7 @@ Pointing out:
   * Define how long lists should be (good for large collections)
   * Reduce quality of pictures which are from the internet
   * don't show images if you don't need them
-  * get rid of things you don't need, to save prozessor time or space on the interface
+  * get rid of things you don't need, to save processor time or space on the interface
 
 
 ###The GUI
@@ -63,7 +62,7 @@ Pointing out:
 For screens with less than 700px width, the list items are shown not as tiles, it is a list with one item per line.
 
 ###Swipe gestures
-Through swipe and tab gestures, you can control your Kodi. Use the grey field to do it with the following gestures. 
+Through swipe and tab gestures, you can control your Kodi. Use the gray field to do it with the following gestures. 
 Multi touch gestures (two fingers or pinch) are not implemented due to support of old devices.... sorry. 
 
 Make sure, that you don't accidentally stop the playing media when you want to scroll down. Use the space on the right side to scroll.
@@ -78,15 +77,15 @@ In the settings you can replace this field with buttons
   *  Media:
 	  - Swipe up to stop the player
 	  - Swipe down for play/pause
-	  - Swipe left for the previous item in the playlist
-	  - Swipe right for the next item in the playlist
+	  - Swipe left for the previous item in the play-list
+	  - Swipe right for the next item in the play-list
 	  - Tab once for volume down by 10 out of 100%
 	  - Tab twice for volume up by 10 out of 100%
 	  - Tab long to toggle mute
 
 
 ###Device Orientation
-If there is a switch in the remote section, activate it (it's off by defaulte, because it's a battery killer). If there is no switch, your mobile and/or browser does not support it.
+If there is a switch in the remote section, activate it (it's off by default, because it's a battery killer). If there is no switch, your mobile and/or browser does not support it.
 But even when it shows it, it may be not supported.
 
   * Navigation:
@@ -95,7 +94,7 @@ But even when it shows it, it may be not supported.
 	- lean the top-edge of your mobile towards you, it goes up
 	- lean the top-edge of your mobile  down (lower, than it would be than lying on a flat surface)
 	- put your mobile with screen facing down on a flat surface: it pauses.
-	take your mobile back in your hand like you hold it (not flat screen facing up, take in in your hand as you would typlicly hold it to type something, it plays again
+	take your mobile back in your hand like you hold it (not flat screen facing up, take in in your hand as you would typically hold it to type something, it plays again
  
 ###Key Map
 
@@ -108,8 +107,8 @@ Right now you can use:
   * **Enter**: select
   * **Shift & arrow up**: stop playing
   * **Shift & arrow down**: play/pause
-  * **Shift & arrow left**: previous item in playlist
-  * **Shift & arrow right**: next item in playlist
+  * **Shift & arrow left**: previous item in play-list
+  * **Shift & arrow right**: next item in play-list
   * **c**: context menu
   * **q**: volume down (by 10 out of 100%)
   * **w**: volume up (by 10 out of 100%)

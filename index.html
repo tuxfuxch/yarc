@@ -166,8 +166,8 @@
 				<ul>
 					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
 					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></span></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></span></a></li>
 					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
@@ -202,15 +202,15 @@
 				<ul>
 					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
 					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></span></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></span></a></li>
 					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
 		</div><!-- /header -->	
 		<div class="content" data-role="content">
 			<a target="_blank"  href="https://github.com/tuxfuxch/yarc"><img id="fanart" src="fanart.jpg" alt="fanart picture" /></a>
-			<a class="text-center" target="_blank"  href="https://github.com/tuxfuxch/yarc/blob/master/readme.md">Readme</a>
+			<a class="text-center" target="_blank"  href="https://github.com/tuxfuxch/yarc/blob/master/README.md">Readme</a>
 			<div data-role="collapsible">
 				<h3><span data-yts="GENERAL"></span></h3>
 				<label for="language" id="language_label"><span class="bold" data-yts="LANGUAGE"></span></label>
@@ -268,6 +268,8 @@
 				<input name="hideGenreAddons" type="checkbox" id="hideGenreAddons" value="hideGenreAddons" />
 				<label for="hideSearchAddons"><span data-yts="HIDE_SEARCH"></span></label>
 				<input name="hideSearchAddons" type="checkbox" id="hideSearchAddons" value="hideSearchAddons" />
+				<label for="stayInAddonPopupSetting"><span data-yts="STAY_IN_ADDON_POPUP"></span></label>
+				<input name="stayInAddonPopupSetting" type="checkbox" id="stayInAddonPopupSetting" value="stayInAddonPopupSetting" />
 			</div>
 			<button id="saveSettings" data-role="button" data-icon="back"><span data-yts="SAVE_CLOSE"></span></button> 
 		</div><!-- /content -->
@@ -278,8 +280,8 @@
 				<ul>
 					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
 					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></span></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></span></a></li>
 					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
@@ -319,8 +321,11 @@
 				</li>
 				<li id="loading_movie" class='loading'><span data-yts="LOADING"></span></li>
 			</ul>
-			<ul id="movie_list" data-role="listview">
-			</ul>
+			<div class="flex-container">
+				<div id="movie-flex-prev" class="flex-prev"></div>
+				<div id="movie_list" class="flex-content"></div>
+				<div id="movie-flex-next" class="flex-next"></div>
+			</div>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
 			<div class="seek-bubble">
@@ -341,8 +346,8 @@
 				<ul>
 					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
 					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></span></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></span></a></li>
 					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
@@ -385,8 +390,8 @@
 				<ul>
 					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
 					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></span></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></span></a></li>
 					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
@@ -424,7 +429,11 @@
 				</li>
 				<li id="loading_music" class='loading'><span data-yts="LOADING"></span></li>
 			</ul>
-			<ul id="album_list" data-role="listview">
+                <div class="flex-container">
+                    <div id="album-flex-prev" class="flex-prev"></div>
+                    <div id="album_list" class="flex-content"></div>
+                    <div id="album-flex-next" class="flex-next"></div>
+                </div>
 			</ul>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
@@ -446,8 +455,8 @@
 				<ul>
 					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
 					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></span></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></span></a></li>
 					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
@@ -487,8 +496,8 @@
 				<ul>
 					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
 					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></span></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></span></a></li>
 					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
@@ -497,8 +506,10 @@
 			<div class="content-primary">
 				<div data-role="popup" id="detailspopupAddons" data-overlay-theme="a" data-theme="a" class="ui-content detailspopup" data-position-to="window" data-yAddonname="">
 					<div id="SendTextAddon" class="ui-grid-a">
-						<div class="ui-block-a"><form name="myform2"><input id="SendTextFieldAddon" name="SendTextFieldAddon" type="text" placeholder="Send Text" data-mini="true"></div>
-						<div class="ui-block-b"><a id="SendTextButtonAddon" data-role="button" data-mini="true"><span data-yts="SEND_TEXT"></span></a></form></div>
+                      <form name="myform2">
+                         <div class="ui-block-a"><input id="SendTextFieldAddon" name="SendTextFieldAddon" type="text" placeholder="Send Text" data-mini="true"></div>
+                         <div class="ui-block-b"><a id="SendTextButtonAddon" data-role="button" data-mini="true"><span data-yts="SEND_TEXT"></span></a></div>
+                      </form>
                     </div>
 					<div class="ui-grid-a">
 						<div class="ui-block-a">
@@ -535,7 +546,11 @@
 				</li>
 				<li id="loading_addon" class='loading'><span data-yts="LOADING"></span></li>
 			</ul>
-			<ul id="addonlist" class="ui-listview"></ul>
+            <div class="flex-container">
+              <div id="addon-flex-prev" class="flex-prev"></div>
+              <div id="addonlist" class="flex-content"></div>
+              <div id="addon-flex-next" class="flex-next"></div>
+            </div>
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="footer" data-id="myfooter">
 			<div class="seek-bubble">

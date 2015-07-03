@@ -1,5 +1,5 @@
 /**
- * Yarc - Yet another Remote Control (for Kodi)
+* Yarc - Yet another Remote Control (for Kodi)
  * Copyright (C) 2015 by Esra Kummer
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -16,6 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
+
+
+.flexListPrevNext{
+  	display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+.flex-container{
+	margin-top: 20px;
+}
+
 .info{
 	font-size: 9px;
 	text-align: center;
@@ -25,7 +37,7 @@
 	padding: 0px;
 	position: relative;
 	display:block;
-    width: 95%;
+    width: 90%;
 }
 .addonDirItem{ 
 	-webkit-border-radius: 6px;
@@ -64,8 +76,8 @@
 }
 .greenAddons {
 	display: inline;
-	margin-top: 4px;	 
-	margin-left: -24px;	 
+	margin-top: 0px;	 
+	margin-left: -20px;	 
 	width: 20px;
 	height: auto;
 }
@@ -80,7 +92,7 @@
 }
 
 /************************************************************************************* 
- *															General (G)								 													 *
+ *	General (G)								 													 *
  *************************************************************************************/
 .italic{
 	font-style: italic;
@@ -126,24 +138,13 @@ a:hover {
 #content{
 	padding-top: 76px;	
 }
-
-.buttonRightPl{
-    position: absolute;
-	right: 10%;
-	margin-top: -10px;
-}
-
 .buttonRight{
     position: absolute;
 	right: 0%;
-	margin-top: -10px;
 }
-		
 .simpleList{
 	margin: 0px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 5px;	
+    height: 50px;
 	list-style-type: none;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
@@ -153,6 +154,14 @@ a:hover {
 }
 .simpleList:hover{
 	background-color: #c8c8d1;
+}
+.simpleList span{
+    padding-left: 5px;
+	vertical-align: top;  
+}
+.simpleListPrevPic{
+    height: 50px;
+    display: inline-block;
 }
 .label{
 	float: right;
@@ -322,28 +331,44 @@ img.movieRating{
 	border: 1px solid #c8c8d1;
 	overflow:hidden;
 	cursor:pointer;
-	white-space: nowrap;
 }
 .series-item:hover{
 	background-color: #c8c8d1;
 }
 .series-item h4{
 	display: inline;
+	vertical-align: top;
+	padding-left: 5px;
 }
-.series-item span{
-	overflow: hidden;
-}
-.seriesThumb{
+.seriesThumbAddon{
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
 }
-.green {
-	height: 30px;
-	width: 30px;
-	vertical-align:middle
+.seriesPrevPic{
+	height: 60px;
+	vertical-align: top;
+	float: left;
 }
+.greenSeries {
+	display: inline;
+	margin-top: 0px;	 
+	margin-left: -20px;	 
+	width: 20px;
+	height: auto;
+}
+.openSeries .ui-btn-inner {
+    padding: 0px;
+}
+
+
+/****************************** g: Song-Search Page ********************************/
+.buttonRightSongsearch{
+    position: absolute;
+	right: 0%;
+}
+
 
 /****************************** g: loading bar ********************************/
 .loading .nomedia{
@@ -418,6 +443,7 @@ img.movieRating{
 }
 
 #seek-overlay{	
+    display: none;
     position: fixed;
     width: 100px;
     height: 50px;
@@ -479,8 +505,42 @@ img.movieRating{
  *************************************************************************************/
 @media only screen
 and (min-width : 780px) {
-	
 
+
+
+	
+	/****************************** BSM : Flex Containers for Lists ********************************/
+	
+	.flex-container{
+        display: flex;
+        flex-direction: row;
+		width: 100%;
+	}
+	.flex-content{
+		width: auto;	
+		display: flex;
+		justify-content: center;	
+		flex-flow: row wrap;
+	}
+	.flex-prev {
+        order: -1;
+		width: 5%;
+	}
+	.flex-next {
+		order: 2;
+		width: 5%;
+	}
+	.flex-prev, .flex-next {
+        width: 5%;
+        border-radius: 6px;
+        display: inline-block;
+        cursor: pointer;
+        list-style: none;
+        overflow: hidden;
+	}
+	.flex-prev:hover, .flex-next:hover {
+		background-color: #c8c8d1;	
+	}
 	
 	/****************************** BSM : Index Page ********************************/
 	#navigation-arrows {
@@ -516,13 +576,12 @@ and (min-width : 780px) {
 	}
 	
 	/****************************** BSM: Movies ******************************/
-	#movie_list {
-		margin-top: 20px; 
-	}
-	#movie_list li {
+	.openMovieItem {
+        flex: 1;
+        min-width: 200px;
+        max-width: 400px;
 		display: inline-block;
 		vertical-align: top;
-		width: 250px;
 		-webkit-border-radius: 6px;
 		border-radius: 6px;
 	}
@@ -533,34 +592,32 @@ and (min-width : 780px) {
 		width: 80px;
 		height: auto;
 	}
-	#movie_list h4 {
+	.openMovieItem h4 {
 		text-align: center;
 		margin:0px;
 		font-size: 18px;
 	}
-	#movie_list p {
+	.openMovieItem p {
 		text-align: center;
 		margin:0px;
 	}
-	.moviedetails:hover { 
+	.openMovieItem:hover { 
 		background-color: #c8c8d1;
-	}
-	.moviedetails { 
 		cursor:pointer;
 	}
 	.greenMovies {
 		display: block;
 		position: absolute; 
-		margin-top: -25px;	 
-		padding-left: 140px;	 
-		width: 25px;
+		margin-top: -128px;	 
+		padding-left: 123px;	 
+		width: 20px;
 		height: auto;
 	}	
 	.moviePrevPicArrow {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
-		width: 80px;
+		width: 100%;
 		height: auto;
 	}
 	
@@ -569,18 +626,24 @@ and (min-width : 780px) {
 	}
 	
 	/****************************** BSM: Music ******************************/	
-	#album_list{
-		margin-top: 20px;
-	}
 	
-	#album_list li {
+	.showAlbum {
+        flex: 1;
+        min-width: 200px;
+        max-width: 400px;
 		display: inline-block;
 		vertical-align: top;
-		width: 250px;
 		cursor:pointer;
 		-webkit-border-radius: 6px;
 		border-radius: 6px;
 	}
+	.musicPrevPicArrow{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
+		height: auto;
+    }
 	.musicPrevPic {
 		display: block;
 		margin-left: auto;
@@ -588,16 +651,16 @@ and (min-width : 780px) {
 		width: 100px;
 		height: auto;
 	}
-	#album_list h4 {
+	.showAlbum h4 {
 		text-align: center;
 		margin:2px 2px 2px 2px;
 		font-size: 18px;
 	}
-	#album_list p {
+	.showAlbum p {
 		text-align: center;
 		margin:2px 2px 2px 2px;
 	}
-	.album_Item:hover, .album_Item_Nav:hover { 
+	.showAlbum:hover, .album_Item_Nav:hover { 
 		background-color: #c8c8d1;
 	}
 	
@@ -606,29 +669,25 @@ and (min-width : 780px) {
 	.addontitle {
 		text-align: center;
 	}
-	#addonlist{
-		display:block;
-		margin-top: 20px;
-	}
-	#addonlist li {
+	.addonlist-item{
+        flex: 1;
+        min-width: 200px;
+        max-width: 400px;
 		display: inline-block;
 		vertical-align: top;
-		width: 250px;
 		list-style-type: none;
 		-webkit-border-radius: 6px;
 		border-radius: 6px;
-	}
-	#addonlist h4 {
-		text-align: center;
-		margin:2px 2px 2px 2px;
-		font-size: 18px;	
-	}
-	.addonlist-item {
 		white-space:nowrap; 
 		overflow:hidden;	
 		cursor:pointer;
 	}
-	.addonlist-item:hover, #addonListPrev:hover, #addonListNext:hover { 
+	.addonlist-item h4 {
+		text-align: center;
+		margin:2px 2px 2px 2px;
+		font-size: 18px;	
+	}
+	.addonlist-item:hover, .flexListPrevNext:hover { 
 		background-color: #c8c8d1;
 	}
 	.addonImage{
@@ -638,6 +697,13 @@ and (min-width : 780px) {
 		margin-left: auto;
 		margin-right: auto;
 	}
+	.addonImageArrow{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
+		height: auto;
+    }
 }
 
 
@@ -653,6 +719,20 @@ and (max-width : 780px) {
 	.footer-right { 
 		font-size: 11px;
 	}
+
+	.flex-prev, .flex-next {
+        list-style: none;
+		margin-bottom: 0px;
+		-webkit-border-radius: 6px;
+		border-radius: 6px;
+		border: 1px solid #c8c8d1;
+		cursor:pointer;
+		width: 100%;
+	}
+	.flex-prev:hover, .flex-next:hover {
+		background-color: #c8c8d1;	
+	}
+
 	
 	/****************************** SSM: Remote Page ******************************/
 	#SendText .ui-block-a {
@@ -677,43 +757,47 @@ and (max-width : 780px) {
 	} 
 	
 	/****************************** SSM: Movies ******************************/
-	.moviedetails { 
+	#movie_list {
+		line-height: 18px;
+	}
+	.openMovieItem { 
 		height: 80px;
+		width: 100%;
 		-webkit-border-radius: 6px;
 		border-radius: 6px;
 		border: 1px solid #c8c8d1;
 		cursor:pointer;
 		overflow:hidden;
-	}
-	.moviedetails:hover { 
-		background-color: #c8c8d1;
-	}
-	#movie_list {	
-		margin-top: 15px;
-		line-height: 18px;
-	}	
-	#movie_list li div{
+		display: inline-block;
 		margin: 0px;
 		white-space:nowrap;  
 		vertical-align: top; 
+	}
+	.openMovieItem:hover { 
+		background-color: #c8c8d1;
+	}
+	.openMovieItem div, .flex-prev div, .flex-next div {
 		display: inline-block;
+		margin: 0px;
+		white-space:nowrap;  
+		vertical-align: top; 
 	} 
-	#movie_list li h4{
+	.openMovieItem h4, .flex-prev h4, .flex-next h4{
 		display: inline;
 		vertical-align: top;		
 		padding-left:2px;
 	}
-	#movie_list li h4:after {
+	.openMovieItem h4:after , .flex-prev h4:after, .flex-next h4:after{
 		white-space: pre;
 		content:'\A';
 	}
-	#movie_list li p {
+	.openMovieItem p {
 		white-space:normal;  
 		display: inline;
 		font-size: 10px;
 		padding-left: 2px;
 	}
-  	#movie_list li p:after {
+  	.openMovieItem p:after {
 		white-space:normal;  
 		white-space:pre;  
 		content:'\A';
@@ -724,46 +808,57 @@ and (max-width : 780px) {
 	}
 	.moviePrevPicArrow {
 		display: inline;
-		height: 80px;
+		height: 50px;
 	}
 	.greenMovies {
 		display: block;
-		margin-top: -27px;	 
-		padding-left: 25px;	 
-		width: 25px;
+		margin-top: -82px;	 
+		padding-left: 30px;
+		width: 20px;
 		height: auto;
 	}
+	#movie-flex-prev{
+        height: 50px;
+    }
+	#movie-flex-next{
+        height: 50px;
+    }
 	/****************************** SSM: Music ******************************/
-	.album_Item, .album_Item_Nav { 
+	#album_list {	
+		line-height: 18px;
+	}
+	.showAlbum, .album_Item_Nav { 
 		height: 50px;
+		width: 100%;
 		-webkit-border-radius: 6px;
 		border-radius: 6px;
 		border: 1px solid #c8c8d1;
 		cursor:pointer;
 		overflow: hidden;
-	}
-	.album_Item:hover, .album_Item_Nav:hover  { 
-		background-color: #c8c8d1;
-	}
-	#album_list {	
-		line-height: 18px;
-		margin-top: 20px;
-	}	
-	#album_list li div{
 		white-space:nowrap;  
+		margin: 0px;
+		vertical-align: top; 
+		display: inline-block;
+	}
+	.showAlbum:hover, .album_Item_Nav:hover  { 
+		background-color: #c8c8d1;
+	}	
+	.showAlbum div{
+		white-space:nowrap;  
+		margin: 0px;
 		vertical-align: top; 
 		display: inline-block;
 	} 
-	#album_list li h4{
+	.showAlbum h4{
 		display: inline;
 		vertical-align: top;
 		padding-left: 5px;
 	}
-	#album_list li h4:after {
+	.showAlbum h4:after {
 		white-space: pre;
 		content:'\A';
 	}
-	#album_list li p {
+	.showAlbum p {
 		display: inline-block;
 		font-size: 10px;
 		padding-left: 5px;
@@ -772,22 +867,19 @@ and (max-width : 780px) {
 		height: 50px;
 		display: inline-block;
 	}
+	.musicPrevPicArrow {
+		display: inline;
+		height: 50px;
+	}
+	#album-flex-prev, #album-flex-next{
+        height: 50px;
+    }
 	
 	/****************************** SSM: Addons Page ********************************/
-	.addontitle {
-		display: inline;
-		vertical-align: top;
-		padding-left: 5px;
-	}
-	.addontitle:after {
-		white-space: pre;
-		content:'\A';
-	}
 	#addonlist {
 		list-style-type: none;
-		margin-top: 20px;
 	}
-	.addonlist-item, #addonListPrev, #addonListNext {
+	.addonlist-item {
 		white-space:nowrap;
 		vertical-align: top;
 		height: 50px;
@@ -798,9 +890,19 @@ and (max-width : 780px) {
 		overflow:hidden;
 		cursor:pointer;
 		width: 100%;
+		margin: 0px;
 	}
-	.addonlist-item:hover, #addonListPrev:hover, #addonListNext:hover { 
+	.addonlist-item:hover { 
 		background-color: #c8c8d1;
+	}
+	.addontitle {
+		display: inline;
+		vertical-align: top;
+		padding-left: 5px;
+	}
+	.addontitle:after {
+		white-space: pre;
+		content:'\A';
 	}
 	.addonImage{
 		display: inline-block;
@@ -808,4 +910,15 @@ and (max-width : 780px) {
 		width: auto;
 		margin-left: 0px;
 	}
+	.addonImageArrow{
+        height: 50px;
+    }
+	#addon-flex-prev, #addon-flex-next{
+        height: 50px;
+		margin: 0px;
+    }
 }
+
+
+
+

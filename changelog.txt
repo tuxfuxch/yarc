@@ -1,3 +1,18 @@
+Version 0.8.1
+- Kodi Favourites are now accessible as addon (it shows up in the addon list as addon)
+- css styling: on large screens (more than 700px width), next and prev buttons are on the side of the list, and not anymore part of the list
+- added Setting, default for the checkbox if you want to stay in addon popup after opening file
+- Added release date (premiered) in Addon Fileitems, if there is any
+- jumps now to top of addon popup on refresh or entering a folder
+- seek overlay get's now hidden by start, so that it doesn't come into the way anymore
+- Song-Search Items have now preview pircture of the album and artist is shown
+- playlist items have now a preview picture
+- css styling: TV Series got some love. Now episode preview pictures are shown and better collapsable styling
+- css styling: the green tick's for seen media is now shown consistently at the same place (top right)
+- some readme updates
+- css styling: made addonpopup smaller in width. leaving the popup is now easier on mobiles
+- some html simplyfing/cleanup
+
 Version 0.8.0
 - Addon Menues are now accessible on yarc. consider it still beta. if a addon does not work for you, please tell me about in the kodi forum
 - skip song with deviceOrientation removed

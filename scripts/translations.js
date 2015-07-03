@@ -22,8 +22,7 @@ var translations = {
 			kling: "+tetlh QujmeH",
 			es: "+lista de reproducción",
 			it: "+giocare elenco",
-			fr: "+jouer liste",
-			gr: ""
+			fr: "+jouer liste"
 	},
 	ADDON_INTRO:{//TODO: fr, it, es
 			en: "Addons are made differently. If something doesn't work or behaves strangely, you met some limitations. Sorry.",
@@ -31,8 +30,7 @@ var translations = {
 			kling: "Sorgh qaS", //sabotage happens
 			es: "Addons se hacen diferente. Si algo no funciona o se comporta de manera extraña, te encontraste con algunas limitaciones. Lo siento.",
 			it: "Addons sono fatti in modo diverso. Se qualcosa non funziona o si comporta stranamente alto, hai incontrato alcune limitazioni. Mi dispiace.",
-			fr: "Addons sont faites différemment. Si quelque chose ne fonctionne pas ou se comporte étrangement de vers le haut, vous avez rencontré quelques limitations. Désolé.",
-			gr: ""
+			fr: "Addons sont faites différemment. Si quelque chose ne fonctionne pas ou se comporte étrangement de vers le haut, vous avez rencontré quelques limitations. Désolé."
 	},
 	ADDONS:{//as in Addons or Extensions for the Program, its a menuitem -> Plural
 			en: "Addons",
@@ -40,8 +38,7 @@ var translations = {
 			kling: "DuywI'",
 			es: "Extensiones",
 			it: "Estensione",
-			fr: "Module",
-			gr: ""
+			fr: "Module"
 	},
 	ALBUMS:{//The Section in Music, where everything is sortet for albums
 			en: "Albums",
@@ -49,8 +46,7 @@ var translations = {
 			kling: "vuDmey tlhopDaq",
 			es: "Álbumes",
 			it: "Albums",
-			fr: "Albums",
-			gr: ""
+			fr: "Albums"
 	},
 	ALERT_CANT_REMOVE_PLAYING:{//This comes, if the user tries to remove the item which is currently playing. This is not possible.
 			en: "You can't remove a currenty playing item... sorry",
@@ -58,8 +54,7 @@ var translations = {
 			kling: "pagh teq DaH Doch reH... jIQoS",
 			es: "No es posible eliminar un archivo que está siendo ejecutado... lo siento",
 			it: "Non puoi rimuovere un currenty giocando elemento... mi dispiace",
-			fr: "Vous ne pouvez pas supprimer un currenty jouant point... Désolé",
-			gr: ""
+			fr: "Vous ne pouvez pas supprimer un currenty jouant point... Désolé"
 	},
 	ALERT_IMAGE_QUAL:{//This comes, if the user does a wrong input in settings.
 			en: "Needs to be a full number between (including) 10 and 95. Please change this in order to be able to save!",
@@ -67,8 +62,7 @@ var translations = {
 			kling: "nIS naQ mI' vangmeH qel (DaH nobvam) 10 je 95. DubelmoHchugh lIS",
 			es: "Tiene que ser un número entero entre 10 y 95 (inclusive). Por favor cambia para poder archivar.",
 			it: "Deve essere un pieno numero tra (compreso) 10 e 95. Si prega di modificare questo per poter salvare!",
-			fr: "Doit être un plein nombre entre (10 et 95 notamment). S'il vous plaît changer cela afin d'être en mesure d'enregistrer!",
-			gr: ""
+			fr: "Doit être un plein nombre entre (10 et 95 notamment). S'il vous plaît changer cela afin d'être en mesure d'enregistrer!"
 	},
 	ALERT_LISTLENGTH:{//This comes, if the user does a wrong input in settings.
 			en: "Needs to be a full number. Please change this in order to be able to save!",
@@ -76,8 +70,7 @@ var translations = {
 			kling: "nIS naQ mI'. DubelmoHchugh lIS",
 			es: "Debe ser un número entero. Por favor cambia para poder archivar.",
 			it: "Deve essere un numero completo. Si prega di modificare questo per poter salvare!",
-			fr: "Doit être un nombre complet. S'il vous plaît changer cela afin d'être en mesure d'enregistrer!",
-			gr: ""
+			fr: "Doit être un nombre complet. S'il vous plaît changer cela afin d'être en mesure d'enregistrer!"
 	},
 	ALERT_SWIPEHIGHT:{//This comes, if the user does a wrong input in settings.
 			en: "It's a CSS height property. It needs to be a number with one of these endings: 'em', 'ex', 'px' or 'vh'",
@@ -85,8 +78,7 @@ var translations = {
 			kling: "css 'ab bang. mI' 'ej van wa': 'em', 'ex', 'px' or 'vh'",
 			es: "Es una propiedad elevada de CSS. Debe ser un número con #una de estas terminaciones: 'em', 'ex', 'px' o 'vh'",
 			it: "È una proprietà di altezza CSS. Deve essere un numero con una di queste terminazioni: 'em', 'ex', 'px' o 'vh'",
-			fr: "C'est une propriété de hauteur CSS. Il doit être un nombre avec un des ces terminaisons: 'em', 'ex', 'px' o 'vh'",
-			gr: ""
+			fr: "C'est une propriété de hauteur CSS. Il doit être un nombre avec un des ces terminaisons: 'em', 'ex', 'px' o 'vh'"
 	},
 	ALERT_SONGSEARCH:{//This comes, if the user searches with a word of less than 3 characters in the searchfield
 			en: "Type at least 3 Characters to search",
@@ -94,8 +86,7 @@ var translations = {
 			kling: "qaSlaH 3 vuDmey'e' Samta'meH Segh",
 			es: "Escriba al menos tres caracteres para buscar",
 			it: "Digitare almeno 3 caratteri per la ricerca",
-			fr: "Tapez au moins 3 caractères pour rechercher",
-			gr: ""
+			fr: "Tapez au moins 3 caractères pour rechercher"
 	},
 	AUDIO:{//This is the desciption for on which playlist the user is or wants to go or a type of addon
 			en: "Audio",
@@ -103,8 +94,7 @@ var translations = {
 			kling: "QoQ",
 			es: "Audio",
 			it: "Audio",
-			fr: "Audio",
-			gr: ""
+			fr: "Audio"
 	},
 	AUDIO_LIB_SCAN:{//This is a button in the tools section, to scan for new content in the music library
 			en: "Audio Lib: scan",
@@ -112,8 +102,7 @@ var translations = {
 			kling: "QoQ be'nI''a'wI', Datu' Hotlh",
 			es: "Audioteca: escanear",
 			it: "Libreria audio: scansione",
-			fr: "Bibliothèque audio : Scan",
-			gr: ""
+			fr: "Bibliothèque audio : Scan"
 	},
 	AUDIO_LIB_CLEAN:{//This is a button in the tools section, to clean (delete) the audio library
 			en: "Audio Lib: clean",
@@ -121,8 +110,7 @@ var translations = {
 			kling: "QoQ be'nI''a'wI', Datu' choSay'moHlaH",
 			es: "Audioteca: limpiar",
 			it: "Bibliothèque audio: pulito",
-			fr: "Bibliothèque audio: nettoyer",
-			gr: ""
+			fr: "Bibliothèque audio: nettoyer"
 	},
 	BACK:{//Simply a back Button, to go to the last page
 			en: "Back",
@@ -130,8 +118,7 @@ var translations = {
 			kling: "chap",
 			es: "Atrás",
 			it: "Indietro",
-			fr: "Précédent",
-			gr: ""
+			fr: "Précédent"
 	},
 	CANCEL:{//Simply a cancel Button in a dialog, to abord something
 			en: "Cancel",
@@ -139,8 +126,7 @@ var translations = {
 			kling: "qIl",
 			es: "Cancelar",
 			it: "Annulla",
-			fr: "Annuler",
-			gr: ""
+			fr: "Annuler"
 	},
 	CLOSE:{//Simply a close Button in a dialog, to close something
 			en: "Close",
@@ -148,8 +134,7 @@ var translations = {
 			kling: "SoQmoH",
 			es: "Cerrar",
 			it: "Chiudere",
-			fr: "Fermer",
-			gr: ""
+			fr: "Fermer"
 	},
 	DEVICE_ORIENTATION:{//if you want to navigate to right, change mobile orientation to right....
 			en: "Device Orientation Navigation",
@@ -157,8 +142,7 @@ var translations = {
 			kling: "jan lurgh chIj",
 			es: "Dispositivo orientación navegación",
 			it: "Dispositivo orientamento navigazione",
-			fr: "Dispositif Orientation Navigation",
-			gr: ""
+			fr: "Dispositif Orientation Navigation"
 	},
 	DONE:{//Confirmation that something is Done
 			en: "Done!",
@@ -166,8 +150,7 @@ var translations = {
 			kling: "pItlh!",
 			es: "Hecho!",
 			it: "Fatto!",
-			fr: "Fait!",
-			gr: ""
+			fr: "Fait!"
 	},
 	EMPTY_PL:{//A button to empty the elements of the music playlist
 			en: "Empty playlist",
@@ -175,8 +158,7 @@ var translations = {
 			kling: "chIm chu' tetlh",
 			es: "Lista de reproducción vacía",
 			it: "Lista del gioco vuoto",
-			fr: "vide jouer liste",
-			gr: ""
+			fr: "vide jouer liste"
 	},
 	EMPTY_PLAY_ALBUM:{//A button to empty playlist before playing an album
 			en: "Empty playlist & play album",
@@ -184,8 +166,7 @@ var translations = {
 			kling: "chIm chu' tetlh",
 			es: "Lista de reproducción vacía y álbum ejecutado",
 			it: "Svuotare la lista di brani & giocare album",
-			fr: "vide jouer liste & jeu album",
-			gr: ""
+			fr: "vide jouer liste & jeu album"
 	},
 	GENERAL:{//A category which describes the whole program/whole website
 			en: "General",
@@ -193,8 +174,7 @@ var translations = {
 			kling: "Hoch",
 			es: "General",
 			it: "Generale",
-			fr: "Général",
-			gr: ""
+			fr: "Général"
 	},
 	GENRES:{//different Genres in Music or Films
 			en: "Genres",
@@ -202,8 +182,7 @@ var translations = {
 			kling: "Segh SoH'a'",
 			es: "Géneros",
 			it: "Generi",
-			fr: "Genres",
-			gr: ""
+			fr: "Genres"
 	},
 	HELP:{//Link to Help Section
 			en: "Help",
@@ -211,8 +190,7 @@ var translations = {
 			kling: "QaH",
 			es: "Ayuda",
 			it: "Guida",
-			fr: "Aide",
-			gr: ""
+			fr: "Aide"
 	},
 	HIBERNATE:{//hibernate the computer (deep sleep), like the option you can choose in windows instead of shutting down
 			en: "Hibernate",
@@ -220,8 +198,7 @@ var translations = {
 			kling: "jaQ Qong",
 			es: "estado de reposo",
 			it: "Ibernazione",
-			fr: "Hiberner",
-			gr: ""
+			fr: "Hiberner"
 	},
 	HIDE_FILELINK:{//Hide in a dialog the information where the file actualy is stored
 			en: "Hide filelink in popup",
@@ -229,8 +206,7 @@ var translations = {
 			kling: "teywI' pong So'",
 			es: "Ocultar el archivo de enlace en popup",
 			it: "Nascondere file collegamento nel popup",
-			fr: "Cacher fichier lien en popup",
-			gr: ""
+			fr: "Cacher fichier lien en popup"
 	},
 	HIDE_FLAGS:{//Hide the functions and flags about the language of the media (for example in which language the movie is spoken
 			en: "Hide language/flag functions",
@@ -238,8 +214,7 @@ var translations = {
 			kling: "Hol ghap joqwI' Qap So'",
 			es: "Ocultar las funciones del lenguaje/marca",
 			it: "Nascondere funzioni lingua/bandiera",
-			fr: "Masquer les fonctions de la langue/drapeau",
-			gr: ""
+			fr: "Masquer les fonctions de la langue/drapeau"
 	},
 	HIDE_GENRE_SELECT:{//Hide the element with which aviable genres can be selected
 			en: "Hide genre selection",
@@ -247,8 +222,7 @@ var translations = {
 			kling: "Segh SoH'a' wIv So'",
 			es: "Ocultar selección de género",
 			it: "Nascondi selezione genere",
-			fr: "Masquer la sélection du genre",
-			gr: ""
+			fr: "Masquer la sélection du genre"
 	},
 	HIDE_GROUP_SELECT:{//Hide the element with which addons types can be selected
 			en: "Hide type selection",
@@ -256,8 +230,7 @@ var translations = {
 			kling: "wIv So' Segh",
 			es: "Ocultar selección de caracteres",
 			it: "Nascondi selezione tipo",
-			fr: "Masquer la sélection du type",
-			gr: ""
+			fr: "Masquer la sélection du type"
 	},
 	HIDE_MENU_TEXT:{//Hide the text in the menu  //TODO: check es, it und fr
 			en: "Hide menu text",
@@ -265,8 +238,7 @@ var translations = {
 			kling: "HIDjolev bIngDaq ghItlh leghlu' So'",
 			es: "Ocultar texto del menú",
 			it: "Nascondere il testo del menu",
-			fr: "Cacher le texte de menu",
-			gr: ""
+			fr: "Cacher le texte de menu"
 	},
 	HIDE_ORIENT_NAV:{//todo: es it fr
 			en: "Hide device orientation navigation switch",
@@ -274,8 +246,7 @@ var translations = {
 			kling: "Hide device orientation navigation switch",
 			es: "Hide device orientation navigation switch",
 			it: "Hide device orientation navigation switch",
-			fr: "Hide device orientation navigation switch",
-			gr: ""
+			fr: "Hide device orientation navigation switch"
 	},
 	HIDE_PREV_PICS:{//Setting to hide the preview pictures of medias (album cover, or movie cover)
 			en: "Hide preview pictures",
@@ -283,8 +254,7 @@ var translations = {
 			kling: "mIllogh So'",
 			es: "Ocultar imágenes previas",
 			it: "Nascondere le immagini di anteprima",
-			fr: "Masquer les images de prévisualisation",
-			gr: ""
+			fr: "Masquer les images de prévisualisation"
 	},
 	HIDE_SEARCH:{//Setting to hide a searchfield (multiple times used for different searchfields)
 			en: "Hide searchfield",
@@ -292,8 +262,7 @@ var translations = {
 			kling: "vItu' yotlh So'",
 			es: "Ocultar campo de búsqueda",
 			it: "Nascondere il campo di ricerca",
-			fr: "Masquer le champ de recherche",
-			gr: ""
+			fr: "Masquer le champ de recherche"
 	},
 	HIDE_WATCHED:{//Hide movies or tv-shows which have already been watched
 			en: "Hide watched movies and TV-Shows",
@@ -301,8 +270,15 @@ var translations = {
 			kling: "So' legh",
 			es: "Ocultar películas y Shows de TV ya vistos",
 			it: "Nascondi guardato film e spettacoli TV",
-			fr: "Masquer regardé les films et émissions de télévision",
-			gr: ""
+			fr: "Masquer regardé les films et émissions de télévision"
+	},
+	KODI_FAVS:{//Favourties Folder of Kodi TODO fr it es
+			en: "Kodi Favourites",
+			de: "Kodi Favoriten",
+			kling: "Kodi bang",
+			es: "Kodi Favoritos",
+			it: "Kodi Favoriti",
+			fr: "Kodi Favoris"
 	},
 	LANG_UNKNOWN:{//Label for the language setting TODO fr it es
 			en: "Language(s) unknown",
@@ -310,8 +286,7 @@ var translations = {
 			kling: "Hol vul",
 			es: "Idioma desconocido",
 			it: "Lingua sconosciuta",
-			fr: "Langue inconnue",
-			gr: ""
+			fr: "Langue inconnue"
 	},
 	LANGUAGE:{//Label for the language setting
 			en: "Language",
@@ -319,8 +294,7 @@ var translations = {
 			kling: "Hol",
 			es: "Idioma",
 			it: "Lingua",
-			fr: "Langue",
-			gr: ""
+			fr: "Langue"
 	},
 	LIB_EMPTY:{//Information when there are no Movies or there is no music in the system
 			en: "Library is empty",
@@ -328,8 +302,7 @@ var translations = {
 			kling: "be'nI''a'wI', Datu' chIm",
 			es: "Biblioteca vacía",
 			it: "La libreria è vuota",
-			fr: "La bibliothèque est vide",
-			gr: ""
+			fr: "La bibliothèque est vide"
 	},
 	LOADING:{//Information, that a list is loading (like "please wait...")
 			en: "loading...",
@@ -337,8 +310,7 @@ var translations = {
 			kling: "loS...",
 			es: "cargando...",
 			it: "caricamento...",
-			fr: "chargement...",
-			gr: ""
+			fr: "chargement..."
 	},
 	MAX_LISTLENGTH:{//Setting label, where you can set, how long a list in the interface should be maximal
 			en: "Max list Length (0 for no limit):",
@@ -346,8 +318,7 @@ var translations = {
 			kling: "tetlh 'ab (0 pagh vuS):",
 			es: "Máxima longitud de lista (0 para ningún límite):",
 			it: "Elenco di massima lunghezza (0 per nessun limite):",
-			fr: "Liste maximale longueur (0 pour illimité) :",
-			gr: ""
+			fr: "Liste maximale longueur (0 pour illimité) :"
 	},
 	MOVIES:{
 			en: "Movies",
@@ -355,8 +326,7 @@ var translations = {
 			kling: "mIllogh vIH",
 			es: "Películas",
 			it: "Film",
-			fr: "Films",
-			gr: ""
+			fr: "Films"
 	},
 	MUSIC:{
 			en: "Music",
@@ -364,8 +334,7 @@ var translations = {
 			kling: "QoQ",
 			es: "Música",
 			it: "Musica",
-			fr: "Musique",
-			gr: ""
+			fr: "Musique"
 	},
 	NAVIGATION:{//Navigation like you use your tv-remote to navigate through menues
 			en: "Navigation",
@@ -373,8 +342,7 @@ var translations = {
 			kling: "chIj",
 			es: "Navegación",
 			it: "Navigazione",
-			fr: "Navigation",
-			gr: ""
+			fr: "Navigation"
 	},
 	NEXT:{
 			en: "Next",
@@ -382,8 +350,7 @@ var translations = {
 			kling: "veb",
 			es: "Próximo",
 			it: "Prossimo",
-			fr: "Prochaine",
-			gr: ""
+			fr: "Prochaine"
 	},
 	NO_MATCH:{//Information, when there is no match found for a search
 			en: "There is no matching item found",
@@ -391,8 +358,7 @@ var translations = {
 			kling: "tu'lu' pagh qul naQmey vItu'",
 			es: "No hay ningun artículo encontrado que concuerde",
 			it: "Non non c'è alcun corrispondente elemento trovato",
-			fr: "Il n'y a aucune correspondance article trouvé",
-			gr: ""
+			fr: "Il n'y a aucune correspondance article trouvé"
 	},
 	NO_RATING:{//Rating of media, for example a movie (how good it is) TODO ES IT FR
 			en: "No Rating",
@@ -400,8 +366,7 @@ var translations = {
 			kling: "pagh ngI'",
 			es: "sin Evaluación",
 			it: "Nessuna Valutazione",
-			fr: "Pas de Popularité",
-			gr: ""
+			fr: "Pas de Popularité"
 	},
 	NO_SWIPE:{//Label for setting to replace a swipefield (or touchfield) with buttons
 			en: "Buttons instead of swipe area",
@@ -409,8 +374,7 @@ var translations = {
 			kling: "pagh Hot yoS",
 			es: "Teclas en lugar de área de contacto",
 			it: "Pulsanti invece di zona swipe",
-			fr: "Boutons au lieu de la zone de balayage",
-			gr: ""
+			fr: "Boutons au lieu de la zone de balayage"
 	},
 	OPEN_ADDON:{//TODO ES IT FR
 			en: "Open Addon",
@@ -418,8 +382,7 @@ var translations = {
 			kling: "ghIt DuywI",
 			es: "Extensión abierta",
 			it: "Estensione aperta",
-			fr: "Extension ouverte",
-			gr: ""
+			fr: "Extension ouverte"
 	},
 	PLAY:{//Play a song, or movie
 			en: "Play",
@@ -427,8 +390,7 @@ var translations = {
 			kling: "chu'",
 			es: "Ejecutar",
 			it: "Giocare",
-			fr: "Jouer",
-			gr: ""
+			fr: "Jouer"
 	},
 	PLAY_PL:{//Play items in the playlist
 			en: "Play playlist",
@@ -436,8 +398,7 @@ var translations = {
 			kling: "Quj chu' tetlh",
 			es: "Reproducir lista de tocar",
 			it: "riprodurre giocare elenco",
-			fr: "début jouer liste",
-			gr: ""
+			fr: "début jouer liste"
 	},
 	PL_EMPTY:{//information, when the playlist has no elements
 			en: "Playlist is empty",
@@ -445,8 +406,7 @@ var translations = {
 			kling: "chu' tetlh chIm",
 			es: "Lista de tocar está vacía",
 			it: "giocare elenco è vuota",
-			fr: "jouer liste est vide",
-			gr: ""
+			fr: "jouer liste est vide"
 	},
 	PLAYER:{//like a media player
 			en: "Player",
@@ -454,8 +414,7 @@ var translations = {
 			kling: "chu'wI'",
 			es: "reproductor",
 			it: "lettore",
-			fr: "lecteur",
-			gr: ""
+			fr: "lecteur"
 	},
 	PLAYLIST:{//items in a list which has to be played
 			en: "PlayList",
@@ -463,8 +422,7 @@ var translations = {
 			kling: "tetlh QujmeH",
 			es: "Lista para tocar",
 			it: "giocare elenco",
-			fr: "jouer liste",
-			gr: ""
+			fr: "jouer liste"
 	},//the next translations are help texts
 	POPUP_SWIPE_1:{
 			en: "Through swipe and tab gestures, you can control your Kodi. Use the grey field to do it with the following gestures:",
@@ -472,8 +430,7 @@ var translations = {
 			kling: "veS ghob",
 			es: "A través de gesto de apretar y limpiar, usted puede controlar su Kodi. Utilice el campo gris para hacerlo con los siguientes gestos:",
 			it: "Attraverso gesti swipe e scheda, è possibile controllare il vostro Kodi. Utilizzare il campo grigio per farlo con i seguenti movimenti:",
-			fr: "À travers des gestes par balayage et onglet, vous pouvez contrôler votre Kodi. Utilisez le champ gris pour faire avec les gestes suivants:",
-			gr: ""
+			fr: "À travers des gestes par balayage et onglet, vous pouvez contrôler votre Kodi. Utilisez le champ gris pour faire avec les gestes suivants:"
 	},
 	POPUP_SWIPE_3:{//TODO fr, es, it
 			en: "Swipe up, down, left or right (according to your setting)",
@@ -481,8 +438,7 @@ var translations = {
 			kling: "",
 			es: "Deslizar hacia arriba, abajo, izquierda o derecha (de acuerdo a su entorno)",
 			it: "Swipe su, giù, sinistra o destra (secondo l'impostazione)",
-			fr: "Balayez vers le haut, bas, gauche ou droite (selon vos paramètres)",
-			gr: ""
+			fr: "Balayez vers le haut, bas, gauche ou droite (selon vos paramètres)"
 	},
 	POPUP_SWIPE_4:{
 			en: "Tab once to select",
@@ -490,8 +446,7 @@ var translations = {
 			kling: "",
 			es: "Apretar una vez para seleccionar",
 			it: "Scheda una volta per selezionare",
-			fr: "Presse une fois pour sélectionner",
-			gr: ""
+			fr: "Presse une fois pour sélectionner"
 	},
 	POPUP_SWIPE_5:{
 			en: "Tab twice to go back",
@@ -499,8 +454,7 @@ var translations = {
 			kling: "",
 			es: "Apretar dos veces para volver",
 			it: "Premere due volte per tornare indietro",
-			fr: "Presse deux fois pour revenir en arrière",
-			gr: ""
+			fr: "Presse deux fois pour revenir en arrière"
 	},
 	POPUP_SWIPE_6:{
 			en: "Tab long for the context menu",
@@ -508,8 +462,7 @@ var translations = {
 			kling: "",
 			es: "Apretar para el menú de contexto",
 			it: "Premere a lungo per il menu di contesto",
-			fr: "Presse longtemps pour que le menu contextuel",
-			gr: ""
+			fr: "Presse longtemps pour que le menu contextuel"
 	},
 	POPUP_SWIPE_8:{
 			en: "Swipe up to stop the player",
@@ -517,8 +470,7 @@ var translations = {
 			kling: "",
 			es: "limpiar hacia arriba para detener el reproductor",
 			it: "Scorri fino a fermare il giocatore",
-			fr: "Frapper vers le haut pour arrêter le lecteur",
-			gr: ""
+			fr: "Frapper vers le haut pour arrêter le lecteur"
 	},
 	POPUP_SWIPE_9:{
 			en: "Swipe down for play/pause",
@@ -526,8 +478,7 @@ var translations = {
 			kling: "",
 			es: "Deslizar hacia abajo para reproducir/pausar",
 			it: "Scorrere verso il basso per giocare/pausa",
-			fr: "Frapper vers le bas pour jouer / pause",
-			gr: ""
+			fr: "Frapper vers le bas pour jouer / pause"
 	},
 	POPUP_SWIPE_10:{
 			en: "Swipe left for the previous item in the playlist",
@@ -535,8 +486,7 @@ var translations = {
 			kling: "",
 			es: "Pase por el elemento anterior en la lista de reproducción",
 			it: "Swipe da sinistra per l'elemento precedente della giocare elenco",
-			fr: "Frapper vers la gauche de l'élément précédent dans la jouer liste",
-			gr: ""
+			fr: "Frapper vers la gauche de l'élément précédent dans la jouer liste"
 	},
 	POPUP_SWIPE_11:{
 			en: "Swipe right for the next item in the playlist",
@@ -544,8 +494,7 @@ var translations = {
 			kling: "",
 			es: "Limpiar a la derecha para el siguiente elemento en la lista de reproducción",
 			it: "Scorrere rapidamente verso destra per l'elemento successivo nella giocare elenco",
-			fr: "Frapper vers la droit pour l'élément suivant dans la playlist",
-			gr: ""
+			fr: "Frapper vers la droit pour l'élément suivant dans la playlist"
 	},
 	POPUP_SWIPE_12:{
 			en: "Tab once for volume down 10%",
@@ -553,8 +502,7 @@ var translations = {
 			kling: "",
 			es: "Apretar una vez para bajar 10% el volumen",
 			it: "Scheda una volta per volume giù 10%",
-			fr: "Presse une fois pour le volume baisse de 10%",
-			gr: ""
+			fr: "Presse une fois pour le volume baisse de 10%"
 	},
 	POPUP_SWIPE_13:{
 			en: "Tab twice for volume up 10%",
@@ -562,8 +510,7 @@ var translations = {
 			kling: "",
 			es: "Apretar dos veces para subir 10% el volumen",
 			it: "Scheda due volte per il 10% del volume",
-			fr: "Presse deux fois pour volume jusqu'à 10 %",
-			gr: ""
+			fr: "Presse deux fois pour volume jusqu'à 10 %"
 	},
 	POPUP_SWIPE_14:{
 			en: "Tab long to toggle mute",
@@ -571,8 +518,7 @@ var translations = {
 			kling: "",
 			es: "apretar un largo rato para alternar mudo",
 			it: "Premere a lungo per attivare o disattivare il mute",
-			fr: "Presse longtemps pour activer/désactiver la sourdine",
-			gr: ""
+			fr: "Presse longtemps pour activer/désactiver la sourdine"
 	},
 	POPUP_SWIPE_15:{
 			en: "In the settings you can replace this field with buttons.",
@@ -580,8 +526,7 @@ var translations = {
 			kling: "",
 			es: "En la configuración puede reemplazar este campo con teclas.",
 			it: "Nelle impostazioni è possibile sostituire questo campo con pulsanti.",
-			fr: "Dans les paramètres, vous pouvez remplacer ce champ avec des boutons.",
-			gr: ""
+			fr: "Dans les paramètres, vous pouvez remplacer ce champ avec des boutons."
 	},
 	PREV_IMG_QUAL:{//Setting for how good the quality of pictures should be, or how much they are compressed
 			en: "Preview image quality rate (can be between 10 and 95; higher is better quality):",
@@ -589,8 +534,7 @@ var translations = {
 			kling: "",
 			es: "Tasa de calidad de imagen de vista previa (puede ser entre 10 y 95; es de mejor calidad cuanto más alta es):",
 			it: "Tasso di qualità anteprima immagine (può essere compreso tra 10 e 95; maggiore è la qualità migliore):",
-			fr: "Taux de qualité image aperçu (peut être entre 10 et 95 ; plus élevée est de meilleure qualité):",
-			gr: ""
+			fr: "Taux de qualité image aperçu (peut être entre 10 et 95 ; plus élevée est de meilleure qualité):"
 	},
 	QUIT:{//Close the application
 			en: "Quit",
@@ -598,8 +542,7 @@ var translations = {
 			kling: "bup",
 			es: "Cerrar",
 			it: "Smettere",
-			fr: "Quitter",
-			gr: ""
+			fr: "Quitter"
 	},
 	RATING:{//Rating of media, for example a movie (how good it is)
 			en: "Rating",
@@ -607,8 +550,7 @@ var translations = {
 			kling: "ngI'",
 			es: "Evaluación",
 			it: "Valutazione",
-			fr: "Popularité",
-			gr: ""
+			fr: "Popularité"
 	},
 	REBOOT:{//Reboot the computer (new start)
 			en: "Reboot",
@@ -616,8 +558,7 @@ var translations = {
 			kling: "chu' bI'reS",
 			es: "Reanudación del sistema",
 			it: "Al riavvio",
-			fr: "Redémarrage",
-			gr: ""
+			fr: "Redémarrage"
 	},
 	REFRESH:{//a button to refresh the playlist
 			en: "Refresh",
@@ -625,8 +566,7 @@ var translations = {
 			kling: "QutwI' chu'",
 			es: "Actualización",
 			it: "Aggiornamento",
-			fr: "Actualisation",
-			gr: ""
+			fr: "Actualisation"
 	},
 	REMOTE:{//It's like a TV Remote, where you can control it by changing channel etc.
 			en: "Remote",
@@ -634,8 +574,7 @@ var translations = {
 			kling: "Hop",
 			es: "Control remoto",
 			it: "Remoto",
-			fr: "Téléguidage",
-			gr: ""
+			fr: "Téléguidage"
 	},
 	REMOVE:{
 			en: "Remove",
@@ -643,8 +582,7 @@ var translations = {
 			kling: "teq",
 			es: "retirar",
 			it: "Rimuovere",
-			fr: "Supprimer",
-			gr: ""
+			fr: "Supprimer"
 	},
 	RUNTIME:{//play duration of the media
 			en: "Runtime",
@@ -652,8 +590,7 @@ var translations = {
 			kling: "'ab",
 			es: "Duración",
 			it: "Surata",
-			fr: "Duree",
-			gr: ""
+			fr: "Duree"
 	},
 	SAVE_CLOSE:{//a button to save settings and close the dialog
 			en: "Save and close",
@@ -661,8 +598,7 @@ var translations = {
 			kling: "toD 'ej",
 			es: "Archivar y cerrar",
 			it: "Salvare e chiudere",
-			fr: "Enregistrer et fermer",
-			gr: ""
+			fr: "Enregistrer et fermer"
 	},
 	SEARCH:{
 			en: "Search",
@@ -670,8 +606,7 @@ var translations = {
 			kling: "tu'",
 			es: "Buscar",
 			it: "Ricerca",
-			fr: "Rechercher",
-			gr: ""
+			fr: "Rechercher"
 	},
 	SEARCH_ADDON:{//search for a addon/extension of the program
 			en: "Search for Addon",
@@ -679,8 +614,7 @@ var translations = {
 			kling: "tu' DuywI",
 			es: "Buscar Extensiones",
 			it: "Ricerca di estensione",
-			fr: "Recherche un module complémentaire",
-			gr: ""
+			fr: "Recherche un module complémentaire"
 	},
 	SEARCH_ALBUM_ARTIST:{//Helptext for a searchfield
 			en: "Search for album title or artist",
@@ -688,8 +622,7 @@ var translations = {
 			kling: "tu' vuDmey tlhopDaq pagh nuv pong",
 			es: "Buscar por título del álbum o artista",
 			it: "Ricerca per artista o titolo album",
-			fr: "Recherche de titre de l'album ou artiste",
-			gr: ""
+			fr: "Recherche de titre de l'album ou artiste"
 	},
 	SEARCH_MOVIE:{//Helptext for a searchfield
 			en: "Search for movietitle",
@@ -697,8 +630,7 @@ var translations = {
 			kling: "tu' mIllogh vIH",
 			es: "Búsqueda por nombre de la película",
 			it: "Ricerca per titolo film",
-			fr: "Recherche titre de film",
-			gr: ""
+			fr: "Recherche titre de film"
 	},
 	SEARCH_SONG:{//Button to go to the place where you can search for songs
 			en: "Search Song",
@@ -706,8 +638,7 @@ var translations = {
 			kling: "tu' bom",
 			es: "Buscar canción",
 			it: "Canzone di ricerca",
-			fr: "Recherche chanson",
-			gr: ""
+			fr: "Recherche chanson"
 	},
 	SEARCH_SONGTITLE:{//Helptext for a searchfield
 			en: "Search for song title",
@@ -715,8 +646,7 @@ var translations = {
 			kling: "tu' bom",
 			es: "Buscar por título de la canción",
 			it: "Ricerca per titolo canzone",
-			fr: "Recherche titre de chanson",
-			gr: ""
+			fr: "Recherche titre de chanson"
 	},
 	SELECT_OPTION_ALL_GENRES:{//for example movie genres
 			en: "- all genres -",
@@ -724,8 +654,7 @@ var translations = {
 			kling: "- Hoch Segh SoH'a' -",
 			es: "- todos los géneros -",
 			it: "- tutti i generi -",
-			fr: "- tous les genres -",
-			gr: ""
+			fr: "- tous les genres -"
 	},
 	SELECT_OPTION_ALL_LANGS:{
 			en: "- all languages -",
@@ -733,8 +662,7 @@ var translations = {
 			kling: "- Hoch Hol -",
 			es: "- todos los idiomas -",
 			it: "- tutte le lingue -",
-			fr: "- toutes les langues -",
-			gr: ""
+			fr: "- toutes les langues -"
 	},
 	SELECT_OPTION_ALL_PLUGINS:{//all plugions or addons, should be the same word as in "ADDONS" -> Plural
 			en: "- all addons -",
@@ -742,8 +670,7 @@ var translations = {
 			kling: "- Hoch DuywI' -",
 			es: "- todas las extensiones -",
 			it: "- tutte le estensioni -",
-			fr: "- toutes les modules -",
-			gr: ""
+			fr: "- toutes les modules -"
 	},
 	SELECT_OPTION_OTHER:{//all others, not specified in a list
 			en: "other",
@@ -751,8 +678,7 @@ var translations = {
 			kling: "latlh",
 			es: "otros",
 			it: "altri",
-			fr: "autres",
-			gr: ""
+			fr: "autres"
 	},
 	SEND_TEXT:{//send a text, a word or some words to the system
 			en: "Send Text",
@@ -760,8 +686,7 @@ var translations = {
 			kling: "bIngDaq ghItlh leghlu' ngeH",
 			es: "Mensaje de texto",
 			it: "Inviare messaggi di testo",
-			fr: "Envoyer le texte",
-			gr: ""
+			fr: "Envoyer le texte"
 	},
 	SERIES:{//TV-shows, series, sitcomes etc.
 			en: "TV-Shows",
@@ -769,8 +694,7 @@ var translations = {
 			kling: "'agh",
 			es: "TV-Shows",
 			it: "TV-spettacoli",
-			fr: "émission TV",
-			gr: ""
+			fr: "émission TV"
 	},
 	SHOW_DESCRITION:{//checkbox to turn on plot/descritions in addons //TODO it fr es
 			en: "Show description",
@@ -778,8 +702,7 @@ var translations = {
 			kling: "Del cha'",
 			es: "Mostrar descripción",
 			it: "Visualizza la descrizione",
-			fr: "Voir la description",
-			gr: ""
+			fr: "Voir la description"
 	},
 	SHUTDOWN:{//shutdown (turn off) the computer
 			en: "Shutdown",
@@ -787,8 +710,7 @@ var translations = {
 			kling: "rIgh bIH",
 			es: "Cierre",
 			it: "Arresto",
-			fr: "Arrêter",
-			gr: ""
+			fr: "Arrêter"
 	},
 	SET_SWIPE_HIGHT:{//label for a setting
 			en: "Set hight of swipe area. Examples: 300px, 60vh (not supported by all browsers)",
@@ -796,8 +718,7 @@ var translations = {
 			kling: "'ab Hot. chay': 300px, 60vh",
 			es: "Determinar la altura del campo limpio. Ejemplos: 300px, 60vh (no para todos los navegadores compatibles)",
 			it: "Determinare l'altezza del campo tergicristallo. Esempio: 300px, 60vh (non per tutti i browser supportati)",
-			fr: "jeu hauteur de la zone de glissement. Exemples : 300px, 60vh (ne pas de prise en charge par tous les navigateurs)",
-			gr: ""
+			fr: "jeu hauteur de la zone de glissement. Exemples : 300px, 60vh (ne pas de prise en charge par tous les navigateurs)"
 	},
 	SETTINGS:{
 			en: "Settings",
@@ -805,8 +726,7 @@ var translations = {
 			kling: "vuD",
 			es: "Configuración",
 			it: "Impostazioni",
-			fr: "Paramètres",
-			gr: ""
+			fr: "Paramètres"
 	},
 	STAY_IN_ADDON_POPUP:{//a checkbox, if checket, the popup will not be left after action //TODO fr es it
 			en: "Stay in popup after opening file",
@@ -814,8 +734,7 @@ var translations = {
 			kling: "pa' 'emDaq",
 			es: "Alojarte en popup después abrir archivo",
 			it: "Soggiornare nel popup dopo apertura file",
-			fr: "Soggiornare nel popup dopo apertura file",
-			gr: ""
+			fr: "Soggiornare nel popup dopo apertura file"
 	},
 	SUSPEND:{//suspend the computer (sleep), like the option you can choose in windows instead of shutting down
 			en: "Suspend",
@@ -823,8 +742,7 @@ var translations = {
 			kling: "yIQong",
 			es: "Suspender",
 			it: "Sospendere",
-			fr: "Suspendre",
-			gr: ""
+			fr: "Suspendre"
 	},
 	SWAP_SWIPE_DIRECTIONS:{//TODO es, it, fr
 			en: "Swap swipe directions",
@@ -832,8 +750,7 @@ var translations = {
 			kling: "tlhong joq lurgh",
 			es: "Intercambiar direcciones de golpe",
 			it: "Scambiare le direzioni swipe",
-			fr: "Échanger des directions de glissement",
-			gr: ""
+			fr: "Échanger des directions de glissement"
 	},
 	SWIPE_OR_PRESS:{//do a swipe gesture like on a touch field on the laptop or on a touchscreen
 			en: "Swipe me or press ",
@@ -841,8 +758,7 @@ var translations = {
 			kling: "Hot yuv pagh",
 			es: "Borrar o pulsar ",
 			it: "Mi sfiora o premere ",
-			fr: "Frappez-moi ou appuyez ",
-			gr: ""
+			fr: "Frappez-moi ou appuyez "
 	},
 	TOOLS:{//like helpers
 			en: "Tools",
@@ -850,8 +766,7 @@ var translations = {
 			kling: "´em",
 			es: "Herramientas",
 			it: "Strumenti",
-			fr: "Outils",
-			gr: ""
+			fr: "Outils"
 	},
 	TRAILER:{//a preview of a movie
 			en: "Trailer",
@@ -859,8 +774,7 @@ var translations = {
 			kling: "yopwaH bID lut legh",
 			es: "Trailer",
 			it: "Rimorchio",
-			fr: "Annonce du film",
-			gr: ""
+			fr: "Annonce du film"
 	},
 	TURN_OFF:{//a button, when you press it, options are aviable like, shutting down computer, or let him sleep
 			en: "Turn Off",
@@ -868,8 +782,7 @@ var translations = {
 			kling: "tlhe'",
 			es: "Apagar",
 			it: "Spegni",
-			fr: "Éteindre",
-			gr: ""
+			fr: "Éteindre"
 	},
 	/*not used right now!
 	UN_SELECT_ALL:{//select or unselect a set of choice boxes
@@ -878,8 +791,7 @@ var translations = {
 			kling: "Hoch wIv",
 			es: "(de-)seleccionar todo",
 			it: "(de-)selezionare tutti",
-			fr: "(dé-) sélectionner tous",
-			gr: ""
+			fr: "(dé-) sélectionner tous"
 	},*/
 	/*not used right now!
 	USE_SVG:{//svg is an image filetype
@@ -888,8 +800,7 @@ var translations = {
 			kling: "yan SVG",
 			es: "Utilizar imágenes SVG donde sea posible",
 			it: "Utilizzare immagini SVG ove possibile",
-			fr: "Utiliser les images SVG si possible",
-			gr: ""
+			fr: "Utiliser les images SVG si possible"
 	},*/
 	VIDEO:{
 			en: "Video",
@@ -897,8 +808,7 @@ var translations = {
 			kling: "mIllogh vIH",
 			es: "Vídeo",
 			it: "Video",
-			fr: "Vidéo",
-			gr: ""
+			fr: "Vidéo"
 	},
 	VIDEO_LIB_SCAN:{//This is a button in the tools section, to scan for new content in the movie library
 			en: "Video Lib: scan",
@@ -906,8 +816,7 @@ var translations = {
 			kling: "mIllogh vIH Hotlh",
 			es: "Videoteca: escanear",
 			it: "Videoteca: scansione",
-			fr: "Vidéothèque: scan",
-			gr: ""
+			fr: "Vidéothèque: scan"
 	},
 	VIDEO_LIB_CLEAN:{//This is a button in the tools section, to clean (delete) the movie library
 			en: "Video Lib: clean",
@@ -915,8 +824,7 @@ var translations = {
 			kling: "mIllogh vIH Say'",
 			es: "Videoteca: borrar",
 			it: "Videoteca: Pulito",
-			fr: "Vidéothèque: nettoyer",
-			gr: ""
+			fr: "Vidéothèque: nettoyer"
 	},
 	WINDOW_TITLE:{//It's the title of the browserwindow/tab name ment
 			en: "Window title:",
@@ -924,8 +832,7 @@ var translations = {
 			kling: "Qorwagh pong:",
 			es: "Título de ventana:",
 			it: "Titolo della finestra:",
-			fr: "Titre de la fenêtre:",
-			gr: ""
+			fr: "Titre de la fenêtre:"
 	},
 	YARC_DEMO_VID:{//play a demo video of yarc in xbmc/kodi TODO:es, it, fr
 			en: "yarc demonstration video ",
@@ -933,8 +840,7 @@ var translations = {
 			kling: "DIS",
 			es: "video de demostración de yarc (Inglés)",
 			it: "yarc video dimostrativo (inglese)",
-			fr: "yarc démonstration vidéo (en anglais)",
-			gr: ""
+			fr: "yarc démonstration vidéo (en anglais)"
 	},
 	YEAR:{
 			en: "Year",
@@ -942,7 +848,6 @@ var translations = {
 			kling: "DIS",
 			es: "Año",
 			it: "Anno",
-			fr: "Année",
-			gr: ""
+			fr: "Année"
 	}
 }
