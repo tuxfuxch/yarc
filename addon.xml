@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon
-  id="plugin.webinterface.yarc"
-  version="0.8.1"
+  id="webinterface.yarc"
+  version="0.9.7"
   name="yarc"
   provider-name="tuxfuxch">
   <requires>
     <import addon="xbmc.json" version="6.0.0"/>
   </requires>
   <extension
-    point="xbmc.gui.webinterface"/>
+    point="xbmc.webinterface"/>
   <extension point="xbmc.addon.metadata">
-  <summary lang="en">yarc - a touch screen friendly webinterface for Koid</summary>
-  <summary lang="de">yarc - ein touch-screen freundliches Webinterface für Koid</summary>
-  <summary lang="es">yarc - una interfaz web amigable pantalla táctil para Koid</summary>
-  <description lang="en">This remote allows you to control the Koid with gestures in a mobile friendly webinterface. It's optimised for low power/mobile devices. You also can browse your libraries and start the media or addons. It's tested with Firefox and Firefox-mobile. JavaScript is required. Hint: read the readme.md (English) file for all the hidden features.</description>
-  <description lang="de">Mit dieser Fernbedienung können Sie die Koid mit Gesten mit einem mobil freundlichem Webinterface steuern. Es ist für niedrige Leistung/Mobile Geräte optimiert. Sie können auch Ihre Bibliotheken durchsuchen und den Medien oder Addons starten. Es ist getestet mit Firefox und Firefox-Mobile. JavaScript ist erforderlich. Tipp: Lesen Sie die readme.md (Englisch) Datei für alle versteckten Features.</description>
-  <description lang="es">Este control remoto le permite controlar el Koid con gestos en un móvil webinterface amigable. Está optimizado para dispositivos bajos potencia/móviles. También puede navegar sus bibliotecas y empezar a los medios de comunicación o addons. Está probado con Firefox y Firefox-móvil. JavaScript es necesario. Sugerencia: Lea el archivo (en inglés) readme.md para todas las funciones ocultas.</description>
-  <platform>all</platform>
+    <summary lang="en">yarc - a touch screen friendly webinterface for Koid</summary>
+    <summary lang="de">yarc - ein touch-screen freundliches Webinterface für Koid</summary>
+    <summary lang="es">yarc - una interfaz web amigable pantalla táctil para Koid</summary>
+    <description lang="en">This remote allows you to control the Koid with gestures in a mobile friendly webinterface. It's optimised for low power/mobile devices. You also can browse your libraries and start the media or addons. It's tested with Firefox and Firefox-mobile. JavaScript is required. Hint: read the readme.md (English) file for all the hidden features.</description>
+    <description lang="de">Mit dieser Fernbedienung können Sie die Koid mit Gesten mit einem mobil freundlichem Webinterface steuern. Es ist für niedrige Leistung/Mobile Geräte optimiert. Sie können auch Ihre Bibliotheken durchsuchen und den Medien oder Addons starten. Es ist getestet mit Firefox und Firefox-Mobile. JavaScript ist erforderlich. Tipp: Lesen Sie die readme.md (Englisch) Datei für alle versteckten Features.</description>
+    <description lang="es">Este control remoto le permite controlar el Koid con gestos en un móvil webinterface amigable. Está optimizado para dispositivos bajos potencia/móviles. También puede navegar sus bibliotecas y empezar a los medios de comunicación o addons. Está probado con Firefox y Firefox-móvil. JavaScript es necesario. Sugerencia: Lea el archivo (en inglés) readme.md para todas las funciones ocultas.</description>
+    <platform>all</platform>
   </extension>
 </addon>
 

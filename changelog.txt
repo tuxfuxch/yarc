@@ -1,3 +1,11 @@
+Version 0.9.7
+- Works now with Kodi 15.1
+- Update of jquery and a lot of changes to meet new conditions
+- Kodi loading-spinner is shown when loading data from Kodi
+- Context menu for file items in addons (for now add to playlist -> great for youtube Plugin!)
+- Navigation Buttons don't get executed multiple times by single press anymore
+- Plugins without icon's get now a placeholder graphic
+
 Version 0.8.1
 - Kodi Favourites are now accessible as addon (it shows up in the addon list as addon)
 - css styling: on large screens (more than 700px width), next and prev buttons are on the side of the list, and not anymore part of the list

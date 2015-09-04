@@ -128,6 +128,7 @@ If it's in english and german, change the filename to "my_favourite_movie[eng][g
 Capital or non-capital letters, as order, does not matter.
 
 ###Credits and Licenses
+all the licenses are in the subfolder resources/licenses
 
   * jquery (http://jquery.com/; MIT License)
   * Wikipedia and it contributors: for all the flags (all public domain or CC License)
@@ -135,7 +136,7 @@ Capital or non-capital letters, as order, does not matter.
       * if it is not mentioned in the text file, it's public domain
   * TochSwipe Plugin for jquery (https://github.com/mattbryson/TouchSwipe-Jquery-Plugin; GPL 2 or MIT License)
   * Font Awesome for the very good symbol-font (http://fontawesome.io; SIL OFL 1.1 License (Font) and MIT License (Code))
-  * jquery UI (http://jqueryui.com/; MIT License)
+  * jQuery UI (http://jqueryui.com/; MIT License)
   * jQuery UI Touch Punch Plugin/Fix; Touch Event Support for jQuery UI (http://touchpunch.furf.com/;  GPL 2 or MIT License)
   * the guy's behind http://images.weserv.nl/. Great service!
   * Kabooga for first testing and help in buxfixing, author of webinterface.xrc
