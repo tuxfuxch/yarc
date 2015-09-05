@@ -457,7 +457,7 @@ var yRemote = {
         
 		//check for swipe inputs in swipe area with jquery.touchSwipe.js
 		//depending on which section (navigation or player control) is activated, it starts the according functions
-        /*TODO $("#swipe").swipe( {
+        $("#swipe").swipe( {
           swipeStatus:function(event, phase, direction, distance, duration, fingers){
             if (phase=="move") { //while the touch is happening
               
@@ -564,8 +564,8 @@ var yRemote = {
           doubleTapThreshold:500, //how much time can pass in max between tabs, that it is a double tap
           maxTimeThreshold:1,//5000
           fingers:'all'
-        });*/
-        
+        });
+        /*
 		$("#swipe").swipe( {
 			swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
 				switch (direction){
@@ -628,7 +628,7 @@ var yRemote = {
 			},
 			threshold:35, //how far has the finger to swipe, that it is not a tap anymore
 			doubleTapThreshold:500, //how much time can pass in max between tabs, that it is a double tap
-		});
+		});*/
 		
 		/*-------------Index Page - Media Control Buttons-------------------------*/
 		
@@ -1307,7 +1307,7 @@ var yMovies = {
 			$("#movie-flex-prev").empty();
 			$("#movie-flex-next").empty();
 			yMovies.firstListItem = [0]; //to get track of what was search to go back with button
-			yMovies.createMovieList(0, $('#genreSelect option:selected').attr('value'),$('#languageSelect option:selected').attr('value'), $("#searchMovies").attr('value')); 
+			yMovies.createMovieList(0, $('#genreSelect option:selected').attr('value'),$('#languageSelect option:selected').attr('value'), $("#searchMovies").val()); 
 		});
 		
 		$("body").delegate("#movieListPrev", "click", function(e){  //checkbox select/unselect reverser
@@ -1317,7 +1317,7 @@ var yMovies = {
 			$("#movie-flex-prev").empty();
 			$("#movie-flex-next").empty();
 			
-			yMovies.createMovieList(yMovies.listPos, $('#genreSelect option:selected').attr('value'),$('#languageSelect option:selected').attr('value'), $("#searchMovies").attr('value')); 
+			yMovies.createMovieList(yMovies.listPos, $('#genreSelect option:selected').attr('value'),$('#languageSelect option:selected').attr('value'), $("#searchMovies").val()); 
             
             //scroll to top
             $('html,body').animate({scrollTop: $("#movies").offset().top},'fast');
@@ -1333,7 +1333,7 @@ var yMovies = {
 			$("#movie_list").empty();
 			$("#movie-flex-prev").empty();
 			$("#movie-flex-next").empty();
-			yMovies.createMovieList(yMovies.listPos, $('#genreSelect option:selected').attr('value'),$('#languageSelect option:selected').attr('value'), $("#searchMovies").attr('value'));
+			yMovies.createMovieList(yMovies.listPos, $('#genreSelect option:selected').attr('value'),$('#languageSelect option:selected').attr('value'), $("#searchMovies").val());
             
             //scroll to top
             $('html,body').animate({scrollTop: $("#movies").offset().top},'fast');
@@ -1459,14 +1459,14 @@ var yMovies = {
 			'{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": { "limits": { "start": 0 }, "properties": [ "plot", "trailer", "title", "runtime", "year", "genre", "rating", "thumbnail", "file", "playcount", "streamdetails"], "sort": { "method": "sorttitle", "ignorearticle": true }}, "id": 1}',				
 			function(result){
 				yMovies.moviesJSON = result; //write result in Array for further use 
-				yMovies.createMovieList(0, "all", "all",$("#searchMovies").attr('value'));
+				yMovies.createMovieList(0, "all", "all",$("#searchMovies").val());
 
 				$('#genreSelect').change(function() {  //create Action Listener for list with selection choice
 					$('#movie_list').empty(); //empty ul to update list with new choices
                     $("#movie-flex-prev").empty();
                     $("#movie-flex-next").empty();
 					yMovies.firstListItem = [0]; //if selection changed, start from the beginning
-					yMovies.createMovieList(0, $(this).val(), $('#languageSelect option:selected').attr('value'),$("#searchMovies").attr('value')); //create movieslist accouding to options
+					yMovies.createMovieList(0, $(this).val(), $('#languageSelect option:selected').attr('value'),$("#searchMovies").val()); //create movieslist accouding to options
 				});
 
 				$('#languageSelect').change(function() {  //create Action Listener for list with selection choice
@@ -1474,7 +1474,7 @@ var yMovies = {
                     $("#movie-flex-prev").empty();
                     $("#movie-flex-next").empty();
 					yMovies.firstListItem = [0];//if selection changed, start from the beginning
-					yMovies.createMovieList(0, $('#genreSelect option:selected').attr('value'),$(this).val(), $("#searchMovies").attr('value')); //create movieslist according to options
+					yMovies.createMovieList(0, $('#genreSelect option:selected').attr('value'),$(this).val(), $("#searchMovies").val()); //create movieslist according to options
 				});
 			}
 		);
@@ -2090,7 +2090,7 @@ var yMusic = {
                         $("#album-flex-next").empty();
 						
 						yMusic.firstListItem = [0];  //if selection changed, start from the beginning
-						yMusic.createAlbumList(0, $('#genreSelectMusic').val(), $("#searchMusic").attr('value')); //create albumlist according to options
+						yMusic.createAlbumList(0, $('#genreSelectMusic').val(), $("#searchMusic").val()); //create albumlist according to options
 					});
 				}
 			);
@@ -2106,7 +2106,7 @@ var yMusic = {
 			$("#album-flex-prev").empty();
 			$("#album-flex-next").empty();
 			yMusic.firstListItem = [0];//if selection changed, start from the beginning
-			yMusic.createAlbumList(0, $('#genreSelectMusic').val(), $("#searchMusic").attr('value'));
+			yMusic.createAlbumList(0, $('#genreSelectMusic').val(), $("#searchMusic").val());
 		});
 		
 		$("body").delegate("#playPlaylist", "click", function(e){  
@@ -2141,7 +2141,7 @@ var yMusic = {
 			$('#album_list').empty();
 			$("#album-flex-prev").empty();
 			$("#album-flex-next").empty();
-			yMusic.createAlbumList(yMusic.listPos, $('#genreSelectMusic').val(), $("#searchMusic").attr('value'));
+			yMusic.createAlbumList(yMusic.listPos, $('#genreSelectMusic').val(), $("#searchMusic").val());
             
             //scroll to top
             $('html,body').animate({scrollTop: $("#music").offset().top},'fast');
@@ -2156,7 +2156,7 @@ var yMusic = {
 			$('#album_list').empty();
 			$("#album-flex-prev").empty();
 			$("#album-flex-next").empty();
-			yMusic.createAlbumList(yMusic.listPos, $('#genreSelectMusic').val(), $("#searchMusic").attr('value'));
+			yMusic.createAlbumList(yMusic.listPos, $('#genreSelectMusic').val(), $("#searchMusic").val());
             
             //scroll to top
             $('html,body').animate({scrollTop: $("#music").offset().top},'fast');
@@ -2529,14 +2529,14 @@ var yAddons = {
 			$('#addonlist').empty(); //empty ul to update list with new choices
 			$("#addon-flex-prev").empty();
 			$("#addon-flex-next").empty();
-			yAddons.createAddonList(0, $('#addonSelect option:selected').attr('value'), $("#searchAddon").attr('value'));
+			yAddons.createAddonList(0, $('#addonSelect option:selected').attr('value'), $("#searchAddon").val());
 		});
 		
 		$("#searchAddon").keyup(function() {
 			$("#addonlist").empty(); //empty ul to update list with new choices
 			$("#addon-flex-prev").empty();
 			$("#addon-flex-next").empty();
-			yAddons.createAddonList(0, $('#addonSelect option:selected').attr('value'), $("#searchAddon").attr('value'));
+			yAddons.createAddonList(0, $('#addonSelect option:selected').attr('value'), $("#searchAddon").val());
 		});
 		
 		$("body").delegate("#addonListPrev", "click", function(e){  //checkbox select/unselect reverser
@@ -2545,7 +2545,7 @@ var yAddons = {
 			$("#addonlist").empty();
 			$("#addon-flex-prev").empty();
 			$("#addon-flex-next").empty();
-			yAddons.createAddonList(yAddons.listPos, $('#addonSelect option:selected').attr('value'), $("#searchAddon").attr('value'));
+			yAddons.createAddonList(yAddons.listPos, $('#addonSelect option:selected').attr('value'), $("#searchAddon").val());
             
             //scroll to top
             $('html,body').animate({scrollTop: $("#addons").offset().top},'fast');
@@ -2557,7 +2557,7 @@ var yAddons = {
 			$("#addonlist").empty();
 			$("#addon-flex-prev").empty();
 			$("#addon-flex-next").empty();
-			yAddons.createAddonList(yAddons.listPos, $('#addonSelect option:selected').attr('value'), $("#searchAddon").attr('value'));
+			yAddons.createAddonList(yAddons.listPos, $('#addonSelect option:selected').attr('value'), $("#searchAddon").val());
             
             //scroll to top
             $('html,body').animate({scrollTop: $("#addons").offset().top},'fast');
@@ -2612,11 +2612,12 @@ var yAddons = {
                 }
                 
 			} else if ($(this).attr('data-yAddonFileType') == "directory" || $(this).attr('data-yAddonFileType') == "window"){
-                if($(this).attr('data-yaddonfile') == "plugin.kodi.kodi_fav"){
-                     yAddons.openKodiFavs($(this).attr('data-yAddonID'), $(this).attr('data-yAddonFanartPath'));
-                }
 				$("#addonspopupList").empty();
-				yAddons.populateAddon($(this).attr('data-yAddonFile'), $(this).attr('data-yAddonFanartPath'));
+                if($(this).attr('data-yaddonfile') == "plugin.kodi.kodi_fav"){
+                    yAddons.openKodiFavs($(this).attr('data-yAddonID'), $(this).attr('data-yAddonFanartPath'));
+                } else {
+                    yAddons.populateAddon($(this).attr('data-yAddonFile'), $(this).attr('data-yAddonFanartPath'));
+                }
 				if( $(this).attr('data-yAddonIsBack') == "back"){
                   yAddons.addonBackPath.pop();yAddons.addonBackPath.pop();
 				}

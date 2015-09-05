@@ -1,3 +1,11 @@
+Version 0.9.8
+- Info dialog in addonspage (first sentence) is now wrapped
+- in the touchpad, if you hold your gesture in navigation for more than half a second,
+  you can scroll (measured by distance, not time!)
+- some folder cleanup
+- BUGFIX: when going back to "Kodi Favourites" in the popup over the "back" button, it does not start additionally a wrong function
+- BUGFIX: Searchfields now work again
+
 Version 0.9.7
 - Works now with Kodi 15.1
 - Update of jquery and a lot of changes to meet new conditions

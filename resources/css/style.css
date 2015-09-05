@@ -48,6 +48,8 @@
 .info{
 	font-size: 9px;
 	text-align: center;
+    overflow: visible;
+    white-space: normal;
 }
 .italic{
 	font-style: italic;
