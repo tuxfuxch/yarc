@@ -143,9 +143,9 @@
 					<div class="ui-block-a"><button class="cleanAndUpdate" data-yJsonFunction="VideoLibrary.Scan"  type="button"><span data-yts="VIDEO_LIB_SCAN"></span></button></div> 
 					<div class="ui-block-b"><button class="cleanAndUpdate" data-yJsonFunction="VideoLibrary.Clean" type="button"><span data-yts="VIDEO_LIB_CLEAN"></span></button></div> 
 				</div>
-				<a href="" id="yarcDemoVid" data-role="button" data-icon="info"><span data-yts="YARC_DEMO_VID"></span></button></a>
+				<a id="yarcDemoVid" data-role="button" data-icon="info"><span data-yts="YARC_DEMO_VID"></span></button></a>
 				<!-- 				<a href="readme.md" data-role="button" data-icon="info">Readme (English)</a> -->
-				<a href="" id="openSettings" data-role="button" data-icon="gear"><span data-yts="SETTINGS"></span></a> 
+				<a href="#settings" id="openSettings" data-role="button" data-icon="gear"><span data-yts="SETTINGS"></span></a> 
 			</div><!-- /collapsible -->
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
@@ -182,6 +182,9 @@
 				<input type="radio" id="plVideo" class="plRadio" name="plType" value="1" /> 
 				<label for="plVideo"><span data-yts="VIDEO"></span></label>
 			</fieldset>
+			<ul class="ulbar" data-role="listview">
+                <li id="loading_pl" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif"><span data-yts="LOADING"></span></li>
+            </ul>
 			<ul id="currentplaylist" class="ui-listview"></ul>
 			<button id="plRefresh" type="button" data-icon="refresh"><span data-yts="REFRESH"></span></button>
 			<button id="plBack" type="button" data-icon="back"><span data-yts="BACK"></span></button>
@@ -222,7 +225,6 @@
 				<select name="language" id="language">
 					<option value="en">English</option>
 					<option value="de">Deutsch</option>
-					<option value="kling">Klingon</option>
 					<option value="es">Español</option>
 				</select>
 				<label for="xbmcName" id="xbmcName_label"><span class="bold" data-yts="WINDOW_TITLE"></span></label>
@@ -231,6 +233,8 @@
 				<input name="hideMenuText" type="checkbox" id="hideMenuText" value="hideMenuText" />
 				<label for="hidePrevPics"><span data-yts="HIDE_PREV_PICS"></span></label>
 				<input name="hidePrevPics" type="checkbox" id="hidePrevPics" value="hidePrevPics" />
+				<label for="prevImgQualMovies" id="prevImgQualMovies_label"><span class="bold" data-yts="PREV_IMG_QUAL"></span></label>
+				<input name="prevImgQualMovies" type="number" id="prevImgQualMovies" value="" maxlength="2"/>
 				<label for="hideWatched"><span data-yts="HIDE_WATCHED"></span></label>
 				<input name="hideWatched" type="checkbox" id="hideWatched" value="hideWatched" />
 				<label for="listLength" id="listLength_label"><span class="bold" data-yts="MAX_LISTLENGTH"></span></label>
@@ -257,8 +261,6 @@
 				<input name="hideSearchMovies" type="checkbox" id="hideSearchMovies" value="hideSearchMovies" />
 				<label for="hideFileLinkMovies"><span data-yts="HIDE_FILELINK"></span></label>
 				<input name="hideFileLinkMovies" type="checkbox" id="hideFileLinkMovies" value="hideFileLinkMovies" />
-				<label for="prevImgQualMovies" id="prevImgQualMovies_label"><span class="bold" data-yts="PREV_IMG_QUAL"></span></label>
-				<input name="prevImgQualMovies" type="number" id="prevImgQualMovies" value="" maxlength="2"/>
 			</div>
 			<div data-role="collapsible">
 				<h3><span data-yts="MUSIC"></h3>
@@ -273,8 +275,6 @@
 				<input name="hideGenreAddons" type="checkbox" id="hideGenreAddons" value="hideGenreAddons" />
 				<label for="hideSearchAddons"><span data-yts="HIDE_SEARCH"></span></label>
 				<input name="hideSearchAddons" type="checkbox" id="hideSearchAddons" value="hideSearchAddons" />
-				<label for="stayInAddonPopupSetting"><span data-yts="STAY_IN_ADDON_POPUP"></span></label>
-				<input name="stayInAddonPopupSetting" type="checkbox" id="stayInAddonPopupSetting" value="stayInAddonPopupSetting" />
 			</div>
 			<button id="saveSettings" data-role="button" data-icon="back"><span data-yts="SAVE_CLOSE"></span></button> 
 		</div><!-- /content -->
@@ -303,8 +303,8 @@
 					<div id="popupGenreMovies"></div>
 					<div id="popupPlotMovies"></div>
  					<div id="popupFilelink"></div> 
-					<button id="popupTrailer" type="button" data-yMovieTrailer=""><span data-yts="TRAILER"></span></button>
-					<button id="popupPlay" type="button" data-yMovieID=""><span data-yts="PLAY"></span></button>
+					<div id="popupTrailer" type="button" data-yMovieTrailer=""><span data-yts="TRAILER"></span></div>
+					<div id="popupPlay" type="button" data-yMovieID=""><span data-yts="PLAY"></span></div>
 					<button id="detailspopupMoviesClose" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
 				</div>
 			</div>
@@ -368,7 +368,8 @@
 					<div id="popupLanguagesFlagsSeries"></div>
 					<div id="popupGenreSeries"></div>
 					<div id="popupPlotSeries"></div>
-					<button id="popupPlaySeries" type="button" data-yPlaySeriesPath=""><span data-yts="PLAY"></span></button>
+					<div id="popupPlaySeries" type="button" data-yPlaySeriesPath=""><span data-yts="PLAY"></span></div>
+					<div id="popupAddPlaylistSeries" type="button" data-yEpisodeID=""><span data-yts="ADD_PLAYLIST"></span></div>
 					<button id="detailspopupSeriesClose" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
 				</div>
 				<ul class="ulbar" data-role="listview">
@@ -514,30 +515,9 @@
 					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
 				</ul>
 			</div><!-- /navbar -->
-		</div><!-- /header -->	
-        <div data-role="popup" id="detailspopupAddons" class="ui-content detailspopup" data-position-to="window" data-yAddonname="">
-            <div class="ui-grid-a">
-                <div class="ui-block-a">
-                    <label for="addonpopshowplot" data-mini="true"><span data-yts="SHOW_DESCRITION"></span></label>
-                    <input name="addonpopshowplot" type="checkbox" id="addonpopshowplot" value="1" data-mini="true" />
-                </div>
-                <div class="ui-block-b">
-                    <label for="stayInAddonPopup" data-mini="true"><span data-yts="STAY_IN_ADDON_POPUP"></span></label>
-                    <input name="stayInAddonPopup" type="checkbox" id="stayInAddonPopup" value="1" data-mini="true"/>
-                </div>
-            </div>
-            <div id="SendTextAddon" class="ui-grid-a">
-                <div class="ui-block-a"><input id="SendTextFieldAddon" name="SendTextFieldAddon" type="text" placeholder="Send Text" data-mini="true"></div>
-                <div class="ui-block-b"><a id="SendTextButtonAddon" data-role="button" data-mini="true"><span data-yts="SEND_TEXT"></span></a></div>
-            </div>
-            <img id="popupImageAddons" class="popupImage" alt="" src="resources/images/transparent.gif"/>
-            <ul id="loading_addonPopup" class="ulbar" data-role="listview"><li class='loading addonpopupload '><img class="kodi_loading" src="resources/images/kodi_spinner.gif"><span data-yts="LOADING"></span></li></ul>
-            <ul id="addonspopupList" class="ui-listview"></ul>
-            <button id="addonspopupRefresh" type="button" data-icon="refresh" data-yAddonDirPath=""><span data-yts="REFRESH"></span></button>
-            <button id="addonspopupopenaddon" type="button" data-yAddonDirPath=""><span data-yts="OPEN_ADDON"></span></button>
-            <button id="detailspopupAddonsClose" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
-        </div>
+		</div><!-- /header -->
 		<div class="content" data-role="content">
+          <div id="addonoverview"> 
 			<ul class="ulbar" data-role="listview">
               <li>
                 <div class="info"><span data-yts="ADDON_INTRO"></span></div>
@@ -560,6 +540,58 @@
               <div id="addonlist" class="flex-content"></div>
               <div id="addon-flex-next" class="flex-next"></div>
             </div>
+           </div> 
+           <div id="detailspopupAddons">
+              <div class="ui-grid-a">
+                  <div class="ui-block-a">
+                      <label for="addonpopshowplot" data-mini="true"><span data-yts="SHOW_DESCRITION"></span></label>
+                      <input name="addonpopshowplot" type="checkbox" id="addonpopshowplot" value="1" data-mini="true" />
+                  </div>
+                  <div class="ui-block-b">
+                      <label for="stayInAddonPopup" data-mini="true"><span data-yts="STAY_IN_ADDON_POPUP"></span></label>
+                      <input name="stayInAddonPopup" type="checkbox" id="stayInAddonPopup" value="1" data-mini="true"/>
+                  </div>
+              </div>
+              <div id="SendTextAddon" class="ui-grid-a">
+                  <div class="ui-block-a"><input id="SendTextFieldAddon" name="SendTextFieldAddon" type="text" placeholder="Send Text" data-mini="true"></div>
+                  <div class="ui-block-b"><a id="SendTextButtonAddon" data-role="button" data-mini="true"><span data-yts="SEND_TEXT"></span></a></div>
+              </div>
+              <img id="popupImageAddons" alt="" src="resources/images/transparent.gif"/>
+              <ul class="ulbar" data-role="listview"><li id="loading_addonPopup" class='loading addonpopupload'><img class="kodi_loading" src="resources/images/kodi_spinner.gif"><span data-yts="LOADING"></span></li></ul>
+              <ul id="addonspopupList" class="ui-listview"></ul>
+              <button id="addonspopupRefresh" type="button" data-icon="refresh" data-yAddonDirPath=""><span data-yts="REFRESH"></span></button>
+              <button id="addonspopupopenaddon" type="button" data-yAddonDirPath=""><span data-yts="OPEN_ADDON"></span></button>
+              <button id="detailspopupAddonsBack" type="button" data-icon="delete"><span data-yts="CLOSE"></span></button>
+          </div>
+		</div><!-- /content -->
+		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
+          <div class="footer">
+			<div class="seek-bubble">
+				<div class="bubble-arrow bubble-bottom"></div>
+				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
+			</div>
+			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
+			<span class="footer-right" data-role="none">
+				<img class="footerImage" alt="" src="resources/images/transparent.gif" />
+				<span class="footerTime"></span>
+				<span class="footerTitle"></span>
+			</span>
+          </div>
+		</div><!-- /footer -->
+	</div><!-- /page -->
+	<div data-role="page" data-theme="b" id="detailspopupAddons2">
+		<div data-role="header" data-theme="b">
+			<div class="navbar" data-role="navbar">
+				<ul>
+					<li><a href="#remote"><span class="fa fa-th"></span><br /><span  class="yheadermenuitem" data-yts="REMOTE"></span></a></li>
+					<li><a href="#movies"><span class="fa fa-film"></span><br /><span  class="yheadermenuitem" data-yts="MOVIES"></span></a></li>
+					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span  class="yheadermenuitem" data-yts="SERIES"></span></a></li>
+					<li><a href="#music"><span class="fa fa-music"></span><br /><span  class="yheadermenuitem" data-yts="MUSIC"></span></a></li>
+					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span  class="yheadermenuitem" data-yts="ADDONS"></span></a></li>
+				</ul>
+			</div><!-- /navbar -->
+		</div><!-- /header -->	
+		<div class="content" data-role="content">
 		</div><!-- /content -->
 		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
           <div class="footer">

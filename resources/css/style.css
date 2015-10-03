@@ -15,14 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-
+.ui-mobile .ui-page-active {
+    overflow-x: visible !important;
+}
 
 /************************************************************************************* 
  *	General (G)								 													 *
  *************************************************************************************/
-
-
-
 .yListItem{
 	margin: -1px 0px 0px 0px !important;
 	list-style-type: none;
@@ -124,7 +123,6 @@ a:hover {
 	width:15px;
 	top:+1px;
 }
-
 /****************************** g:Header ********************************/
 .ui-navbar li .ui-btn .ui-btn-inner  {
 	padding-top:5px;
@@ -133,9 +131,7 @@ a:hover {
 .yheadermenuitem{
 	display: block;
 }
-
 /****************************** g:Popups ********************************/
-
 .detailspopup{
 	overflow: hidden !important;
 	padding: 0px;
@@ -148,7 +144,7 @@ a:hover {
 	margin-right: auto;  /* for centering */
 }
 .popupImage{	
-	width: 100% !important;
+	width: 100%;
 	height: Auto !important;
 	position:absolute;
 	-khtml-opacity:.250;
@@ -170,12 +166,10 @@ a:hover {
 .playSong {
 	position:relative;
 	margin-right: 5px;
+	min-height: 30px;
 	z-index: 9999; /*get element infront of background image*/
 }
-
 /****************************** g:Index Page ********************************/
-
-
 /*swipe function*/
 .swipe-box{	
 	overflow:hidden;
@@ -247,7 +241,6 @@ a:hover {
 	height: 50px;
 	line-height: 50px;
 }
-
 /****************************** g:Settingspage ********************************/
 #fanart {
 	height: 140px; 
@@ -255,9 +248,7 @@ a:hover {
     margin-right: auto;
 	display: block;
 }
-
 /****************************** g: Language Flags ********************************/
-
 .pathToFlags {
 	border-width: 1px !important; 
 	height: 15px;
@@ -267,12 +258,18 @@ a:hover {
 img.movieRating{
 	width: 10px;
 }
-
 /****************************** g: Series Page ********************************/
+.greenSeriesSeason{
+	width: 16px;
+	height: auto;
+}
 .series-item h4{
 	display: inline !important;
 	vertical-align: top;
 	padding-left: 5px;
+}
+.series-item{
+  min-height: 50px;
 }
 .seriesThumbAddon{
 	width: 100%;
@@ -292,25 +289,47 @@ img.movieRating{
 	width: 20px;
 	height: auto;
 }
+.openSeries > h3 > a {
+    min-height: 50px;
+    line-height: 50px;
+}
+
 .openSeries .ui-btn-icon-left {
     padding: 0 0 0 2.5em;
 }
-
-
+.openSeason .ui-btn-icon-left {
+    padding: 0.7em 2.5em;
+}
 /****************************** g: Song-Search Page ********************************/
 .buttonRightSongsearch{
     position: absolute;
 	right: 0%;
 }
 
-
-
+.songSearchAddPl {
+    margin: 0px;
+    height: 50px;
+}
 /****************************** g: Addon Page ********************************/
 #detailspopupAddons-popup{
  	overflow: hidden !important;
 	padding: 0px;
 	display:block;
     width: 90%;
+}
+#popupImageAddons{	
+	width: calc(100% + 1em)!important;
+    margin-left: -2em; /* to correct margin from jq content margin*/
+	height: Auto !important;
+	position:absolute;
+	-khtml-opacity:.250;
+	opacity:.250;
+	max-height: none !important;
+    overflow: hidden;
+}
+
+#loading_addonPopup{
+    margin: 1em; /*to correct the ulview -1em from jquery in wrapping ul*/
 }
 .addonPlot{ 
 	font-size: 13px;	
@@ -330,7 +349,7 @@ img.movieRating{
 	padding-left: 5px;
 }
 .addonDirPrevPic {
-	height: 82px;
+	height: 51px;
 	float: left;
 }
 .addonDirBackPic {
@@ -344,14 +363,13 @@ img.movieRating{
 	width: 20px;
 	height: auto;
 }
-.showAddonDirItem{
-	position: relative; /*to get item in front of background picture*/
-	
-/* 			z-index: 9999; */
-}
 .addonpopupload{
 	text-align: center;
 	margin-top: 20px;
+}
+.showAddonDirItem{
+	position: relative; /*to get item in front of background picture*/
+/* 			z-index: 9999; */
 }
 .addonDirItem {
   	white-space: normal; 
@@ -361,19 +379,29 @@ img.movieRating{
   display: table;
   clear: both;
 }
-.addonDirItemRight{
-  text-align: center;
-  float: right;    
-  width: 7%;
-  display: inline;   
-}
 .addonDirItemLeft{ 
   float:left;  
-  width: 92%;
+  width: calc(100% - 40px);
   display: inline;    
 }
-.addonDirItemLeft div{ 
-  line-height: 30px;
+.addonDirItemRight{
+  text-align: center;
+  float: right;
+  width: 40px;  
+  height: 51px; 
+  line-height: 51px; 
+  display: inline; 
+  background: #333;
+}
+.addonFavDelete{
+  color: red;
+  text-align: center;
+  float: right;
+  width: 40px;  
+  height: 51px; 
+  line-height: 51px; 
+  display: inline; 
+  background: #333;
 }
 .contextMenu{
   position: relative; /*to get item in front of background picture*/
@@ -387,7 +415,6 @@ img.movieRating{
   background: #c8c8d1;
   color: #000 !important;
 }
-
 /****************************** g: loading bar ********************************/
 .loading, .nomedia{
   -webkit-border-radius: 6px;
@@ -397,18 +424,21 @@ img.movieRating{
   text-align: center;
   list-style-type: none;
 }
+.loading{
+    margin-left: 0px;
+    margin-top: 8px;
+}
 .kodi_loading {
   display: inline; 
   height: 40px;
 }
-
 .ui-listview > .ui-li-has-thumb > .ui-btn, .ui-listview > .ui-li-static.ui-li-has-thumb {
   min-height: 0;
   padding-left: 35px;
-  margin-left: 1em;
 }
-
-
+#detailspopupAddons .ui-content .ui-listview, .ui-panel-inner > .ui-listview {
+  margin: 0px;
+}
 /****************************** g: Footer Bar ********************************/
 .footer-container {
 	width: 0px;  
@@ -455,7 +485,6 @@ img.movieRating{
 	height: 40px;  
 	opacity: 1;
 }
-
 .footerImage {
 	height: 40px;  
 	margin-left: -5px;
@@ -474,7 +503,6 @@ img.movieRating{
 	line-height:40px;
     margin-left: 6px;    
 }
-
 #seek-overlay{	
     display: none;
     position: fixed;
@@ -514,22 +542,28 @@ img.movieRating{
     bottom: -7px;
 	left: 17px;
 }
-
-
 /****************************** g:Playlist ********************************/
 #plType {
 	text-align: center; 
 }
 #currentplaylist{
-	margin-top: 10px;
+	margin-top: 20px;
 	margin-bottom: 10px;
 	width: 95%;
 }
 .plItem{
-	cursor: move !important; /*!important: to overwrite general yListItem class*/
+	cursor: ns-resize !important; /*!important: to overwrite general yListItem class*/
 }
 .plItemDragging{
 	background-color: #c8c8d1;
+}
+.plRemove {
+    margin: 0px;
+    height: 50px;
+    color: red !important;
+}
+#loading_pl{
+    margin-top: 18px;
 }
 
 
@@ -537,13 +571,8 @@ img.movieRating{
  *	Large Screen Media (LSM)															 *
  *************************************************************************************/
 @media only screen
-and (min-width : 780px) {
-
-
-
-	
-	/****************************** LSM : Flex Containers for Lists ********************************/
-	
+and (min-width : 780px) {	
+	/****************************** LSM : Flex Containers for Lists ********************************/	
 	.flex-container{
         display: flex;
         flex-direction: row;
@@ -574,8 +603,7 @@ and (min-width : 780px) {
 	.flex-prev:hover, .flex-next:hover {
 		background-color: #c8c8d1;	
         color: #000 !important;
-	}
-	
+	}	
 	/****************************** LSM : Index Page ********************************/
 	#navigation-arrows {
 		width: 500px;
@@ -598,23 +626,19 @@ and (min-width : 780px) {
 		margin: auto;  /* for centering */
 		position: relative;
 		width: 700px;
-	}
-	
+	}	
 	#detailspopupSeries{
 		width: 500px;
-	}
-	
+	}	
 	.openSeries > .ui-collapsible-content { /*get rid of blank line in nested collapsibles*/
         padding-top: 0px;
         padding-bottom: 0px;
         border: 0px;
-    }
-	
+    }	
 	/****************************** LSM : Footer ********************************/
 	.footer-right { 
 		font-size: 17px;
-	}
-	
+	}	
 	/****************************** LSM: Movies ******************************/
 	.openMovieItem {
         flex: 1;
@@ -649,7 +673,7 @@ and (min-width : 780px) {
 	.greenMovies {
 		display: block;
 		position: absolute; 
-		margin-top: -128px;	 
+		margin-top: -121px;	 
 		padding-left: 123px;	 
 		width: 20px;
 		height: auto;
@@ -663,10 +687,8 @@ and (min-width : 780px) {
 	}	
 	#detailspopupMovies{
 		width: 500px;
-	}
-	
+	}	
 	/****************************** LSM: Music ******************************/	
-	
 	.showAlbum {
         flex: 1;
         min-width: 200px;
@@ -706,9 +728,7 @@ and (min-width : 780px) {
 	}
     #detailspopupMusic{
         width: 500px;
-    }
-	
-	
+    }	
 	/****************************** LSM: Addons Page ********************************/
 	.addontitle {
 		text-align: center;
@@ -751,23 +771,17 @@ and (min-width : 780px) {
     }
 }
 
-
-
-
-
 /************************************************************************************* 
  *				Small Screen Media (SSM)                                             *
  *************************************************************************************/
 @media only screen
 and (max-width : 780px) {	
-	
 	.footer-right { 
 		font-size: 11px;
 	}
-
 	.flex-prev, .flex-next {
         list-style: none;
-		margin-bottom: -1px 0px 0px 0px;
+		margin-bottom: -1px;
 		-webkit-border-radius: 6px;
 		border-radius: 6px;
 		border: 1px solid #c8c8d1;
@@ -777,9 +791,7 @@ and (max-width : 780px) {
 	.flex-prev:hover, .flex-next:hover {
 		background-color: #c8c8d1;	
         color: #000 !important;
-	}
-
-	
+	}	
 	/****************************** SSM: Remote Page ******************************/
 	#SendText .ui-block-a {
 		clear:both; /* for linebrak */
@@ -800,14 +812,13 @@ and (max-width : 780px) {
 	#cleanAndUpdate .ui-block-b { 
 		clear:both; /* for linebrak */
 		width: 100%;
-	} 
-	
+	} 	
 	/****************************** SSM: Movies ******************************/
 	#movie_list {
 		line-height: 18px;
 	}
 	.openMovieItem { 
-		height: 80px;
+		height: 75px;
 		width: 100%;
 		-webkit-border-radius: 6px;
 		border-radius: 6px;
@@ -843,6 +854,8 @@ and (max-width : 780px) {
 		display: inline;
 		font-size: 10px;
 		padding-left: 2px;
+        line-height: 10px;
+        margin: 0px;
 	}
   	.openMovieItem p:after {
 		white-space:normal;  
@@ -859,7 +872,7 @@ and (max-width : 780px) {
 	}
 	.greenMovies {
 		display: block;
-		margin-top: -82px;	 
+		margin-top: -78px;	 
 		padding-left: 30px;
 		width: 20px;
 		height: auto;
@@ -926,8 +939,7 @@ and (max-width : 780px) {
     }   
     #detailspopupMusic{
         width: 90%;
-    }
-	
+    }	
 	/****************************** SSM: Addons Page ********************************/
 	#addonlist {
 		list-style-type: none;
@@ -972,7 +984,3 @@ and (max-width : 780px) {
 		margin: -1px 0px 0px 0px;
     }
 }
-
-
-
-

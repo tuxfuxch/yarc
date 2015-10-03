@@ -1,3 +1,33 @@
+Version 0.9.9
+- Addon Popup is now not a popup anymore, it's like an own site, to avoid scrolling problems. Behavior changed a little.
+- some styling of loading bar's, buttons and seen ticks
+- addon popupitems: directory/file pictures are now smaller, to see more on small screen devices
+- Add to playlist (songs and addon out of popup): if pressed twice, it doesn't get added twice to the playlist anymore
+- added loading bar to playlist's
+- setting for image compression is now in general section,
+  since it is used everywhere (setting does only apply for images loaded without compression aka quality 95)
+- When comming from Kodi Favorites, it shows now the fanart in the background when entering an addon folder
+- remove button is exchanged to a symbol in playlist
+- in playlist and footer, season and episode get shown if it's a TV Show
+- back button appears now in addoncontent before information is loaded
+- got rid of language klingon... toH va! 
+- If a whole season is seen in TV Series, it gets marked as seen in the interface (or not listed if set so)
+- New function: Add series from popup to playlist
+- New function: Add whole series season to playlist
+- New function: add addon media or directory to Kodi favorites
+- New function: delete Favorites in the favorite popup (if you add from an addon an existing favorite, it gets deleted too)
+- New function: selectbox values are now saved (like genre selection etc, but not search field values)
+- FIX: if different language codes for the same language in media filenames are useded, it lists them now as same language only once
+- FIX: if in an addonname information is added with/behind "?" (ex. extendedInfo Script) it gives no error back anymore
+- BUGFIX: in "Search Song", add to playlist button works again
+- BUGFIX: in swipefield-player, swipe to right goes now to next item in playlist as it should
+- BUGFIX: Video Playlist: playlist items are now moveable too
+- BUGFIX: Addons "other" now shows plugins which are not "audio" or "video"
+- BUGFIX: after opening the movies and series details popup a second time, the play button doesn't disapear anymore
+- BUGFIX: settings button should now work on windows browsers
+- BUGFIX: if pictures have an undefined value, picture function gives now back a broken imagelink
+- WORKAROUND: youtube search works again, it's an ugly hack, but works as expected
+
 Version 0.9.8
 - Info dialog in addonspage (first sentence) is now wrapped
 - in the touchpad, if you hold your gesture in navigation for more than half a second,
