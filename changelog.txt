@@ -1,29 +1,59 @@
-Version 0.9.9
-- Addon Popup is now not a popup anymore, it's like an own site, to avoid scrolling problems. Behavior changed a little.
+Version 0.10.0
+- own solution for language translation exchanged with i18next which caused code changes and reduction
+      --> translations are now managed with the transifex platform (www.transifex.com)
+- added Hebrew Translation (translation by github user yarons)
+- compressed country flags a lot (from 4.5mb to around 400kb)
+- more Kodi shortcut keys are supported now. Since they don't conflict with "my own style" they work all
+      --> See in Readme.md chapter "Key Map" for more info
+- Added PlayGenre-Button to the music page
+- Seen TV-Shows (all episodes in all seasons) are marked as seen, or not shown if set so
+- Added seen-green-tick in TV-Show details.
+- exchanged rating star pic with awsomefont star
+- Added resume option for movies and tv episodes
+- Details popup of movies, series and music are now not popups anymore. It's now the same way as addon details in release 0.9.10
+- Added Buttons to TV-Show to navigate next and prev items within season
+- Seek-overlay (time and difference shown when seeking) has now a black border for more contrast
+- some styling changes and code reduction
+- FIX: in popups, some buttons get now activated on first klick
+- FIX: if no fanaart for a movie, in the details it does not show the questionmark anymore
+- FIX: in footer, if no prevpic, there is no pic shown, to get more space
+- FIX: got rid of some unnecessary html attributes in button tags 
+- BUGFIX: in Addons, if addoncontent is refreshed, it doesn't get added to the backpath anymore
+- BUGFIX: if start navigation with Favorites in Addons, and go back to Favorites, you don't get caught in an endless loop anymore
+- BUGFIX: in series details, it shows now a language only once, even if isocode in file streamdetails and filename (if different tags used)
+      --> if there is the same language already two time in streamdetails, it still shows it twice (not a bug, it's a feature)
+- BUGFIX: Multiple bindings of some hotkey's eliminated  
+- BUGFIX: if there is no artist information for a song, it does not crash on it and shows the library
+      
+Version 0.9.11
+- added Portuguese language (translation via github by user sheikr)
+
+Version 0.9.10
+- Addon Popup is now not a popup anymore, it's like an own site, to avoid scrolling problems. Behaviour changed a little.
 - some styling of loading bar's, buttons and seen ticks
 - addon popupitems: directory/file pictures are now smaller, to see more on small screen devices
-- Add to playlist (songs and addon out of popup): if pressed twice, it doesn't get added twice to the playlist anymore
+- Add to playlist (songs and addon out of popup): if pressed twice, it doesn't get added twice to the playlist any more
 - added loading bar to playlist's
 - setting for image compression is now in general section,
   since it is used everywhere (setting does only apply for images loaded without compression aka quality 95)
-- When comming from Kodi Favorites, it shows now the fanart in the background when entering an addon folder
+- When coming from Kodi Favorites, it shows now the fanart in the background when entering an addon folder
 - remove button is exchanged to a symbol in playlist
 - in playlist and footer, season and episode get shown if it's a TV Show
-- back button appears now in addoncontent before information is loaded
+- back button appears now in addon content before information is loaded
 - got rid of language klingon... toH va! 
 - If a whole season is seen in TV Series, it gets marked as seen in the interface (or not listed if set so)
 - New function: Add series from popup to playlist
 - New function: Add whole series season to playlist
 - New function: add addon media or directory to Kodi favorites
 - New function: delete Favorites in the favorite popup (if you add from an addon an existing favorite, it gets deleted too)
-- New function: selectbox values are now saved (like genre selection etc, but not search field values)
-- FIX: if different language codes for the same language in media filenames are useded, it lists them now as same language only once
-- FIX: if in an addonname information is added with/behind "?" (ex. extendedInfo Script) it gives no error back anymore
+- New function: select-box values are now saved (like genre selection etc, but not search field values)
+- FIX: if different language codes for the same language in media file names are present, it lists them now as same language only once
+- FIX: if in an addonname information is added with/behind "?" (ex. extendedInfo Script) it gives no error back any more
 - BUGFIX: in "Search Song", add to playlist button works again
 - BUGFIX: in swipefield-player, swipe to right goes now to next item in playlist as it should
 - BUGFIX: Video Playlist: playlist items are now moveable too
 - BUGFIX: Addons "other" now shows plugins which are not "audio" or "video"
-- BUGFIX: after opening the movies and series details popup a second time, the play button doesn't disapear anymore
+- BUGFIX: after opening the movies and series details popup a second time, the play button doesn't disappear anymore
 - BUGFIX: settings button should now work on windows browsers
 - BUGFIX: if pictures have an undefined value, picture function gives now back a broken imagelink
 - WORKAROUND: youtube search works again, it's an ugly hack, but works as expected

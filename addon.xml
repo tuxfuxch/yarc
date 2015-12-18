@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon
   id="webinterface.yarc"
-  version="0.9.8"
+  version="0.10.0"
   name="yarc"
   provider-name="tuxfuxch">
   <requires>
@@ -10,12 +10,18 @@
   <extension
     point="xbmc.webinterface"/>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">yarc - a touch screen friendly webinterface for Koid</summary>
-    <summary lang="de">yarc - ein touch-screen freundliches Webinterface für Koid</summary>
-    <summary lang="es">yarc - una interfaz web amigable pantalla táctil para Koid</summary>
-    <description lang="en">This remote allows you to control the Koid with gestures in a mobile friendly webinterface. It's optimised for low power/mobile devices. You also can browse your libraries and start the media or addons. It's tested with Firefox and Firefox-mobile. JavaScript is required. Hint: read the readme.md (English) file for all the hidden features.</description>
-    <description lang="de">Mit dieser Fernbedienung können Sie die Koid mit Gesten mit einem mobil freundlichem Webinterface steuern. Es ist für niedrige Leistung/Mobile Geräte optimiert. Sie können auch Ihre Bibliotheken durchsuchen und den Medien oder Addons starten. Es ist getestet mit Firefox und Firefox-Mobile. JavaScript ist erforderlich. Tipp: Lesen Sie die readme.md (Englisch) Datei für alle versteckten Features.</description>
-    <description lang="es">Este control remoto le permite controlar el Koid con gestos en un móvil webinterface amigable. Está optimizado para dispositivos bajos potencia/móviles. También puede navegar sus bibliotecas y empezar a los medios de comunicación o addons. Está probado con Firefox y Firefox-móvil. JavaScript es necesario. Sugerencia: Lea el archivo (en inglés) readme.md para todas las funciones ocultas.</description>
+    <summary lang="en">yarc - a touch screen friendly webinterface for Kodi</summary>
+    <summary lang="de">yarc - ein touch-screen freundliches Webinterface für Kodi</summary>
+    <summary lang="es">yarc - una interfaz web amigable pantalla táctil para Kodi</summary>
+    <summary lang="it">yarc - un' interfaccia web per kodi con funzione touch screen</summary>
+    <summary lang="iw">yarc - מנשק דפדפן ידידותי למסכי מגע עבור קודי</summary>
+    <summary lang="pt">yarc - uma tela sensivel ao toque para webinterface Kodi</summary>
+    <description lang="en">This remote allows you to control the Kodi with gestures in a mobile friendly webinterface. It's optimised for low power/mobile devices. You also can browse your libraries and start the media or addons. It's tested with Firefox and Firefox-mobile. JavaScript is required. Hint: read the readme.md (English) file for all the hidden features.</description>
+    <description lang="de">Mit dieser Fernbedienung können Sie die Kodi mit Gesten mit einem mobil freundlichem Webinterface steuern. Es ist für niedrige Leistung/Mobile Geräte optimiert. Sie können auch Ihre Bibliotheken durchsuchen und den Medien oder Addons starten. Es ist getestet mit Firefox und Firefox-Mobile. JavaScript ist erforderlich. Tipp: Lesen Sie die readme.md (Englisch) Datei für alle versteckten Features.</description>
+    <description lang="es">Este control remoto le permite controlar el Kodi con gestos en un móvil webinterface amigable. Está optimizado para dispositivos bajos potencia/móviles. También puede navegar sus bibliotecas y empezar a los medios de comunicación o addons. Está probado con Firefox y Firefox-móvil. JavaScript es necesario. Sugerencia: Lea el archivo (en inglés) readme.md para todas las funciones ocultas.</description>
+    <description lang="it">Questo remote ti permette di controllare il Kodi con gesticolazioni attraverso un' interfaccia web mobile. Il tutto ottimizzato per dispositivi mobili con basse prestazioni. Inoltre è possibile sfogliare la propria biblioteca e avviare i media o gli addons. Testato per Firefox e Firefox-mobile. Il JavaScript è necessario. Consiglio: leggi il file readme.md (inglese) per scoprire tutte le caratteristiche nascoste.</description>
+    <description lang="iw">שלט זה מאפשר לך לשלוט בקודי עם מחוות במנשק ידידותי לניידים. השלט מותאם להתקנים בעלי צריכת חשמל נמוכה/מכשירים ניידים. ניתן גם לעיין בספריות שלך ולהתחיל את פריטי המדיה וההרחבות. השלט נבדק בפיירפוקס ובפיירפוקס לניידים. יש צורך ב־JavaScript. רמז: ניתן לקרוא את הקובץ readme.md (באנגלית) לקבלת מידע על כל התכונות הנסתרות.</description>
+    <description lang="pt">Esse controle permite você controlar o Kodi com movimentos em um celular compátivel  à webinterface. É otimizado para celulares com dispositivo\/potência baixa. Pode-se também  procurar sua biblioteca e começar a media ou addon. Esta testado com Firefox ou Firefox-celular. JavaScript é requerido.  Sugestão: Leia o arquivo readme.md (Inglês) para mais recursos ocultos.</description>
     <platform>all</platform>
   </extension>
 </addon>

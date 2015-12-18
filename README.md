@@ -8,7 +8,6 @@ An introduction video can be found here:
 
 WARNING: This Addon may contain content illegal in your country (example: flag of Tibet is illegal China)
 
-First things first: if you want a fancy GUI and/or a lot of functions, only for use on PC or tablet (give AWXi or Chorus a try), you might like other solutions better.
 I have done what I need and how I want it. Forgive me if it is not yet how you like it and what you want. Contact me to change that, I might agree with you.
 
 ###Key Features (what might be better than in other solutions)
@@ -45,6 +44,8 @@ Not entirely tested:
      - removing form play-list: button gets often not activated
   * Ubuntu Touch Browser
 	 - Deviceorienation doesn't work (yet)
+  * Windows Mobile (Edge Browser)
+      - Swipe field does not work (in settings choose buttons in the remote section)
 
 ###Settings
 
@@ -53,6 +54,7 @@ Check the settings and adjust the interface to you needs, or what you mobile dev
 Pointing out:
   * Define how long lists should be (good for large collections)
   * Reduce quality of pictures which are from the internet
+      --> hint: setting to 95 will load them directly, less than 95 will use an image proxy
   * don't show images if you don't need them
   * get rid of things you don't need, to save processor time or space on the interface
 
@@ -103,13 +105,19 @@ http://api.jquery.com/keypress/ (in the bottom, press a key and look for the lin
 
 Right now you can use:
   * **Arrow keys for navigation**
-  * **Backspace**: back
+  * **ESC**: go to root menu
+  * **Tab**: show/hide OSD
   * **Enter**: select
-  * **Shift & arrow up**: stop playing
-  * **Shift & arrow down**: play/pause
+  * **Backspace**: back
+  * **Shift & arrow up** or **x**: stop playing
+  * **Shift & arrow down** or **Space** or **p**: play/pause
   * **Shift & arrow left**: previous item in play-list
   * **Shift & arrow right**: next item in play-list
   * **c**: context menu
+  * **f**: fast forward
+  * **r**: rewind
+  * **i**: show info
+  * **m**: show/hide OSD
   * **q**: volume down (by 10 out of 100%)
   * **w**: volume up (by 10 out of 100%)
 
@@ -138,12 +146,15 @@ all the licenses are in the subfolder resources/licenses
   * Font Awesome for the very good symbol-font (http://fontawesome.io; SIL OFL 1.1 License (Font) and MIT License (Code))
   * jQuery UI (http://jqueryui.com/; MIT License)
   * jQuery UI Touch Punch Plugin/Fix; Touch Event Support for jQuery UI (http://touchpunch.furf.com/;  GPL 2 or MIT License)
+  * i18next (http://i18next.com ;MIT license)
   * the guy's behind http://images.weserv.nl/. Great service!
   * Kabooga for first testing and help in buxfixing, author of webinterface.xrc
   * Martijn for correction of addon.xml, Kodi Team Member
   * ruth440 for testing and feedback. I was multiple times pointed into the right direction
   * Mizaki for help/advising multiple times
   * and for the spanish translation
+  * sheikr and vilma for the portuguese translations
+  * yarons for the hebrew translation
 
 ###Contact me
 

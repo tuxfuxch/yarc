@@ -15,13 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
+
+/* #prevEpisode{line-height: 100%;} */
+
+
+
+/************************************************************************************* 
+ *	General (G)								 										 *
+ *************************************************************************************/
+
 .ui-mobile .ui-page-active {
     overflow-x: visible !important;
 }
-
-/************************************************************************************* 
- *	General (G)								 													 *
- *************************************************************************************/
 .yListItem{
 	margin: -1px 0px 0px 0px !important;
 	list-style-type: none;
@@ -31,7 +36,14 @@
   	white-space: nowrap; 
 	overflow: hidden !important;
 }
-.yListItem:hover{
+.yListItem:hover, .contextMenu:hover
+, .flex-prev:hover, .flex-next:hover
+,.openMovieItem:hover, .showAlbum:hover
+, .album_Item_Nav:hover, .addonlist-item:hover
+, .flex-prev:hover, .flex-next:hover
+,.showAlbum:hover, .album_Item_Nav:hover
+, .openMovieItem:hover, .addonlist-item:hover
+, .flexListPrevNext:hover{
 	background-color: #c8c8d1;
     color: #000 !important;
     cursor: pointer;
@@ -87,7 +99,7 @@ a:hover {
 .ui-page-theme-b a:hover, html .ui-bar-b a:hover, html .ui-body-b a:hover, html body .ui-group-theme-b a:hover {
     color: #fff;
 }
-#navbar {/*http://stackoverflow.com/questions/1216114/how-can-i-make-a-div-stick-to-the-top-of-the-screen-once-its-been-scrolled-to*/
+#navbar {
 	background-color: #c0c0c0;
 	position:fixed;
 	top:0;
@@ -119,9 +131,7 @@ a:hover {
 	vertical-align: middle;
 }
 .ratingStars{
-	position:relative;
-	width:15px;
-	top:+1px;
+	color: #FFCC00;
 }
 /****************************** g:Header ********************************/
 .ui-navbar li .ui-btn .ui-btn-inner  {
@@ -135,40 +145,46 @@ a:hover {
 .detailspopup{
 	overflow: hidden !important;
 	padding: 0px;
-/* 	position: relative; */
 	display:block;
 }
-.detailspopup button{
-    width: 99.5%;
-	margin-left: auto;  /* for centering */
-	margin-right: auto;  /* for centering */
-}
-.popupImage{	
+.detailsImage{	
 	width: 100%;
 	height: Auto !important;
 	position:absolute;
 	-khtml-opacity:.250;
 	opacity:.250;
 	max-height: none !important;
+	width: calc(100% + 1em)!important;
+    margin-left: -2em; /* to correct margin from jq content margin*/
+    margin-top: -1em; /* to correct margin from jq content margin and overwrite of .detailsImage*/
 }
 .songItem {
 	text-align: left;		
 }
-#popupPlotMovies {
+#movieDetailsPlot {
 	margin-top: 15px;
 }
-#popupFilelink {
+#movieDetailsFilelink {
 	margin-top: 15px;
 }
-#popupPlotSeries {
+#episodeDetailsPlot {
 	margin-top: 15px;
 }
+#episodeDetailsImage{
+    margin-top: 0px;
+}
+
 .playSong {
 	position:relative;
 	margin-right: 5px;
 	min-height: 30px;
 	z-index: 9999; /*get element infront of background image*/
 }
+
+#addonDetailsImage {
+    margin-top: 0em;
+}
+
 /****************************** g:Index Page ********************************/
 /*swipe function*/
 .swipe-box{	
@@ -258,7 +274,18 @@ a:hover {
 img.movieRating{
 	width: 10px;
 }
+/****************************** g: Movies Page ********************************/
+#movieDetailsImage{
+    margin-top: -1em; /* to correct margin from jq content margin and overwrite of .detailsImage*/
+}
+
 /****************************** g: Series Page ********************************/
+.greenSeriesShow{
+	width: 16px;
+	height: auto;
+    display: block;
+    position: absolute;
+}
 .greenSeriesSeason{
 	width: 16px;
 	height: auto;
@@ -311,31 +338,14 @@ img.movieRating{
     height: 50px;
 }
 /****************************** g: Addon Page ********************************/
-#detailspopupAddons-popup{
- 	overflow: hidden !important;
-	padding: 0px;
-	display:block;
-    width: 90%;
-}
-#popupImageAddons{	
-	width: calc(100% + 1em)!important;
-    margin-left: -2em; /* to correct margin from jq content margin*/
-	height: Auto !important;
-	position:absolute;
-	-khtml-opacity:.250;
-	opacity:.250;
-	max-height: none !important;
-    overflow: hidden;
-}
-
-#loading_addonPopup{
+#loading_addonDetails{
     margin: 1em; /*to correct the ulview -1em from jquery in wrapping ul*/
 }
 .addonPlot{ 
 	font-size: 13px;	
 	margin-top: 0px;
 }
-#addonspopupList {			
+#addonDetailsList {			
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
@@ -343,7 +353,7 @@ img.movieRating{
 	margin-top:20px;
 	margin-bottom: 20px;
 }	
-#addonspopupList h4{
+#addonDetailsList h4{
 	display: inline !important;
 	vertical-align: top;
 	padding-left: 5px;
@@ -363,7 +373,7 @@ img.movieRating{
 	width: 20px;
 	height: auto;
 }
-.addonpopupload{
+.addonDetailsLoad{
 	text-align: center;
 	margin-top: 20px;
 }
@@ -410,11 +420,6 @@ img.movieRating{
   border-left: 1px solid #c8c8d1; 
   border-bottom: 1px solid #c8c8d1; 
 }
-.contextMenu:hover{
-  cursor: pointer;
-  background: #c8c8d1;
-  color: #000 !important;
-}
 /****************************** g: loading bar ********************************/
 .loading, .nomedia{
   -webkit-border-radius: 6px;
@@ -436,7 +441,7 @@ img.movieRating{
   min-height: 0;
   padding-left: 35px;
 }
-#detailspopupAddons .ui-content .ui-listview, .ui-panel-inner > .ui-listview {
+#addonDetails .ui-content .ui-listview, .ui-panel-inner > .ui-listview {
   margin: 0px;
 }
 /****************************** g: Footer Bar ********************************/
@@ -463,11 +468,13 @@ img.movieRating{
 	font-size: 11px;
 	height: 40px;  
 }
-.footer-left-in {
+.footer-left-out, .footer-left-in  {
 	vertical-align: top;
 	display: inline-block;
 	background-color: #6E6E6E;
-	width: 35px; 
+	width: 35px;
+}
+.footer-left-in { 
 	padding-top: 10px;
 	padding-left: 19px;  
 	padding-right: 10px; 
@@ -475,10 +482,6 @@ img.movieRating{
 	opacity:.70;
 }
 .footer-left-out {
-	vertical-align: top;
-	display: inline-block;
-	background-color: #6E6E6E;
-	width: 35px; 
 	padding-top: 0px;
 	padding-left: 14px;  
 	padding-right: 5px; 
@@ -511,6 +514,8 @@ img.movieRating{
     top: 20%;
 	z-index:100;
 	color: #685300;
+/*     text-shadow: 2px 2px #9E915C; */
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 	font-size: 60px;
     font-family: "Verdana", Georgia, sans-serif;
 }
@@ -586,11 +591,9 @@ and (min-width : 780px) {
 	}
 	.flex-prev {
         order: -1;
-		width: 5%;
 	}
 	.flex-next {
 		order: 2;
-		width: 5%;
 	}
 	.flex-prev, .flex-next {
         width: 5%;
@@ -600,36 +603,39 @@ and (min-width : 780px) {
         list-style: none;
         overflow: hidden;
 	}
-	.flex-prev:hover, .flex-next:hover {
-		background-color: #c8c8d1;	
-        color: #000 !important;
-	}	
+	.flexListPrevNext img, .musicPrevPic, .moviePrevPic{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
+		height: auto;
+	}
+	.openMovieItem, .showAlbum, .addonlist-item {
+        flex: 1;
+        min-width: 200px;
+        max-width: 400px;
+		display: inline-block;
+		vertical-align: top;
+		-webkit-border-radius: 6px;
+		border-radius: 6px;
+	}
 	/****************************** LSM : Index Page ********************************/
 	#navigation-arrows {
 		width: 500px;
 	}
-	#SendText .ui-block-a {
+	#SendText .ui-block-a, #SendTextAddon .ui-block-a {
 		width: 75%;
 	}
-	#SendText .ui-block-b { 
+	#SendText .ui-block-b, #SendTextAddon .ui-block-b { 
 		width: 25%;
-	} 
-	#SendTextAddon .ui-block-a {
-		width: 75%;
 	}
-	#SendTextAddon .ui-block-b { 
-		width: 25%;
-	} 
 	/****************************** LSM : Series ********************************/
 	#series_list { 
 		width: 70%;  /* for centering */
 		margin: auto;  /* for centering */
 		position: relative;
 		width: 700px;
-	}	
-	#detailspopupSeries{
-		width: 500px;
-	}	
+	}
 	.openSeries > .ui-collapsible-content { /*get rid of blank line in nested collapsibles*/
         padding-top: 0px;
         padding-bottom: 0px;
@@ -640,26 +646,14 @@ and (min-width : 780px) {
 		font-size: 17px;
 	}	
 	/****************************** LSM: Movies ******************************/
-	.openMovieItem {
-        flex: 1;
-        min-width: 200px;
-        max-width: 400px;
-		display: inline-block;
-		vertical-align: top;
-		-webkit-border-radius: 6px;
-		border-radius: 6px;
-	}
-	.openMovieItem:hover { 
-		background-color: #c8c8d1;
-        color: #000 !important;
-        cursor: pointer;
+	.addonlist-item{
+		list-style-type: none;
+		white-space:nowrap; 
+		overflow:hidden;	
+		cursor:pointer;
 	}
 	.moviePrevPic {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
 		width: 80px;
-		height: auto;
 	}
 	.openMovieItem h4 {
 		text-align: center;
@@ -667,93 +661,45 @@ and (min-width : 780px) {
 		font-size: 18px;
 	}
 	.openMovieItem p {
+        font-weight: 500;
 		text-align: center;
 		margin:0px;
 	}
 	.greenMovies {
 		display: block;
-		position: absolute; 
-		margin-top: -121px;	 
-		padding-left: 123px;	 
+		position: relative; 
+		margin-top: -20px; 
 		width: 20px;
 		height: auto;
-	}	
-	.moviePrevPicArrow {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 100%;
-		height: auto;
-	}	
-	#detailspopupMovies{
-		width: 500px;
-	}	
-	/****************************** LSM: Music ******************************/	
-	.showAlbum {
-        flex: 1;
-        min-width: 200px;
-        max-width: 400px;
-		display: inline-block;
-		vertical-align: top;
-		cursor:pointer;
-		-webkit-border-radius: 6px;
-		border-radius: 6px;
+        margin-left: auto;
+        margin-right: auto;
 	}
-	.musicPrevPicArrow{
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 100%;
-		height: auto;
-    }
+	.openMovieItem span:after{
+		white-space: pre;
+		content:'\A';
+	}
+	/****************************** LSM: Music ******************************/
 	.musicPrevPic {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 100px;
-		height: auto;
-	}
-	.showAlbum h4 {
+        width: 100px;
+    }
+	.showAlbum p, .showAlbum h4 {
 		text-align: center;
 		margin:2px 2px 2px 2px;
+	}
+	.showAlbum h4 {
 		font-size: 18px;
 	}
 	.showAlbum p {
-		text-align: center;
-		margin:2px 2px 2px 2px;
+        font-weight: 500;
 	}
-	.showAlbum:hover, .album_Item_Nav:hover { 
-        color: #000 !important;
-		background-color: #c8c8d1;
-	}
-    #detailspopupMusic{
-        width: 500px;
-    }	
 	/****************************** LSM: Addons Page ********************************/
 	.addontitle {
 		text-align: center;
-	}
-	.addonlist-item{
-        flex: 1;
-        min-width: 200px;
-        max-width: 400px;
-		display: inline-block;
-		vertical-align: top;
-		list-style-type: none;
-		-webkit-border-radius: 6px;
-		border-radius: 6px;
-		white-space:nowrap; 
-		overflow:hidden;	
-		cursor:pointer;
 	}
 	.addonlist-item h4 {
 		text-align: center;
 		margin:2px 2px 2px 2px;
 		font-size: 18px;	
-	}
-	.addonlist-item:hover, .flexListPrevNext:hover { 
-		background-color: #c8c8d1;   
-        color: #000 !important;
 	}
 	.addonImage{
 		display: block;
@@ -762,13 +708,6 @@ and (min-width : 780px) {
 		margin-left: auto;
 		margin-right: auto;
 	}
-	.addonImageArrow{
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 100%;
-		height: auto;
-    }
 }
 
 /************************************************************************************* 
@@ -788,52 +727,45 @@ and (max-width : 780px) {
 		cursor:pointer;
 		width: 100%;
 	}
-	.flex-prev:hover, .flex-next:hover {
-		background-color: #c8c8d1;	
-        color: #000 !important;
-	}	
-	/****************************** SSM: Remote Page ******************************/
-	#SendText .ui-block-a {
-		clear:both; /* for linebrak */
-		width: 100%;
+	/*ssm list items*/
+	#movie_list, #album_list, #addonlist {
+        margin-top: 1px;
 	}
-	#SendText .ui-block-b { 
-		clear:both; /* for linebrak */
-		width: 100%;
-	} 
-	#SendText .ui-block-c { 
-		clear:both; /* for linebrak */
-		width: 100%;
-	} 
-	#cleanAndUpdate .ui-block-a { 
-		clear:both; /* for linebrak */
-		width: 100%;
-	} 
-	#cleanAndUpdate .ui-block-b { 
-		clear:both; /* for linebrak */
-		width: 100%;
-	} 	
-	/****************************** SSM: Movies ******************************/
-	#movie_list {
-		line-height: 18px;
-	}
-	.openMovieItem { 
-		height: 75px;
+	.showAlbum, .album_Item_Nav
+	, .openMovieItem, .addonlist-item {
 		width: 100%;
 		-webkit-border-radius: 6px;
 		border-radius: 6px;
 		border: 1px solid #c8c8d1;
 		cursor:pointer;
-		overflow:hidden;
-		display: inline-block;
-		margin: -1px 0px 0px 0px;
+		overflow: hidden;
 		white-space:nowrap;  
+		margin: -1px 0px 0px 0px;
 		vertical-align: top; 
+		display: inline-block;
+	}    
+	.flex-next, .flex-prev{
+        height: 50px;
+        margin-top: -1px;
+    }
+	.openMovieItem h4:after , .flex-prev h4:after
+	, .flex-next h4:after, .addontitle:after
+	, .showAlbum h4:after, .openMovieItem p:after {
+		white-space: pre;
+		content:'\A';
 	}
-	.openMovieItem:hover { 
-		background-color: #c8c8d1;
-        color: #000 !important;
+	/****************************** SSM: Remote Page ******************************/
+	#SendText .ui-block-a, #SendText .ui-block-b
+	, #SendText .ui-block-c, #cleanAndUpdate .ui-block-a
+	, #cleanAndUpdate .ui-block-b{
+		clear:both; /* for linebrak */
+		width: 100%;
 	}
+	/****************************** SSM: Movies ******************************/
+	 .openMovieItem {
+        height: 75px;
+ 		line-height: 18px;
+     }
 	.openMovieItem div, .flex-prev div, .flex-next div {
 		display: inline-block;
 		margin: 0px;
@@ -845,10 +777,6 @@ and (max-width : 780px) {
 		vertical-align: top;		
 		padding-left:2px;
 	}
-	.openMovieItem h4:after , .flex-prev h4:after, .flex-next h4:after{
-		white-space: pre;
-		content:'\A';
-	}
 	.openMovieItem p {
 		white-space:normal;  
 		display: inline;
@@ -857,14 +785,9 @@ and (max-width : 780px) {
         line-height: 10px;
         margin: 0px;
 	}
-  	.openMovieItem p:after {
-		white-space:normal;  
-		white-space:pre;  
-		content:'\A';
-	}
 	.moviePrevPic {
 		display: inline;
-		width: 50px;
+		height: 75px;
 	}
 	.moviePrevPicArrow {
 		display: inline;
@@ -872,39 +795,14 @@ and (max-width : 780px) {
 	}
 	.greenMovies {
 		display: block;
-		margin-top: -78px;	 
-		padding-left: 30px;
+		margin-top: -78px;
 		width: 20px;
 		height: auto;
 	}
-	#movie-flex-prev{
-        height: 50px;
-    }
-	#movie-flex-next{
-        height: 50px;
-        margin-top: -1px;
-    }
 	/****************************** SSM: Music ******************************/
-	#album_list {	
-		line-height: 18px;
-	}
-	.showAlbum, .album_Item_Nav { 
-		height: 50px;
-		width: 100%;
-		-webkit-border-radius: 6px;
-		border-radius: 6px;
-		border: 1px solid #c8c8d1;
-		cursor:pointer;
-		overflow: hidden;
-		white-space:nowrap;  
-		margin: -1px 0px 0px 0px;
-		vertical-align: top; 
-		display: inline-block;
-	}
-	.showAlbum:hover, .album_Item_Nav:hover  { 
-		background-color: #c8c8d1;
-        color: #000 !important;
-	}	
+    .showAlbum, .album_Item_Nav{
+        height: 50px;
+    }    
 	.showAlbum div{
 		white-space:nowrap;  
 		margin: 0px;
@@ -916,10 +814,6 @@ and (max-width : 780px) {
 		vertical-align: top;
 		padding-left: 5px;
 	}
-	.showAlbum h4:after {
-		white-space: pre;
-		content:'\A';
-	}
 	.showAlbum p {
 		display: inline-block;
 		font-size: 10px;
@@ -929,58 +823,19 @@ and (max-width : 780px) {
 		height: 50px;
 		display: inline-block;
 	}
-	.musicPrevPicArrow {
-		display: inline;
-		height: 50px;
-	}
-	#album-flex-prev, #album-flex-next{
-        height: 50px;
-        margin-top: -1px;
-    }   
-    #detailspopupMusic{
-        width: 90%;
-    }	
 	/****************************** SSM: Addons Page ********************************/
-	#addonlist {
-		list-style-type: none;
-	}
-	.addonlist-item {
-		white-space:nowrap;
+	.addonlist-item{
+        height: 50px;
+    }
+    .addontitle {
 		vertical-align: top;
-		height: 50px;
-		display: inline-block;
-		-webkit-border-radius: 6px;
-		border-radius: 6px;
-		border: 1px solid #c8c8d1;
-		overflow:hidden;
-		cursor:pointer;
-		width: 100%;
-		margin: -1px 0px 0px 0px;
-	}
-	.addonlist-item:hover { 
-		background-color: #c8c8d1;
-        color: #000 !important;
-	}
-	.addontitle {
 		display: inline;
-		vertical-align: top;
 		padding-left: 5px;
 	}
-	.addontitle:after {
-		white-space: pre;
-		content:'\A';
-	}
-	.addonImage{
+	.addonImage, .addonImageArrow{
 		display: inline-block;
 		height: 50px;
 		width: auto;
 		margin-left: 0px;
 	}
-	.addonImageArrow{
-        height: 50px;
-    }
-	#addon-flex-prev, #addon-flex-next{
-        height: 50px;
-		margin: -1px 0px 0px 0px;
-    }
 }
