@@ -8,18 +8,16 @@ An introduction video can be found here:
 
 WARNING: This Addon may contain content illegal in your country (example: flag of Tibet is illegal China)
 
-I have done what I need and how I want it. Forgive me if it is not yet how you like it and what you want. Contact me to change that, I might agree with you.
-
 ###Key Features (what might be better than in other solutions)
 
   * GUI is optimized for smart phones
+  * Easy access to Remote controll and send text to Kodi
   * Swipe-area for gesture navigation/control
+  * Browse addons within the web interface
   * Navigate by changing the orientation of your device: more in the according chapter
   * Set how many items are shown in lists (so that you mobile browser does not crash because of an image overload)
   * Preview from the internet are compressed (tell in settings how much)
   * Reads languages out of the file name in your collection (read more about in the according chapter)
-  * Browse addons within the web interface
-  * Send a text-string from the yarc-GUI to a text field in Kodi
 
 ###Download
 
@@ -27,7 +25,7 @@ https://github.com/tuxfuxch/yarc
 
 ###Requirements
 
-  * Minimum XBMC Frodo (should work with Gotham according to others)
+  * Minimum Helix 14.x
   * Internet connection to see preview images of movies, readme and demo Video
   * Youtube Plugin
 
@@ -42,6 +40,7 @@ Not entirely tested:
      - removing form play-list: button gets often not activated
   *  Android: Chrome
      - removing form play-list: button gets often not activated
+     - in older Chrome Version, some texts are not visible
   * Ubuntu Touch Browser
 	 - Deviceorienation doesn't work (yet)
   * Windows Mobile (Edge Browser)
@@ -62,6 +61,7 @@ Pointing out:
 ###The GUI
 
 For screens with less than 700px width, the list items are shown not as tiles, it is a list with one item per line.
+Screens with less than 307x422 pixel (viewport) may have some displaying issues.
 
 ###Swipe gestures
 Through swipe and tab gestures, you can control your Kodi. Use the gray field to do it with the following gestures. 
@@ -146,7 +146,7 @@ all the licenses are in the subfolder resources/licenses
   * Font Awesome for the very good symbol-font (http://fontawesome.io; SIL OFL 1.1 License (Font) and MIT License (Code))
   * jQuery UI (http://jqueryui.com/; MIT License)
   * jQuery UI Touch Punch Plugin/Fix; Touch Event Support for jQuery UI (http://touchpunch.furf.com/;  GPL 2 or MIT License)
-  * i18next (http://i18next.com ;MIT license)
+  * i18next (http://i18next.com; MIT license)
   * the guy's behind http://images.weserv.nl/. Great service!
   * Kabooga for first testing and help in buxfixing, author of webinterface.xrc
   * Martijn for correction of addon.xml, Kodi Team Member
@@ -155,6 +155,7 @@ all the licenses are in the subfolder resources/licenses
   * and for the spanish translation
   * sheikr and vilma for the portuguese translations
   * yarons for the hebrew translation
+  * dawed for help/advising multiple times
 
 ###Contact me
 

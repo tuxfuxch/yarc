@@ -1,713 +1,584 @@
 <!DOCTYPE html> 
 <html> 
 <head> 
-	<title>yarc</title> 
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-	
-	<meta http-equiv='cache-control' content='no-cache'>
-    <meta http-equiv='expires' content='0'>
-    <meta http-equiv='pragma' content='no-cache'>
- 	
- 	<link rel="stylesheet" href="resources/scripts/jquery.mobile-1.4.5.min.css" /> 
-	<link rel="stylesheet" href="resources/css/style.css" />
-	<link rel="stylesheet" href="resources/css/font-awesome-4.1.0/css/font-awesome.min.css">
-	
- 	<script src="resources/scripts/jquery-2.1.4.min.js"></script>
- 	<script src="resources/scripts/jquery.mobile-1.4.5.min.js"></script> 
+  <title>yarc</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  
+  <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+  <meta HTTP-EQUIV="EXPIRES" CONTENT="Mon, 22 Jul 2002 11:12:01 GMT">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="expires" content="-1">
+  
+  <link rel="stylesheet" href="resources/scripts/jquery.mobile-1.4.5.min.css" /> 
+  <link rel="stylesheet" href="resources/css/style.css" />
+  <link rel="stylesheet" href="resources/css/font-awesome-yarc/style.css">
+  
+  <script src="resources/scripts/jquery-2.1.4.min.js"></script>
+  <script src="resources/scripts/jquery.mobile-1.4.5.min.js"></script> 
 
-	<script type="text/javascript" src="resources/scripts/yarc.js"></script>
-	<script type="text/javascript" charset="utf-8" src="resources/scripts/langCodeToDescFlag.js"></script>
-	<script type="text/javascript" src="resources/scripts/jquery.touchSwipe.js"></script>
-	<script type="text/javascript" src="resources/scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="resources/scripts/jquery.ui.touch-punch.min.js"></script>
-    <script type="text/javascript" src="resources/scripts/i18next-1.11.1.min.js"></script>
+  <script type="text/javascript" src="resources/scripts/yarc.js"></script>
+  <script type="text/javascript" charset="utf-8" src="resources/scripts/langCodeToDescFlag.js"></script>
+  <script type="text/javascript" src="resources/scripts/jquery.touchSwipe.js"></script>
+  <script type="text/javascript" src="resources/scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="resources/scripts/jquery.ui.touch-punch.min.js"></script>
+  <script type="text/javascript" src="resources/scripts/i18next-1.11.1.min.js"></script>
 
-	<link rel="icon" type="image/x-icon" href="resources/images/ylogo.ico">
+  <link rel="icon" type="image/x-icon" href="resources/images/ylogo.ico">
 </head>
 <body>
-	<div id="seek-overlay">&nbsp;</div>
-	<div data-role="page" data-theme="b" id="remote">
-		<div data-role="header" data-theme="b">
-			<nav class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote"><span class="fa fa-th"></span><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-					<li><a href="#movies"><span class="fa fa-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-					<li><a href="#addons"><span class="fa fa-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-				</ul>
-			</nav><!-- /navbar -->
-		</div><!-- /header -->	
-		<div class="content" data-role="content">
-			<div class="content-primary">
-				<div data-role="popup" id="detailspopupRemote" data-theme="b" class="ui-content" data-position-to="window">
-					<button class="popupSHRS" data-yJsonFunction="Application.Quit" data-i18n="quit"></button>
-					<button class="popupSHRS" data-yJsonFunction="System.Suspend" data-i18n="suspend"></button>
-					<button class="popupSHRS" data-yJsonFunction="System.Hibernate" data-i18n="hibernate"></button>
-					<button class="popupSHRS" data-yJsonFunction="System.Reboot" data-i18n="reboot"></button>
-					<button class="popupSHRS" data-yJsonFunction="System.Shutdown" data-i18n="shutdown"></button>
-					<button id="popupCancel" data-icon="delete" data-i18n="cancel"></button>
-				</div>
-				<div data-role="popup" id="detailspopupSwipe" data-overlay-theme="b" data-theme="b" class="ui-content detailspopup" data-position-to="window">
-						<span class="italic" data-i18n="swipe-help-1"></span><br />
-						<span data-i18n="swipe-help-2"></span><br />
-						<span class="bold" data-i18n="navigation"></span>
-						<ul>
-							<li data-i18n="swipe-help-3"></li>
-							<li data-i18n="swipe-help-4"></li>
-							<li data-i18n="swipe-help-5"></li>
-							<li data-i18n="swipe-help-6"></li>
-						</ul>
-						<span class="bold" data-i18n="player"></span>
-						<ul>
-							<li data-i18n="swipe-help-7"></li>
-							<li data-i18n="swipe-help-8"></li>
-							<li data-i18n="swipe-help-9"></li>
-							<li data-i18n="swipe-help-10"></li>
-							<li data-i18n="swipe-help-11"></li>
-							<li data-i18n="swipe-help-12"></li>
-							<li data-i18n="swipe-help-13"></li>
-						</ul>
-					<button id="detailspopupSwipeClose" data-icon="delete" data-i18n="close"></button>
-				</div>
-			</div>
-			<!--Device motion | leave for Device orientation debugging 
-			<div id="dataContainerOrientation">
-				No device orientation data
-			</div>
-			<div id="dataContainerMotion">
-				No device motion data
-			</div>-->
-			<div id="swipe" class="swipe-box" unselectable='on' onselectstart='return false;'  onmousedown='return false;'>
-				<fieldset id="nav-med-radio" data-role="controlgroup" data-type="horizontal" data-mini="true">
-					<input type="radio" id="radioNav" class="nav-med" name="nav-med" value="Nav" checked />
-					<label for="radioNav" data-i18n="navigation"></label>
-					<input type="radio" id="radioMedia" class="nav-med" name="nav-med" value="Media" /> 
-					<label for="radioMedia" data-i18n="player"></label><br />
-				</fieldset>
-				<span data-i18n="swipe-or-press"></span>&nbsp;<a id="swipe-help"><span data-i18n="help"></span></a>
-			</div>
-			<div id="mediacontrol1" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
-				<button class="playergoto" data-yJsonFunction="previous"><span class="fa fa-step-backward"></span></button>
-				<button class="playercontrol" data-yJsonFunction="Player.PlayPause"><span class="fa fa-play"></span><span class="fa fa-pause"></span></button>
-				<button class="playercontrol" data-yJsonFunction="Player.stop"><span class="fa fa-stop"></span></button>
-				<button class="playergoto" data-yJsonFunction="next"><span class="fa fa-step-forward"></span></button>
-			</div>
-			<div id="mediacontrol2" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
-				<button class="playerSetSpeed" data-yJsonFunction="decrement" data-mini="true"><span class="fa fa-backward"></span></button>
-				<button id="SetRepeat" name="Player.SetRepeat" data-mini="true"><span class="fa fa-refresh"></span></button>
-				<a href="#pl" data-role="button" data-mini="true">&nbsp;&nbsp;<span class="fa fa-list">&nbsp;&nbsp;</span></a>
-				<button id="SetShuffle" name="Player.SetShuffle" data-mini="true"><span class="fa fa-random"></span></button>
-				<button class="playerSetSpeed" data-yJsonFunction="increment" data-mini="true"><span class="fa fa-forward"></span></button>
-			</div>
-			<div id="navigation-arrows" class="ui-grid-b">
-				<div class="ui-block-a"></div>
-				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Up"><span class="fa fa-caret-up"></span></button></div>
-				<div class="ui-block-c"></div>     
-				<div class="ui-block-a"><button class="navcontrol" data-yJsonFunction="Input.Left"><span class="fa fa-caret-left"></span></button></div>
-				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Select"><span class="fa fa-check"></span></button></div> 
-				<div class="ui-block-c"><button class="navcontrol" data-yJsonFunction="Input.Right"><span class="fa fa-caret-right"></span></button></div>       
-				<div class="ui-block-a"><button class="navcontrol" data-yJsonFunction="Input.ContextMenu"><span class="fa fa-list-alt"></span></button></div>
-				<div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Down"><span class="fa fa-caret-down"></span></button></div> 
-				<div class="ui-block-c"><button class="navcontrol" data-yJsonFunction="Input.Back"><span class="fa fa-reply"></span></button></div>     
-			</div><!-- /navigation-arrows -->
-			<div id="MenuButtons" data-role="controlgroup" data-type="horizontal">
-				<a id="toggleFullscreen" data-role="button" data-mini="true"><span class="fa fa-picture-o"></span></a>
-				<a class="navcontrol" data-yJsonFunction="Input.Home" data-role="button" data-mini="true"><span class="fa fa-home"></span></a>
-				<a class="navcontrol" data-yJsonFunction="Input.Info" data-role="button" data-mini="true"><span class="fa fa-info-circle"></span></a>
-				<a class="navcontrol" data-yJsonFunction="Input.ShowOSD" data-role="button" data-mini="true">
-					<span class="fa fa-step-backward"></span>&nbsp;<span class="fa fa-pause"></span>&nbsp;<span class="fa fa-stop"></span>&nbsp;<span class="fa fa-step-forward"></span>
-				</a>
-			</div>
-			<div id="devOrientBlock" class="ui-grid-a">
-				<div class="ui-block-a"><label class="label" for="devOrient" data-i18n="device-orientation-navigation"></label></div>
-				<div class="ui-block-b">
-					<select name="devOrient" id="devOrient" data-role="slider" data-mini="true">
-						<option value="off">0</option>
-						<option value="on">I</option>
-					</select> 
-				</div>
-			</div>
-			<div id ="Volume" data-role="controlgroup" data-type="horizontal">
-<!-- 				<label>Volume</label> -->
-				<button class="volume-group" data-yJsonFunction="Volume.Minus">-</button>
-				<button id="SetMute" class="volume-group" data-yJsonFunction="Application.SetMute"><span class="fa fa-volume-up"></span></button>
-				<button class="volume-group" data-yJsonFunction="Volume.Plus">+</button>
-			</div><!-- /Volume -->
-			<div id="SendText" class="ui-grid-b">
-				<div class="ui-block-a"><input id="SendTextField" name="SendTextField" type="text" data-i18n="[placeholder]send-text"></div>
-				<div class="ui-block-b"><a id="SendTextButton" data-role="button" data-i18n="send-text"></a></div>
-			</div>
-			<div data-role="collapsible">
-				<h3><span data-i18n="tools"></span></h3>
-				<a href="" id="quit" data-role="button" data-i18n="turn-off"></a> 
-				<div id ="cleanAndUpdate" class="ui-grid-a">
-					<div class="ui-block-a"><button class="cleanAndUpdate" data-yJsonFunction="AudioLibrary.Scan" data-i18n="audio-lib-scan"></button></div> 
-					<div class="ui-block-b"><button class="cleanAndUpdate" data-yJsonFunction="AudioLibrary.Clean" data-i18n="audio-lib-clean"></button></div> 
-					<div class="ui-block-a"><button class="cleanAndUpdate" data-yJsonFunction="VideoLibrary.Scan" data-i18n="video-lib-scan"></button></div> 
-					<div class="ui-block-b"><button class="cleanAndUpdate" data-yJsonFunction="VideoLibrary.Clean" data-i18n="video-lib-clean"></button></div> 
-				</div>
-				<a id="yarcDemoVid" data-role="button" data-icon="info" data-i18n="yarc-video"></a>
-				<a href="#settings" id="openSettings" data-role="button" data-icon="gear" data-i18n="settings"></a> 
-			</div><!-- /collapsible -->
-		</div><!-- /content -->
-		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
-          <div class="footer">
-			<div class="seek-bubble">
-				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
-			</div>
-			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
-          </div>
-		</div><!-- /footer -->
-	</div><!-- /page -->
-	<div data-role="page" data-theme="b" id="pl">
-		<div data-role="header" data-theme="b">
-			<div class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote"><span class="fa fa-th"></span><br /><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-					<li><a href="#movies"><span class="fa fa-film"></span><br /><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /header -->	
-		<div class="content" data-role="content">
-			<fieldset id="plType" data-role="controlgroup"  data-type="horizontal" data-mini="true">
-				<input type="radio" id="plAudio" class="plRadio" name="plType" value="0" checked />
-				<label for="plAudio" data-i18n="audio"></label>
-				<input type="radio" id="plVideo" class="plRadio" name="plType" value="1" /> 
-				<label for="plVideo" data-i18n="video"></label>
-			</fieldset>
-			<ul class="ulbar" data-role="listview">
-                <li id="loading_pl" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif"><span data-i18n="loading"></span></li>
-            </ul>
-			<ul id="currentplaylist" class="ui-listview"></ul>
-			<button id="plRefresh" data-icon="refresh" data-i18n="refresh"></button>
-            <button id="plClose" data-icon="delete" data-i18n="close"></button>
-		</div><!-- /content -->
-		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
-          <div class="footer">
-			<div class="seek-bubble">
-				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
-			</div>
-			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
-          </div>
-		</div><!-- /footer -->
-	</div><!-- /page -->
-	<div data-role="page" data-theme="b" id="settings">
-		<div data-role="header" data-theme="b">
-			<div class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote"><span class="fa fa-th"></span><br /><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-					<li><a href="#movies"><span class="fa fa-film"></span><br /><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /header -->	
-		<div class="content" data-role="content">
-			<a target="_blank"  href="https://github.com/tuxfuxch/yarc"><img id="fanart" src="fanart.jpg" alt="fanart picture" /></a>
-			<a class="text-center" target="_blank"  href="https://github.com/tuxfuxch/yarc/blob/master/README.md">Readme</a>
-			<div data-role="collapsible">
-				<h3><span data-i18n="general"></span></h3>
-				<label for="language" id="language_label"><span class="bold" data-i18n="language"></span></label>
-				<select name="language" id="language">
-					<option value="de">Deutsch</option>
-					<option value="en">English</option>
-					<option value="es">Español</option>
-					<option value="he">עברית</option>
-					<option value="it">Italiano</option>
-					<option value="pt">Português</option>
-				</select>
-				<label for="xbmcName" id="xbmcName_label"><span class="bold" data-i18n="window-title"></span></label>
-				<input name="xbmcName" id="xbmcName" value=""  size="30"/>
-				<label for="hideMenuText" data-i18n="hide-menu-text"></label>
-				<input name="hideMenuText" type="checkbox" id="hideMenuText" value="hideMenuText" />
-				<label for="hidePrevPics" data-i18n="hide-preview-pictures"></label>
-				<input name="hidePrevPics" type="checkbox" id="hidePrevPics" value="hidePrevPics" />
-				<label for="prevImgQualMovies" id="prevImgQualMovies_label" data-i18n="preview-image-quality"></label>
-				<input name="prevImgQualMovies" type="number" id="prevImgQualMovies" value="" maxlength="2"/>
-				<label for="hideWatched" data-i18n="hide-watched-movies-shows"></label>
-				<input name="hideWatched" type="checkbox" id="hideWatched" value="hideWatched" />
-				<label for="listLength" id="listLength_label" data-i18n="max-list-length"></label>
-				<input name="listLength" type="number" id="listLength" value=""/>
-				<label for="hideLanguageMovies" data-i18n="hide-lang-functions"></label>
-				<input name="hideLanguageMovies" type="checkbox" id="hideLanguageMovies" value="hideLanguageMovies" />
-			</div>
-			<div data-role="collapsible">
-				<h3><span data-i18n="remote"></span></h3>
-				<label for="noSwipe" data-i18n="buttons-instead"></label>
-				<input name="noSwipe" type="checkbox" id="noSwipe" value="noSwipe" />
-				<label for="swapSwipeDirections" id="swapSwipeDirections_label" data-i18n="swap-swipe-directions"></label>	
-				<input name="swapSwipeDirections" type="checkbox" id="swapSwipeDirections" value="swapSwipeDirections" />
-				<label for="swipeHight" id="swipeHight_label" data-i18n="set-hight-swipe"></label>
-				<input name="swipeHight" type="text" id="swipeHight" value=""/>		
-				<label for="hideOrientNav" id="hideOrientNav_label" data-i18n="hide-device-orientation"></label>	
-				<input name="hideOrientNav" type="checkbox" id="hideOrientNav" value="hideOrientNav" />		
-				<label for="hideSendTextRemote" id="hideSendTextRemote_label" data-i18n="hide-send-text-field-button"></label>	
-				<input name="hideSendTextRemote" type="checkbox" id="hideSendTextRemote" value="hideSendTextRemote" />
-			</div>
-			<div data-role="collapsible">
-				<h3><span data-i18n="movies"></span></h3>
-				<label for="hideGenreMovies" data-i18n="hide-genre-select"></label>
-				<input name="hideGenreMovies" type="checkbox" id="hideGenreMovies" value="hideGenreMovies" />
-				<label for="hideSearchMovies" data-i18n="hide-searchfield"></label>
-				<input name="hideSearchMovies" type="checkbox" id="hideSearchMovies" value="hideSearchMovies" />
-				<label for="hideFileLinkMovies" data-i18n="hide-filelink-in-popup"></label>
-				<input name="hideFileLinkMovies" type="checkbox" id="hideFileLinkMovies" value="hideFileLinkMovies" />
-			</div>
-			<div data-role="collapsible">
-				<h3><span data-i18n="music"></h3>
-				<label for="hideGenreMusic" data-i18n="hide-genre-select"></label>
-				<input name="hideGenreMusic" type="checkbox" id="hideGenreMusic" value="hideGenreMusic" />
-				<label for="hideSearchMusic" data-i18n="hide-searchfield"></label>
-				<input name="hideSearchMusic" type="checkbox" id="hideSearchMusic" value="hideSearchMusic" />
-			</div>
-			<div data-role="collapsible">
-				<h3><span data-i18n="addons"></span></h3>
-				<label for="hideGenreAddons" data-i18n="hide-type-select"></label>
-				<input name="hideGenreAddons" type="checkbox" id="hideGenreAddons" value="hideGenreAddons" />
-				<label for="hideSearchAddons" data-i18n="hide-searchfield"></label>
-				<input name="hideSearchAddons" type="checkbox" id="hideSearchAddons" value="hideSearchAddons" />
-			</div>
-			<button id="saveSettings" data-role="button" data-icon="back" data-i18n="save-close"></button> 
-		</div><!-- /content -->
-	</div><!-- /page -->
-	<div data-role="page" data-theme="b" id="movies">
-		<div data-role="header" data-theme="b">
-          <div class="navbar" data-role="navbar">
-            <ul>
-              <li><a href="#remote"><span class="fa fa-th"></span><br /><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-              <li><a href="#movies"><span class="fa fa-film"></span><br /><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-              <li><a href="#series"><span class="fa fa-desktop"></span><br /><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-              <li><a href="#music"><span class="fa fa-music"></span><br /><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-              <li><a href="#addons"><span class="fa fa-plus"></span><br /><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-            </ul>
-          </div><!-- /navbar -->
-		</div><!-- /header -->	
-		<div class="content" data-role="content">
-          <ul class="ulbar" data-role="listview">
-            <li>
-              <div class="ui-grid-a">
-                <div class="ui-block-a">
-                  <select id="genreSelect" name="genre_list" data-mini="true">
-                    <option value="all" name="all" data-i18n="all-genres"></option>
-                  </select>
-                </div>
-                <div class="ui-block-b">
-                  <select id="languageSelect" name="language_list" data-mini="true">
-                    <option value="all" data-i18n="all-languages"></option>
-                  </select>
-                </div>
-              </div>
-              <input type="search" name="search" id="searchMovies" data-i18n="[placeholder]search-movie" value="" />
-            </li>
-            <li id="loading_movie" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif"><span data-i18n="loading"></span></li>
+  <div id="yarcLoading">
+    <img id="yarcLoadingSpinner" src="resources/images/kodi_spinner.gif" alt="loading data" /><br />
+    <img id="yarcLoadingLogo" src="fanart.jpg" />
+  </div>
+  <div id="remote" data-role="panel" data-position="right" data-display="overlay" data-swipe-close="false" data-dismissible="false" data-position-fixed="true" data-theme="b">
+    <div id="seek-overlay">&nbsp;</div>
+    <div id="MenuButtons" data-role="controlgroup" data-type="horizontal" data-mini="true">
+      <a id="toggleFullscreen" data-role="button"><span class="icon-picture-o" data-mini="true"></span></a>
+      <a class="navcontrol" data-yJsonFunction="Input.Home" data-role="button"><span class="icon-home"></span></a>
+      <a class="navcontrol" data-yJsonFunction="Input.Info" data-role="button"><span class="icon-info-circle"></span></a>
+      <a class="navcontrol" data-yJsonFunction="Input.ShowOSD" data-role="button"><span class="icon-tv-menu"></span></a>
+      <a href="#pl" data-role="button"><span class="icon-list"></span></a>
+      <button id="SetRepeat" name="Player.SetRepeat"><span class="icon-refresh"></span></button>
+      <button id="SetShuffle" name="Player.SetShuffle"><span class="icon-random"></span></button>
+    </div>
+    <div id="swipe" class="swipe-box" unselectable='on' onselectstart='return false;'  onmousedown='return false;'>
+      <fieldset id="nav-med-radio" data-role="controlgroup" data-type="horizontal" data-mini="true">
+        <input type="radio" id="radioNav" class="nav-med" name="nav-med" value="Nav" checked />
+        <label for="radioNav" data-i18n="navigation"></label>
+        <input type="radio" id="radioMedia" class="nav-med" name="nav-med" value="Media" /> 
+        <label for="radioMedia" data-i18n="player"></label><br />
+      </fieldset>
+      <span data-i18n="swipe-or-press"></span>&nbsp;<a id="swipe-help"><span data-i18n="help"></span></a>
+      <div id="swipe-box-help">
+          <div class="italic" data-i18n="swipe-help-1"></div>
+          <div data-i18n="swipe-help-2"></div>
+      </div>
+      <div id="swipe-box-Nav-help">
+          <ul>
+              <li data-i18n="swipe-help-3"></li>
+              <li data-i18n="swipe-help-4"></li>
+              <li data-i18n="swipe-help-5"></li>
+              <li data-i18n="swipe-help-6"></li>
           </ul>
-          <div class="flex-container">
-              <div id="movie-flex-prev" class="flex-prev"></div>
-              <div id="movie_list" class="flex-content"></div>
-              <div id="movie-flex-next" class="flex-next"></div>
-          </div>
-		</div><!-- /content -->
-		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
-          <div class="footer">
-			<div class="seek-bubble">
-				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
-			</div>
-			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
-          </div>
-		</div><!-- /footer -->
-	</div><!-- /page -->	
-	<div data-role="page" data-theme="b" id="movieDetails">
-		<div data-role="header" data-theme="b">
-			<div class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote"><span class="fa fa-th"></span><br /><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-					<li><a href="#movies"><span class="fa fa-film"></span><br /><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /header -->	
-		<div class="content" data-role="content">
-          <img id="movieDetailsImage" class="detailsImage" src="" alt=""/>
-          <h2 id="movieDetailsTitle"></h2>
-          <img id="movieDetailsSeen" src="" alt="[Media played]"/>
-          <div id="movieDetailsFlags"></div>
-          <div id="movieDetailsRuntime"></div>
-          <div id="movieDetailsGenres"></div>
-          <div id="movieDetailsPlot"></div>
-          <div id="movieDetailsFilelink"></div> 
-          <div id="movieDetailsTrailer" type="button" data-yMovieTrailer="" tabindex="1" data-i18n="trailer"></div>
-          <div id="movieDetailsPlayMovie" type="button" data-yMovieID="" tabindex="1" data-i18n="play"></div>
-          <button id="movieDetailsClose" data-icon="delete" data-i18n="close"></button>
-		</div><!-- /content -->
-		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
-          <div class="footer">
-			<div class="seek-bubble">
-				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
-			</div>
-			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
-          </div>
-		</div><!-- /footer -->
-	</div><!-- /page -->
-	<div data-role="page" data-theme="b" id="series">
-		<div data-role="header" data-theme="b">
-			<div class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote"><span class="fa fa-th"></span><br /><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-					<li><a href="#movies"><span class="fa fa-film"></span><br /><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /header -->	
-		<div class="content" data-role="content">
-          <ul class="ulbar" data-role="listview">
-              <li id="loading_series" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif"><span data-i18n="loading"></span></li>
+      </div>
+      <div id="swipe-box-Media-help">
+          <ul>
+            <li data-i18n="swipe-help-7"></li>
+            <li data-i18n="swipe-help-8"></li>
+            <li data-i18n="swipe-help-9"></li>
+            <li data-i18n="swipe-help-10"></li>
+            <li data-i18n="swipe-help-11"></li>
+            <li data-i18n="swipe-help-12"></li>
+            <li data-i18n="swipe-help-13"></li>
           </ul>
-          <ul id="series_list" data-role="listview">
-          </ul>
-		</div><!-- /content -->
-		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
-          <div class="footer">
-			<div class="seek-bubble">
-				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
-			</div>
-			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
+      </div>
+    </div>
+    <div id="mediacontrol" class="mediacontrol" data-role="controlgroup" data-type="horizontal">
+      <button class="playergoto" data-yJsonFunction="previous"><span class="icon-step-backward"></span></button>
+      <button class="playercontrol" data-yJsonFunction="Player.PlayPause"><span class="icon-play"></span><span class="icon-pause"></span></button>
+      <button class="playercontrol" data-yJsonFunction="Player.stop"><span class="icon-stop"></span></button>
+      <button class="playergoto" data-yJsonFunction="next"><span class="icon-step-forward"></span></button>
+    </div>
+    <div id="navigation-arrows" class="ui-grid-b">
+      <div class="ui-block-a"></div>
+      <div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Up"><span class="icon-caret-up"></span></button></div>
+      <div class="ui-block-c"></div>     
+      <div class="ui-block-a"><button class="navcontrol" data-yJsonFunction="Input.Left"><span class="icon-caret-left"></span></button></div>
+      <div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Select"><span class="icon-check"></span></button></div> 
+      <div class="ui-block-c"><button class="navcontrol" data-yJsonFunction="Input.Right"><span class="icon-caret-right"></span></button></div>       
+      <div class="ui-block-a"><button class="navcontrol" data-yJsonFunction="Input.ContextMenu"><span class="icon-list-alt"></span></button></div>
+      <div class="ui-block-b"><button class="navcontrol" data-yJsonFunction="Input.Down"><span class="icon-caret-down"></span></button></div> 
+      <div class="ui-block-c"><button class="navcontrol" data-yJsonFunction="Input.Back"><span class="icon-reply"></span></button></div>     
+    </div><!-- /navigation-arrows -->
+    <div id ="Volume" data-role="controlgroup" data-type="horizontal">
+      <button class="volume-group" data-yJsonFunction="Volume.Minus">-</button>
+      <button id="SetMute" class="volume-group" data-yJsonFunction="Application.SetMute"><span class="icon-volume-up"></span></button>
+      <button class="volume-group" data-yJsonFunction="Volume.Plus">+</button>
+    </div><!-- /Volume -->
+    <div id="SendText" class="ui-grid-a">
+      <div class="ui-block-a"><input id="SendTextField" name="SendTextField" type="text" data-i18n="[placeholder]send-text" data-mini="true"></div>
+      <div class="ui-block-b"><a id="SendTextButton" data-role="button" data-i18n="send-text" data-mini="true"></a></div>
+    </div>
+    <div id="mediaProg-cont">
+      <div id="mediaProg">
+        <div id="seek-bubble">
+          <div class="bubble-arrow bubble-bottom"></div>
+          <span><span class="icon-chevron-left"></span>&nbsp;<span class="icon-search"></span>&nbsp;<span class="icon-chevron-right"></span></span>
+        </div>
+        <span id="mediaProg-right">
+          <img id="mediaProgImage" alt="" src="" />
+          <span id="mediaProgTime"></span>
+          <span id="mediaProgTitle"></span>
+        </span>
+      </div>
+    </div><!-- /mediaProgress -->
+    <a href="#remote" class="close-panel"><span class="icon-long-arrow-right"></span></a>
+  </div><!-- /remote-overlay -->
+  <div data-role="page" data-theme="b" id="start">
+    <div data-role="header" data-theme="b">
+      <nav class="navbar" data-role="navbar">
+        <ul>
+          <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+          <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+          <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+          <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+          <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+        </ul>
+      </nav><!-- /navbar -->
+    </div><!-- /header -->	
+    <div class="content" data-role="content">
+        <!--Device motion | leave for Device orientation debugging 
+        <div id="dataContainerOrientation">
+            No device orientation data
+        </div>
+        <div id="dataContainerMotion">
+            No device motion data
+        </div>-->
+        <div id="newMovies" data-role="collapsible" data-collapsed="false">
+          <h3><span data-i18n="movies"></span></h3>
+          <div id="recentMovies"></div>
+        </div>
+        <div id="newSeries" data-role="collapsible" data-collapsed="false">
+          <h3><span data-i18n="tv-shows"></span></h3>
+          <div id="recentSeries"></div>
+        </div>
+        <div id="newMusic" data-role="collapsible" data-collapsed="false">
+          <h3><span data-i18n="music"></span></h3>
+          <div id="recentMusic"></div>
+        </div>
+        <div id="mostUsedAddons" data-role="collapsible" data-collapsed="false">
+          <h3><span data-i18n="addons"></span></h3>
+          <div id="topAddons"></div>
+        </div>
+        <div id="mostUsedFavs" data-role="collapsible" data-collapsed="false">
+          <h3><span data-i18n="kodi-favourites"></span></h3>
+          <div id="topFavs"></div>
+        </div>
+        <div id="tools" data-role="collapsible">
+          <h3><span data-i18n="tools"></span></h3>
+          <div id="devOrientBlock" class="ui-grid-a">
+            <div class="ui-block-a"><label class="label" for="devOrient" data-i18n="device-orientation-navigation"></label></div>
+            <div class="ui-block-b">
+              <select name="devOrient" id="devOrient" data-role="slider" data-mini="true">
+                <option value="off">0</option>
+                <option value="on">I</option>
+              </select> 
+            </div>
           </div>
-		</div><!-- /footer -->
-	</div><!-- /page -->
-	<div data-role="page" data-theme="b" id="seriesDetails">
-		<div data-role="header" data-theme="b">
-			<div class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote"><span class="fa fa-th"></span><br /><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-					<li><a href="#movies"><span class="fa fa-film"></span><br /><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /header -->	
-		<div class="content" data-role="content">
-          <div class="ui-grid-a">
+          <div id ="cleanAndUpdate" class="ui-grid-a">
+            <div class="ui-block-a">
+            <select name="turn-off-select" id="turn-off-select">
+                <option value="Application.Quit" data-i18n="quit" selected="selected"></option>
+                <option value="System.Suspend" data-i18n="suspend"></option>
+                <option value="System.Hibernate" data-i18n="hibernate"></option>
+                <option value="System.Reboot" data-i18n="reboot"></option>
+                <option value="System.Shutdown" data-i18n="shutdown"></option>
+              </select>
+            </div> 
+            <div class="ui-block-b"><button id="turn-off" data-i18n="turn-off"></button></div>
+            <div class="ui-block-a"><button class="cleanAndUpdate" data-yJsonFunction="AudioLibrary.Scan" data-i18n="audio-lib-scan"></button></div> 
+            <div class="ui-block-b"><button class="cleanAndUpdate" data-yJsonFunction="AudioLibrary.Clean" data-i18n="audio-lib-clean"></button></div> 
+            <div class="ui-block-a"><button class="cleanAndUpdate" data-yJsonFunction="VideoLibrary.Scan" data-i18n="video-lib-scan"></button></div> 
+            <div class="ui-block-b"><button class="cleanAndUpdate" data-yJsonFunction="VideoLibrary.Clean" data-i18n="video-lib-clean"></button></div> 
+          </div>
+          <a id="yarcDemoVid" data-role="button" data-icon="info" data-i18n="yarc-video"></a>
+          <a href="#settings" id="openSettings" data-role="button" data-icon="gear" data-i18n="settings"></a> 
+        </div><!-- /collapsible -->
+        <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      </div><!-- /content -->
+  </div><!-- /page -->
+  <div data-role="page" data-theme="b" id="pl">
+    <div data-role="header" data-theme="b">
+      <div class="navbar" data-role="navbar">
+        <ul>
+          <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+          <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+          <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+          <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+          <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </div><!-- /header -->	
+    <div class="content" data-role="content">
+        <fieldset id="plType" data-role="controlgroup"  data-type="horizontal" data-mini="true">
+          <input type="radio" id="plAudio" class="plRadio" name="plType" value="0" checked />
+          <label for="plAudio" data-i18n="audio"></label>
+          <input type="radio" id="plVideo" class="plRadio" name="plType" value="1" /> 
+          <label for="plVideo" data-i18n="video"></label>
+        </fieldset>
+        <ul class="ulbar" data-role="listview">
+        <li  id="loading_pl" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+        </ul>
+        <ul id="currentplaylist" class="ui-listview"></ul>
+        <button id="plRefresh" data-icon="refresh" data-i18n="refresh"></button>
+        <button id="plClose" data-icon="back" data-i18n="back"></button>
+        <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+    </div><!-- /content -->
+  </div><!-- /page -->
+  <div data-role="page" data-theme="b" id="settings">
+    <div data-role="header" data-theme="b">
+      <div class="navbar" data-role="navbar">
+        <ul>
+          <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+          <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+          <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+          <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+          <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </div><!-- /header -->	
+    <div class="content" data-role="content">
+      <a target="_blank"  href="https://github.com/tuxfuxch/yarc"><img id="fanart" src="fanart.jpg" alt="fanart picture" /></a>
+      <a class="text-center" target="_blank"  href="https://github.com/tuxfuxch/yarc/blob/master/README.md">Readme</a>
+      <div data-role="collapsible">
+        <h3><span data-i18n="general"></span></h3>
+        <label for="language" id="language_label"><span class="bold" data-i18n="language"></span></label>
+        <select name="language" id="language">
+          <option value="de">Deutsch</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="he">עברית</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+        </select>
+        <label for="hideMenuText" data-i18n="hide-menu-text"></label>
+        <input name="hideMenuText" type="checkbox" id="hideMenuText" value="hideMenuText" />
+        <label for="hidePrevPics" data-i18n="hide-preview-pictures"></label>
+        <input name="hidePrevPics" type="checkbox" id="hidePrevPics" value="hidePrevPics" />
+        <label for="prevImgQualMovies" id="prevImgQualMovies_label" data-i18n="preview-image-quality"></label>
+        <input name="prevImgQualMovies" type="number" id="prevImgQualMovies" value="" maxlength="2"/>
+        <label for="hideWatched" data-i18n="hide-watched-movies-shows"></label>
+        <input name="hideWatched" type="checkbox" id="hideWatched" value="hideWatched" />
+        <label for="listLength" id="listLength_label" data-i18n="max-list-length"></label>
+        <input name="listLength" type="number" id="listLength" value=""/>
+        <label for="hideLanguageMovies" data-i18n="hide-lang-functions"></label>
+        <input name="hideLanguageMovies" type="checkbox" id="hideLanguageMovies" value="hideLanguageMovies" />
+      </div>
+      <div data-role="collapsible">
+        <h3><span data-i18n="remote"></span></h3>
+        <label for="noSwipe" data-i18n="buttons-instead"></label>
+        <input name="noSwipe" type="checkbox" id="noSwipe" value="noSwipe" />
+        <label for="swapSwipeDirections" id="swapSwipeDirections_label" data-i18n="swap-swipe-directions"></label>	
+        <input name="swapSwipeDirections" type="checkbox" id="swapSwipeDirections" value="swapSwipeDirections" />
+      </div>
+      <div data-role="collapsible">
+        <h3><span data-i18n="movies"></span></h3>
+        <label for="hideGenreMovies" data-i18n="hide-genre-select"></label>
+        <input name="hideGenreMovies" type="checkbox" id="hideGenreMovies" value="hideGenreMovies" />
+        <label for="hideSearchMovies" data-i18n="hide-searchfield"></label>
+        <input name="hideSearchMovies" type="checkbox" id="hideSearchMovies" value="hideSearchMovies" />
+        <label for="hideFileLinkMovies" data-i18n="hide-filelink-in-popup"></label>
+        <input name="hideFileLinkMovies" type="checkbox" id="hideFileLinkMovies" value="hideFileLinkMovies" />
+      </div>
+      <div data-role="collapsible">
+        <h3><span data-i18n="music"></span></h3>
+        <label for="hideGenreMusic" data-i18n="hide-genre-select"></label>
+        <input name="hideGenreMusic" type="checkbox" id="hideGenreMusic" value="hideGenreMusic" />
+        <label for="hideSearchMusic" data-i18n="hide-searchfield"></label>
+        <input name="hideSearchMusic" type="checkbox" id="hideSearchMusic" value="hideSearchMusic" />
+      </div>
+      <div data-role="collapsible">
+        <h3><span data-i18n="addons"></span></h3>
+        <label for="hideGenreAddons" data-i18n="hide-type-select"></label>
+        <input name="hideGenreAddons" type="checkbox" id="hideGenreAddons" value="hideGenreAddons" />
+        <label for="hideSearchAddons" data-i18n="hide-searchfield"></label>
+        <input name="hideSearchAddons" type="checkbox" id="hideSearchAddons" value="hideSearchAddons" />
+      </div>
+      <button id="saveSettings" data-role="button" data-icon="back" data-i18n="save-close"></button> 
+    </div><!-- /content -->
+  </div><!-- /page -->
+  <div data-role="page" data-theme="b" id="movies">
+      <div data-role="header" data-theme="b">
+        <div class="navbar" data-role="navbar">
+          <ul>
+            <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+            <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+            <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+            <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+            <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+          </ul>
+        </div><!-- /navbar -->
+      </div><!-- /header -->	
+      <div class="content" data-role="content">
+        <ul class="ulbar" data-role="listview">
+          <li>
+            <div class="ui-grid-a">
               <div class="ui-block-a">
-                  <button id="prevEpisode" data-ySeriesPrevID="" data-mini="true" title="previous item" tabindex="1">
-                      <span class="fa fa-chevron-left"></span>
-                  </button>
+                <select id="genreSelect" name="genre_list" data-mini="true">
+                  <option value="all" name="all" data-i18n="all-genres"></option>
+                </select>
               </div>
               <div class="ui-block-b">
-                  <button id="nextEpisode" data-ySeriesNextID="" data-mini="true" title="next item" tabindex="1">
-                      <i class="fa fa-chevron-right"></i>
-                  </button>
+                <select id="languageSelect" name="language_list" data-mini="true">
+                  <option value="all" data-i18n="all-languages"></option>
+                </select>
               </div>
-          </div>
-          <img id="episodeDetailsImage" class="detailsImage" src="" alt="" />
-          <h2 id="episodeDetailsTitle"></h2>
-          <img id="episodeDetailsSeenTick" alt="" src="resources/images/green_tick.png" />
-          <div id="episodeDetailsRating"></div>
-          <div id="episodeDetailsFlags"></div>
-          <div id="episodeDetailsPlot"></div>
-          <div id="episodeDetailsPlay" type="button" data-yPlaySeriesEpisodeID="" tabindex="1" data-i18n="play"></div>
-          <div id="episodeDetailsAddPl" type="button" data-yEpisodeID="" tabindex="1" data-i18n="add-pl"></div>
-          <button id="episodeDetailsClose" data-icon="delete" data-i18n="close"></button>
-		</div><!-- /content -->
-		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
-          <div class="footer">
-			<div class="seek-bubble">
-				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
-			</div>
-			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
-          </div>
-		</div><!-- /footer -->
-	</div><!-- /page -->
-	<div data-role="page" data-theme="b" id="music">
-		<div data-role="header" data-theme="b">
-			<div class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote"><span class="fa fa-th"></span><br /><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-					<li><a href="#movies"><span class="fa fa-film"></span><br /><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /header -->
-          <div data-role="navbar">
-              <ul>
-                  <li><a href="#music" class="ui-btn-active ui-state-persist" data-i18n="albums"></a></li>
-                  <li><a href="#music-songsearch" data-i18n="search-song"></a></li>
-              </ul>
-          </div><!-- /navbar -->
-          <div class="content" data-role="content">
-              <ul class="ulbar" data-role="listview">
-                  <li>
-                      <div class='movieItem'>
-                          <div id="MusicGenreElements" class="ui-grid-a" data-theme="b">
-                              <div class="ui-block-a">
-                                  <select id="genreSelectMusic" name="genre_list" data-mini="true"><option value="all" data-i18n="all-genres"></option></select>
-                              </div> 
-                              <div class="ui-block-b">
-                                  <div id="playMusicGenre" type="button" name="" data-mini="true" data-i18n="play-genre"></div>
-                              </div> 
-                          </div>
-                          <input type="search" name="search" id="searchMusic" data-i18n="[placeholder]search-album-artist" value="" />
-                          <div class="ui-grid-a" data-theme="b">
-                              <div class="ui-block-a">
-                                      <button id="playPlaylist" class="PlayList" name="" data-mini="true" data-i18n="play-pl"></button>
-                              </div> 
-                              <div class="ui-block-b"><button id="emptyPlaylist" class="PlayList" name="" data-mini="true" data-i18n="empty-pl"></button></div> 
-                          </div>
-                      </div>
-                  </li>
-                  <li id="loading_music" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif"><span data-i18n="loading"></span></li>
-              </ul>
-                  <div class="flex-container">
-                      <div id="album-flex-prev" class="flex-prev"></div>
-                      <div id="album_list" class="flex-content"></div>
-                      <div id="album-flex-next" class="flex-next"></div>
-                  </div>
-              </ul>
-          </div><!-- /content -->
-		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
-          <div class="footer">
-			<div class="seek-bubble">
-				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
-			</div>
-			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
-          </div>
-		</div><!-- /footer -->
-	</div><!-- /page -->
-	<div data-role="page" data-theme="b" id="musicDetails">
-		<div data-role="header" data-theme="b">
-			<div class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote"><span class="fa fa-th"></span><br /><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-					<li><a href="#movies"><span class="fa fa-film"></span><br /><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /header -->
-          <div class="content" data-role="content">
-            <img id="albumDetailsImage" class="detailsImage" alt="" src=""/>
-            <h2 id="albumDetailsTitle"></h2>
-            <button id="albumDetailsAddAlbum" data-yAlbumArrayNr="" tabindex="1" data-i18n="empty-pl-play"></button>
-            <label for="albumDetailsAddPL" data-i18n="add-pl"></label>
-            <input name="albumDetailsAddPL" type="checkbox" id="albumDetailsAddPL" value="1"/>
-            <div id="albumDetailsSongContainer"></div> <!--container for song list items -->
-            <button id="albumDetailsClose" data-icon="delete" data-i18n="close"></button>
-          </div><!-- /content -->
-		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
-          <div class="footer">
-			<div class="seek-bubble">
-				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
-			</div>
-			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
-          </div>
-		</div><!-- /footer -->
-	</div><!-- /page -->
-	<div data-role="page" data-theme="b" id="music-songsearch">
-		<div data-role="header" data-theme="b">
-			<div class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote"><span class="fa fa-th"></span><br /><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-					<li><a href="#movies"><span class="fa fa-film"></span><br /><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /header -->	
-		<div data-role="navbar">
-			<ul>
-				<li><a href="#music" data-i18n="albums"></a></li>
-				<li><a href="#music-songsearch" class="ui-btn-active ui-state-persist" data-i18n="search-song"></a></li>
-			</ul>
-		</div><!-- /navbar -->
-		<div class="content" data-role="content">
-			<ul class="ulbar" data-role="listview">
-				<input type="search" name="songsearch-searchfield" id="songsearch-searchfield" data-i18n="[placeholder]search-song-title" value="" />
-				<button id="music-search" data-i18n="Search" data-mini="true" name=""></button>
-				<li id="loading_songsearch" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif"><span data-i18n="loading"></span></li>
-			</ul>
-			<ul id="songsearch-list" class="ui-listview">
-			</ul>
-		</div><!-- /content -->
-		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
-          <div class="footer">
-			<div class="seek-bubble">
-				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
-			</div>
-			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
-          </div>
-		</div><!-- /footer -->
-	</div><!-- /page -->
-	<div data-role="page" data-theme="b" id="addons">
-		<div data-role="header" data-theme="b">
-			<div class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote"><span class="fa fa-th"></span><br /><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-					<li><a href="#movies"><span class="fa fa-film"></span><br /><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /header -->
-		<div class="content" data-role="content">
-          <div id="addonOverview"> 
-			<ul class="ulbar" data-role="listview">
-              <li>
-                <div class="info" data-i18n="addons-info"></div>
-					<div>
-                      <select id="addonSelect" name="addon_List" data-mini="true">
-                        <option value="all" data-i18n="all-addons"></option>
-                        <option value="video" data-i18n="video">Videos</option>
-                        <option value="audio" data-i18n="audio">Audio</option>
-                        <option value="other" data-i18n="other"></option>
-                      </select>
-					</div>
-                  <div>
-                    <input type="search" name="searchAddon" id="searchAddon" data-i18n="[placeholder]search-addon" value="" />
-                  </div>
-				</li>
-              <li id="loading_addon" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif"><span data-i18n="loading"></span></li>
-			</ul>
-            <div class="flex-container">
-              <div id="addon-flex-prev" class="flex-prev"></div>
-              <div id="addonlist" class="flex-content"></div>
-              <div id="addon-flex-next" class="flex-next"></div>
             </div>
-          </div>
-		</div><!-- /content -->
-		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
-          <div class="footer">
-			<div class="seek-bubble">
-				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
-			</div>
-			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
-          </div>
-		</div><!-- /footer -->
-	</div><!-- /page -->
-	<div data-role="page" data-theme="b" id="addonDetails">
-		<div data-role="header" data-theme="b">
-			<div class="navbar" data-role="navbar">
-				<ul>
-					<li><a href="#remote"><span class="fa fa-th"></span><br /><span class="yheadermenuitem" data-i18n="remote"></span></a></li>
-					<li><a href="#movies"><span class="fa fa-film"></span><br /><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
-					<li><a href="#series"><span class="fa fa-desktop"></span><br /><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
-					<li><a href="#music"><span class="fa fa-music"></span><br /><span class="yheadermenuitem" data-i18n="music"></span></a></li>
-					<li><a href="#addons"><span class="fa fa-plus"></span><br /><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
-				</ul>
-			</div><!-- /navbar -->
-		</div><!-- /header -->
-		<div class="content" data-role="content">
-          <div class="ui-grid-a">
-            <div class="ui-block-a">
-                <label for="addonDetailsShowPlot" data-mini="true" data-i18n="show-description"></label>
-                <input name="addonDetailsShowPlot" type="checkbox" id="addonDetailsShowPlot" value="1" data-mini="true" />
+            <input type="search" name="search" id="searchMovies" data-i18n="[placeholder]search-movie" value="" />
+          </li>
+          <li id="loading_movie" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+        </ul>
+        <div class="flex-container">
+            <div id="movie-flex-prev" class="flex-prev"></div>
+            <div id="movie_list" class="flex-content"></div>
+            <div id="movie-flex-next" class="flex-next"></div>
+        </div>
+        <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      </div><!-- /content -->
+  </div><!-- /page -->	
+  <div data-role="page" data-theme="b" id="movieDetails">
+    <div data-role="header" data-theme="b">
+      <div class="navbar" data-role="navbar">
+        <ul>
+          <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+          <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+          <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+          <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+          <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </div><!-- /header -->	
+    <div class="content" data-role="content">
+      <img id="movieDetailsImage" class="detailsImage" src="" alt=""/>
+      <h2 id="movieDetailsTitle"></h2>
+      <div id="movieDetailsFlags"></div>
+      <div id="movieDetailsRuntime"></div>
+      <div id="movieDetailsGenres"></div>
+      <div id="movieDetailsPlot"></div>
+      <div id="movieDetailsFilelink"></div> 
+      <div id="movieDetailsTrailer" type="button" data-yMovieTrailer="" tabindex="1" data-i18n="trailer"></div>
+      <div id="movieDetailsPlayMovie" type="button" data-yMovieID="" tabindex="1" data-i18n="play"></div>
+      <button id="movieDetailsClose" data-icon="delete" data-i18n="close"></button>
+      <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+    </div><!-- /content -->
+  </div><!-- /page -->
+  <div data-role="page" data-theme="b" id="series">
+    <div data-role="header" data-theme="b">
+      <div class="navbar" data-role="navbar">
+        <ul>
+          <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+          <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+          <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+          <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+          <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </div><!-- /header -->	
+    <div class="content" data-role="content">
+      <ul class="ulbar" data-role="listview">
+        <li id="loading_series" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+      </ul>
+      <ul id="series_list" data-role="listview">
+      </ul>
+      <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+    </div><!-- /content -->
+  </div><!-- /page -->
+  <div data-role="page" data-theme="b" id="seriesDetails">
+    <div data-role="header" data-theme="b">
+      <div class="navbar" data-role="navbar">
+        <ul>
+          <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+          <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+          <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+          <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+          <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </div><!-- /header -->	
+    <div class="content" data-role="content">
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <button id="prevEpisode" data-ySeriesPrevID="" data-mini="true" title="previous item" tabindex="1">
+            <span class="icon-arrow-left"></span>
+          </button>
+        </div>
+        <div class="ui-block-b">
+          <button id="nextEpisode" data-ySeriesNextID="" data-mini="true" title="next item" tabindex="1">
+            <i class="icon-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      <img id="episodeDetailsImage" class="detailsImage" src="" alt="" />
+      <h2 id="episodeDetailsTitle"></h2>
+      <div id="episodeDetailsFirstaired"></div>
+			<div id="episodeDetailsRating"></div>
+      <div id="episodeDetailsFlags"></div>
+      <div id="episodeDetailsPlot"></div>
+      <div id="episodeDetailsPlay" type="button" data-yPlaySeriesEpisodeID="" tabindex="1" data-i18n="play"></div>
+      <div id="episodeDetailsAddPl" type="button" data-yEpisodeID="" tabindex="1" data-i18n="add-pl"></div>
+      <button id="episodeDetailsClose" data-icon="delete" data-i18n="close"></button>
+      <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+    </div><!-- /content -->
+  </div><!-- /page -->
+  <div data-role="page" data-theme="b" id="music">
+    <div data-role="header" data-theme="b">
+      <div class="navbar" data-role="navbar">
+        <ul>
+          <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+          <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+          <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+          <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+          <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </div><!-- /header -->
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#music" class="ui-btn-active ui-state-persist" data-i18n="albums"></a></li>
+          <li><a href="#music-songsearch" data-i18n="search-song"></a></li>
+        </ul>
+      </div><!-- /navbar -->
+      <div class="content" data-role="content">
+        <ul class="ulbar" data-role="listview">
+          <li>
+            <div class='movieItem'>
+              <div id="MusicGenreElements" class="ui-grid-a" data-theme="b">
+                <div class="ui-block-a">
+                  <select id="genreSelectMusic" name="genre_list" data-mini="true"><option value="all" data-i18n="all-genres"></option></select>
+                </div> 
+                <div class="ui-block-b">
+                  <div id="playMusicGenre" type="button" name="" data-mini="true" data-i18n="play-genre"></div>
+                </div> 
+              </div>
+              <input type="search" name="search" id="searchMusic" data-i18n="[placeholder]search-album-artist" value="" />
+              <div class="ui-grid-a" data-theme="b">
+                <div class="ui-block-a">
+                  <button id="playPlaylist" class="PlayList" name="" data-mini="true" data-i18n="play-pl"></button>
+                </div> 
+                <div class="ui-block-b"><button id="emptyPlaylist" class="PlayList" name="" data-mini="true" data-i18n="empty-pl"></button></div> 
+              </div>
             </div>
-            <div class="ui-block-b">
-              <label for="stayInAddonPopup" data-mini="true" data-i18n="stay-in-details"></label>
-              <input name="stayInAddonPopup" type="checkbox" id="stayInAddonPopup" value="1" data-mini="true"/>
-            </div>
+          </li>
+          <li id="loading_music" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+        </ul>
+        <div class="flex-container">
+          <div id="album-flex-prev" class="flex-prev"></div>
+          <div id="album_list" class="flex-content"></div>
+          <div id="album-flex-next" class="flex-next"></div>
+        </div>
+        <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      </div><!-- /content -->
+  </div><!-- /page -->
+  <div data-role="page" data-theme="b" id="musicDetails">
+    <div data-role="header" data-theme="b">
+      <div class="navbar" data-role="navbar">
+        <ul>
+          <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+          <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+          <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+          <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+          <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </div><!-- /header -->
+      <div class="content" data-role="content">
+        <img id="albumDetailsImage" class="detailsImage" alt="" src=""/>
+        <h2 id="albumDetailsTitle"></h2>
+        <button id="albumDetailsAddAlbum" data-yAlbumArrayNr="" tabindex="1" data-i18n="empty-pl-play"></button>
+        <label for="albumDetailsAddPL" data-i18n="add-pl"></label>
+        <input name="albumDetailsAddPL" type="checkbox" id="albumDetailsAddPL" value="1"/>
+        <div id="albumDetailsSongContainer"></div> <!--container for song list items -->
+        <button id="albumDetailsClose" data-icon="delete" data-i18n="close"></button>
+        <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      </div><!-- /content -->
+  </div><!-- /page -->
+  <div data-role="page" data-theme="b" id="music-songsearch">
+    <div data-role="header" data-theme="b">
+      <div class="navbar" data-role="navbar">
+        <ul>
+          <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+          <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+          <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+          <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+          <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </div><!-- /header -->	
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#music" data-i18n="albums"></a></li>
+        <li><a href="#music-songsearch" class="ui-btn-active ui-state-persist" data-i18n="search-song"></a></li>
+      </ul>
+    </div><!-- /navbar -->
+    <div class="content" data-role="content">
+      <div data-role="listview">
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <input type="search" name="songsearch-searchfield" id="songsearch-searchfield" data-i18n="[placeholder]search-song-title" value="" />
           </div>
-          <div id="SendTextAddon" class="ui-grid-a">
-            <div class="ui-block-a">
-              <input id="SendTextFieldAddon" name="SendTextFieldAddon" type="text" data-mini="true" data-i18n="[placeholder]send-text">
-            </div>
-            <div class="ui-block-b"><a id="SendTextButtonAddon" data-role="button" data-mini="true" data-i18n="send-text"></a></div>
-          </div>
-          <img id="addonDetailsImage" class="detailsImage" alt="" src=""/>
-          <ul class="ulbar" data-role="listview"><li id="loading_addonDetails" class='loading addonDetailsLoad'><img class="kodi_loading" src="resources/images/kodi_spinner.gif"><span data-i18n="loading"></span></li></ul>
-          <ul id="addonDetailsList" class="ui-listview"></ul>
-          <button id="addonDetailsRefresh" data-icon="refresh" data-yAddonDirPath="" data-i18n="refresh"></button>
-          <button id="addonDetailsOpenAddon" data-icon="arrow-r" data-yAddonDirPath="" data-i18n="open-addon"></button>
-          <button id="addonDetailClose" data-icon="delete" data-i18n="close"></button>
-		</div><!-- /content -->
-		<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-id="myfooter" class="footer-container">
-          <div class="footer">
-			<div class="seek-bubble">
-				<div class="bubble-arrow bubble-bottom"></div>
-				<span class="bubble-text"><span class="fa fa-chevron-left "></span>&nbsp;<span class="fa fa-search fa-2x"></span>&nbsp;<span class="fa fa-chevron-right "></span></span>
-			</div>
-			<span class="footer-left footer-left-in">&nbsp;<span class="fa fa-arrows-h"></span>&nbsp;</span>
-			<span class="footer-right" data-role="none">
-				<img class="footerImage" alt="" src="" />
-				<span class="footerTime"></span>
-				<span class="footerTitle"></span>
-			</span>
-          </div>
-		</div><!-- /footer -->
-	</div><!-- /page -->
+          <div class="ui-block-b"><button id="music-search" data-i18n="search" data-mini="true" name=""></button></div>
+        </div>
+        <li id="loading_songsearch" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+      </div>
+      <ul id="songsearch-list" class="ui-listview">
+      </ul>
+      <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+    </div><!-- /content -->
+  </div><!-- /page -->
+  <div data-role="page" data-theme="b" id="addons">
+    <div data-role="header" data-theme="b">
+      <div class="navbar" data-role="navbar">
+        <ul>
+          <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+          <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+          <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+          <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+          <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </div><!-- /header -->
+    <div class="content" data-role="content">
+      <div id="addonOverview"> 
+        <ul class="ulbar" data-role="listview">
+          <li>
+            <div class="info" data-i18n="addons-info"></div>
+              <div>
+                <select id="addonSelect" name="addon_List" data-mini="true">
+                  <option value="all" data-i18n="all-addons"></option>
+                  <option value="video" data-i18n="video">Videos</option>
+                  <option value="audio" data-i18n="audio">Audio</option>
+                  <option value="other" data-i18n="other"></option>
+                </select>
+              </div>
+              <div>
+                <input type="search" name="searchAddon" id="searchAddon" data-i18n="[placeholder]search-addon" value="" />
+              </div>
+            </li>
+          <li id="loading_addon" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+        </ul>
+        <div class="flex-container">
+          <div id="addon-flex-prev" class="flex-prev"></div>
+          <div id="addonlist" class="flex-content"></div>
+          <div id="addon-flex-next" class="flex-next"></div>
+        </div>
+      </div>
+      <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+    </div><!-- /content -->
+  </div><!-- /page -->
+  <div data-role="page" data-theme="b" id="addonDetails">
+    <div data-role="header" data-theme="b">
+      <div class="navbar" data-role="navbar">
+        <ul>
+          <li class="h-new-top"><a href="#start"><span class="icon-rss"></span><span class="yheadermenuitem" data-i18n="new-top"></span></a></li>
+          <li class="h-movies"><a href="#movies"><span class="icon-film"></span><span class="yheadermenuitem" data-i18n="movies"></span></a></li>
+          <li class="h-tv-shows"><a href="#series"><span class="icon-desktop"></span><span class="yheadermenuitem" data-i18n="tv-shows"></span></a></li>
+          <li class="h-music"><a href="#music"><span class="icon-music"></span><span class="yheadermenuitem" data-i18n="music"></span></a></li>
+          <li class="h-addons"><a href="#addons"><span class="icon-plus"></span><span class="yheadermenuitem" data-i18n="addons"></span></a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </div><!-- /header -->
+    <div class="content" data-role="content">
+      <label for="addonDetailsShowPlot" data-mini="true" data-i18n="show-description"></label>
+      <input name="addonDetailsShowPlot" type="checkbox" id="addonDetailsShowPlot" value="1" data-mini="true" />
+      <img id="addonDetailsImage" class="detailsImage" alt="" src=""/>
+      <ul class="ulbar" data-role="listview"><li id="loading_addonDetails" class='loading addonDetailsLoad'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li></ul>
+      <div id="addonDetailsList" class="ui-listview"></div>
+      <button id="addonDetailsRefresh" data-icon="refresh" data-yAddonDirPath="" data-i18n="refresh"></button>
+      <button id="addonDetailsOpenAddon" data-icon="arrow-r" data-yAddonDirPath="" data-i18n="open-addon"></button>
+      <button id="addonDetailClose" data-icon="delete" data-i18n="close"></button>
+      <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+    </div><!-- /content -->
+  </div><!-- /page -->
 </body>
 </html>

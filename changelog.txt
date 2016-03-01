@@ -1,3 +1,31 @@
+Version 0.11.0
+- replaced my own placeholder images with awsomefont symbols (?, file and folder)
+- replaced green-ticks images with awesomefont symbol in title (movie, series and addon)
+- added resume indicator in title (movie, series and addon)
+- removed seek buttons on remote page (use seek in progressbar instead, hotkeys still work)
+- remote is now a panel accessible from each site
+- first page is now not remote anymore. it's now a "recently added and top fav's and addons" overview.
+- if music/movies or series library is emty, it removes or hides menu and start page entries.
+- "device orientation navigation" moved to tools
+- removed now unneeded settings: "swipe height", "hide device orient. nav.", "yarc Name" and "hide send text field"
+- removed "send text" and "stay in popup" in addon details removed -> due to better access to remote
+- Help text of swipe field is now written into the swipefield instead of a popup
+- shutdown popup replaced with a select and a "do it" button to get rid of the popup
+- quite a few css optimisations
+- now with a loader dialoge which covers miss-styled loading content
+- added HTML escapeing for addon-plot. for now the only escpaed strings, but ready for others too.
+- if there is no artist to an album, it return empty string instead of "?"
+- added loading indicator when TV-Show seasons are loading
+- some small performance improvements
+- deleted of "lost/forgotten" css defenitions and translations
+- exchanged close buttons in the details-pages with "history-back" buttons.
+- Swipe field: changes automaticaly from Navigation to Player (or other way around) if it makes sense
+- volume, repeat and suffle icons change now also when setting changed over other remote or GUI
+- BUGFIX: show plot checkbox do not cause error anymore if addon name not in settings (folder from kodi favs for example)
+- BUGFIX: runtime informations in moviedetails apear again
+- BUGFIX: Add whole season to playlist should now always happen in right order (lowest to highest episode ID)
+- BUGFIX: TV-Show loading spinner gets now always hidden after loading tvshow
+
 Version 0.10.0
 - own solution for language translation exchanged with i18next which caused code changes and reduction
       --> translations are now managed with the transifex platform (www.transifex.com)
@@ -14,6 +42,7 @@ Version 0.10.0
 - Added Buttons to TV-Show to navigate next and prev items within season
 - Seek-overlay (time and difference shown when seeking) has now a black border for more contrast
 - some styling changes and code reduction
+- exchanged item details dialog back with close buttons (to leave the details)
 - FIX: in popups, some buttons get now activated on first klick
 - FIX: if no fanaart for a movie, in the details it does not show the questionmark anymore
 - FIX: in footer, if no prevpic, there is no pic shown, to get more space
