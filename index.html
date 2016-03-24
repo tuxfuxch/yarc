@@ -208,10 +208,11 @@
           <label for="plVideo" data-i18n="video"></label>
         </fieldset>
         <ul class="ulbar" data-role="listview">
-        <li  id="loading_pl" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+        <li id="loading_pl" class='loading'><div class='text-center'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></div></li>
         </ul>
         <ul id="currentplaylist" class="ui-listview"></ul>
         <button id="plRefresh" data-icon="refresh" data-i18n="refresh"></button>
+        <button id="emptyPlaylistPl" name="" data-i18n="empty-pl"></button>
         <button id="plClose" data-icon="back" data-i18n="back"></button>
         <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
     </div><!-- /content -->
@@ -235,12 +236,14 @@
         <h3><span data-i18n="general"></span></h3>
         <label for="language" id="language_label"><span class="bold" data-i18n="language"></span></label>
         <select name="language" id="language">
+          <option value="de_CH">Bärndütsch</option>
           <option value="de">Deutsch</option>
           <option value="en">English</option>
           <option value="es">Español</option>
           <option value="he">עברית</option>
           <option value="it">Italiano</option>
           <option value="pt">Português</option>
+          <option value="ru">русский</option>
         </select>
         <label for="hideMenuText" data-i18n="hide-menu-text"></label>
         <input name="hideMenuText" type="checkbox" id="hideMenuText" value="hideMenuText" />
@@ -254,6 +257,8 @@
         <input name="listLength" type="number" id="listLength" value=""/>
         <label for="hideLanguageMovies" data-i18n="hide-lang-functions"></label>
         <input name="hideLanguageMovies" type="checkbox" id="hideLanguageMovies" value="hideLanguageMovies" />
+        <label for="hideFileLinkMovies" data-i18n="hide-filelink-in-popup"></label>
+        <input name="hideFileLinkMovies" type="checkbox" id="hideFileLinkMovies" value="hideFileLinkMovies" />
       </div>
       <div data-role="collapsible">
         <h3><span data-i18n="remote"></span></h3>
@@ -268,8 +273,6 @@
         <input name="hideGenreMovies" type="checkbox" id="hideGenreMovies" value="hideGenreMovies" />
         <label for="hideSearchMovies" data-i18n="hide-searchfield"></label>
         <input name="hideSearchMovies" type="checkbox" id="hideSearchMovies" value="hideSearchMovies" />
-        <label for="hideFileLinkMovies" data-i18n="hide-filelink-in-popup"></label>
-        <input name="hideFileLinkMovies" type="checkbox" id="hideFileLinkMovies" value="hideFileLinkMovies" />
       </div>
       <div data-role="collapsible">
         <h3><span data-i18n="music"></span></h3>
@@ -317,7 +320,7 @@
             </div>
             <input type="search" name="search" id="searchMovies" data-i18n="[placeholder]search-movie" value="" />
           </li>
-          <li id="loading_movie" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+          <li id="loading_movie" class='loading'><div class='text-center'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></div></li>
         </ul>
         <div class="flex-container">
             <div id="movie-flex-prev" class="flex-prev"></div>
@@ -346,7 +349,7 @@
       <div id="movieDetailsRuntime"></div>
       <div id="movieDetailsGenres"></div>
       <div id="movieDetailsPlot"></div>
-      <div id="movieDetailsFilelink"></div> 
+      <a id="movieDetailsFilelink" class="downloadLink" href="" target="_blank"></a> 
       <div id="movieDetailsTrailer" type="button" data-yMovieTrailer="" tabindex="1" data-i18n="trailer"></div>
       <div id="movieDetailsPlayMovie" type="button" data-yMovieID="" tabindex="1" data-i18n="play"></div>
       <button id="movieDetailsClose" data-icon="delete" data-i18n="close"></button>
@@ -367,7 +370,7 @@
     </div><!-- /header -->	
     <div class="content" data-role="content">
       <ul class="ulbar" data-role="listview">
-        <li id="loading_series" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+        <li id="loading_series" class='loading'><div class='text-center'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></div></li>
       </ul>
       <ul id="series_list" data-role="listview">
       </ul>
@@ -405,6 +408,7 @@
 			<div id="episodeDetailsRating"></div>
       <div id="episodeDetailsFlags"></div>
       <div id="episodeDetailsPlot"></div>
+      <a id="episodeDetailsFilelink" class="downloadLink" href="" target="_blank"></a> 
       <div id="episodeDetailsPlay" type="button" data-yPlaySeriesEpisodeID="" tabindex="1" data-i18n="play"></div>
       <div id="episodeDetailsAddPl" type="button" data-yEpisodeID="" tabindex="1" data-i18n="add-pl"></div>
       <button id="episodeDetailsClose" data-icon="delete" data-i18n="close"></button>
@@ -446,11 +450,11 @@
                 <div class="ui-block-a">
                   <button id="playPlaylist" class="PlayList" name="" data-mini="true" data-i18n="play-pl"></button>
                 </div> 
-                <div class="ui-block-b"><button id="emptyPlaylist" class="PlayList" name="" data-mini="true" data-i18n="empty-pl"></button></div> 
+                <div class="ui-block-b"><button id="emptyPlaylistMusic" class="PlayList" name="" data-mini="true" data-i18n="empty-pl"></button></div> 
               </div>
             </div>
           </li>
-          <li id="loading_music" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+          <li id="loading_music" class='loading'><div class='text-center'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></div></li>
         </ul>
         <div class="flex-container">
           <div id="album-flex-prev" class="flex-prev"></div>
@@ -509,7 +513,7 @@
           </div>
           <div class="ui-block-b"><button id="music-search" data-i18n="search" data-mini="true" name=""></button></div>
         </div>
-        <li id="loading_songsearch" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+        <li id="loading_songsearch" class='loading'><div class='text-center'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></div></li>
       </div>
       <ul id="songsearch-list" class="ui-listview">
       </ul>
@@ -545,7 +549,7 @@
                 <input type="search" name="searchAddon" id="searchAddon" data-i18n="[placeholder]search-addon" value="" />
               </div>
             </li>
-          <li id="loading_addon" class='loading'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li>
+          <li id="loading_addon" class='loading'><div class='text-center'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></div></li>
         </ul>
         <div class="flex-container">
           <div id="addon-flex-prev" class="flex-prev"></div>
@@ -572,7 +576,11 @@
       <label for="addonDetailsShowPlot" data-mini="true" data-i18n="show-description"></label>
       <input name="addonDetailsShowPlot" type="checkbox" id="addonDetailsShowPlot" value="1" data-mini="true" />
       <img id="addonDetailsImage" class="detailsImage" alt="" src=""/>
-      <ul class="ulbar" data-role="listview"><li id="loading_addonDetails" class='loading addonDetailsLoad'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></li></ul>
+      <ul class="ulbar" data-role="listview">
+        <li id="loading_addonDetails" class='loading addonDetailsLoad'>
+          <div class='text-center'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></div>
+        </li>
+      </ul>
       <div id="addonDetailsList" class="ui-listview"></div>
       <button id="addonDetailsRefresh" data-icon="refresh" data-yAddonDirPath="" data-i18n="refresh"></button>
       <button id="addonDetailsOpenAddon" data-icon="arrow-r" data-yAddonDirPath="" data-i18n="open-addon"></button>

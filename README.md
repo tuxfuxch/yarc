@@ -8,6 +8,8 @@ An introduction video can be found here:
 
 WARNING: This Addon may contain content illegal in your country (example: flag of Tibet is illegal China)
 
+NOTE: after an update of the addon, clearing your browser cache might be needed for new translations
+
 ###Key Features (what might be better than in other solutions)
 
   * GUI is optimized for smart phones
@@ -25,7 +27,7 @@ https://github.com/tuxfuxch/yarc
 
 ###Requirements
 
-  * Minimum Helix 14.x
+  * Minimum Isengard 15.x
   * Internet connection to see preview images of movies, readme and demo Video
   * Youtube Plugin
 
@@ -155,7 +157,7 @@ all the licenses are in the subfolder resources/licenses
   * and for the spanish translation
   * sheikr and vilma for the portuguese translations
   * yarons for the hebrew translation
-  * dawed for help/advising multiple times
+  * dawed for help/advising multiple times and also Spanish and Bärndütsch translation
 
 ###Contact me
 
@@ -166,4 +168,4 @@ Tell me what you think could be done better, or what features you would like to 
 Feedback about the code is also appreciated, since I am not yet that much of a programmer.
 
 Please contact me on github with bug reports or feature requests: https://github.com/tuxfuxch/yarc/issues
-or alternatively in the Forum Thread: http://forum.xbmc.org/showthread.php?tid=198217
+or alternatively in the Forum Thread: http://forum.kodi.tv/showthread.php?tid=198217

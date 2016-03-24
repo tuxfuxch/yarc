@@ -103,6 +103,17 @@
     display: block;
     margin: 0 auto;
 }
+.loading > .text-center {
+    text-align: center;
+    display: block;
+    margin: 0 0 -15px;
+}
+.text-center > span{
+    padding-left: 10px;
+    vertical-align: middle;
+    height: 46px;
+    display: inline-block;
+}
 .ui-btn-text {
 	color: white;
 }
@@ -128,6 +139,11 @@ a:hover {
 }
 .ui-page-theme-b a:hover, html .ui-bar-b a:hover, html .ui-body-b a:hover, html body .ui-group-theme-b a:hover {
     color: #fff;
+}
+.downloadLink {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500 !important;
 }
 .buttonRight {
     position: absolute;
@@ -176,6 +192,7 @@ a:hover {
 	width: calc(100% + 1em)!important;
     margin-left: -2em; /* to correct margin from jq content margin*/
     margin-top: -1em; /* to correct margin from jq content margin and overwrite of .detailsImage*/
+    pointer-events: none;
 }
 #movieDetailsPlot {
 	margin-top: 15px;
@@ -353,6 +370,10 @@ a:hover {
 .openSeason .ui-btn-icon-left {
     padding: 0.7em 2.5em;
 }
+.loading_season {
+    margin: 2em !important;
+    border-width: 0 !important;
+}
 
 /****************************** g: Music Page ********************************/
 .prevPicContainerMusic {
@@ -373,13 +394,14 @@ a:hover {
 }
 /****************************** g: Addon Page ********************************/
 #loading_addonDetails {
-    margin: 1em; /*to correct the ulview -1em from jquery in wrapping ul*/
+    margin: 2em; /*to correct the ulview -1em from jquery in wrapping ul*/
 }
 .addonPlot {
 	font-size: 12px;
     display: block;
     float: left;
     margin: 5px;
+    font-weight: normal;
 }
 #addonDetailsList {
 	margin: 40px auto 20px;
@@ -409,7 +431,9 @@ a:hover {
  	height: 51px;
 }
 .addonDirBack {
-	font-size: 51px;
+	font-size: 45px;
+    padding-top: 1px;
+    padding-bottom: 5px;
 	text-align: center;
 	float: left;
     width: 100%;
@@ -846,7 +870,7 @@ and (max-width : 780px) {
 		width: 100%;
 	}	
     .prev-next-arrow {
-        font-size: 47px; 
+        font-size: 45px; 
         text-align: center;
         width: 100%;
         height: 100%;

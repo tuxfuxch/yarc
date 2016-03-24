@@ -16,11 +16,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
+//TODO 
+//empty pl
+//show swipe help problem solve
+//some loading issues in addon files strucktures has to be found
+
 //that intervals and functions run only once, also after pageswitch
 var yCoreInitDone = false;
 
-var yCore = {	
-    top10: [],
+var yCore = {
+    videoSources: [],
+    musicSources: [],
 	//set player at first as none, will by updated by yCore.getActivePlayer
 	activePlayer: -1, //0=Music 1=Video
 	deviceBeta: 0,
@@ -55,7 +61,7 @@ var yCore = {
                 useCookie: false,
                 useDataAttrOptions: true,
                 resGetPath: 'resources/lang/__lng__.json'}).done(function() {
-                    //go throug all i18n marked tags and set text according to constant and chosen langugage
+                    //go throug all i18n marked tags and set text according to constant and chosen langugage 
                     $('[data-i18n]').each(function() {
                         $(this).i18n();
                     });
@@ -76,9 +82,21 @@ var yCore = {
                         if(resultOpenRemotePanel["result"]["fullscreen"] == true){
                             $("#swipe").css("background-color", "#444");                            
                             $('#radioMedia').prop("checked", true);
+                            
+                            if(yRemote.showHelp){
+                                $("#swipe-box-help").show();
+                                $("#swipe-box-Media-help").show();
+                                $("#swipe-box-Nav-help").hide();
+                            }
                         } else {
                             $("#swipe").css("background-color", "#666");  
-                            $('#radioNav').prop("checked", true);                                                
+                            $('#radioNav').prop("checked", true);  
+                            
+                            if(yRemote.showHelp){
+                                $("#swipe-box-help").show();
+                                $("#swipe-box-Nav-help").show();
+                                $("#swipe-box-Media-help").hide();
+                            }
                         }
                         $(".nav-med").checkboxradio("refresh");
                     }
@@ -90,7 +108,49 @@ var yCore = {
                 event.stopImmediatePropagation();
                 yRemote.panelVisible = false;              
             }
-        });   
+        });
+        
+        yCore.sendJsonRPC(
+            'GetSources',	
+            '[{"jsonrpc":"2.0","method":"Files.GetSources","params":["video"],"id":1}, {"jsonrpc":"2.0","method":"Files.GetSources","params":["music"],"id":2}]',
+            function(resultGetSources){ 
+                //Video Sources
+                for (var i = 0; i < resultGetSources[0]["result"]["sources"].length; i++) {
+                    var sourcesList = resultGetSources[0]["result"]["sources"][i]["file"];
+                    var array = [];
+                    //first push whole source path to temp array
+                    yCore.videoSources.push(sourcesList);
+                    //check if it is multipath, if yes, remove mulitpath part and slash in the end and finaly add each multipath part to array
+                    if (sourcesList.match("^multipath://")) {
+                        sourcesList = sourcesList.substring(12);
+                        sourcesList = sourcesList.slice(0,-1);
+                        array = sourcesList.split('/');
+                    } 
+                    
+                    //for each array item, push decoded URI to Video Sources Array
+                    $.each( array, function( index, value ){
+                        yCore.videoSources.push( decodeURIComponent(value) );
+                    });
+                }
+                //Music sources
+                for (var i = 0; i < resultGetSources[1]["result"]["sources"].length; i++) {
+                    var sourcesList = resultGetSources[1]["result"]["sources"][i]["file"];
+                    //first push whole source path to temp array
+                    yCore.musicSources.push(sourcesList);
+                    //check if it is multipath, if yes, remove mulitpath part and slash in the end and finaly add each multipath part to array
+                    if (sourcesList.match("^multipath://")) {
+                        sourcesList = sourcesList.substring(12);
+                        sourcesList = sourcesList.slice(0,-1);
+                        array = sourcesList.split('/');
+                    }
+                    
+                    //for each array item, push decoded URI to Video Sources Array
+                    $.each( array, function( index, value ){
+                        yCore.musicSources.push(decodeURIComponent(value) );
+                    });
+                }
+            }
+        );
         
 		yCoreInitDone = true; //that Intervals run only once, also after Pageswitch
 	},
@@ -109,7 +169,7 @@ var yCore = {
 					$("#mediaProgImage").hide();
 					$("#mediaProgTitle").text("");
 					$("#mediaProgTime").text("");
-					$("#mediaProg-cont").css("background-size", "100% 100%");
+                    $("#mediaProg-cont").css( "width", "0%");
 				} else {
 					$("#seek-bubble").show();
 					yCore.activePlayer = resultGetActivePlayers["result"]["0"]["playerid"];
@@ -121,11 +181,6 @@ var yCore = {
 	getPlayerGetItem: function(){
 		if(yCore.activePlayer != -1 && yRemote.panelVisible){ //only run if footer visible and and a player is active
           
-            
-      
-      
-      
-            //TODO test
             yCore.sendJsonRPC(
                 'GetRemoteInfos',	
                 '[{"jsonrpc":"2.0","method":"Application.GetProperties","id":1,"params":[["muted"]]},'
@@ -263,136 +318,6 @@ var yCore = {
                     
                 }
             );
-          
-          
-          
-			/*yCore.sendJsonRPC( //get time for footer
-				'GetProperties',
-				'{"jsonrpc":"2.0","method":"Player.GetProperties", "params": { "playerid": '
-					+ yCore.activePlayer + ', "properties": ["time", "totaltime", "percentage", "repeat", "shuffled"] }, "id": 1}',
-				function(resultGetProperties){   // true if "error" doesn't exist in object
-					if(!("error" in resultGetProperties)){
-                      
-                        if(resultGetProperties["result"]["repeat"] == "all"){
-                            document.getElementById('SetRepeat').innerHTML = "<span class='icon-refresh'></span>";
-                        } else if (resultGetProperties["result"]["repeat"] == "one"){
-                            document.getElementById('SetRepeat').innerHTML = "<span class='icon-refresh-one'></span>";
-                        } else {
-                            document.getElementById('SetRepeat').innerHTML = "<span class='icon-refresh-no'></span>";
-                        }          
-          
-                        if(resultGetProperties["result"]["shuffled"] == false){
-                            document.getElementById('SetShuffle').innerHTML = "<span class='icon-random-straight'></span>";
-                        } else {
-                            document.getElementById('SetShuffle').innerHTML = "<span class='icon-random'></span>";
-                        }
-								
-						$("#mediaProgTime").html(yTools.addZeroTwoDigits(resultGetProperties["result"]["time"]["hours"]) 
-							+ ":" + yTools.addZeroTwoDigits(resultGetProperties["result"]["time"]["minutes"]) 
-							+ ":" + yTools.addZeroTwoDigits(resultGetProperties["result"]["time"]["seconds"])
-							+ "<br>" + yTools.addZeroTwoDigits(resultGetProperties["result"]["totaltime"]["hours"])
-							+ ":" + yTools.addZeroTwoDigits(resultGetProperties["result"]["totaltime"]["minutes"])
-							+ ":" + yTools.addZeroTwoDigits(resultGetProperties["result"]["totaltime"]["seconds"])
-						);
-						
-						//needed for seek function to calc time difference
-						yCore.currentPlayTimeSeconds = resultGetProperties["result"]["time"]["hours"] * 3600
-							+ resultGetProperties["result"]["time"]["minutes"] *60
-							+ resultGetProperties["result"]["time"]["seconds"];
-						
-						yCore.totalPlayTimeSeconds = resultGetProperties["result"]["totaltime"]["hours"] * 3600
-							+ resultGetProperties["result"]["totaltime"]["minutes"] *60
-							+ resultGetProperties["result"]["totaltime"]["seconds"];
-						$("#mediaProg-cont").css( "width", resultGetProperties["result"]["percentage"] + "%");
-						$("#mediaProg-cont").css( "background-color", "#685300");
-						if(!yRemote.isDragging){
-                            var bubblePercentage = ($(window).width() * resultGetProperties["result"]["percentage"] / 100) - 25 ;                         
-                            $("#seek-bubble").css( "left", bubblePercentage);
-                        }
-					} else { //if "error" exists set props that nothing is in it
-						$("#seek-bubble").hide();
-						$("#mediaProgImage").hide();
-						$("#mediaProgTitle").text("");
-						$("#mediaProgTime").text("");
-						$("#mediaProg-cont").css( "width", "0%");
-					}
-				}
-			);*/				
-			
-			//get playing item details for footer
-			/*yCore.sendJsonRPC(
-				'GetItem',
-				'{ "jsonrpc": "2.0", "method": "Player.GetItem", "params": { "playerid": '
-						+ yCore.activePlayer + ', "properties": [ "title", "showtitle", "artist", "thumbnail", "streamdetails", "file", "season", "episode"] }, "id": 1 }',
-				function(resultGetItem){
-					if(!("error" in resultGetItem)){// if "error" is not in return set info
-                        
-                        var title = resultGetItem["result"]["item"]["title"];
-                        var label = "";//only set label if titel is not there and info in label
-                        
-                        
-						if(title == ""){ 
-							label = " " + resultGetItem["result"]["item"]["label"];
-						} else {
-                            //get rid of the ugly [] brackets with [b] and [color=....] in filenames
-                            if(title.indexOf('[') >= 0){
-                                title = title.replace(/(\[.*?\])/g, '');
-                            }
-                        }
-						
-						var showdetails = "";//only set tv show details if present
-						if(resultGetItem["result"]["item"]["type"] == "episode"){
-							showdetails = " (" + resultGetItem["result"]["item"]["showtitle"] 
-                                            + " " + resultGetItem["result"]["item"]["season"] 
-                                            + "x" + resultGetItem["result"]["item"]["episode"]
-                                            + ")";
-						} 
-						
-						if (yCore.activePlayer == 1){ //Video Player
-							$("#mediaProgTitle").text(title + label + showdetails);
-							if(!yS.yS.hidePrevPics){
-                                if(resultGetItem['result']['item']['thumbnail'] !== ""){
-                                    $("#mediaProgImage").attr("src", yTools.imageUrlNormalizer(resultGetItem['result']['item']['thumbnail'], "?"));
-                                    $("#mediaProgImage").show();
-                                } else {
-                                    $("#mediaProgImage").hide();
-                                }
-							} else {
-                                    $("#mediaProgImage").hide();                              
-                            }
-							$("#mediaProgTitle").show();
-						} else if (yCore.activePlayer == 0) { //Musik Player
-							if(!yS.yS.hidePrevPics){
-                                if(resultGetItem['result']['item']['thumbnail'] !== ""){
-                                    $("#mediaProgImage").attr("src", yTools.imageUrlNormalizer(resultGetItem['result']['item']['thumbnail'], "?"));
-                                    $("#mediaProgImage").show();
-                                } else {
-                                    $("#mediaProgImage").hide();
-                                }
-							} else {
-                                    $("#mediaProgImage").hide();                              
-                            }
-							var artist = "";
-                            if (resultGetItem["result"]["item"]["artist"].length !== 0) {
-                                artist = " (" +  resultGetItem["result"]["item"]["artist"] + ") ";
-                              
-                            }	
-							$("#mediaProgTitle").text(title  + artist + label);
-							$("#mediaProgImage").show();
-							$("#mediaProgTitle").show();
-						} else {//other Player
-							$("#mediaProgTitle").text(title + label);
-							$("#mediaProgImage").show();
-							$("#mediaProgTitle").show();
-						}
-					} else { //if "error" exists set props that nothing is in it
-						$("#seek-bubble").hide();
-						$("#mediaProgImage").hide();
-						$("#mediaProgTitle").text("");
-						$("#mediaProgTime").text("");
-					}
-				}
-			);       */     
 		}
 	},
 	/*
@@ -647,6 +572,12 @@ var yCore = {
             $("#swipe").css("background-color", "#666");  
             $('#radioNav').prop("checked", true);
             $(".nav-med").checkboxradio("refresh");
+            
+            if(yRemote.showHelp){
+                $("#swipe-box-help").show();
+                $("#swipe-box-Nav-help").show();
+                $("#swipe-box-Media-help").hide();
+            }
         }
 	}
 }
@@ -1062,9 +993,19 @@ var yRemote = {
                 if(resultSetFullscreen["result"] == true){
                     $("#swipe").css("background-color", "#444");                            
                     $('#radioMedia').prop("checked", true);
+                    if(yRemote.showHelp){
+                        $("#swipe-box-help").show();
+                        $("#swipe-box-Media-help").show();
+                        $("#swipe-box-Nav-help").hide();
+                    }
                 } else {
                     $("#swipe").css("background-color", "#666");  
                     $('#radioNav').prop("checked", true);
+                    if(yRemote.showHelp){
+                        $("#swipe-box-help").show();
+                        $("#swipe-box-Nav-help").show();
+                        $("#swipe-box-Media-help").hide();
+                    }
                 }
                 $(".nav-med").checkboxradio("refresh");
             }
@@ -1339,7 +1280,7 @@ var yStart = {
                       
                         $("#topFavs").append(
                             "<a class='showAddonDirItem'"
-                                + " data-yAddonFile='" +  decodeURIComponent(pathToFileOrPlace)
+                                + " data-yAddonFile='" + decodeURIComponent(pathToFileOrPlace)
                                 + "' data-yAddonFileType='" + resultgetTop10Favs["result"]["favourites"][i]["type"]     
                                 + "' data-yAddonFileResume='0"
                                 + "' data-yAddonIsBack='' data-yAddonFanartPath='" 
@@ -1620,6 +1561,11 @@ var yPl = {
 			e.stopImmediatePropagation();
 			yPl.getPlaylist();
 		});
+		
+		$("#emptyPlaylistPl").click(function(e) {
+			e.stopImmediatePropagation();
+			yPl.emptyPlaylist();
+		});
         
 		$("#plClose").click(function(e) {
 			e.stopImmediatePropagation();
@@ -1760,7 +1706,7 @@ var yPl = {
 		} else if($("input[name='plType']:checked").val() == "1"){ //if Videoplayer
 			yCore.sendJsonRPC(
 				'GetPLItemsVideos',							
-				'{"jsonrpc": "2.0", "method": "Playlist.GetItems", "params": { "properties": [ "runtime", "showtitle", "season", "title", "artist", "thumbnail","file","episode" ], "playlistid": 1}, "id": 1}',
+				'{"jsonrpc": "2.0", "method": "Playlist.GetItems", "params": { "properties": [ "runtime", "showtitle", "season", "title", "artist", "thumbnail","file","episode","playcount" ], "playlistid": 1}, "id": 1}',
 				function(resultPl){
 
 					if(resultPl["result"]["limits"]["end"] == "0"){//check first if playlist empty
@@ -1780,6 +1726,11 @@ var yPl = {
                                         "simpleListPrevPic",
                                         ""
                                       );
+                        }
+                        
+                        var seen = "";
+                        if(resultPl["result"]["items"][i]["playcount"]>0){
+                            seen = "<i class='icon-check green'></i> ";
                         }
                       
 						if(currentPlayingtitle == resultPl["result"]["items"][i]["file"]){
@@ -1803,7 +1754,7 @@ var yPl = {
 									+ "<span class='bold'>" +isPlaying
 										+ yTools.addZeroTwoDigits(minutes) +":"+yTools.addZeroTwoDigits(seconds) 
 									+ "</span>"
-									+ "<span>" + resultPl["result"]["items"][i]["title"] + "</span>"
+									+ "<span>" + seen + resultPl["result"]["items"][i]["title"] + "</span>"
 									+ "<span class='buttonRight'><button class='plRemove' data-yplnr='" + i + "' data-inline='true' data-theme='b' data-mini='true'>" 
                                         + "<i class='icon-times'></i> "
 									+ "</button></span>"
@@ -1817,7 +1768,7 @@ var yPl = {
 									+ "<span class='bold'>" +isPlaying
 										+ yTools.addZeroTwoDigits(minutes) +":"+yTools.addZeroTwoDigits(seconds) 
 									+ "</span>"
-									+ "<span>" + resultPl["result"]["items"][i]["title"] + "</span>"
+									+ "<span>" + seen + resultPl["result"]["items"][i]["title"] + "</span>"
 									+ "<span class='italic'>(" 
                                         + resultPl["result"]["items"][i]["showtitle"]  + " " 
                                         + resultPl["result"]["items"][i]["season"] + "x" + resultPl["result"]["items"][i]["episode"] 
@@ -1864,7 +1815,17 @@ var yPl = {
 				window.setTimeout(yPl.getPlaylist(),1000);
 			}
 		);
-	}
+	},
+	emptyPlaylist: function () {
+		yCore.sendJsonRPC(
+			'PlaylistClear',
+			'{"jsonrpc": "2.0", "id": 0, "method": "Playlist.Clear", "params": {"playlistid": ' + $("input[name='plType']:checked").val() + '}}',
+			function(resultemptyPlaylist){
+                yPl.getPlaylist();
+			}
+		);
+	},
+    
 }
 
 /*
@@ -1996,6 +1957,24 @@ var yMovies = {
 	 * Set information to according movie in details
 	 */
 	openMovieItem: function(movieNr) {
+
+		if(!yS.yS.hideFileLinkMovies){
+            yCore.sendJsonRPC(
+                'PrepareDownload',
+                '{"jsonrpc":"2.0","method":"Files.PrepareDownload","id":1,"params":["' + yMovies.moviesJSON["result"]["movies"][movieNr]["file"] +'"]}',				
+                function(resultPrepareDownload){
+                  
+                    $("#movieDetailsFilelink").attr("href", "http://" + $(location).attr('host') + "/" + resultPrepareDownload["result"]["details"]["path"]);
+                    
+                    if (resultPrepareDownload["result"]["details"]["path"].match("^vfs/special")) {
+                        $("#movieDetailsFilelink").hide();
+                    } else {
+                        $("#movieDetailsFilelink").show();
+                    }
+                }
+            );
+            $("#movieDetailsFilelink").text($.t("filelink", {yFileLink:yMovies.moviesJSON["result"]["movies"][movieNr]["file"]}));
+        }      
       
         $('#movieDetailsPlayMovie').text($.t("play")).button("refresh");
 		yMovies.genresToString(movieNr);
@@ -2034,14 +2013,12 @@ var yMovies = {
 			$("#movieDetailsTrailer").attr("data-yMovieArrayNr", movieNr);
 			$("#movieDetailsTrailer").parent().show();
 		}
-		
+
         $("#movieDetailsPlayMovie").attr("data-yMovieArrayNr", movieNr);
-        
-		if(!yS.yS.hideFileLinkMovies){$("#movieDetailsFilelink").text($.t("filelink", {yFileLink:yMovies.moviesJSON["result"]["movies"][movieNr]["file"]}));}
 
         //push new histroy element so that #movies ist the latest back position
         $.mobile.navigate("#movieDetails");
-    },	
+    },
 	/*
 	 * Function who runs in the beginning or if movielist changes
 	 * and creates items in the list according to settings:
@@ -2364,6 +2341,11 @@ var ySeries = {
                                           + "</div>"
                                       + "</li>"
                                   ).trigger("create");
+                                  
+                                  
+                                  if(resultGetTVShows["result"]["tvshows"][i]["playcount"] > 0){
+                                        $('*[data-yTVShowID='+TVShowID+'] a').removeClass('ui-icon-plus').addClass('ui-icon-check green');
+                                  }  
                               }
                               $("#loading_series").hide();
                         }   
@@ -2447,81 +2429,7 @@ var ySeries = {
                         }
 
                     }
-        });
-        
-      /* TODO $(document.body).on('expand', '.openSeason' ,function(e){
-                alert("test");
-                e.stopImmediatePropagation();
-                ySeries.openSeason($(this).attr('data-yTVShowID'), $(this).attr('data-yTVShowSeasonID'));
-                alert($(this).attr('data-yTVShowID') + "    " + $(this).attr('data-yTVShowSeasonID'));
-  		}).on("collapse", function () {
-                    var node = document.getElementById($(this).attr('data-yTVShowID'));
-                    if ( node.hasChildNodes() ){
-                        while ( node.childNodes.length >= 1 ){
-                            node.removeChild( node.firstChild );       
-                        } 
-                    }
-  		}); */
-    
-                
- /*      TODO 
-        $(".openSeason").bind(
-            'expand', function () {
-                alert("test");
-                e.stopImmediatePropagation();
-                ySeries.openSeason($(this).attr('data-yTVShowID'), $(this).attr('data-yTVShowSeasonID'));
-                alert($(this).attr('data-yTVShowID') + "    " + $(this).attr('data-yTVShowSeasonID'));
-            }).bind(
-                'collapse', function () {
-                    var node = document.getElementById($(this).attr('data-yTVShowID'));
-                    if ( node.hasChildNodes() ){
-                        while ( node.childNodes.length >= 1 ){
-                            node.removeChild( node.firstChild );       
-                        } 
-                    }
-            }); 
-   */   
- 
-     /* $(".openSeason").live('expand', function(){
-          console.log('expand');
-        }).live('collapse', function(){
-          console.log('collapse');
-      });
- */
-     
-     
-//      $(".openSeason").live("expand", function(){ alert("expand"); }).live("collapse", function(){ alert("collapse"); }); 
-     
- 
-        /*
-           $(".openSeason").bind('collapsibleexpand', function () {
-                alert('Expanded');
-            }).bind('collapsiblecollapse', function () {
-                alert('Collapsed');
-            });
-        */
- 
- 
-         /*TODO does not work yet 
-        $(".openSeason").collapsible({
-          expand: function(e){
-                      alert("test");
-                      e.stopImmediatePropagation();
-                      ySeries.openSeason($(this).attr('data-yTVShowID'), $(this).attr('data-yTVShowSeasonID'));
-                      alert($(this).attr('data-yTVShowID') + "    " + $(this).attr('data-yTVShowSeasonID'));
-                  },
-          collapse: function(e){
-                        var node = document.getElementById($(this).attr('data-yTVShowID'));
-                        if ( node.hasChildNodes() ){
-                            while ( node.childNodes.length >= 1 ){
-                                node.removeChild( node.firstChild );       
-                            } 
-                        }
-                    }
-        });
-        */
-    
-        
+        });        
 	},
 	/*
 	 * called if a Series (or TV-show) is opened
@@ -2529,7 +2437,7 @@ var ySeries = {
 	openSeries: function(TvShowId){
 		var TVShowSeasonID = "";
         
-        $("#"+TvShowId).append("<ul class='tvshowloading-" + TvShowId + "' class='ulbar' data-role='listview'><li id='loading_addonDetails' class='loading'><img class='kodi_loading' src='resources/images/kodi_spinner.gif' alt='loading data'>" + $.t("loading") + "</li></ul>").trigger("create");
+        $("#"+TvShowId).append("<ul class='tvshowloading-" + TvShowId + "' class='ulbar' data-role='listview'><li class='loading loading_season'><div class='text-center'><img class='kodi_loading' src='resources/images/kodi_spinner.gif' alt='loading data'><span>" + $.t("loading") + "</span></div></li></ul>").trigger("create");
         
 		yCore.sendJsonRPC(
 			'GetSeasons',
@@ -2613,81 +2521,12 @@ var ySeries = {
                     );
           
 				}
-				
+
                 $(".tvshowloading-" + TvShowId).remove();
                 
 			}
 		);
 	},
-   /* openSeason: function(TvShowId, TVShowSeasonID){
-          $("#"+TvShowId+"-"+TVShowSeasonID).append("<ul class='tvshowseasonloading-" + TvShowId + "-" 
-              + TVShowSeasonID 
-              + "' class='ulbar' data-role='listview'><li id='loading_addonDetails' class='loading'>"
-              + "<img class='kodi_loading' src='resources/images/kodi_spinner.gif' alt='loading data'>" 
-              + $.t("loading") + "</li></ul>").trigger("create");
-      
-        yCore.sendJsonRPC(
-            'GetEpisodes',
-            '{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodes", "params": { "properties": ["season","episode", "showtitle", "plot", "thumbnail", "file", "rating", "playcount", "streamdetails", "resume"],"tvshowid":' + TvShowId + ',"season" : ' + TVShowSeasonID + ' }, "sort": { "order": "ascending", "method": "episode"}, "id": 1}',
-            function(resultGetEpisodes){
-                //Add a button to add whole season to the playlist
-                $("#" + TvShowId + "-" + TVShowSeasonID).append(
-                    "<div class='addSeriesSeason' "
-                        + "data-yShowID='" + TvShowId + "' "
-                        + "data-yShowSeasonID='" + TVShowSeasonID + "' >" + $.t("add-season-pl")
-                  + "</div>"
-                );                            
-                $("#series_list .addSeriesSeason").button(); 
-                
-                for (var k = 0; k < resultGetEpisodes["result"]["limits"]["end"]; k++) {
-                    
-                    var seenAndResume = "";
-                    if(resultGetEpisodes["result"]["episodes"][k]["playcount"]>0){
-                        if(yS.yS.hideWatched){continue;}//if setting says to not show seen episodes, go to next iteration
-                        seenAndResume += "<i class='icon-check green'></i> ";
-                    }
-                    
-                    if(
-                        resultGetEpisodes["result"]["episodes"][k]["resume"] !== undefined 
-                        && resultGetEpisodes["result"]["episodes"][k]["resume"]["position"]>0
-                    ){
-                        seenAndResume += "<i class='icon-clock-o orange'></i> ";
-                    }
-                    
-                    var imageTag = "";
-                    if(!yS.yS.hidePrevPics){
-                        imageTag = yTools.imageUrlNormalizer(
-                                      resultGetEpisodes["result"]["episodes"][k]["thumbnail"], 
-                                      "?", 
-                                      "tag", 
-                                      "seriesPrevPic",
-                                      ""
-                                    );
-                    }
-                    
-                    $("#"+TvShowId+"-"+TVShowSeasonID).append(
-                    "<a class='showEpidodeDetails' data-yEpisodeID='"+ resultGetEpisodes["result"]["episodes"][k]["episodeid"] 
-                        + "' data-yEpisodeNumber='"+ resultGetEpisodes["result"]["episodes"][k]["episode"]
-                    + "'>"
-                        + "<li class='series-item yListItem'> "                                    
-                            + imageTag
-                            + "<h4>" + seenAndResume + resultGetEpisodes["result"]["episodes"][k]["label"] + "</h4>"
-                        + "</li>"
-                    + "</a>"
-                    );
-                }
-                
-                //removes season collapsible, if empty
-                if (!$("#"+TvShowId+"-"+TVShowSeasonID + " li"  ).children().length){
-                        $("#"+TvShowId+"-"+TVShowSeasonID).parent().parent().remove(); //[check: better selector
-                        $("#"+TvShowId).append("<div>"+ $.t("no-matching-series", {ySeason:TVShowSeasonID}) +"</div>").trigger("create");
-                }
-            },
-            false
-        );
-        
-        $(".tvshowseasonloading-" + TvShowId + "-" + TVShowSeasonID).remove();
-    },*/
 	/*
 	 * called if a Episode is opened
 	 */
@@ -2717,6 +2556,24 @@ var ySeries = {
 			function(resultGetEpisodeDetails){
 				
 				episodeDetails = resultGetEpisodeDetails["result"]["episodedetails"];
+                
+                if(!yS.yS.hideFileLinkMovies){
+                    yCore.sendJsonRPC(
+                        'PrepareDownload',
+                        '{"jsonrpc":"2.0","method":"Files.PrepareDownload","id":1,"params":["' + episodeDetails["file"] +'"]}',				
+                        function(resultPrepareDownload){
+                          
+                            $("#episodeDetailsFilelink").attr("href", "http://" + $(location).attr('host') + "/" + resultPrepareDownload["result"]["details"]["path"]);
+                            
+                            if (resultPrepareDownload["result"]["details"]["path"].match("^vfs/special")) {
+                                $("#episodeDetailsFilelink").hide();
+                            } else {
+                                $("#episodeDetailsFilelink").show();
+                            }
+                        }
+                    );
+                    $("#episodeDetailsFilelink").text($.t("filelink", {yFileLink:episodeDetails["file"]}));
+                }   
 				
 				if(!yS.yS.hidePrevPics){
 					$("#episodeDetailsImage").attr(
@@ -2938,9 +2795,9 @@ var yMusic = {
 			yMusic.playPlaylist();
 		});
 		
-		$("body").delegate("#emptyPlaylist", "click", function(e){ 
-            $('#emptyPlaylist').text($.t("done")).button("refresh");         
-            setTimeout(function(){$('#emptyPlaylist').text($.t("empty-pl")).button("refresh");}, 1500); //change text back in 1.5 seconds 
+		$("body").delegate("#emptyPlaylistMusic", "click", function(e){ 
+            $('#emptyPlaylistMusic').text($.t("done")).button("refresh");         
+            setTimeout(function(){$('#emptyPlaylistMusic').text($.t("empty-pl")).button("refresh");}, 1500); //change text back in 1.5 seconds 
 			yMusic.emptyPlaylist();
 		});
 		
@@ -3476,8 +3333,34 @@ var yAddons = {
             if($(this).closest('.showAddonDirItem').attr('data-yAddonFileType') == "file"){
               fileType = "media";
               
-              contextString += "<p class='contextMenu addonAddPL' data-yAddonFile='" + $(this).closest('.showAddonDirItem').attr('data-yAddonFile') + "' tabindex='1'>" 
-                      + $.t('add-pl');
+              if(!yS.yS.hideFileLinkMovies){
+                  yCore.sendJsonRPC(
+                      'PrepareDownload',
+                      '{"jsonrpc":"2.0","method":"Files.PrepareDownload","id":1,"params":["' 
+                          + $(this).closest('.showAddonDirItem').attr('data-yAddonFile') +'"]}',
+                      function(resultPrepareDownload){
+                        
+                          if("error" in resultPrepareDownload){/*do nothing*/}
+                          //if it has plugin or special in the beginning of the filepath 
+                          else if (resultPrepareDownload["result"]["details"]["path"].match("^vfs/plugin")
+                                || resultPrepareDownload["result"]["details"]["path"].match("^vfs/special")
+                          ) {/*do nothing*/}
+                          else {
+                            
+                              contextString += "<a class='downloadLink contextMenu' target='_blank' href='http://" 
+                                                  + $(location).attr('host') + "/" 
+                                                  + resultPrepareDownload["result"]["details"]["path"] + "' tabindex='1'>" 
+                                                  + $.t("download") + "</a>";
+                          }
+                      },
+                      false //synchronous
+                  );
+              }    
+              
+              contextString += "<p class='contextMenu addonAddPL' data-yPlaylistID='" 
+                                  + $(this).attr('data-yPlaylistID') + "'  data-yAddonFile='" 
+                                  + $(this).closest('.showAddonDirItem').attr('data-yAddonFile') 
+                                  + "' tabindex='1'>" + $.t('add-pl') + "</p>";
             } else { //if it's not a media item, than remember it as a window item
               fileType = "window";
             }
@@ -3525,7 +3408,7 @@ var yAddons = {
           if($(this).css("opacity") != 0.2){
             yCore.sendJsonRPC(
               'PlaylistAdd',
-              '{"jsonrpc": "2.0", "method": "Playlist.Add", "params": { "playlistid" : 1 , "item" : {"file" : "' + $(this).attr('data-yAddonFile') + '"} }, "id": 1}',
+              '{"jsonrpc": "2.0", "method": "Playlist.Add", "params": { "playlistid" : ' + $(this).attr('data-yPlaylistID') + ' , "item" : {"file" : "' + $(this).attr('data-yAddonFile') + '"} }, "id": 1}',
               ''
             );            
           }
@@ -3651,6 +3534,7 @@ var yAddons = {
 		);
 	},
 	populateAddon:  function(addonIDandPath, prevfanartpath){
+      //TODO filepath with ' in path dont work
 		$("#loading_addonDetails").show();        
         $("#addonDetailsOpenAddon").show();   
         $("#addonDetailsRefresh").show();
@@ -3663,9 +3547,23 @@ var yAddons = {
         }
 
 		var mediatype = "";
-		if(addonIDandPath.indexOf('audio') >= 0){mediatype = "music";} 
-		else {mediatype = "video";}
+         
+        $.each( yCore.musicSources, function( index, value ){
+            if (addonIDandPath.match("^" + value)){mediatype = "music"}
+        })
+        $.each( yCore.videoSources, function( index, value ){
+            if (addonIDandPath.match("^" + value)){mediatype = "video"}
+        })
         
+        
+        var getproperties = '';
+        var playListID = -1;//
+		if(addonIDandPath.indexOf('.audio.') >= 0 || mediatype == "music"){mediatype = "music";getproperties = '"title","file","thumbnail", "art","duration"';playListID = 0;} 
+		else if(addonIDandPath.indexOf('.video.') >= 0 || mediatype == "video") {
+            mediatype = "video";getproperties = '"title","file","thumbnail", "playcount","art","plot","runtime", "premiered", "resume"';playListID = 1;
+        } 
+		else {mediatype = "files";getproperties = '"title","file","thumbnail"';}
+
         $("#addonDetailsList").append(
             "<a  id='back' class='showAddonDirItem' "
             + "data-yAddonFile='" + yAddons.addonBackPath[yAddons.addonBackPath.length-1][0] //the path from the previous item
@@ -3680,7 +3578,7 @@ var yAddons = {
 		
 		yCore.sendJsonRPC(
             'OpenAddon_' + addonIDandPath,
-			'{"jsonrpc":"2.0","method":"Files.GetDirectory","id":1,"params":["' + addonIDandPath + '","' + mediatype + '",["title","file","thumbnail", "playcount","art","plot","runtime", "premiered", "resume"]]}',
+			'{"jsonrpc":"2.0","method":"Files.GetDirectory","id":1,"params":["' + addonIDandPath + '","' + mediatype + '",[' + getproperties + ']]}',
 			function(resultOpenAddon){              
 				
 				//if there is fanart, show it in the background
@@ -3728,8 +3626,7 @@ var yAddons = {
 					var plot = "";
 					if(undefined != resultOpenAddon["result"]["files"][i]["plot"]){
 						plot = yTools.escapeHTML(resultOpenAddon["result"]["files"][i]["plot"]);
-					}										
-					
+					}
 					
                     var additionalInfo = "";   //if it's a file, runtime is positive and even exists, write the runtime in minutes and seconds     
 					if(resultOpenAddon["result"]["files"][i]["filetype"] == "file"){
@@ -3738,12 +3635,21 @@ var yAddons = {
                         if("premiered" in resultOpenAddon["result"]["files"][i] && resultOpenAddon["result"]["files"][i]["premiered"] != ""){
                           additionalInfo += resultOpenAddon["result"]["files"][i]["premiered"];
                         }   
+                        
 						if(resultOpenAddon["result"]["files"][i]["runtime"] != "0" && ("runtime" in resultOpenAddon["result"]["files"][i])){
                           var minutes = Math.floor(resultOpenAddon["result"]["files"][i]["runtime"] / 60);
                           var seconds = resultOpenAddon["result"]["files"][i]["runtime"] - minutes * 60;
                           
                           if(additionalInfo != ""){additionalInfo += "; "}
-                          additionalInfo +=  $.t("runtime", {yRuntime:yTools.addZeroTwoDigits(minutes) + ":" + yTools.addZeroTwoDigits(seconds)});
+                          additionalInfo +=  $.t("runtime", {yRuntime:minutes + ":" + yTools.addZeroTwoDigits(seconds)});
+                        }
+                        
+                        if(resultOpenAddon["result"]["files"][i]["duration"] != "0" && ("duration" in resultOpenAddon["result"]["files"][i])){
+                            var minutes = Math.floor(resultOpenAddon["result"]["files"][i]['duration'] / 60);
+                            var seconds = resultOpenAddon["result"]["files"][i]['duration'] - minutes * 60;
+                          
+                            if(additionalInfo != ""){additionalInfo += "; "}                            
+                            additionalInfo +=  $.t("runtime", {yRuntime:minutes + ":" + yTools.addZeroTwoDigits(seconds)});
                         }
                         
                          if(additionalInfo != ""){ additionalInfo = "(" + additionalInfo + ") "}
@@ -3753,13 +3659,15 @@ var yAddons = {
 					//this is all to give the infos over, to the next dialoge, it's not used right now, but in the next dialoge if element klicked
 					var fanartpath = "";
 					if(!yS.yS.hidePrevPics){
-						if ("poster" in resultOpenAddon["result"]["files"][i]["art"]){
-							fanartpath = resultOpenAddon["result"]["files"][i]["art"]["poster"]
-						} else if ("thumbnail" in resultOpenAddon["result"]["files"][i]) {
-							fanartpath = resultOpenAddon["result"]["files"][i]["thumbnail"]
-						} else {
-							fanartpath = prevfanartpath;
-						}
+                        if("art" in resultOpenAddon["result"]["files"][i]){
+                            if ("poster" in resultOpenAddon["result"]["files"][i]["art"]){
+                                fanartpath = resultOpenAddon["result"]["files"][i]["art"]["poster"]
+                            } else if ("thumbnail" in resultOpenAddon["result"]["files"][i]) {
+                                fanartpath = resultOpenAddon["result"]["files"][i]["thumbnail"]
+                            } else {
+                                fanartpath = prevfanartpath;
+                            }
+                        }
 					}         
 					
 					var resume = "";
@@ -3781,7 +3689,7 @@ var yAddons = {
                               + "<h4>"+ seenAndResume + itemLabel.replace('\'', 'min') + " " + additionalInfo +"</h4>"
                               +" <p class='addonPlot'>" + plot + "</p>"
                             + "</div>"               
-                            + "<div class='addonDirItemRight' data-yContextShown='0' tabindex='1'><h3><i class='icon-ellipsis-v'></i></h3></div>" 
+                            + "<div class='addonDirItemRight' data-yContextShown='0' data-yPlaylistID='" + playListID + "' tabindex='1'><h3><i class='icon-ellipsis-v'></i></h3></div>" 
                           +"</div>"
 						+"</a>"
 					).trigger( "create" ).trigger('refresh');
@@ -3866,7 +3774,7 @@ var yAddons = {
                 
                 $("#addonDetailsList").append(
                       "<a class='showAddonDirItem'"
-                          + " data-yAddonFile='" +  decodeURIComponent(pathToFileOrPlace)
+                          + " data-yAddonFile='" + decodeURIComponent(pathToFileOrPlace)
                           + "' data-yAddonFileType='" + resultGetKodiFavs["result"]["favourites"][i]["type"]     
                           + "' data-yAddonFileResume='0"
                           + "' data-yAddonIsBack='' data-yAddonFanartPath='" 

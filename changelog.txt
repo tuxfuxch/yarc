@@ -1,3 +1,17 @@
+Version 0.11.1
+- some css optimization
+- adds green ticks to playlist items in video section if seen
+- added translation Berndütsch (thanks dawed to your efford)
+- if video or audio sources are in the favorites list (or a subfolder) they can be accessed
+- if a tv show is whole seen, it replases the + with a tick before banner
+- added Filepath feature also to series episodes
+- added download link to video files in libraries and in context menu for local media items when browsing into a folder through favourties
+- added empty playlist button to playlist
+- BUGFIX: Help text in swipe field is now always in the right context if showed
+- BUGFIX: Playtime for media is now correct in minutes and seconds in addondetails
+- BUGFIX: progressbar in remote should now after ending playing an item turn grey again
+
+
 Version 0.11.0
 - replaced my own placeholder images with awsomefont symbols (?, file and folder)
 - replaced green-ticks images with awesomefont symbol in title (movie, series and addon)
