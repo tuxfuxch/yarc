@@ -1,3 +1,12 @@
+Version 0.11.2
+- if browsing favourites, and it's not a plugin, sort content
+- FIX: if thvshow is closed and seen, the plus gets replaced by tick too
+- FIX: if you open an addon, don't check the filepaths against video and audio sources
+- BUGFIX: if favourit-entry is set directly on a vido or audio source, it works now also if it is mulitsource
+- BUGFIX: browsing files or media works now also if kodi is run on windows
+- BUGFIX: files with single quote in it can be started now in favourites
+- BUGFIX: all menu items in context menu in addon details (or favorites(-sub)-folders) gets hidden if context button gets pressed again
+
 Version 0.11.1
 - some css optimization
 - adds green ticks to playlist items in video section if seen
@@ -10,7 +19,6 @@ Version 0.11.1
 - BUGFIX: Help text in swipe field is now always in the right context if showed
 - BUGFIX: Playtime for media is now correct in minutes and seconds in addondetails
 - BUGFIX: progressbar in remote should now after ending playing an item turn grey again
-
 
 Version 0.11.0
 - replaced my own placeholder images with awsomefont symbols (?, file and folder)

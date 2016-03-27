@@ -17,9 +17,11 @@
  */
 
 //TODO 
-//empty pl
 //show swipe help problem solve
 //some loading issues in addon files strucktures has to be found
+
+
+
 
 //that intervals and functions run only once, also after pageswitch
 var yCoreInitDone = false;
@@ -117,35 +119,52 @@ var yCore = {
                 //Video Sources
                 for (var i = 0; i < resultGetSources[0]["result"]["sources"].length; i++) {
                     var sourcesList = resultGetSources[0]["result"]["sources"][i]["file"];
-                    var array = [];
+                    var arrayVid = [];
+                    
+                    //if it's a windows filepath (with backslashes), remove eventual last backslah 
+                    //and than replace all backslashes with double backslashes
+                    if(sourcesList.indexOf('\\') >= 0){
+                        sourcesList = sourcesList.slice(0,-1);
+                        sourcesList = sourcesList.replace(/\\/g,"\\\\");
+                    }	
+                    
                     //first push whole source path to temp array
                     yCore.videoSources.push(sourcesList);
                     //check if it is multipath, if yes, remove mulitpath part and slash in the end and finaly add each multipath part to array
                     if (sourcesList.match("^multipath://")) {
                         sourcesList = sourcesList.substring(12);
                         sourcesList = sourcesList.slice(0,-1);
-                        array = sourcesList.split('/');
+                        arrayVid = sourcesList.split('/');
                     } 
                     
                     //for each array item, push decoded URI to Video Sources Array
-                    $.each( array, function( index, value ){
+                    $.each( arrayVid, function( index, value ){  
                         yCore.videoSources.push( decodeURIComponent(value) );
                     });
                 }
                 //Music sources
                 for (var i = 0; i < resultGetSources[1]["result"]["sources"].length; i++) {
                     var sourcesList = resultGetSources[1]["result"]["sources"][i]["file"];
+                    var arrayAud = [];
+                    
+                    //if it's a windows filepath (with backslashes), remove eventual last backslah 
+                    //and than replace all backslashes with double backslashes
+                    if(sourcesList.indexOf('\\') >= 0){
+                        sourcesList = sourcesList.slice(0,-1);
+                        sourcesList = sourcesList.replace(/\\/g,"\\\\");
+                    }	
+                    
                     //first push whole source path to temp array
                     yCore.musicSources.push(sourcesList);
                     //check if it is multipath, if yes, remove mulitpath part and slash in the end and finaly add each multipath part to array
                     if (sourcesList.match("^multipath://")) {
                         sourcesList = sourcesList.substring(12);
                         sourcesList = sourcesList.slice(0,-1);
-                        array = sourcesList.split('/');
+                        arrayAud = sourcesList.split('/');
                     }
                     
                     //for each array item, push decoded URI to Video Sources Array
-                    $.each( array, function( index, value ){
+                    $.each( arrayAud, function( index, value ){
                         yCore.musicSources.push(decodeURIComponent(value) );
                     });
                 }
@@ -1121,7 +1140,7 @@ var yStart = {
                         //set width of header-menu items, have to do it for all request since i don't know when they are comming back
                         $(".ui-grid-d > .ui-block-a, .ui-grid-d > .ui-block-b, .ui-grid-d > .ui-block-c, .ui-grid-d > .ui-block-d, .ui-grid-d > .ui-block-e").css("width", (100 / yCore.headerMenuItems) + "%");
                     } else {                  
-                        for (var i = 0; i < resultgetRecentSeries["result"]["limits"]["end"]; i++) {                  
+                        for (var i = 0; i < resultgetRecentSeries["result"]["limits"]["end"]; i++) {          
                             var imagetag = "";
                             if(!yS.yS.hidePrevPics){
                                 imagetag = yTools.imageUrlNormalizer(
@@ -1256,16 +1275,19 @@ var yStart = {
              
             yCore.sendJsonRPC(
                 'getTop10Favs',
-                '{"jsonrpc": "2.0", "method": "Favourites.GetFavourites", "params": { "properties": ["window","path","thumbnail","windowparameter"] }, "id": 1}',
+                '{"jsonrpc": "2.0", "method": "Favourites.GetFavourites", "params": { "properties": ["window","path","thumbnail","windowparameter"]}, "id": 1}',
                 function(resultgetTop10Favs){
-                    for (var i = 0; i < 10; i++) {    //TODO get only top 10 results and process whole list
-                                     
+                    for (var i = 0; (i < 10 && i < resultgetTop10Favs["result"]["limits"]["end"]); i++) {              
+              
                         var pathToFileOrPlace = "";
                         if(resultgetTop10Favs["result"]["favourites"][i]["type"] == "window"){
                           pathToFileOrPlace = resultgetTop10Favs["result"]["favourites"][i]["windowparameter"];
                         } else if(resultgetTop10Favs["result"]["favourites"][i]["type"] == "media") {
                           pathToFileOrPlace = resultgetTop10Favs["result"]["favourites"][i]["path"];
                         }
+                
+                        //replace all backslashes with double backslashes
+                        pathToFileOrPlace = pathToFileOrPlace.replace(/\\/g,"\\\\");
                       
                         var imagetag = "";
                         if(!yS.yS.hidePrevPics){
@@ -1280,7 +1302,7 @@ var yStart = {
                       
                         $("#topFavs").append(
                             "<a class='showAddonDirItem'"
-                                + " data-yAddonFile='" + decodeURIComponent(pathToFileOrPlace)
+                                + " data-yAddonFile='" + pathToFileOrPlace
                                 + "' data-yAddonFileType='" + resultgetTop10Favs["result"]["favourites"][i]["type"]     
                                 + "' data-yAddonFileResume='0"
                                 + "' data-yAddonIsBack='' data-yAddonFanartPath='" 
@@ -2332,7 +2354,9 @@ var ySeries = {
                                   
                                   $("#series_list").append(
                                       "<li>"
-                                          + "<div data-role='collapsible' class='openSeries' data-yTVShowID='" + TVShowID + "'>"
+                                          + "<div data-role='collapsible' class='openSeries' data-yTVShowID='" + TVShowID + "' data-yTVShowPlaycount='" 
+                                              + resultGetTVShows["result"]["tvshows"][i]["playcount"] 
+                                          + "'>"
                                               + "<h3>"
                                                   + seenAndResume
                                                   + seriesThumbAddon
@@ -2344,7 +2368,7 @@ var ySeries = {
                                   
                                   
                                   if(resultGetTVShows["result"]["tvshows"][i]["playcount"] > 0){
-                                        $('*[data-yTVShowID='+TVShowID+'] a').removeClass('ui-icon-plus').addClass('ui-icon-check green');
+                                        $('*[data-yTVShowID='+TVShowID+'] a').removeClass('ui-icon-plus').addClass('ui-icon-check');
                                   }  
                               }
                               $("#loading_series").hide();
@@ -2416,19 +2440,22 @@ var ySeries = {
 		});
         
         $(".openSeries").collapsible({
-          expand: function(e){ 
-                      e.stopImmediatePropagation();
-                      ySeries.openSeries($(this).attr('data-yTVShowID'));//gets seasons of series and puts them in a list and add's it to DOM
-                  },
-          collapse: function(e){ //removes episodes from DOM if series is closed
-                        var node = document.getElementById($(this).attr('data-yTVShowID'));
-                        if ( node.hasChildNodes() ){
-                            while ( node.childNodes.length >= 1 ){
-                                node.removeChild( node.firstChild );       
-                            } 
-                        }
-
-                    }
+            expand: function(e){ 
+                        e.stopImmediatePropagation();
+                        ySeries.openSeries($(this).attr('data-yTVShowID'));//gets seasons of series and puts them in a list and add's it to DOM
+                    },
+            collapse: function(e){ //removes episodes from DOM if series is closed
+                          var node = document.getElementById($(this).attr('data-yTVShowID'));
+                          if ( node.hasChildNodes() ){
+                              while ( node.childNodes.length >= 1 ){
+                                  node.removeChild( node.firstChild );       
+                              } 
+                          }
+                          
+                          if($(this).attr('data-yTVShowPlaycount') > 0){
+                                $('*[data-yTVShowID='+$(this).attr('data-yTVShowID')+'] a').addClass('ui-icon-check').removeClass('ui-icon-plus');
+                          }
+            }                    
         });        
 	},
 	/*
@@ -3296,9 +3323,12 @@ var yAddons = {
                                     );
                      }
                      
+                     //decode single quote again, so that filename is right again
+                     var filePath = $(this).attr('data-yAddonFile').replace('%27', '\'');
+                     
                      yCore.sendJsonRPC(
                          'PlayerOpen',
-                         '{ "jsonrpc": "2.0", "method": "Player.Open", "params": { "item": { "file":  "' + $(this).attr('data-yAddonFile') + '" }, "options":{ "resume": ' + answer + ' } }, "id": 1 }',
+                         '{ "jsonrpc": "2.0", "method": "Player.Open", "params": { "item": { "file":  "' + filePath + '" }, "options":{ "resume": ' + answer + ' } }, "id": 1 }',
                          function(){}
                      );
                     
@@ -3376,10 +3406,10 @@ var yAddons = {
             
             //if context is not shown, create context menu and set context to shown;
             if($(this).attr('data-yContextShown') == "0"){
-                $(this).closest('.showAddonDirItem').after(contextString);
+                $(this).closest('.showAddonDirItem').after("<span>" + contextString + "</span>");
                 $(this).attr('data-yContextShown', "1");
-            } else { //else remove context menu and set to not shown
-                $(this).closest('.showAddonDirItem').nextAll('p').remove();    
+            } else { //else remove context menu and set to not shown 
+                $(this).closest('.showAddonDirItem').next().remove();    
                 $(this).attr('data-yContextShown', "0");
             }
         }); 
@@ -3534,8 +3564,8 @@ var yAddons = {
 		);
 	},
 	populateAddon:  function(addonIDandPath, prevfanartpath){
-      //TODO filepath with ' in path dont work
-		$("#loading_addonDetails").show();        
+      
+        $("#loading_addonDetails").show();        
         $("#addonDetailsOpenAddon").show();   
         $("#addonDetailsRefresh").show();
         
@@ -3547,22 +3577,28 @@ var yAddons = {
         }
 
 		var mediatype = "";
-         
-        $.each( yCore.musicSources, function( index, value ){
-            if (addonIDandPath.match("^" + value)){mediatype = "music"}
-        })
-        $.each( yCore.videoSources, function( index, value ){
-            if (addonIDandPath.match("^" + value)){mediatype = "video"}
-        })
-        
-        
+        var sorting = "";        
         var getproperties = '';
-        var playListID = -1;//
-		if(addonIDandPath.indexOf('.audio.') >= 0 || mediatype == "music"){mediatype = "music";getproperties = '"title","file","thumbnail", "art","duration"';playListID = 0;} 
+        var playListID = -1;
+        
+        if(!addonIDandPath.match("^plugin://")){//if it's a plugin, don't check the filepath
+            $.each( yCore.musicSources, function( index, value ){
+                if (addonIDandPath.match("^" + value)){mediatype = "music";}
+            });
+            $.each( yCore.videoSources, function( index, value ){
+                if (addonIDandPath.match("^" + value)){mediatype = "video";}
+            });
+            
+            sorting = ', {"method":"label","order":"ascending","ignorearticle":true}'; //only sort if it's not a plugin
+        }
+		if(addonIDandPath.indexOf('.audio.') >= 0 || mediatype == "music"){
+              mediatype = "music";getproperties = '"title","file","thumbnail", "art","duration"';playListID = 0;
+        } 
 		else if(addonIDandPath.indexOf('.video.') >= 0 || mediatype == "video") {
             mediatype = "video";getproperties = '"title","file","thumbnail", "playcount","art","plot","runtime", "premiered", "resume"';playListID = 1;
         } 
 		else {mediatype = "files";getproperties = '"title","file","thumbnail"';}
+		
 
         $("#addonDetailsList").append(
             "<a  id='back' class='showAddonDirItem' "
@@ -3578,7 +3614,7 @@ var yAddons = {
 		
 		yCore.sendJsonRPC(
             'OpenAddon_' + addonIDandPath,
-			'{"jsonrpc":"2.0","method":"Files.GetDirectory","id":1,"params":["' + addonIDandPath + '","' + mediatype + '",[' + getproperties + ']]}',
+			'{"jsonrpc":"2.0","method":"Files.GetDirectory","id":1,"params":["' + addonIDandPath + '","' + mediatype + '",[' + getproperties + ']' + sorting + ']}',
 			function(resultOpenAddon){              
 				
 				//if there is fanart, show it in the background
@@ -3595,7 +3631,14 @@ var yAddons = {
 				
 				//go trough whole returned list
 				for (var i = 0; i < resultOpenAddon["result"]["limits"]["end"]; i++) {
-					
+                  
+                    //replace all backslashes with double backslashes (windows)
+                    var filePath = resultOpenAddon["result"]["files"][i]["file"];
+                    filePath = filePath.replace(/\\/g,"\\\\");
+                    
+                    //encode single quote so that programm runs. (in player.open it will be decoded again)
+                    filePath = filePath.replace('\'', '%27');
+                  	
 					//if setting says to not show seen elements, go to next iteration
 					if(yS.yS.hideWatched && resultOpenAddon["result"]["files"][i]["playcount"]>0){continue;}
 					
@@ -3678,7 +3721,7 @@ var yAddons = {
                     
 					$("#addonDetailsList").append(
 						"<a class='showAddonDirItem' "
-						+ "data-yAddonFile='" + resultOpenAddon["result"]["files"][i]["file"]
+						+ "data-yAddonFile='" + filePath
 						+ "' data-yAddonFileType='" + resultOpenAddon["result"]["files"][i]["filetype"]
                         + "' data-yAddonFileResume='" + resume
 						+ "' data-yAddonIsBack='' data-yAddonFanartPath='" + fanartpath 
@@ -3761,6 +3804,9 @@ var yAddons = {
                   pathToFileOrPlace = resultGetKodiFavs["result"]["favourites"][i]["path"];
                 }
                 
+                //replace all backslashes with double backslashes
+                pathToFileOrPlace = pathToFileOrPlace.replace(/\\/g,"\\\\");
+                
                 var imagetag = "";
                 if(!yS.yS.hidePrevPics){
                     imagetag = yTools.imageUrlNormalizer(
@@ -3774,7 +3820,7 @@ var yAddons = {
                 
                 $("#addonDetailsList").append(
                       "<a class='showAddonDirItem'"
-                          + " data-yAddonFile='" + decodeURIComponent(pathToFileOrPlace)
+                          + " data-yAddonFile='" + pathToFileOrPlace
                           + "' data-yAddonFileType='" + resultGetKodiFavs["result"]["favourites"][i]["type"]     
                           + "' data-yAddonFileResume='0"
                           + "' data-yAddonIsBack='' data-yAddonFanartPath='" 
