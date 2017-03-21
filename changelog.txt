@@ -1,40 +1,73 @@
+Version 0.12.0
+- Posters of seasons are loaded in tv-shows
+- TV show episodes get loaded when opening a specific season rather than every episode together with all seasons
+- on the first start of yarc, it will use the language set in Kodi if present (or after deleting the yarc settings in localSotrage)
+- Some CSS changes/improvements
+- on start page, if no items to show in addons or favorites section, it says so
+- More translations of existing languages and russian translation (partial) added
+- removed picture quality reducer, yarc gets now pictures allways from kodi.
+- in Series, seen seasons is now indicated in the collapsible symbol instead before title
+- in Startpage, if all most recent items in Movies or TV series are seen, it indicates when collapisble is closed with a tick symbol
+- link to Favorties moved from addons to topFavorites sections on Startpage 
+- added Runtime in episode details
+- moved Music empty&play playlist buttons to playlist site for more space in music to playlist site. Now also aviable for video playlist
+- added posibility in movie details and tv episode details to toggle between seen and unseen
+- added "add to playlist" button to moviedetails
+- added file size in movie and episode details download link as well as in files items in favourties which points to file direcotries
+- update of readme.md
+- added a button to delet all yarc related saved data to the setting page
+- experimental: open playlist in Playlists for video and music added
+- FIX: in Playlist, don't show time if not avialbe; some other bugfixing there and optimising code
+- FIX: Translations should now always appear (ex. Year in movie)
+- FIX: removed bracket remover in item labels (addon page)
+- FIX: changed replacement of single quote in item labels in addons with "mins" to appropriate html code
+- FIX: addons which are deactivated will not show anymore on the start page after a new start of yarc
+- FIX: PlayPlaylist and PlayGenre works again
+
+Version 0.11.3
+- Window title has now host information in addition to distinguish differnet kodi's
+- some css optimization
+- FIX: When movie started, after successful starting, the button changes from loading to play again
+- BUGFIX: GetSources does not get loaded every time a site is opened anymore
+- BUGFIX: if browsing trough files in AddonDetails, "Show description" works now, but Setting will not be saved
+
 Version 0.11.2
-- if browsing favourites, and it's not a plugin, sort content
-- FIX: if thvshow is closed and seen, the plus gets replaced by tick too
-- FIX: if you open an addon, don't check the filepaths against video and audio sources
-- BUGFIX: if favourit-entry is set directly on a vido or audio source, it works now also if it is mulitsource
+- if browsing favorites, and it's not a plugin, sort content
+- FIX: if tv-show is closed and seen, the plus gets replaced by tick too
+- FIX: if you open an addon, don't check the file paths against video and audio sources
+- BUGFIX: if favorite-entry is set directly on a video or audio source, it works now also if it is mulitsource
 - BUGFIX: browsing files or media works now also if kodi is run on windows
-- BUGFIX: files with single quote in it can be started now in favourites
+- BUGFIX: files with single quote in it can be started now in favorites
 - BUGFIX: all menu items in context menu in addon details (or favorites(-sub)-folders) gets hidden if context button gets pressed again
 
 Version 0.11.1
 - some css optimization
 - adds green ticks to playlist items in video section if seen
 - added translation Berndütsch (thanks dawed to your efford)
-- if video or audio sources are in the favorites list (or a subfolder) they can be accessed
+- if video or audio sources are in the favorites list (or a sub-folder) they can be accessed
 - if a tv show is whole seen, it replases the + with a tick before banner
 - added Filepath feature also to series episodes
 - added download link to video files in libraries and in context menu for local media items when browsing into a folder through favourties
 - added empty playlist button to playlist
 - BUGFIX: Help text in swipe field is now always in the right context if showed
 - BUGFIX: Playtime for media is now correct in minutes and seconds in addondetails
-- BUGFIX: progressbar in remote should now after ending playing an item turn grey again
+- BUGFIX: progress bar in remote should now after ending playing an item turn grey again
 
 Version 0.11.0
-- replaced my own placeholder images with awsomefont symbols (?, file and folder)
+- replaced my own placeholder images with awesomefont symbols (?, file and folder)
 - replaced green-ticks images with awesomefont symbol in title (movie, series and addon)
 - added resume indicator in title (movie, series and addon)
-- removed seek buttons on remote page (use seek in progressbar instead, hotkeys still work)
+- removed seek buttons on remote page (use seek in progress bar instead, hotkeys still work)
 - remote is now a panel accessible from each site
 - first page is now not remote anymore. it's now a "recently added and top fav's and addons" overview.
-- if music/movies or series library is emty, it removes or hides menu and start page entries.
+- if music/movies or series library is empty, it removes or hides menu and start page entries.
 - "device orientation navigation" moved to tools
 - removed now unneeded settings: "swipe height", "hide device orient. nav.", "yarc Name" and "hide send text field"
 - removed "send text" and "stay in popup" in addon details removed -> due to better access to remote
-- Help text of swipe field is now written into the swipefield instead of a popup
+- Help text of swipe field is now written into the swipe field instead of a popup
 - shutdown popup replaced with a select and a "do it" button to get rid of the popup
 - quite a few css optimisations
-- now with a loader dialoge which covers miss-styled loading content
+- now with a loading overlay which covers miss-styled loading content
 - added HTML escapeing for addon-plot. for now the only escpaed strings, but ready for others too.
 - if there is no artist to an album, it return empty string instead of "?"
 - added loading indicator when TV-Show seasons are loading

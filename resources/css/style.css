@@ -17,12 +17,12 @@
  */
 
 /************************************************************************************* 
- *	General (G)								 										 *
+ *	General (G)								 		                                  								 *
  *************************************************************************************/
 #yarcLoading  {
     position: fixed;
-	left: 0px;
-	top: 0px;
+	  left: 0px;
+	  top: 0px;
     z-index: 11352411;
     width: 100%;
     height: 3000px;
@@ -41,6 +41,13 @@
 .ui-mobile .ui-page-active {
     overflow-x: visible !important;
 }
+.ui-content #addons{
+    overflow-x:visible;
+}
+.ui-content {
+    padding-left: 0;
+    padding-right: 0;
+ }
 .ui-panel {
     width: 100%;
 }
@@ -49,12 +56,15 @@
     padding-bottom: 0px;
 }
 .yListItem {
-	margin: -1px 0px 0px 0px !important;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	border: 1px solid #c8c8d1; 
-  	white-space: nowrap; 
+  white-space: nowrap; 
 	overflow: hidden !important;
+}
+.yListItem:before {
+  content: "";
+  height: 1px; 
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(27,27,27,1) 50%,rgba(0,0,0,0) 100%); 
+  display: block;
+  margin-bottom: -1px;
 }
 .yListItem:hover, .contextMenu:hover
 , .flex-prev:hover, .flex-next:hover
@@ -64,29 +74,34 @@
 ,.showAlbum:hover, .album_Item_Nav:hover
 , .openMovieItem:hover, .addonlist-item:hover
 , .flexListPrevNext:hover, #topFavs > .showAddonDirItem:hover {
-	background-color: #c8c8d1;
+    background-color: #c8c8d1;
     color: #000 !important;
     cursor: pointer;
+    -webkit-border-radius: 6px;
+	  border-radius: 6px;
 }
 .flexListPrevNext {
-  	display: inline-block;
+    display: inline-block;
     height: 100%;
     width: 100%;
 }
 .flex-container {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 .info {
-	font-size: 9px;
-	text-align: center;
+    font-size: 9px;
+    text-align: center;
     overflow: visible;
     white-space: normal;
 }
 .italic {
-	font-style: italic;
+    font-style: italic;
 }
 .bold{
-	font-weight: bold;
+    font-weight: bold;
+}
+.clickable:hover {
+    cursor: pointer;
 }
 .green {
     color: #008000;
@@ -147,14 +162,14 @@ a:hover {
 }
 .buttonRight {
     position: absolute;
-	right: 0%;
+    right: 0%;
 }
 .simpleList {
     height: 50px;
 }
-.simpleList span {
+.simpleList > span {
     padding-left: 5px;
-	vertical-align: top;  
+  	vertical-align: top;  
     line-height: 50px;
     font-size: 14px !important;
 }
@@ -167,21 +182,26 @@ a:hover {
 .simpleListPrevPic {
     height: 50px;
     line-height: 50px !important;
-	font-size: 40px;
-    display: inline-block;
+    display: block;
+    font-size: 40px;
+    text-align: center;
 }
 .ratingStars {
-	color: #FFCC00;
+	  color: #FFCC00;
 }
 /****************************** g:Header ********************************/
 .ui-navbar li .ui-btn .ui-btn-inner  {
-	padding-top:5px;
-	padding-bottom: 5px;
+	  padding-top:5px;
+	  padding-bottom: 5px;
 }
 .yheadermenuitem {
-	display: block;
+	   display: block;
 }
 /****************************** g:Popups ********************************/
+.details > .content {
+    padding-left: 5px;
+}
+
 .detailsImage {
 	width: 100%;
 	height: Auto !important;
@@ -189,10 +209,9 @@ a:hover {
 	-khtml-opacity:.250;
 	opacity:.250;
 	max-height: none !important;
-	width: calc(100% + 1em)!important;
-    margin-left: -2em; /* to correct margin from jq content margin*/
-    margin-top: -1em; /* to correct margin from jq content margin and overwrite of .detailsImage*/
-    pointer-events: none;
+  margin-top: -1em; /* to correct margin from jq content margin and overwrite of .detailsImage*/
+  margin-left: -5px;
+  pointer-events: none;
 }
 #movieDetailsPlot {
 	margin-top: 15px;
@@ -210,24 +229,25 @@ a:hover {
 	position:relative;
 	margin-right: 5px;
 	min-height: 30px;
-    white-space: normal;
-    line-height: 30px;
+  white-space: normal;
+  line-height: 30px;
 }
 #addonDetailsImage {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 /****************************** g:Remote Page ********************************/
+   
 /*swipe function*/
 #swipe {
-    position: absolute;
-    top: 50px;
-    bottom: 83px; 
-    left: 10px;
-    right: 10px;
+  position: absolute;
+  top: 50px;
+  bottom: 83px; 
+  left: 10px;
+  right: 10px;
 
 
-    overflow: hidden;
+  overflow: hidden;
 	margin-bottom: 10px;
 
 	background-color: #666;
@@ -253,8 +273,8 @@ a:hover {
 }
 #swipe-box-Nav-help, #swipe-box-Media-help, #swipe-box-help {
 	text-align: left;
-    font-size: 11px;
-    line-height: 12px;
+  font-size: 11px;
+  line-height: 12px;
 }
 #nav-med-radio {
 	text-align: center;
@@ -313,13 +333,15 @@ a:hover {
 /****************************** g:Settingspage ********************************/
 #fanart {
 	height: 140px; 
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 	display: block;
 }
 
 /****************************** g: Language Flags ********************************/
 .pathToFlags {
+  -webkit-border-radius: 3px;
+	border-radius: 3px;
 	border-width: 1px !important; 
 	height: 15px;
 	width: auto;
@@ -346,6 +368,11 @@ a:hover {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
 }
+.seriesPoster {
+    height: 60px;
+    float: left;
+    margin-right: 5px;
+}
 .seriesThumbAddon {
 	width: 100%;
 	margin-left: auto;
@@ -360,12 +387,20 @@ a:hover {
 	float: left;
     float: left;
 }
+.seasonTitle {
+  min-height: 60px;
+  line-height: 60px;
+}
+.openSeason .ui-btn-icon-left {
+    padding: 0 0 0 2.5em !important;
+}
 .openSeries > h3 > a {
     min-height: 50px;
     line-height: 50px;
 }
 .openSeries .ui-btn-icon-left {
     padding: 0 0 0 2.5em;
+    margin: 0 0;
 }
 .openSeason .ui-btn-icon-left {
     padding: 0.7em 2.5em;
@@ -410,7 +445,7 @@ a:hover {
 }	
 #addonDetailsList h4 {
 	margin-left: 70px;
-    margin-bottom: 1px;
+    margin-bottom: 20px;
     vertical-align: middle;
     font-size: 14px;
 }
@@ -527,10 +562,10 @@ a:hover {
 	line-height: 40px; 
 	white-space:nowrap; 
 	padding-top: 3px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    border-top: 1px solid #1d1d1d;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #1d1d1d;
 }
 #mediaProg-right {
 	text-decoration: none;
@@ -538,17 +573,30 @@ a:hover {
 	height: 40px;
 }
 .open-panel { 
-	display: inline-block;
-	padding-left: 19px;
-	height: 60px;  
-	line-height: 60px;  
-	opacity:.70;
-	vertical-align: top;
-	background-color: #6E6E6E;
-	width: 35px;
+    display: inline-block;
+    padding-left: 19px;
+    height: 60px;  
+    line-height: 60px;  
+    opacity:.70;
+    vertical-align: top;
+    background-color: #6E6E6E;
+    width: 35px;
     position: fixed;
     bottom: 0;
     right: 0;    
+}
+.open-playlist { 
+    display: inline-block;
+    padding-left: 19px;
+    height: 60px;  
+    line-height: 60px;  
+    opacity:.70;
+    vertical-align: top;
+    background-color: #6E6E6E;
+    width: 35px;
+    position: fixed;
+    bottom: 0;
+    left: 0;    
 }
 .close-panel {
 	display: inline-block;
@@ -677,10 +725,10 @@ and (min-width : 780px) {
 	}
 	.flex-next {
 		order: 2;
+    margin-left:auto;
 	}
 	.flex-prev, .flex-next {
         width: 5%;
-        border-radius: 6px;
         display: inline-block;
         cursor: pointer;
         list-style: none;
@@ -697,58 +745,67 @@ and (min-width : 780px) {
     .prev-next-arrow:hover {
         color: #000 !important;
     }
-	.flexListPrevNext img, .musicPrevPic, .moviePrevPic {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 100%;
-		height: auto;
-	}
-	.openMovieItem, .showAlbum, .addonlist-item, #topFavs > .showAddonDirItem {
-        flex: 1;
-        min-width: 200px;
-        max-width: 400px;
-        min-height: 60px;
-		display: inline-block;
-		vertical-align: top;
-		-webkit-border-radius: 6px;
-		border-radius: 6px;
-	}
-	/****************************** LSM : Start Page ********************************/
-	#navigation-arrows {
+    .flexListPrevNext img, .musicPrevPic, .moviePrevPic {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            height: auto;
+    }
+    .openMovieItem, .showAlbum, .addonlist-item, #topFavs > .showAddonDirItem {
+      flex: 1;
+      min-width: 200px;
+      max-width: 400px;
+      min-height: 60px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    /****************************** LSM : Remote Panel ********************************/
+    #MenuButtons a, #MenuButtons button {
+        width: 90px;
+    }
+    /****************************** LSM : Start Page ********************************/
+    #navigation-arrows {
 		width: 500px;
 	}
-	#recentMovies > .openMovieItem {
+    #recentMovies > .openMovieItem {
         width: 10% !important;
         min-width: auto;
         height: auto;
     }
-	#recentMovies .movieYear {
+    #recentMovies .movieYear {
         display: block;
     }
-	#recentSeries > .openMovieItem {
+    #recentSeries > .openMovieItem {
         width: 10% !important;
         min-width: auto;
         height: auto;
     }
-	#recentMusic > .showAlbum {
-        width: 10% !important;
-        min-width: auto;
-        height: auto;
-        overflow: hidden;
-    }
-	#topAddons > .addonlist-item {
+    #recentMusic > .showAlbum {
         width: 10% !important;
         min-width: auto;
         height: auto;
         overflow: hidden;
     }
-	#topFavs > .showAddonDirItem {
+    #topAddons > .addonlist-item {
         width: 10% !important;
         min-width: auto;
         height: auto;
         overflow: hidden;
     }
+    #topFavs .heart { /*to equal height of addonpictures*/
+        line-height: 100px !important;
+    }
+    #topFavs > .addonlist-item, #topFavs > .showAddonDirItem {
+        width: 10% !important;
+        min-width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+    #topFavs  .musicPrevPic { /*to equal height of favorites pictures*/
+        line-height: 100px !important;
+    }  
     #topFavs > .musicPrevPic {
         display: block !important;
         width: 100px;
@@ -843,10 +900,13 @@ and (min-width : 780px) {
 		margin-right: auto;
 	}
 	.heart {
-        font-size: 90px;
-        width: 100%;
-        text-align: center;
-    }
+    font-size: 90px;
+    width: 100%;
+    text-align: center;
+  }
+  #addonOverview .heart { /*to equal height of addonpictures*/
+    line-height: 120px !important;
+  }    
 }
 
 /************************************************************************************* 
@@ -854,22 +914,25 @@ and (min-width : 780px) {
  *************************************************************************************/
 @media only screen
 and (max-width : 780px) {
-    .awsomeicon-padding-ssm {
-      padding-left: 5px;
-    }
+  .awsomeicon-padding-ssm {
+    padding-left: 5px;
+  }
 	#mediaProgTitle { 
 		font-size: 11px;
 	}
 	.flex-prev, .flex-next {
-        list-style: none;
+    list-style: none;
 		margin-bottom: -1px;
-		-webkit-border-radius: 6px;
-		border-radius: 6px;
-		border: 1px solid #c8c8d1;
 		cursor:pointer;
 		width: 100%;
-	}	
-    .prev-next-arrow {
+	}
+  .flex-prev:before, .flex-next:before {
+      content: "";
+      height: 1px; 
+      background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(27,27,27,1) 50%,rgba(0,0,0,0) 100%); 
+      display: block;
+  }
+  .prev-next-arrow {
         font-size: 45px; 
         text-align: center;
         width: 100%;
@@ -880,61 +943,74 @@ and (max-width : 780px) {
     .prev-next-arrow:hover {
         color: #000 !important;
     }
-	/*ssm list items*/
-	#movie_list, #album_list, #addonlist {
-        margin-top: 1px;
-	}
-	.showAlbum, .openMovieItem, .addonlist-item, #topFavs > .showAddonDirItem {
-		width: 100%;
-		-webkit-border-radius: 6px;
-		border-radius: 6px;
-		border: 1px solid #c8c8d1;
-		cursor:pointer;
-		overflow: hidden;
-		white-space:nowrap;  
-		margin: -1px 0px 0px 0px;
-		vertical-align: top; 
-		display: inline-block;
-	}    
-	.flex-next, .flex-prev {
+    /*ssm list items*/
+    #movie_list, #album_list, #addonlist {
+    margin-top: 1px;
+    }
+    .showAlbum, .openMovieItem, .addonlist-item, #topFavs > .showAddonDirItem {
+            width: 100%;
+            cursor:pointer;
+            overflow: hidden;
+            white-space:nowrap;  
+            margin: -1px 0px 0px 0px;
+            vertical-align: top; 
+            display: inline-block;
+    }   
+    .openMovieItem:before, .showAlbum:before, .addonlist-item:before, #topFavs > .showAddonDirItem:before {
+      content: "";
+      height: 1px; 
+      background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(27,27,27,1) 50%,rgba(0,0,0,0) 100%); 
+      display: block;
+      margin-bottom: -1px
+    }  
+    .flex-next, .flex-prev {
         display: inline-block;
         height: 50px;
         margin-top: -1px;
     }
-	.openMovieItem h4:after , .flex-prev h4:after
-	, .flex-next h4:after, .addontitle:after
-	, .showAlbum h4:after, .openMovieItem p:after, #topFavs > .showAddonDirItem h4:after {
-		white-space: pre;
-		content:'\A';
-	}
-	/****************************** SSM: Start Page ******************************/
-	#cleanAndUpdate .ui-block-a, 
-	#cleanAndUpdate .ui-block-b, 
-	#music-songsearch >.content .ui-block-a, 
-	#music-songsearch >.content .ui-block-b {
-		clear: both; /* for linebrak */
-		width: 100%;
-	}
-	#recentMovies > .openMovieItem {
+    .openMovieItem h4:after , .flex-prev h4:after
+    , .flex-next h4:after, .addontitle:after
+    , .showAlbum h4:after, .openMovieItem p:after, #topFavs > .showAddonDirItem h4:after {
+            white-space: pre;
+            content:'\A';
+    }
+    
+    /****************************** SSM: Remote Panel ******************************/
+    #MenuButtons div {
+         width: 100%; 
+    }  
+    #MenuButtons a, #MenuButtons button {
+        width: calc((100% - 160px)/6);
+    }
+    
+    /****************************** SSM: Start Page ******************************/
+    #cleanAndUpdate .ui-block-a, 
+    #cleanAndUpdate .ui-block-b, 
+    #music-songsearch >.content .ui-block-a, 
+    #music-songsearch >.content .ui-block-b {
+            clear: both; /* for linebrak */
+            width: 100%;
+    }
+    #recentMovies > .openMovieItem {
         height: auto;
     }
-	#recentMovies h4 {
+    #recentMovies h4 {
         padding-top: 8px;
     }
-	#recentSeries > .openMovieItem {
+    #recentSeries > .openMovieItem {
         height: auto;
     }
-	#recentSeries img {
+    #recentSeries img {
         height: 60px;
     }
-	#recentSeries p {
-		display: block;
+    #recentSeries p {
+        display: block;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
 	#recentSeries h4 {
-        padding-top: 20px;
+        padding-top: 10px;
     }
 	#recentMusic > .showAlbum {
         height: auto;
@@ -945,10 +1021,10 @@ and (max-width : 780px) {
     
 	#topFavs > .showAddonDirItem {
         height: auto;
-    }
-	#topFavs > .showAddonDirItem h4 {
-		vertical-align: middle;
-		margin-left: 60px;
+  }
+  #topFavs > .showAddonDirItem h4 {
+        vertical-align: middle;
+        margin-left: 60px;
         margin-bottom: 0;
         margin-top: 0;
         padding-top: 15px;
@@ -956,53 +1032,80 @@ and (max-width : 780px) {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-	}
-    
+  }
+  #topFavs .prevPicContainerMusic {
+    width: 55px;
+  }
+  #recentSeries .prevPicContainerSeries span {
+    padding-left: 26px;
+  }
+
+  #recentSeries .prevPicContainerSeries {
+    display: block;
+    width: 80px;
+    overflow: hidden;
+    float: left;
+  }
+  #recentSeries .prevPicContainerSeries > .text-center {
+    margin-left: 20px;
+    display: block;
+  }
+  #recentSeries .moviePrevPic {
+  	display: block;
+    font-size: 45px;
+    line-height: 50px !important;
+		height: 50px;
+    left: 0;
+    transform: translate(0%);
+  }
+
 	/****************************** SSM: Movies ******************************/
 	 .openMovieItem {
-        height: 75px;
+    height: 75px;
  		line-height: 18px;
-     }
+   }
 	.openMovieItem div, .flex-prev div, .flex-next div {
 		margin: 0px;
 		white-space: nowrap;  
 		vertical-align: top; 
 	} 
 	.openMovieItem h4, .flex-prev h4, .flex-next h4 {
-        font-size: 14px;
-        margin-top: 2px;
+    font-size: 14px;
+    margin-top: 2px;
 		vertical-align: top;
-        margin: 0;
+    margin: 0;
 		padding-left: 10px;        
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 	}
 	.openMovieItem p {
 		white-space:normal;  
 		display: inline;
 		font-size: 10px;
 		padding-left: 10px;
-        line-height: 10px;
-        margin: 0px;
+    line-height: 10px;
+    margin: 0px;
 	}
 	.prevPicContainerMovie {
         display: block;
-        width: 53px;
+        width: 80px;
         overflow: hidden;
         float: left;      
-    }
+  }
 	.moviePrevPic {
-		display: inline;
-        font-size: 70px;
-		height: 75px;
-        line-height: 75px !important;
-        float: left;
-        
+		  display: inline;
+      font-size: 70px;
+		  height: 75px;
+      line-height: 75px !important;
+      float: left;
+      left: 50%;
+      transform: translate(-50%);
+      position: relative;
 	}
-	.prevPicContainerMusic span {
+  .prevPicContainerMusic span {
         padding-left: 5px;
-    }
+  }
     
 	/****************************** SSM: Music ******************************/
     .showAlbum {
@@ -1018,7 +1121,7 @@ and (max-width : 780px) {
 		margin-left: 60px;
         margin-bottom: 0;
         margin-top: 0;
-        padding-top: 15px;
+        padding-top: 10px;
         font-size: 14px;
         overflow: hidden;
         white-space: nowrap;
@@ -1055,8 +1158,8 @@ and (max-width : 780px) {
         float: left;
     }
     .addontitle {
-		vertical-align: middle;
-		margin-left: 70px;
+	vertical-align: middle;
+	margin-left: 70px;
         margin-bottom: 0;
         font-size: 14px;
         overflow: hidden;
@@ -1073,7 +1176,7 @@ and (max-width : 780px) {
     .prevPicContainerAddon > .text-center {
         margin-left: 0px;
     }
-	.addonImage {
+    .addonImage {
         display: block;
         font-size: 40px;
         line-height: 51px !important;

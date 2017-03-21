@@ -1,6 +1,6 @@
 #About yarc (yet another remote control)
 
-A web based remote control for Kodi (former XBMC) optimized for mobile friendly use.
+A web based remote control for Kodi optimized for mobile friendly use.
 
 An introduction video can be found here:
 
@@ -8,18 +8,17 @@ An introduction video can be found here:
 
 WARNING: This Addon may contain content illegal in your country (example: flag of Tibet is illegal China)
 
-NOTE: after an update of the addon, clearing your browser cache might be needed for new translations
+NOTE: after an update of the addon, clearing your browser cache might be needed for new translations.
 
 ###Key Features (what might be better than in other solutions)
 
   * GUI is optimized for smart phones
-  * Easy access to Remote controll and send text to Kodi
+  * Easy access to remote controll and send text to Kodi
   * Swipe-area for gesture navigation/control
   * Browse addons within the web interface
   * Navigate by changing the orientation of your device: more in the according chapter
   * Set how many items are shown in lists (so that you mobile browser does not crash because of an image overload)
-  * Preview from the internet are compressed (tell in settings how much)
-  * Reads languages out of the file name in your collection (read more about in the according chapter)
+  * Reads languages out of the file name in your collection (read more about it in the according chapter)
 
 ###Download
 
@@ -28,20 +27,19 @@ https://github.com/tuxfuxch/yarc
 ###Requirements
 
   * Minimum Isengard 15.x
-  * Internet connection to see preview images of movies, readme and demo Video
-  * Youtube Plugin
+  * Internet connection to see readme and demo video
+  * Youtube plugin
 
 ###Tested on (assumed latest version)
 
   * Firefox
-  * Android: Firefox-mobile
+  * Android: Firefox-Mobile
 
 Not entirely tested:
   * Android: Maxthon
      - no keyboard use
      - removing form play-list: button gets often not activated
   *  Android: Chrome
-     - removing form play-list: button gets often not activated
      - in older Chrome Version, some texts are not visible
   * Ubuntu Touch Browser
 	 - Deviceorienation doesn't work (yet)
@@ -53,11 +51,10 @@ Not entirely tested:
 Check the settings and adjust the interface to you needs, or what you mobile device can handle:
 
 Pointing out:
-  * Define how long lists should be (good for large collections)
-  * Reduce quality of pictures which are from the internet
-      --> hint: setting to 95 will load them directly, less than 95 will use an image proxy
+  * quick access start page
+  * define how long lists should be (good for large collections)
   * don't show images if you don't need them
-  * get rid of things you don't need, to save processor time or space on the interface
+  * get rid of things you don't need, to save processor time and/or space on the interface
 
 
 ###The GUI
@@ -67,7 +64,7 @@ Screens with less than 307x422 pixel (viewport) may have some displaying issues.
 
 ###Swipe gestures
 Through swipe and tab gestures, you can control your Kodi. Use the gray field to do it with the following gestures. 
-Multi touch gestures (two fingers or pinch) are not implemented due to support of old devices.... sorry. 
+Multi touch gestures (two fingers and pinch) are not implemented due to support of old devices.... sorry. 
 
 Make sure, that you don't accidentally stop the playing media when you want to scroll down. Use the space on the right side to scroll.
 It shouldn’t take long to get used to this feature.
@@ -127,15 +124,17 @@ Right now you can use:
 
 Some ppl tag in a movie file name the languages directly. I did it for my whole DVD collection and wanted to use this because the language tagging in Kodi is not suitable for me. Multiple tags per filename are supported.
 
-You have to use as tags the codes from the standard ISO 639-2 (http://www.loc.gov/standards/iso639-2/php/code_list.php).
+You have to use as tags the codes from the ISO 639-2 standard (http://www.loc.gov/standards/iso639-2/php/code_list.php).
 
-Put the tags in square brackets (these things --> [ ] ).
+Put the tags in square brackets.
 
 Example: the filename is "my_favourite_movie.iso"
 
 If it's in english and german, change the filename to "my_favourite_movie[eng][ger].iso"
 
-Capital or non-capital letters, as order, does not matter.
+To tag subtitles add "sub:". accoring to the example: "my_favourite_movie[eng][ger][sub:eng][sub:ger].iso"
+
+Capital or non-capital letters, as well as order, do not matter.
 
 ###Credits and Licenses
 all the licenses are in the subfolder resources/licenses
@@ -146,18 +145,19 @@ all the licenses are in the subfolder resources/licenses
       * if it is not mentioned in the text file, it's public domain
   * TochSwipe Plugin for jquery (https://github.com/mattbryson/TouchSwipe-Jquery-Plugin; GPL 2 or MIT License)
   * Font Awesome for the very good symbol-font (http://fontawesome.io; SIL OFL 1.1 License (Font) and MIT License (Code))
+  * Icomoon to minimize and add icons to  Font Awesome (https://icomoon.io)
   * jQuery UI (http://jqueryui.com/; MIT License)
-  * jQuery UI Touch Punch Plugin/Fix; Touch Event Support for jQuery UI (http://touchpunch.furf.com/;  GPL 2 or MIT License)
+  * jQuery UI Touch Punch Plugin; Touch Event Support for jQuery UI (http://touchpunch.furf.com/;  GPL 2 or MIT License)
   * i18next (http://i18next.com; MIT license)
-  * the guy's behind http://images.weserv.nl/. Great service!
   * Kabooga for first testing and help in buxfixing, author of webinterface.xrc
   * Martijn for correction of addon.xml, Kodi Team Member
   * ruth440 for testing and feedback. I was multiple times pointed into the right direction
   * Mizaki for help/advising multiple times
-  * and for the spanish translation
-  * sheikr and vilma for the portuguese translations
-  * yarons for the hebrew translation
+  * and for spanish translations
+  * sheikr and vilma for portuguese translations
+  * yarons for hebrew translations
   * dawed for help/advising multiple times and also Spanish and Bärndütsch translation
+  * Dasha for russian translations
 
 ###Contact me
 
@@ -168,4 +168,4 @@ Tell me what you think could be done better, or what features you would like to 
 Feedback about the code is also appreciated, since I am not yet that much of a programmer.
 
 Please contact me on github with bug reports or feature requests: https://github.com/tuxfuxch/yarc/issues
-or alternatively in the Forum Thread: http://forum.kodi.tv/showthread.php?tid=198217
+or alternatively in the Kodi forum thread: http://forum.kodi.tv/showthread.php?tid=198217

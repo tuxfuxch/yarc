@@ -17,14 +17,14 @@
   <script src="resources/scripts/jquery-2.1.4.min.js"></script>
   <script src="resources/scripts/jquery.mobile-1.4.5.min.js"></script> 
 
-  <script type="text/javascript" src="resources/scripts/yarc.js"></script>
+  <script type="text/javascript" src="resources/scripts/i18next-1.11.1.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="resources/scripts/langCodeToDescFlag.js"></script>
   <script type="text/javascript" src="resources/scripts/jquery.touchSwipe.js"></script>
   <script type="text/javascript" src="resources/scripts/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
   <script type="text/javascript" src="resources/scripts/jquery.ui.touch-punch.min.js"></script>
-  <script type="text/javascript" src="resources/scripts/i18next-1.11.1.min.js"></script>
-
-  <link rel="icon" type="image/x-icon" href="resources/images/ylogo.ico">
+  <script type="text/javascript" src="resources/scripts/yarc.js"></script>
+  
+	<link rel="icon" type="image/x-icon" href="resources/images/ylogo.ico">
 </head>
 <body>
   <div id="yarcLoading">
@@ -38,7 +38,6 @@
       <a class="navcontrol" data-yJsonFunction="Input.Home" data-role="button"><span class="icon-home"></span></a>
       <a class="navcontrol" data-yJsonFunction="Input.Info" data-role="button"><span class="icon-info-circle"></span></a>
       <a class="navcontrol" data-yJsonFunction="Input.ShowOSD" data-role="button"><span class="icon-tv-menu"></span></a>
-      <a href="#pl" data-role="button"><span class="icon-list"></span></a>
       <button id="SetRepeat" name="Player.SetRepeat"><span class="icon-refresh"></span></button>
       <button id="SetShuffle" name="Player.SetShuffle"><span class="icon-random"></span></button>
     </div>
@@ -186,6 +185,7 @@
           <a href="#settings" id="openSettings" data-role="button" data-icon="gear" data-i18n="settings"></a> 
         </div><!-- /collapsible -->
         <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+        <a href="#pl" class="open-playlist"><span class="icon-list"></span></a>
       </div><!-- /content -->
   </div><!-- /page -->
   <div data-role="page" data-theme="b" id="pl">
@@ -204,15 +204,23 @@
         <fieldset id="plType" data-role="controlgroup"  data-type="horizontal" data-mini="true">
           <input type="radio" id="plAudio" class="plRadio" name="plType" value="0" checked />
           <label for="plAudio" data-i18n="audio"></label>
-          <input type="radio" id="plVideo" class="plRadio" name="plType" value="1" /> 
+          <input type="radio" id="plVideo" class="plRadio" name="plType" value="1" />
           <label for="plVideo" data-i18n="video"></label>
         </fieldset>
+          <div id="plBlock" class="ui-grid-a">
+            <div class="ui-block-a"><button id="emptyPlaylistPl" name="" data-i18n="empty-pl"></button></div>
+            <div class="ui-block-b">
+              <select name="cpl" id="cpl">
+                <option value="" data-i18n="add-custom-playlist" selected="selected"></option>
+              </select>
+            </div>
+            <div class="ui-block-a"><div id="playPlaylist" class="PlayList" type="button" name="" data-i18n="play-pl"></div></div>
+            <div class="ui-block-b"><button id="plRefresh" data-icon="refresh" data-i18n="refresh"></button></div>
+          </div>
         <ul class="ulbar" data-role="listview">
         <li id="loading_pl" class='loading'><div class='text-center'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></div></li>
         </ul>
         <ul id="currentplaylist" class="ui-listview"></ul>
-        <button id="plRefresh" data-icon="refresh" data-i18n="refresh"></button>
-        <button id="emptyPlaylistPl" name="" data-i18n="empty-pl"></button>
         <button id="plClose" data-icon="back" data-i18n="back"></button>
         <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
     </div><!-- /content -->
@@ -249,8 +257,6 @@
         <input name="hideMenuText" type="checkbox" id="hideMenuText" value="hideMenuText" />
         <label for="hidePrevPics" data-i18n="hide-preview-pictures"></label>
         <input name="hidePrevPics" type="checkbox" id="hidePrevPics" value="hidePrevPics" />
-        <label for="prevImgQualMovies" id="prevImgQualMovies_label" data-i18n="preview-image-quality"></label>
-        <input name="prevImgQualMovies" type="number" id="prevImgQualMovies" value="" maxlength="2"/>
         <label for="hideWatched" data-i18n="hide-watched-movies-shows"></label>
         <input name="hideWatched" type="checkbox" id="hideWatched" value="hideWatched" />
         <label for="listLength" id="listLength_label" data-i18n="max-list-length"></label>
@@ -288,6 +294,7 @@
         <label for="hideSearchAddons" data-i18n="hide-searchfield"></label>
         <input name="hideSearchAddons" type="checkbox" id="hideSearchAddons" value="hideSearchAddons" />
       </div>
+      <button id="delSettings" data-role="button" data-i18n="delete-settings"></button> 
       <button id="saveSettings" data-role="button" data-icon="back" data-i18n="save-close"></button> 
     </div><!-- /content -->
   </div><!-- /page -->
@@ -328,9 +335,10 @@
             <div id="movie-flex-next" class="flex-next"></div>
         </div>
         <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+        <a href="#pl" class="open-playlist"><span class="icon-list"></span></a>
       </div><!-- /content -->
   </div><!-- /page -->	
-  <div data-role="page" data-theme="b" id="movieDetails">
+  <div data-role="page" data-theme="b" id="movieDetails" class="details">
     <div data-role="header" data-theme="b">
       <div class="navbar" data-role="navbar">
         <ul>
@@ -345,15 +353,18 @@
     <div class="content" data-role="content">
       <img id="movieDetailsImage" class="detailsImage" src="" alt=""/>
       <h2 id="movieDetailsTitle"></h2>
-      <div id="movieDetailsFlags"></div>
       <div id="movieDetailsRuntime"></div>
       <div id="movieDetailsGenres"></div>
+      <div id="movieDetailsFlags"></div>
+      <div id="movieDetailsSubtitles"></div>
       <div id="movieDetailsPlot"></div>
       <a id="movieDetailsFilelink" class="downloadLink" href="" target="_blank"></a> 
       <div id="movieDetailsTrailer" type="button" data-yMovieTrailer="" tabindex="1" data-i18n="trailer"></div>
       <div id="movieDetailsPlayMovie" type="button" data-yMovieID="" tabindex="1" data-i18n="play"></div>
+      <button id="movieDetailsAddPl" type="button" data-yMovieID="" tabindex="1" data-i18n="add-pl"></button>
       <button id="movieDetailsClose" data-icon="delete" data-i18n="close"></button>
       <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      <a href="#pl" class="open-playlist"><span class="icon-list"></span></a>
     </div><!-- /content -->
   </div><!-- /page -->
   <div data-role="page" data-theme="b" id="series">
@@ -375,9 +386,10 @@
       <ul id="series_list" data-role="listview">
       </ul>
       <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      <a href="#pl" class="open-playlist"><span class="icon-list"></span></a>
     </div><!-- /content -->
   </div><!-- /page -->
-  <div data-role="page" data-theme="b" id="seriesDetails">
+  <div data-role="page" data-theme="b" id="seriesDetails" class="details">
     <div data-role="header" data-theme="b">
       <div class="navbar" data-role="navbar">
         <ul>
@@ -405,14 +417,17 @@
       <img id="episodeDetailsImage" class="detailsImage" src="" alt="" />
       <h2 id="episodeDetailsTitle"></h2>
       <div id="episodeDetailsFirstaired"></div>
-			<div id="episodeDetailsRating"></div>
+      <div id="episodeDetailsRating"></div>
+      <div id="episodeDetailsRuntime"></div>
       <div id="episodeDetailsFlags"></div>
+      <div id="episodeDetailsSubtitles"></div>
       <div id="episodeDetailsPlot"></div>
       <a id="episodeDetailsFilelink" class="downloadLink" href="" target="_blank"></a> 
-      <div id="episodeDetailsPlay" type="button" data-yPlaySeriesEpisodeID="" tabindex="1" data-i18n="play"></div>
-      <div id="episodeDetailsAddPl" type="button" data-yEpisodeID="" tabindex="1" data-i18n="add-pl"></div>
+      <button id="episodeDetailsPlay" type="button" data-yPlaySeriesEpisodeID="" tabindex="1" data-i18n="play"></button>
+      <button id="episodeDetailsAddPl" type="button" data-yEpisodeID="" tabindex="1" data-i18n="add-pl"></button>
       <button id="episodeDetailsClose" data-icon="delete" data-i18n="close"></button>
       <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      <a href="#pl" class="open-playlist"><span class="icon-list"></span></a>
     </div><!-- /content -->
   </div><!-- /page -->
   <div data-role="page" data-theme="b" id="music">
@@ -446,12 +461,6 @@
                 </div> 
               </div>
               <input type="search" name="search" id="searchMusic" data-i18n="[placeholder]search-album-artist" value="" />
-              <div class="ui-grid-a" data-theme="b">
-                <div class="ui-block-a">
-                  <button id="playPlaylist" class="PlayList" name="" data-mini="true" data-i18n="play-pl"></button>
-                </div> 
-                <div class="ui-block-b"><button id="emptyPlaylistMusic" class="PlayList" name="" data-mini="true" data-i18n="empty-pl"></button></div> 
-              </div>
             </div>
           </li>
           <li id="loading_music" class='loading'><div class='text-center'><img class="kodi_loading" src="resources/images/kodi_spinner.gif" alt="loading data"><span data-i18n="loading"></span></div></li>
@@ -462,9 +471,10 @@
           <div id="album-flex-next" class="flex-next"></div>
         </div>
         <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      <a href="#pl" class="open-playlist"><span class="icon-list"></span></a>
       </div><!-- /content -->
   </div><!-- /page -->
-  <div data-role="page" data-theme="b" id="musicDetails">
+  <div data-role="page" data-theme="b" id="musicDetails" class="details">
     <div data-role="header" data-theme="b">
       <div class="navbar" data-role="navbar">
         <ul>
@@ -476,16 +486,17 @@
         </ul>
       </div><!-- /navbar -->
     </div><!-- /header -->
-      <div class="content" data-role="content">
-        <img id="albumDetailsImage" class="detailsImage" alt="" src=""/>
-        <h2 id="albumDetailsTitle"></h2>
-        <button id="albumDetailsAddAlbum" data-yAlbumArrayNr="" tabindex="1" data-i18n="empty-pl-play"></button>
-        <label for="albumDetailsAddPL" data-i18n="add-pl"></label>
-        <input name="albumDetailsAddPL" type="checkbox" id="albumDetailsAddPL" value="1"/>
-        <div id="albumDetailsSongContainer"></div> <!--container for song list items -->
-        <button id="albumDetailsClose" data-icon="delete" data-i18n="close"></button>
-        <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
-      </div><!-- /content -->
+    <div class="content" data-role="content">
+      <img id="albumDetailsImage" class="detailsImage" alt="" src=""/>
+      <h2 id="albumDetailsTitle"></h2>
+      <button id="albumDetailsAddAlbum" data-yAlbumArrayNr="" tabindex="1" data-i18n="empty-pl-play"></button>
+      <label for="albumDetailsAddPL" data-i18n="add-pl"></label>
+      <input name="albumDetailsAddPL" type="checkbox" id="albumDetailsAddPL" value="1"/>
+      <div id="albumDetailsSongContainer"></div> <!--container for song list items -->
+      <button id="albumDetailsClose" data-icon="delete" data-i18n="close"></button>
+      <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      <a href="#pl" class="open-playlist"><span class="icon-list"></span></a>
+    </div><!-- /content -->
   </div><!-- /page -->
   <div data-role="page" data-theme="b" id="music-songsearch">
     <div data-role="header" data-theme="b">
@@ -518,6 +529,7 @@
       <ul id="songsearch-list" class="ui-listview">
       </ul>
       <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      <a href="#pl" class="open-playlist"><span class="icon-list"></span></a>
     </div><!-- /content -->
   </div><!-- /page -->
   <div data-role="page" data-theme="b" id="addons">
@@ -558,6 +570,7 @@
         </div>
       </div>
       <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      <a href="#pl" class="open-playlist"><span class="icon-list"></span></a>
     </div><!-- /content -->
   </div><!-- /page -->
   <div data-role="page" data-theme="b" id="addonDetails">
@@ -586,6 +599,7 @@
       <button id="addonDetailsOpenAddon" data-icon="arrow-r" data-yAddonDirPath="" data-i18n="open-addon"></button>
       <button id="addonDetailClose" data-icon="delete" data-i18n="close"></button>
       <a href="#remote" class="open-panel"><span class="icon-th"></span></a>
+      <a href="#pl" class="open-playlist"><span class="icon-list"></span></a>
     </div><!-- /content -->
   </div><!-- /page -->
 </body>
