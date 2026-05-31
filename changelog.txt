@@ -1,23 +1,46 @@
+Version 1.0.4
+- Bugfixes
+
+Version 1.0.0
+- added PVR (TV & Radio) functionality 
+- speech recognition. Only works under following conditions:
+    - you need to use a browser with speech input function
+    - a https (ssl) connection to the webserver or browser to kodi localhost
+        - with kodi it is possible somehow, i did never try it
+        - use a reverse Proxy to serve Kodi content with https 
+            Read more about all of that in the readme.md (https://github.com/tuxfuxch/yarc/blob/master/README.md#speech)
+- added movie sets
+- added switch for device-navigation-control to set if it pauses or mutes if device faces down
+- added setting to hide device-navigation-control part in remote panel
+- added in remote possibility to switch audio-stream and subtitles
+- some css optimization
+- tv-seasons are sorted now
+- tv episodesget sorted within a season now
+- moved device-navigation-control-switch from tools to remote panel
+- hightened swipe distance for menues (not in Remote/swipe) to avoid unintended navigation while scolling
+- on start page, if a colapsible gets closed and reopened, the content gets updated
+- device orientation is now only triggered when remote is open
+
 Version 0.12.0
 - Posters of seasons are loaded in tv-shows
 - TV show episodes get loaded when opening a specific season rather than every episode together with all seasons
-- on the first start of yarc, it will use the language set in Kodi if present (or after deleting the yarc settings in localSotrage)
+- on the first start of yarc, it will use the language set in Kodi if present (or after deleting the yarc settings)
 - Some CSS changes/improvements
 - on start page, if no items to show in addons or favorites section, it says so
-- More translations of existing languages and russian translation (partial) added
-- removed picture quality reducer, yarc gets now pictures allways from kodi.
+- More translations of existing languages and Russian translation (partial) added
+- removed picture quality reducer, yarc gets now pictures always from kodi.
 - in Series, seen seasons is now indicated in the collapsible symbol instead before title
-- in Startpage, if all most recent items in Movies or TV series are seen, it indicates when collapisble is closed with a tick symbol
-- link to Favorties moved from addons to topFavorites sections on Startpage 
+- in Startpage, if all most recent items in Movies or TV series are seen, it indicates when collapsible is closed with a tick symbol
+- link to Favorites moved from addons to topFavorites sections on Startpage
 - added Runtime in episode details
-- moved Music empty&play playlist buttons to playlist site for more space in music to playlist site. Now also aviable for video playlist
-- added posibility in movie details and tv episode details to toggle between seen and unseen
+- moved Music empty&play playlist buttons to playlist site for more space in music site. Now also available for video playlist
+- added possibility in movie details and tv episode details to toggle between seen and unseen
 - added "add to playlist" button to moviedetails
-- added file size in movie and episode details download link as well as in files items in favourties which points to file direcotries
+- added file size in movie and episode details download link as well as in files items in favorites which points to file directories
 - update of readme.md
-- added a button to delet all yarc related saved data to the setting page
+- added a button to delete all yarc related saved data to the setting page
 - experimental: open playlist in Playlists for video and music added
-- FIX: in Playlist, don't show time if not avialbe; some other bugfixing there and optimising code
+- FIX: in Playlist, don't show time if not available; some other bug fixing there and optimizing code
 - FIX: Translations should now always appear (ex. Year in movie)
 - FIX: removed bracket remover in item labels (addon page)
 - FIX: changed replacement of single quote in item labels in addons with "mins" to appropriate html code

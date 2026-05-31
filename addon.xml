@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<addon id="plugin.webinterface.yarc" version="0.12.0" name="yarc" provider-name="tuxfuxch">
+<addon id="plugin.webinterface.yarc" version="1.0.4" name="yarc" provider-name="tuxfuxch">
   <requires>
     <import addon="xbmc.json" version="6.25.1"/>
   </requires>
@@ -18,7 +18,7 @@
     <description lang="it">Questo remote ti permette di controllare il Kodi con gesticolazioni attraverso un' interfaccia web mobile. Il tutto ottimizzato per dispositivi mobili con basse prestazioni. Inoltre è possibile sfogliare la propria biblioteca e avviare i media o gli addons. Testato per Firefox e Firefox-mobile. Il JavaScript è necessario. Consiglio: leggi il file readme.md (inglese) per scoprire tutte le caratteristiche nascoste.</description>
     <description lang="iw">שלט זה מאפשר לך לשלוט בקודי עם מחוות במנשק ידידותי לניידים. השלט מותאם להתקנים בעלי צריכת חשמל נמוכה/מכשירים ניידים. ניתן גם לעיין בספריות שלך ולהתחיל את פריטי המדיה וההרחבות. השלט נבדק בפיירפוקס ובפיירפוקס לניידים. יש צורך ב־JavaScript. רמז: ניתן לקרוא את הקובץ readme.md (באנגלית) לקבלת מידע על כל התכונות הנסתרות.</description>
     <description lang="pt">Esse controle permite você controlar o Kodi com movimentos em um celular compátivel  à webinterface. É otimizado para celulares com dispositivo\/potência baixa. Pode-se também  procurar sua biblioteca e começar a media ou addon. Esta testado com Firefox ou Firefox-celular. JavaScript é requerido.  Sugestão: Leia o arquivo readme.md (Inglês) para mais recursos ocultos.</description>
-    <description lang="ru"></description>
+    <description lang="ru">Этот пульт позволяет вам управлять Kodi с помощью жестов в мобильном дружественном веб-интерфейсе. Он оптимизирован для устройств с низким энергопотреблением / мобильных устройств. Вы также можете просматривать свои библиотеки и запускать медиа или дополнения. Он протестирован с Firefox и Firefox-mobile. Требуется JavaScript. Подсказка: прочитайте файл readme.md (английский) для всех скрытых функций.</description>
     <platform>all</platform>
   </extension>
 </addon>
