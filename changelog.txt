@@ -1,0 +1,343 @@
+Version 1.0.4
+- Bugfixes
+
+Version 1.0.0
+- added PVR (TV & Radio) functionality 
+- speech recognition. Only works under following conditions:
+    - you need to use a browser with speech input function
+    - a https (ssl) connection to the webserver or browser to kodi localhost
+        - with kodi it is possible somehow, i did never try it
+        - use a reverse Proxy to serve Kodi content with https 
+            Read more about all of that in the readme.md (https://github.com/tuxfuxch/yarc/blob/master/README.md#speech)
+- added movie sets
+- added switch for device-navigation-control to set if it pauses or mutes if device faces down
+- added setting to hide device-navigation-control part in remote panel
+- added in remote possibility to switch audio-stream and subtitles
+- some css optimization
+- tv-seasons are sorted now
+- tv episodesget sorted within a season now
+- moved device-navigation-control-switch from tools to remote panel
+- hightened swipe distance for menues (not in Remote/swipe) to avoid unintended navigation while scolling
+- on start page, if a colapsible gets closed and reopened, the content gets updated
+- device orientation is now only triggered when remote is open
+
+Version 0.12.0
+- Posters of seasons are loaded in tv-shows
+- TV show episodes get loaded when opening a specific season rather than every episode together with all seasons
+- on the first start of yarc, it will use the language set in Kodi if present (or after deleting the yarc settings)
+- Some CSS changes/improvements
+- on start page, if no items to show in addons or favorites section, it says so
+- More translations of existing languages and Russian translation (partial) added
+- removed picture quality reducer, yarc gets now pictures always from kodi.
+- in Series, seen seasons is now indicated in the collapsible symbol instead before title
+- in Startpage, if all most recent items in Movies or TV series are seen, it indicates when collapsible is closed with a tick symbol
+- link to Favorites moved from addons to topFavorites sections on Startpage
+- added Runtime in episode details
+- moved Music empty&play playlist buttons to playlist site for more space in music site. Now also available for video playlist
+- added possibility in movie details and tv episode details to toggle between seen and unseen
+- added "add to playlist" button to moviedetails
+- added file size in movie and episode details download link as well as in files items in favorites which points to file directories
+- update of readme.md
+- added a button to delete all yarc related saved data to the setting page
+- experimental: open playlist in Playlists for video and music added
+- FIX: in Playlist, don't show time if not available; some other bug fixing there and optimizing code
+- FIX: Translations should now always appear (ex. Year in movie)
+- FIX: removed bracket remover in item labels (addon page)
+- FIX: changed replacement of single quote in item labels in addons with "mins" to appropriate html code
+- FIX: addons which are deactivated will not show anymore on the start page after a new start of yarc
+- FIX: PlayPlaylist and PlayGenre works again
+
+Version 0.11.3
+- Window title has now host information in addition to distinguish differnet kodi's
+- some css optimization
+- FIX: When movie started, after successful starting, the button changes from loading to play again
+- BUGFIX: GetSources does not get loaded every time a site is opened anymore
+- BUGFIX: if browsing trough files in AddonDetails, "Show description" works now, but Setting will not be saved
+
+Version 0.11.2
+- if browsing favorites, and it's not a plugin, sort content
+- FIX: if tv-show is closed and seen, the plus gets replaced by tick too
+- FIX: if you open an addon, don't check the file paths against video and audio sources
+- BUGFIX: if favorite-entry is set directly on a video or audio source, it works now also if it is mulitsource
+- BUGFIX: browsing files or media works now also if kodi is run on windows
+- BUGFIX: files with single quote in it can be started now in favorites
+- BUGFIX: all menu items in context menu in addon details (or favorites(-sub)-folders) gets hidden if context button gets pressed again
+
+Version 0.11.1
+- some css optimization
+- adds green ticks to playlist items in video section if seen
+- added translation Berndütsch (thanks dawed to your efford)
+- if video or audio sources are in the favorites list (or a sub-folder) they can be accessed
+- if a tv show is whole seen, it replases the + with a tick before banner
+- added Filepath feature also to series episodes
+- added download link to video files in libraries and in context menu for local media items when browsing into a folder through favourties
+- added empty playlist button to playlist
+- BUGFIX: Help text in swipe field is now always in the right context if showed
+- BUGFIX: Playtime for media is now correct in minutes and seconds in addondetails
+- BUGFIX: progress bar in remote should now after ending playing an item turn grey again
+
+Version 0.11.0
+- replaced my own placeholder images with awesomefont symbols (?, file and folder)
+- replaced green-ticks images with awesomefont symbol in title (movie, series and addon)
+- added resume indicator in title (movie, series and addon)
+- removed seek buttons on remote page (use seek in progress bar instead, hotkeys still work)
+- remote is now a panel accessible from each site
+- first page is now not remote anymore. it's now a "recently added and top fav's and addons" overview.
+- if music/movies or series library is empty, it removes or hides menu and start page entries.
+- "device orientation navigation" moved to tools
+- removed now unneeded settings: "swipe height", "hide device orient. nav.", "yarc Name" and "hide send text field"
+- removed "send text" and "stay in popup" in addon details removed -> due to better access to remote
+- Help text of swipe field is now written into the swipe field instead of a popup
+- shutdown popup replaced with a select and a "do it" button to get rid of the popup
+- quite a few css optimisations
+- now with a loading overlay which covers miss-styled loading content
+- added HTML escapeing for addon-plot. for now the only escpaed strings, but ready for others too.
+- if there is no artist to an album, it return empty string instead of "?"
+- added loading indicator when TV-Show seasons are loading
+- some small performance improvements
+- deleted of "lost/forgotten" css defenitions and translations
+- exchanged close buttons in the details-pages with "history-back" buttons.
+- Swipe field: changes automaticaly from Navigation to Player (or other way around) if it makes sense
+- volume, repeat and suffle icons change now also when setting changed over other remote or GUI
+- BUGFIX: show plot checkbox do not cause error anymore if addon name not in settings (folder from kodi favs for example)
+- BUGFIX: runtime informations in moviedetails apear again
+- BUGFIX: Add whole season to playlist should now always happen in right order (lowest to highest episode ID)
+- BUGFIX: TV-Show loading spinner gets now always hidden after loading tvshow
+
+Version 0.10.0
+- own solution for language translation exchanged with i18next which caused code changes and reduction
+      --> translations are now managed with the transifex platform (www.transifex.com)
+- added Hebrew Translation (translation by github user yarons)
+- compressed country flags a lot (from 4.5mb to around 400kb)
+- more Kodi shortcut keys are supported now. Since they don't conflict with "my own style" they work all
+      --> See in Readme.md chapter "Key Map" for more info
+- Added PlayGenre-Button to the music page
+- Seen TV-Shows (all episodes in all seasons) are marked as seen, or not shown if set so
+- Added seen-green-tick in TV-Show details.
+- exchanged rating star pic with awsomefont star
+- Added resume option for movies and tv episodes
+- Details popup of movies, series and music are now not popups anymore. It's now the same way as addon details in release 0.9.10
+- Added Buttons to TV-Show to navigate next and prev items within season
+- Seek-overlay (time and difference shown when seeking) has now a black border for more contrast
+- some styling changes and code reduction
+- exchanged item details dialog back with close buttons (to leave the details)
+- FIX: in popups, some buttons get now activated on first klick
+- FIX: if no fanaart for a movie, in the details it does not show the questionmark anymore
+- FIX: in footer, if no prevpic, there is no pic shown, to get more space
+- FIX: got rid of some unnecessary html attributes in button tags 
+- BUGFIX: in Addons, if addoncontent is refreshed, it doesn't get added to the backpath anymore
+- BUGFIX: if start navigation with Favorites in Addons, and go back to Favorites, you don't get caught in an endless loop anymore
+- BUGFIX: in series details, it shows now a language only once, even if isocode in file streamdetails and filename (if different tags used)
+      --> if there is the same language already two time in streamdetails, it still shows it twice (not a bug, it's a feature)
+- BUGFIX: Multiple bindings of some hotkey's eliminated  
+- BUGFIX: if there is no artist information for a song, it does not crash on it and shows the library
+      
+Version 0.9.11
+- added Portuguese language (translation via github by user sheikr)
+
+Version 0.9.10
+- Addon Popup is now not a popup anymore, it's like an own site, to avoid scrolling problems. Behaviour changed a little.
+- some styling of loading bar's, buttons and seen ticks
+- addon popupitems: directory/file pictures are now smaller, to see more on small screen devices
+- Add to playlist (songs and addon out of popup): if pressed twice, it doesn't get added twice to the playlist any more
+- added loading bar to playlist's
+- setting for image compression is now in general section,
+  since it is used everywhere (setting does only apply for images loaded without compression aka quality 95)
+- When coming from Kodi Favorites, it shows now the fanart in the background when entering an addon folder
+- remove button is exchanged to a symbol in playlist
+- in playlist and footer, season and episode get shown if it's a TV Show
+- back button appears now in addon content before information is loaded
+- got rid of language klingon... toH va! 
+- If a whole season is seen in TV Series, it gets marked as seen in the interface (or not listed if set so)
+- New function: Add series from popup to playlist
+- New function: Add whole series season to playlist
+- New function: add addon media or directory to Kodi favorites
+- New function: delete Favorites in the favorite popup (if you add from an addon an existing favorite, it gets deleted too)
+- New function: select-box values are now saved (like genre selection etc, but not search field values)
+- FIX: if different language codes for the same language in media file names are present, it lists them now as same language only once
+- FIX: if in an addonname information is added with/behind "?" (ex. extendedInfo Script) it gives no error back any more
+- BUGFIX: in "Search Song", add to playlist button works again
+- BUGFIX: in swipefield-player, swipe to right goes now to next item in playlist as it should
+- BUGFIX: Video Playlist: playlist items are now moveable too
+- BUGFIX: Addons "other" now shows plugins which are not "audio" or "video"
+- BUGFIX: after opening the movies and series details popup a second time, the play button doesn't disappear anymore
+- BUGFIX: settings button should now work on windows browsers
+- BUGFIX: if pictures have an undefined value, picture function gives now back a broken imagelink
+- WORKAROUND: youtube search works again, it's an ugly hack, but works as expected
+
+Version 0.9.8
+- Info dialog in addonspage (first sentence) is now wrapped
+- in the touchpad, if you hold your gesture in navigation for more than half a second,
+  you can scroll (measured by distance, not time!)
+- some folder cleanup
+- BUGFIX: when going back to "Kodi Favourites" in the popup over the "back" button, it does not start additionally a wrong function
+- BUGFIX: Searchfields now work again
+
+Version 0.9.7
+- Works now with Kodi 15.1
+- Update of jquery and a lot of changes to meet new conditions
+- Kodi loading-spinner is shown when loading data from Kodi
+- Context menu for file items in addons (for now add to playlist -> great for youtube Plugin!)
+- Navigation Buttons don't get executed multiple times by single press anymore
+- Plugins without icon's get now a placeholder graphic
+
+Version 0.8.1
+- Kodi Favourites are now accessible as addon (it shows up in the addon list as addon)
+- css styling: on large screens (more than 700px width), next and prev buttons are on the side of the list, and not anymore part of the list
+- added Setting, default for the checkbox if you want to stay in addon popup after opening file
+- Added release date (premiered) in Addon Fileitems, if there is any
+- jumps now to top of addon popup on refresh or entering a folder
+- seek overlay get's now hidden by start, so that it doesn't come into the way anymore
+- Song-Search Items have now preview pircture of the album and artist is shown
+- playlist items have now a preview picture
+- css styling: TV Series got some love. Now episode preview pictures are shown and better collapsable styling
+- css styling: the green tick's for seen media is now shown consistently at the same place (top right)
+- some readme updates
+- css styling: made addonpopup smaller in width. leaving the popup is now easier on mobiles
+- some html simplyfing/cleanup
+
+Version 0.8.0
+- Addon Menues are now accessible on yarc. consider it still beta. if a addon does not work for you, please tell me about in the kodi forum
+- skip song with deviceOrientation removed
+- playpause for "player" mode added again with devie Orientation
+- Youtube part is now removed, since you can use the youtube addon easy in the addon section.
+- language function (streamdetails) of kodi is used together with my own parsing from filename
+		* To tag in filenames, you need to comply with iso639-2 (or -1), sorry for that inconvenience
+		* complete list: http://www.loc.gov/standards/iso639-2/php/code_list.php
+- "No Language" and "No Rating" are now translated too
+- some css changes so that there are shown same amount of elements in Movies, Music and Addon section, with "large screens"
+- some more css changes: addon overview on a small screen (list not tiles) are shown as in the music or movie section
+- setting to swap swipe directions. default: navigates in the direction you swipe (the opposite you are used to from previous versions)
+- Demo video Button in tools added
+- added a link to the readme in the settings.
+- dropped support of SVG. It's now PNG only (because of shitty browsers who don't support SVG fully).
+
+Version 0.7.1
+- Now there is a setting to get rid of the header menu text, to save space on mobiles
+- Play/Pause with DeviceOrientation works now only in Nav-Mode, to prevent accidental skip media
+- Icon get's now also shown in tab in firefox
+- provide linces for yarc and plugins/scipts in a according folder
+- replaced depriciated bold and italic html tags
+- website icon was not good enough for placement on android desktop (shortcut), so actualised from 16x16 -> 64x64
+- bugfix: in Show Album Popup: add zero before if mintues is single-digit
+- removed ugly inline style in yTools.ratingToStars()
+- buttons in simple list are now always shown at a better position
+- add close popup button to the popup where there was none
+- some text's who where not translated fixed
+- change name attributes in html tags to proper data-attribute where missused
+- new images for next, previous and missing file. now fitting with hoover and border colors
+- if Playlist opened go to section of active Player
+- new icons in header bar
+- Header is now smaller in height
+- some html cleanup and small changes
+- bugfix: loading bar now always shown and hidden when needed
+- bugfix: seek-buuble is not toggling on/off after pageswitch: solved
+- Music now gets sorted by Artits and TV-Series by Title
+
+Version 0.7.0
+- add a seek playing file position functionality: while Footer bar open, press on it and a seek media bubble appears
+- while the seek-bubble is moved, it prints out where it would jumpt to, and the time difference to current position (at time of start moving bubble)
+- add progress bar in footerbackground for better progress visability from distance
+- album popup now adds now songs in the same way as youtube popup
+- search song textfield runs now also with pressing enter
+- added jqueryUI (only sortable and dragable)
+- replaced Sortable Plugin with functions from jqueryUI, since i need jqueryUI anyway
+- text and buttons within swipe field should not be selected anymore on long pressing in upper part
+- some html cleanup
+- new logo, icon and fanart
+
+Version 0.6.0
+- Device Orientation Navigation: navigate by changing the oriantation of your device
+		* works with mobiles/tablets and it's browsers who support the deviceOriantion API
+		* Navigate up down left right and also go to next or previous songs
+		* if you lay your device facing down on the table it pauses, take it in you hands again to play
+- send now all  Youtube Vidos to Video Playlist instead of music playlist
+- Say it if in searches (addons, movies, music) no items are found
+- remove season in tv Series, if thre are no items to show and write information
+- replaced star-rating function: now it only displays one star with rating
+- some cleaning up / optimise java script code
+- Footer Bar: toggle button now bigger and slightly transparent when footer not visible
+- don't show preview images im popup backgrounds, for TV-Show-Titles, footer and youtube items
+- in some browsers (mostly non-mobile) the playlist can be sortet with drag-and-drop
+
+Version 0.5.0
+- Added translation functionality with German, English, klingon and Spanish
+- palceholder for non existing covers and back and forth arrow pircture: without black-white frame
+- restrict songsearch to allow only at least 3 chars
+- Design-bug-fix: collapsable titles are now allways white
+- Disable Button after adding a song to the playlist in songsearch and remove "Done!" information
+- Add "Back Button" in Youtube Search
+- added posibility to add youtube videos to playlist
+- added play-playlist button to youtube popup
+
+Version 0.4.0
+- Moved Shutdown button to top of Tools list
+- Show/Hide of Footer on tab on empty area disabled
+- added button into album popup to emptly playlist and play the whole album
+- remove functionality to choose skin. now it's only dark theme
+- css: move preview images of popups in the background
+- bugfix: movietimes gets now rounded on mintues
+- bugfix: language selection double running and wrong adding removed
+- bugfix: double entry "FM" in countryLanguages removed
+- added shuffle and repeat buttons
+- changed XBMC to Kodi in readme
+- Refresh button for Playlist added
+- Delete button for Playlistitems in Playlist added
+- Search for song functionality added
+
+Version 0.3.3
+- bugfix: addonspage: listpos init fixed
+- get rid of some redundant code
+- switched color of swipefied-navigation and swipefield-media
+- some css tweaks in BSM
+- say if playlist empty
+- in Playlist, indicate if plaing song is on pause or playing
+- change symbols on buttons to fontawesome for higher browser compatibility
+
+Version 0.3.2:
+- Movie and Music List: now, only the relevant items get loaded into the html
+- bugfix: in addonspage the prev and next button are always in the right place
+- bugfix: in addonspage the prev and next button are always shown, also when "hide Preview Image" set.
+- css: prev and next pictures are now centred again in Moviepage "Big Screen Mode"
+
+Version 0.3.1:
+- bugfix: Movie time now showing right mintues value
+- bugfix: all key's in local storage get's checked if set, otherwise default setting gets written
+- bugfix: footer content sometimes still visible after disabling it: does not happen anymore
+- Addons get sorted by how may times they got started (from the given device and browser)
+- if previewpictures sould not be shown, they are now removed rather than only hidden
+- some css adjustments
+- update of readme
+
+Version 0.3.0:
+- setting for swipe area hight added
+- dark theme and setting added
+- faster pagetransition
+- bugfix: trailers and movies works now again
+- some inter-face-lifting
+- some css bug's fixed
+- update of readme
+
+Version 0.2.1:
+- xbmc.gui in addon.xml removed 
+- validated html and xml (1 Error in HTML, I believe it's an validator mistake)
+- changes in css
+- yarc settings corrected, so that initial setting gets wirten
+- update of readme
+
+Version 0.2.0:
+- added swipe field
+- added configuration to choose between swipe field and buttons
+- update of readme
+
+Version 0.1.3:
+- Better Fanart
+
+Version 0.1.2:
+- When there are no items retrieved in movies, tv-series, music and addons, it gives an info on the screen
+
+Version 0.1.1:
+- CSS bugfixes in Movie icon mode
+
+Version 0.1.0:
+- First release of yarc

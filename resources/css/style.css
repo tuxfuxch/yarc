@@ -1,0 +1,1757 @@
+/**
+* Yarc - Yet another Remote Control (for Kodi)
+ * Copyright (C) 2019 by Esra Kummer
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ */
+
+/************************************************************************************* 
+ *	General (G)								 		                                 *
+ *************************************************************************************/
+
+.ui-listview > .ui-li-has-thumb > .ui-btn, .ui-listview > .ui-li-static.ui-li-has-thumb {
+    min-height: 0;
+    padding: 0px;
+}
+
+.ui-listview>.ui-li-static, .ui-listview>.ui-li-divider, .ui-listview>li>a.ui-btn {
+    border-style: none;
+}
+.ui-page-theme-b .ui-body-inherit {
+    background: none;
+}
+.ui-collapsible-inset {
+    margin: 0px;
+}
+.ui-listview > li > div > h3 {
+    margin: 2px;
+    
+}
+#yarcLoading  {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 11352411;
+    width: 100%;
+    height: 3000px;
+    background-color: #000;
+}
+#yspeech {
+    opacity: 0.75;
+    position: fixed;
+    bottom: 0px;
+    left: 54px/*25%*/;
+    z-index: 11352410;
+    width:  calc(100% - 142px);
+    height: 60px;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+}
+#mic-transcipt-container{
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+#transcript {
+    font-size: 12px;
+    opacity: 1;
+    overflow: hidden;
+}
+#ySpeechAction {
+    width: 100%;
+    font-size: 12px;
+    color: #0f0;
+    opacity: 1;
+    overflow: hidden; 
+    position: absolute;
+    left: 0;
+}
+#speechhelplink {
+    opacity: 0.75;
+    font-size: 50px;
+    vertical-align: middle;
+    position: fixed;
+    bottom: 0px;
+    right: 54px;
+    z-index: 11352410;
+    width:  34px;
+    height: 60px;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    border-left: 1px solid #c8c8d1; 
+}
+.microphoneSmall {
+    font-size: 12px;    
+}
+.microphoneLarge {
+    font-size: 40px;    
+}
+.speaking {
+    color: red;
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+    font-size: 40px;
+}
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+@-webkit-keyframes blink-animation {
+     to {
+        visibility: hidden;
+     }
+}
+
+#yarcLoadingSpinner {
+    width: 50px;
+    display: block;
+    margin: 50px auto;
+}
+#yarcLoadingLogo {
+    width: 70%;
+    display: block;
+    margin: -50px auto;
+}
+.ui-mobile .ui-page-active {
+    overflow-x: visible !important;
+}
+.ui-content #addons{
+    overflow-x:visible;
+}
+.ui-content {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 60px;
+ }
+.ui-panel {
+    width: 100%;
+}
+.ui-panel-inner {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+#nav-panel { 
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: auto;    
+    z-index: 900;
+}
+.main-menu-icon {
+    font-size: 22px;
+    vertical-align: middle;
+}
+.menu-sub a {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.menu-sub a span{
+    font-style: italic;
+    font-size: 12px;
+}
+.yListItem {
+    white-space: nowrap; 
+    overflow: hidden !important;
+    list-style-type: none;
+}
+.yListItem:before {
+    content: "";
+    height: 1px; 
+    background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(27,27,27,1) 50%,rgba(0,0,0,0) 100%); 
+    display: block;
+    margin-bottom: -1px;
+}
+.yListItem:hover, .contextMenu:hover
+, .flex-prev:hover, .flex-next:hover
+,.openMovieItem:hover, .showAlbum:hover
+, .album_Item_Nav:hover, .addonlist-item:hover
+, .flex-prev:hover, .flex-next:hover
+,.showAlbum:hover, .album_Item_Nav:hover
+, .openMovieItem:hover, .PvrTVopenChannel:hover, .pvrTVopenBroadcast:hover, .pvrProgramChannel:hover, .pvrTVProgramItem:hover, .addonlist-item:hover
+, .flexListPrevNext:hover, #topFavs > .showAddonDirItem:hover, .actor:hover, .director:hover, .pvrTVopenRecording:hover, .pvrTVopenBroadcastItem:hover {
+    background-color: #c8c8d1;
+    color: #000 !important;
+    cursor: pointer;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}
+.flexListPrevNext {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+.flex-container {
+    margin-top: 20px;
+}
+.info {
+    font-size: 9px;
+    text-align: center;
+    overflow: visible;
+    white-space: normal;
+}
+.italic {
+    font-style: italic;
+}
+.bold{
+    font-weight: bold;
+}
+.clickable:hover {
+    cursor: pointer;
+}
+.green {
+    color: #0f0;
+}
+.orange {
+    color: #FFA500;
+}
+.centerFa {
+    display: block !important;
+    margin: 0 auto;
+}
+.text-center {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+.loading > .text-center {
+    text-align: center;
+    display: block;
+    margin: 0 0 -15px;
+}
+.text-center > span{
+    padding-left: 10px;
+    vertical-align: middle;
+    height: 46px;
+    display: inline-block;
+}
+.ui-btn-text {
+	color: white;
+}
+
+a:link {
+	text-decoration: none;
+	color: #fff !important;
+}
+a:visited {
+	text-decoration: none; 
+	color: #fff !important;
+}
+a:active {
+	text-decoration: none; 
+	color: #fff !important;
+}
+a:hover {
+	text-decoration: none; 
+	color: #fff !important;
+}
+.ui-page-theme-b a, html .ui-bar-b a, html .ui-body-b a, html body .ui-group-theme-b a {
+    color: #fff;
+}
+.ui-page-theme-b a:hover, html .ui-bar-b a:hover, html .ui-body-b a:hover, html body .ui-group-theme-b a:hover {
+    color: #fff;
+}
+.downloadLink {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500 !important;
+}
+.buttonRight {
+    position: absolute;
+    right: 0%;
+}
+.simpleList {
+    height: 50px;
+}
+.simpleList > span {
+    padding-left: 5px;
+  	vertical-align: top;  
+    line-height: 50px;
+    font-size: 14px !important;
+}
+.simpleListPrevPicContainer {
+    display: block;
+    width: 60px;
+    overflow: hidden;
+    float: left;
+}
+.simpleListPrevPic {
+    height: 50px;
+    line-height: 50px !important;
+    display: block;
+    font-size: 40px;
+    text-align: center;
+}
+.ratingStars {
+    color: #FFCC00;
+}
+/****************************** g:Popups ********************************/
+.details > .content {
+    padding-left: 5px;
+}
+
+.detailsImage {
+    width: 100%;
+    height: Auto !important;
+    position:absolute;
+    -khtml-opacity:.250;
+    opacity:.250;
+    max-height: none !important;
+    margin-left: -5px;
+    pointer-events: none;
+}
+#movieDetailsDirector > span {
+    float: left;
+}
+#movieDetailsActors {
+    clear: left;
+}
+.director {
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.actor {
+	float: left;    
+}
+.actor > div {
+	position: relative;
+    padding: 0px 5px 0px 5px;
+    height: 160px;
+    min-width: 100px;
+}
+.actorname {
+    position: absolute;
+}
+.displayNone {
+	display: none;    
+}
+#movieDetailsFilelink {
+	padding-top: 15px;
+    clear: left;
+}
+#episodeDetailsPlot {
+	margin-top: 15px;
+}
+#episodeDetailsImage {
+    margin-top: 0px;
+}
+.playSong {
+    position:relative;
+    margin-right: 5px;
+    min-height: 30px;
+    white-space: normal;
+    line-height: 30px;
+}
+#addonDetailsImage {
+    margin-top: 20px;
+}
+
+.percentageBar {
+    width: calc(100% - 12px);
+    height: 5px;
+    background-color: #c8c8d1;
+    font-size: 12px;
+}
+#pvrDetailsTimeRuntime .percentageBar {
+    width: 150px;
+    height: 5px;
+    background-color: #c8c8d1;
+    font-size: 12px;
+    padding-left: 0px;
+}
+
+.percentageBarInside {
+    background: rgb(104, 83, 0);
+    height: 5px;
+}
+
+/****************************** g:Remote Page ********************************/
+   
+/*swipe function*/
+#swipe {
+    position: absolute;
+    top: 90px;
+    bottom: 83px; 
+    left: 10px;
+    right: 10px;
+
+
+    overflow: hidden;
+    margin-bottom: 10px;
+
+    background-color: #666;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+
+    text-align:center;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 36px;
+
+    color: #FFF;
+    text-shadow: 0 1px 1px #111111;
+
+    /* that text within the swipe box can't be selected */
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -o-user-select:none;
+}
+#swipe-help {
+    cursor: pointer;
+    color: #2ad;    
+}
+#swipe-box-Nav-help, #swipe-box-Media-help, #swipe-box-help {
+	text-align: left;
+  font-size: 11px;
+  line-height: 12px;
+}
+#nav-med-radio {
+	text-align: center;
+}
+/*Index Page upper Buttons*/
+
+.mediacontrol { 
+	text-align: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#devOrientWrapper {
+  text-align: center;
+}
+
+#devOrientBlock {
+  display: inline-block;
+}
+
+#devOrientBlock > .ui-block-a {
+    text-align: right;
+    width: auto;
+}
+
+#devOrientBlock > .ui-block-b { 
+    text-align: left;
+    width: auto;
+}
+
+/* let icon after checkbox be on same line*/
+#devOrientBlock > .ui-block-a  .ui-checkbox {
+    float: left;
+    margin: 0;
+}
+
+#devOrientBlock > .ui-block-a  .icon-arrow-right {
+    line-height: 42px;
+}
+
+#devOrient-label {
+	line-height: 40px;    
+}
+
+/*Index Page Navigation arrows*/
+#navigation-arrows {
+	text-align: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+/*Index Page lower Buttons*/
+
+#SendText {
+    position: absolute;
+    bottom: 42px;
+    left: 10px;
+    right: 10px;
+}
+
+#MenuButtons {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+/*Index Page Volume Buttons*/
+#Volume {
+	text-align: center;
+	width: 300px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/******************************* g:Startpage **********************************/
+#turn-off-select-button, #turn-off {
+    background-color: #300;
+}
+
+/****************************** g:Settingspage ********************************/
+#fanart {
+    height: 140px; 
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/****************************** g: Language Flags ********************************/
+.pathToFlags {
+  -webkit-border-radius: 3px;
+	border-radius: 3px;
+	border-width: 1px !important; 
+	height: 15px;
+	width: auto;
+	border:1px solid #333333;
+}
+
+/****************************** g: Movies Page ********************************/
+.openMovieItem {
+    overflow: hidden;
+}
+
+
+/****************************** g: Movies Page ********************************/
+  .movieSetPrevPic {
+    display: block;
+    float: left;
+    font-size: 45px;
+    line-height: 50px !important;
+    height: 75px;
+    min-width: 50px;
+    left: 0;
+    transform: translate(0%);
+    margin-right: 10px;
+  }
+ .movieSetCollapsible > h3 > a {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+ }
+ .movieSetCollapsible > h3 > a > div {
+    line-height: 75px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+ }
+
+/****************************** g: Series Page ********************************/
+#series_list {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.series-item {
+    min-height: 50px;
+}
+.series-item h4 {
+    font-size: 14px !important;
+	vertical-align: top;
+	padding-left: 10px;
+    line-height: 60px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+.seriesPoster {
+    float: left;
+    height: 60px;
+    margin-right: 5px;
+    line-height: 60px !important;
+   
+}
+.seriesThumbAddon {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+    font-size: 40px;
+}
+.seriesPrevPic {
+	height: 60px;
+    line-height: 60px !important; 
+    font-size: 50px; 
+	vertical-align: top;
+	float: left;
+}
+.seasonTitle {
+    min-height: 60px;
+    line-height: 60px;
+}
+.openSeason .ui-btn-icon-left {
+    padding: 0 0 0 2.5em !important;
+}
+.openSeries > .ui-collapsible-content {
+    border: 0px;
+    margin-top: -15px;
+}
+.openSeries > h3 > a {
+    min-height: 50px;
+    line-height: 80px;
+}
+.openSeries .ui-btn-icon-left {
+    padding: 0 0 0 2.5em;
+    margin: 0 0;
+}
+.openSeason .ui-btn-icon-left {
+    padding: 0.7em 2.5em;
+}
+.loading_season {
+    margin: 2em !important;
+    border-width: 0 !important;
+}
+
+/****************************** g: PVR Pages ********************************/
+    
+.pvr-channel-overview:hover {
+    color: #fff;
+}
+
+#pvr-tv-program-slider-container {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    height: 40px;
+    z-index: 15;
+    background: #252525;
+}
+
+#pvr-tv-program-slider {
+    margin-top: 6px;
+}
+
+#pvr-tv-program-dateselect-container {
+    margin-top: 35px;
+}
+
+#pvr-tv-program-timeline-container {
+    overflow: scroll;
+    overflow-x: hidden; /*hide scrollbar with leaving scrollable*/
+    overflow-y: hidden; /*hide scrollbar with leaving scrollable*/
+    width: 100%;    
+    position: fixed; 
+    top: 33px;
+    z-index: 15;
+    height: 15px;
+    background: #4c4c4c;
+}
+
+#pvr-tv-program-timeline {
+    height: 15px;
+    width: 15000px;
+}
+
+.pvr-tv-timeline-item {
+    height: 15px;
+    font-size: 13px;
+    float: left;
+    border-left: 1px solid #c8c8d1;
+    overflow: hidden;
+    z-index: 111;
+}
+
+.pvr-prog-info:hover {
+    color: blue;
+}
+#loading_pvr-tv-program {
+    height: 60px;
+}
+#pvr-tv-program-container {
+    padding-top: 24px;
+    width: 100%;
+    position: relative;
+    overflow: scroll;
+/*     overflow-x: hidden; /*hide scrollbar with leaving scrollable*/ 
+    overflow-y: hidden; /*hide scrollbar with leaving scrollable*/
+}
+#pvr-tv-program-container::-webkit-scrollbar {/*hide scrollbar chrome only*/
+    width:0px;
+}
+.pvrProgramRow {
+    height: 51px;
+    overflow: hidden;
+    clear: both;
+    width: 15000px;
+    position: relative;
+    padding-left: 51px;
+    box-sizing: border-box;
+}
+.pvrProgramRowPic {
+    height: 45px;
+    float: left;    
+}
+.pvrProgramChannel {
+    float: left;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #c8c8d1; 
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #252525;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.pvrProgramChannel img { 
+    width: 50px;
+}
+.pvrTVProgramItem {
+    float: left;
+    border: 1px solid #c8c8d1; 
+    height: 44px;
+    cursor: pointer;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 3px;
+}
+.pvrTVProgramItem h4,  .pvrTVProgramItem p {
+    margin: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#pvrTVProgramGOTONow {
+    background-color: rgb(104, 83, 0);
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    height: 60px;
+    width: 60px;
+    -moz-border-radius: 60px;
+    -webkit-border-radius: 60px;
+    border-radius: 60px;
+    z-index: 7;
+    line-height: 25px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#pvrTVProgramNow {
+    position: absolute;
+    width: 10px;
+    border-left: 3px solid rgb(104, 83, 0);
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 14;
+    top: 0;
+    left: 100px; 
+}
+
+.colapsChannelPrevPic {
+    height: 40px;
+}
+
+/****************************** g: Music Page ********************************/
+.prevPicContainerMusic {
+    text-align: center;
+}
+
+/****************************** g: Song-Search Page ********************************/
+#music-songsearch .content {
+    margin: 1em;
+}
+
+#songsearch-list {
+    margin-top: 20px;
+}
+.songSearchAddPl {
+    margin: 0px;
+    height: 50px;
+}
+/****************************** g: Addon Page ********************************/
+#loading_addonDetails {
+    margin: 2em; /*to correct the ulview -1em from jquery in wrapping ul*/
+}
+.addonPlot {
+	font-size: 12px;
+    display: block;
+    float: left;
+    margin: 5px;
+    font-weight: normal;
+}
+#addonDetailsList, #favDetailsList {
+	margin: 40px auto 20px;
+	width: 100%;
+	line-height: 13px;
+}	
+#addonDetailsList h4 {
+	margin-left: 70px;
+    margin-bottom: 20px;
+    vertical-align: middle;
+    font-size: 14px;
+}
+.addonDirPrevPicContainer {
+    display: block;
+    width: 60px;
+    overflow: hidden;
+    float: left;
+}
+.addonDirPrevPicContainer > .text-center {/*TODO: evtl weg*/
+    margin-left: 0px;
+    text-align: left;
+}
+.addonDirPrevPic {
+    display: block;
+	font-size: 40px;
+    line-height: 51px !important;
+ 	height: 51px;
+}
+.addonDirBack {
+	font-size: 45px;
+    padding-top: 1px;
+    padding-bottom: 5px;
+	text-align: center;
+	float: left;
+    width: 100%;
+    height: 100%;
+    color: #c8c8d1;
+}
+.addonDirBack:hover {
+    color: #000 !important;
+}
+.addonDetailsLoad {
+	text-align: center;
+	margin-top: 20px;
+}
+.showAddonDirItem {
+	position: relative;
+}
+.addonDirItem {
+  	white-space: normal; 
+}
+.addonDirItem:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.addonDirItemLeft { 
+    float:left;  
+    width: calc(100% - 40px);
+    display: inline;    
+}
+.addonDirItemRight {
+    text-align: center;
+    float: right;
+    width: 40px;  
+    height: 51px;
+    display: inline; 
+    background: #333;
+}
+.addonFavDelete {
+    color: red;
+    text-align: center;
+    float: right;
+    width: 40px;  
+    height: 51px;
+    display: inline; 
+    background: #333;
+}
+.red {
+    color: red;
+}
+.recording {
+    font-size: 19px;
+}
+.contextMenu {
+    position: relative; /*to get item in front of background picture*/
+    margin-left: 2px;
+    padding: 0px 0px 5px 20px; 
+    border-left: 1px solid #c8c8d1; 
+    border-bottom: 1px solid #c8c8d1; 
+}
+.awsomeicon-padding {
+    padding-left: 5px;
+}
+/****************************** g: loading bar ********************************/
+.loading {
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    text-align: center;
+    list-style-type: none;
+    margin-left: 0px;
+    margin-top: 8px;
+}
+.kodi_loading {
+    display: inline; 
+    height: 40px;
+}
+/****************************** g: Panel Progress Bar ********************************/
+#mediaProg-cont {
+    padding-top: 3px;
+    position: fixed;
+    left: 0;
+    background-position: right top;
+    background-color: #685300;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    bottom: 0;
+    height: 40px;
+}
+#mediaProg {
+	width: 100%;
+	height: 40px;    
+	line-height: 40px; 
+	white-space:nowrap; 
+	padding-top: 3px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #1d1d1d;
+}
+#mediaProg-right {
+	text-decoration: none;
+	font-size: 11px;
+	height: 40px;
+}
+.open-panel { 
+    display: inline-block;
+    padding-left: 19px;
+    height: 60px;  
+    line-height: 60px;  
+    opacity:.70;
+    vertical-align: top;
+    background-color: #6E6E6E;
+    width: 35px;
+    position: fixed;
+    bottom: 0;
+    right: 0;    
+}
+.openMainMenu { 
+    display: inline-block;
+    padding-left: 19px;
+    height: 60px;  
+    line-height: 60px;  
+    opacity:.70;
+    vertical-align: top;
+    background-color: #6E6E6E;
+    width: 35px;
+    position: fixed;
+    bottom: 0;
+    left: 0;  
+    z-index: 999;
+}
+.close-panel {
+	display: inline-block;
+	padding-left: 19px;
+	height: 40px;  
+	line-height: 40px;
+	vertical-align: top;
+	background-color: #6E6E6E;
+	width: 35px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+#mediaProgImage {
+    height: 40px;
+    float: left;
+}
+#mediaProgImage:hover {
+    position: relative;
+    height: 160px;
+    margin-top: -120px;
+}
+#mediaProgTime {
+    display: block;
+    vertical-align: top;
+    width: 46px;
+    font-size: 11px;
+    line-height: 14px;  
+    margin-top: 8px;
+    float: left;
+}
+#mediaAudioSub {
+    float: left;
+	display: block;
+	vertical-align: middle;
+	overflow: hidden;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 40px;   
+    padding-left: 5px; 
+    cursor: pointer;
+}
+#mediaProgTitle {
+	display: block;
+	vertical-align: middle;
+	overflow: hidden;
+    font-weight: bold;
+    line-height: 40px;
+    padding-left: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#seek-bubble {
+	font-size: 11px;
+    background-color: #6E6E6E;
+    border-radius: 5px;
+    width: 50px;
+    text-align: center;
+    position: relative;
+	margin-top: -42px;
+	top: -11px;
+	left: 0px;
+	border: 1px solid #fff;
+}
+#seek-bubble:hover {
+	cursor: ew-resize;
+}
+#mediaProg-cont .icon-search {
+	font-size: 22px;
+}
+#seek-bubble .bubble-arrow {
+    border-style: solid;
+    position: absolute;
+}
+.bubble-bottom { /*belongs to seek-buuble*/
+    border-color: #fff transparent transparent transparent;
+    border-width: 7px 7px 0px 8px;
+    bottom: -7px;
+	left: 17px;
+}
+#seek-overlay {
+    display: none;
+    position: fixed;
+    width: 100px;
+    height: 50px;
+    top: 20%;
+	z-index: 100;
+	color: #685300;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+	font-size: 60px;
+    font-family: "Verdana", Georgia, sans-serif;
+}
+
+
+/********** g:langSubDetails (Audio Stream and Subtitle Details  **********/
+#langSubDetails .subtitleItem, #langSubDetails .audioStreamItem {
+    line-height: 50px;
+}
+
+/****************************** g:Playlist ********************************/
+#plType {
+	text-align: center; 
+}
+#currentplaylist {
+	margin: 20px 3em 10px 1em;
+}
+.plItem {
+	cursor: ns-resize !important; /*!important: to overwrite general yListItem class*/
+}
+.plItemDragging {
+	background-color: #c8c8d1;
+}
+.plRemove {
+    margin: 0px;
+    height: 50px;
+    color: red !important;
+}
+#loading_pl {
+    margin-top: 18px;
+}
+	/****************************** g: Tools ******************************/
+#cleanAndUpdate label {
+  height: 3em;
+  padding-top: 20px;
+  font-size: 20px;
+}
+/************************************************************************************* 
+ *	Large Screen Media (LSM)															 *
+ *************************************************************************************/
+@media only screen
+and (min-width : 900px) {	
+    /****************************** LSM : Remote Panel ********************************/
+    #MenuButtons a, #MenuButtons button {
+        width: 90px;
+    }
+    
+    #nav-panel {
+        max-height: none;
+        visibility: visible;
+        position: relative;
+        left: 0;
+        clip: initial;
+        float: left;
+        width: 240px;
+        background: none;
+        transition: none !important;
+        transform: none !important;
+        box-shadow: none;
+        background-color: #333;
+    }
+    
+    .page-content {
+        width: calc(100% - 240px) !important;
+        left: auto !important;
+        right: 0 !important;         
+    }
+    
+	/****************************** LSM : Flex Containers for Lists ********************************/	
+	.flex-container {
+        display: flex;
+        flex-direction: row;
+		width: 100%;
+	}
+	.flex-content {
+		width: 100%;	
+		display: flex;
+		justify-content: center;	
+		flex-flow: row wrap;
+	}
+	.flex-prev {
+        order: -1;
+	}
+	.flex-next {
+		order: 2;
+    margin-left:auto;
+	}
+	.flex-prev, .flex-next {
+        width: 70px;
+        display: inline-block;
+        cursor: pointer;
+        list-style: none;
+        overflow: hidden;
+	}
+    .prev-next-arrow {
+        font-size: 4vw;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        color: #c8c8d1;
+        display: block;
+    }
+    .prev-next-arrow:hover {
+        color: #000 !important;
+    }
+    .flexListPrevNext img, .moviePrevPic {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        height: auto;
+    }
+    #pvr-tv-search-list {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .openMovieItem, .showAlbum, .addonlist-item, #topFavs > .showAddonDirItem, .PvrTVopenChannel, .pvrTVopenBroadcast, .pvrTVopenBroadcastItem, .pvrTVopenRecording {
+        flex: 1;
+        min-width: 250px;
+        max-width: 400px;
+        min-height: 60px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+    /****************************** LSM : Start Page ********************************/
+    #navigation-arrows {
+		width: 500px;
+	}
+    #recentMovies > .openMovieItem {
+        width: 10% !important;
+        min-width: auto;
+        height: auto;
+    }
+    #recentMovies .movieYear {
+        display: block;
+    }
+    #recentSeries > .openMovieItem, #topPvrTV > .PvrTVopenChannel, #topPvrRadio > .PvrTVopenChannel, #topPvrTVRecordings > .pvrTVopenRecording {
+        width: 10% !important;
+        min-width: auto;
+        height: auto;
+    }
+    #topMusic > .showAlbum {
+        width: 10% !important;
+        min-width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+    #topAddons > .addonlist-item {
+        width: 10% !important;
+        min-width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+    #topFavs .heart { /*to equal height of addonpictures*/
+        line-height: 100px !important;
+    }
+    #topFavs > .addonlist-item, #topFavs > .showAddonDirItem {
+        width: 10% !important;
+        min-width: auto;
+        height: auto;
+        overflow: hidden;
+    }
+    #topFavs  .musicPrevPic { /*to equal height of favorites pictures*/
+        line-height: 100px !important;
+    }  
+    #topFavs > .musicPrevPic {
+        display: block !important;
+        width: 100px;
+        font-size: 70px;
+		text-align: center;
+    }
+	#topFavs > .showAddonDirItem p, #topFavs > .showAddonDirItem h4 {
+		text-align: center;
+		margin:2px 2px 2px 2px;
+	}
+	#topFavs > .showAddonDirItem h4 {
+		font-size: 18px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+	}
+	#topFavs > .showAddonDirItem p {
+        font-weight: 500;
+	}
+	/****************************** LSM : Series ********************************/
+	#series_list { 
+		width: 70%;  /* for centering */
+		margin: auto;  /* for centering */
+		position: relative;
+		width: 700px;
+	}
+	/****************************** LSM : Meida Progress ********************************/
+	#mediaProgTitle { 
+		font-size: 17px;
+	}	
+	/****************************** LSM: Movies ******************************/
+	.addonlist-item {
+		list-style-type: none;
+		white-space:nowrap; 
+		overflow:hidden;	
+		cursor:pointer;
+	}
+	.moviePrevPic {
+        width: 80px;
+		font-size: 80px;
+		text-align: center;
+	}
+	#recentSeries .moviePrevPic, #topPvrTV .moviePrevPic, #topPvrRadio .moviePrevPic {
+        width: 80%;
+	}
+	.openMovieItem h4 {
+		text-align: center;
+		margin:0px;
+		font-size: 18px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+	}
+	.openMovieItem p, .PvrTVopenChannel p, .pvrTVopenBroadcast p, .pvrTVopenBroadcastItem p, .pvrTVopenRecording p {
+        font-weight: 500;
+		text-align: center;
+		margin:0px;
+	}
+	
+	.openMovieItem .movieYear {
+        display: block;
+    }
+    
+    
+	/****************************** LSM: PVR ******************************/
+    #pvr-tv-program-slider-container {
+        width: calc(100% - 240px);
+    }
+    .PvrTVopenChannel h4, .PvrTVopenChannel p, .pvrTVopenBroadcast h4, .pvrTVopenBroadcast p, .pvrTVopenBroadcastItem p, .pvrTVopenBroadcastItem h4, .pvrTVopenRecording h4, .pvrTVopenRecording p {
+		text-align: center;
+		margin:0px;
+		font-size: 18px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+	}
+	.percentageBar {
+        width: 100%;
+    }
+	.pvr-prog-info {        
+        float: left;     
+    }
+    .pvr-channel-overview {
+        float: right;     
+    }
+    
+    .pvr-prog-info, .pvr-channel-overview {
+        height: 30px;
+        width: calc(50% - 2px);
+        text-align: center;
+        background: #333;
+        border: 1px solid #1d1d1d;
+        display: table;
+        text-align: center;
+        font-size: 18px;
+    }
+    
+    #pvr-channel-list .pvr-prog-info {
+		width: 100%;
+    }
+    #pvr-channel-list .percentageBar {
+		width: 100%;
+    }
+    
+    .pvrChannelIcon {
+        display: block !important;
+        height: 50px;
+        text-align: center;
+        font-size: 18px;
+        float: left;
+    }
+    
+    .pvr-channel-overview i, .pvr-prog-info i {
+        display: table-cell;
+        vertical-align: middle;
+    }    
+	
+	/****************************** LSM: Music ******************************/
+	.musicPrevPic {
+        display: block !important;
+        height: 100px;
+        font-size: 70px;
+		text-align: center;
+    }
+	.showAlbum p, .showAlbum h4 {
+		text-align: center;
+		margin:2px 2px 2px 2px;
+	}
+	.showAlbum h4 {
+		font-size: 18px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+	}
+	.showAlbum p {
+        font-weight: 500;
+	}
+	
+	/****************************** LSM: Addons Page ********************************/
+	.addontitle {
+		text-align: center;
+	}
+	.addonlist-item h4 {
+		text-align: center;
+		margin:2px 2px 2px 2px;
+		font-size: 18px;	
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+	}
+	.addonImage {
+		display: block;
+		height: 120px;
+		width: auto;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.heart {
+        font-size: 90px;
+        width: 100%;
+        text-align: center;
+    }
+    #addonOverview .heart { /*to equal height of addonpictures*/
+        line-height: 120px !important;
+    }    
+}
+
+
+/************************************************************************************* 
+ *				Small Screen Media (SSM)                                             *
+ *************************************************************************************/
+@media only screen
+and (max-width : 900px) {
+  .awsomeicon-padding-ssm {
+    padding-left: 5px;
+  }
+	#mediaProgTitle { 
+		font-size: 11px;
+	}
+	.flex-prev, .flex-next {
+        list-style: none;
+		margin-bottom: -1px;
+		cursor:pointer;
+		width: 100%;
+	}
+  .flex-prev:before, .flex-next:before {
+        content: "";
+        height: 1px; 
+        background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(27,27,27,1) 50%,rgba(0,0,0,0) 100%); 
+        display: block;
+  }
+  .prev-next-arrow {
+        font-size: 45px; 
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        color: #c8c8d1;
+        display: block;
+    }
+    .prev-next-arrow:hover {
+        color: #000 !important;
+    }
+    /*ssm list items*/
+    #movie_list, #album_list, #addonlist {
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+    .showAlbum, .openMovieItem, .addonlist-item, #topFavs > .showAddonDirItem, .PvrTVopenChannel, .pvrTVopenBroadcast, .pvrTVopenBroadcastItem, .pvrTVopenRecording {
+        width: 100%;
+        cursor:pointer;
+        overflow: hidden;
+        white-space:nowrap;  
+        margin: -1px 0px 0px 0px;
+        vertical-align: top; 
+        display: inline-block;
+    }   
+    .pvrTVopenBroadcastItem div:nth-child(2),  .pvrTVopenRecording div:nth-child(2){
+        width: 100%;
+    }   
+    .openMovieItem:before, .showAlbum:before, .addonlist-item:before, #topFavs > .showAddonDirItem:before, .PvrTVopenChannel:before, .pvrTVopenBroadcast:before, .pvrTVopenBroadcastItem:before, .pvrTVopenRecording:before  {
+        content: "";
+        height: 1px; 
+        background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(27,27,27,1) 50%,rgba(0,0,0,0) 100%); 
+        display: block;
+        margin-bottom: -1px
+    }  
+    .flex-next, .flex-prev {
+        display: inline-block;
+        height: 50px;
+        margin-top: -1px;
+    }
+    .openMovieItem h4:after , .flex-prev h4:after
+    , .flex-next h4:after, .addontitle:after
+    , .showAlbum h4:after, .openMovieItem p:after, #topFavs > .showAddonDirItem h4:after, .PvrTVopenChannel h4:after , .pvrTVopenBroadcast h4:after, .pvrTVopenBroadcastItem h4:after, .pvrTVopenRecording h4:after{
+        white-space: pre;
+        content:'\A';
+    }
+    
+    .percentageBar {
+        margin-top: 3px !important;
+    }
+    /****************************** SSM: Remote Panel ******************************/
+    #MenuButtons div {
+         width: 100%; 
+    }  
+    #MenuButtons a, #MenuButtons button {
+        width: calc((100% - 160px)/6);
+    }
+    
+    /****************************** SSM: Start Page ******************************/
+    #start .ui-collapsible-content {
+      padding: 0;
+    }
+    #cleanAndUpdate .ui-block-a, 
+    #cleanAndUpdate .ui-block-b, 
+    #music-songsearch >.content .ui-block-a, 
+    #music-songsearch >.content .ui-block-b {
+        clear: both; /* for linebrak */
+        width: 100%;
+    }
+
+    #recentMovies > .openMovieItem {
+        height: auto;
+    }
+    #recentMovies h4 {
+        padding-top: 8px;
+    }
+    #recentSeries > .openMovieItem, #topPvrTV > .PvrTVopenChannel, #topPvrRadio > .PvrTVopenChannel, #topPvrTVRecordings > .pvrTVopenRecording {
+        height: auto;
+    }
+    #recentSeries img, #topPvrTV img, #topPvrRadio img {
+        height: 60px;
+    }
+    #recentSeries p, #topPvrTV p, #topPvrRadio p {
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+	#recentSeries h4 {
+        padding-top: 10px;
+    }
+    #topPvrTV h4 {
+        padding-bottom: 3px;
+    }
+    #topPvrRadio h4 {
+        padding-bottom: 3px;
+    }
+	#topMusic > .showAlbum {
+        height: auto;
+    }
+    #topAddons > .addonlist-item {
+        float: none;
+    }
+    
+	#topFavs > .showAddonDirItem {
+        height: auto;
+  }
+  #topFavs > .showAddonDirItem h4 {
+        vertical-align: middle;
+        margin-left: 60px;
+        margin-bottom: 0;
+        margin-top: 0;
+        padding-top: 15px;
+        font-size: 14px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+  }
+  #topFavs .prevPicContainerMusic {
+    width: 55px;
+  }
+  #recentSeries .prevPicContainerSeries span, #topPvrTV .prevPicContainerSeries span, #topPvrRadio .prevPicContainerSeries span {
+    padding-left: 26px;
+  }
+
+  #recentSeries .prevPicContainerSeries, #topPvrTV .prevPicContainerSeries, #topPvrRadio .prevPicContainerSeries {
+    display: block;
+    width: 80px;
+    overflow: hidden;
+    float: left;
+  }
+  #recentSeries .prevPicContainerSeries > .text-center, #topPvrTV .prevPicContainerSeries > .text-center, #topPvrRadio .prevPicContainerSeries > .text-center {
+    margin-left: 20px;
+    display: block;
+  }
+  #topPvrTV .prevPicContainerSeries > .text-center {
+    margin-left: 0px;
+    display: block;
+  }
+  #topPvrRadio .prevPicContainerSeries > .text-center {
+    margin-left: 0px;
+    display: block;
+  }
+  #recentSeries .moviePrevPic, #topPvrTV .moviePrevPic {
+        display: block;
+        font-size: 45px;
+        line-height: 50px !important;
+        height: 50px;
+        left: 0;
+        transform: translate(0%);
+  }
+
+	/****************************** SSM: Movies ******************************/
+    .openMovieItem, .PvrTVopenChannel, .pvrTVopenBroadcast, .pvrTVopenBroadcastItem, .pvrTVopenRecording {
+        height: 75px;
+ 		line-height: 18px;
+    }
+	#pvr-tv-channels .PvrTVopenChannel {
+        height: auto;
+ 		line-height: 12px;
+    }
+    #pvr_tv_channel_list .pvrTVopenBroadcast, .pvrTVopenBroadcastItem, .pvrTVopenRecording {
+        height: auto;
+ 		line-height: 12px;    
+    }
+	.openMovieItem div, .flex-prev div, .flex-next div, .PvrTVopenChannel div, .pvrTVopenBroadcast div, .pvrTVopenBroadcastItem div, .pvrTVopenRecording div {
+		margin: 0px;
+		white-space: nowrap;  
+		vertical-align: top; 
+	} 
+	.openMovieItem h4, .flex-prev h4, .flex-next h4, .PvrTVopenChannel h4, .pvrTVopenBroadcast h4, .pvrTVopenBroadcastItem h4, .pvrTVopenRecordingh4 {
+        line-height: normal;
+        font-size: 16px;
+		vertical-align: top;
+        margin: 0;
+		padding-left: 0px;
+        padding-top: 4px;   
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+	}
+	.PvrTVopenChannel h4, .pvrTVopenBroadcast h4, .pvrTVopenBroadcastItem h4, .pvrTVopenRecording h4 {
+        margin-bottom: 5px;
+    }
+	.openMovieItem p, .PvrTVopenChannel p, .PvrTVopenChannel div, .pvrTVopenBroadcast p, .pvrTVopenBroadcast div, .pvrTVopenBroadcastItem p, .pvrTVopenBroadcastItem div, .pvrTVopenRecording p, .pvrTVopenRecording div{
+		white-space:normal;  
+		padding-left: 0px;
+        margin: 0px;
+		font-size: 12px;
+	}
+	.PvrTVopenChannel p, .PvrTVopenChannel div, .pvrTVopenBroadcast p, .pvrTVopenBroadcast div, .pvrTVopenBroadcastItem div, .pvrTVopenRecording div {
+		font-size: 13px;
+        display: inline-block;        
+    }
+    
+	.PvrTVopenChannel p, .pvrTVopenBroadcast p {
+		font-size: 12px;
+        font-weight: 500;
+        display: inline-block;      
+    }
+	/*TODO originally really needed?: .PvrTVopenChannel > div , .pvrTVopenBroadcast > div {*/
+	#yStart .PvrTVopenChannel > div  {
+        width: calc(100% - 80px);
+	}
+	
+	.pvr-description-box {
+        width: calc(100% - 135px) !important;        
+    }
+    
+    #pvr-channel-list .pvr-description-box {
+        width: calc(100% - 60px) !important;      
+    }
+	
+	.pvr-prog-info, .pvr-channel-overview {
+        float: right;
+        height: 50px;
+        width: 25px;
+        text-align: center;
+        background: #333;
+        border-left: 1px solid #1d1d1d;
+        border-top: 1px solid #1d1d1d;
+        border-bottom: 1px solid #1d1d1d;
+        display: table;
+        margin-top: 12px;
+    }
+    
+    .pvr-channel-overview i, .pvr-prog-info i {
+        display: table-cell;
+        vertical-align: middle;
+    }    
+	
+	#pvr-tv-channels .PvrTVopenChannel > div, #pvr-channel-list .pvrTVopenBroadcast > div {
+        margin: 5px 0px 0px 0px;
+	}
+	.pvrTVopenBroadcastItem > div:first-child, .pvrTVopenRecording > div:first-child {
+        min-width: 80px;        
+    }
+	.prevPicContainerMovie {
+        display: block;
+        width: 80px;
+        overflow: hidden;
+        float: left;      
+    }
+	.moviePrevPic {
+        display: inline;
+        font-size: 70px;
+        height: 75px;
+        line-height: 75px !important;
+        left: 50%;
+        transform: translate(-50%);
+        position: relative;
+        text-align: center;
+	}
+    .actor > div {
+        height: 120px;
+    }
+    .prevPicContainerMusic span {
+        padding-left: 5px;
+    }
+    
+    
+    /****************************** SSM: PVR ******************************/    
+    #pvr-tv-program-slider-container {
+        width: 100%;
+    }
+    
+    .pvrChannelIcon {
+        display: inline-block !important;
+        height: 30px !important;
+        text-align: center;
+        font-size: 18px;
+        float: left;
+    }
+    
+    #pvr_tv_channel_list .text-center {
+        margin: unset;
+    }
+    
+    #pvr_tv_channel_list .musicPrevPic {
+        max-height: 50px;
+        width: 80px;
+    }
+	/****************************** SSM: Music ******************************/
+    .showAlbum {
+        height: 50px;
+    }    
+	.showAlbum div {
+		white-space:nowrap;  
+		margin: 0px;
+		vertical-align: top; 
+	} 
+	.showAlbum h4 {
+		vertical-align: middle;
+		margin-left: 60px;
+        margin-bottom: 0;
+        margin-top: 0;
+        padding-top: 10px;
+        font-size: 14px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+	}
+	.showAlbum p {
+		font-size: 10px;
+		padding-left: 10px;
+        margin-bottom: 0;
+        margin-top: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+	}
+    .prevPicContainerMusic {
+        display: block;
+        width: 50px;
+        overflow: hidden;
+        float: left;
+    }
+    .prevPicContainerMusic > .text-center {
+        margin-left: 0px;
+        display: block;
+    }
+	.musicPrevPic {
+        display: block;
+        font-size: 45px;
+        line-height: 50px !important; 
+		height: 50px;
+	}
+	/****************************** SSM: Addons Page ********************************/
+	.addonlist-item {
+        height: 50px;
+        float: left;
+    }
+    .addontitle {
+        vertical-align: middle;
+        margin-left: 70px;
+        margin-bottom: 0;
+        font-size: 14px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin-top: 15px;
+	}
+    .prevPicContainerAddon {
+        display: block;
+        width: 60px;
+        overflow: hidden;
+        float: left;
+    }
+    .prevPicContainerAddon > .text-center {
+        margin-left: 0px;
+    }
+    .addonImage {
+        display: block;
+        font-size: 40px;
+        line-height: 51px !important;
+        height: 51px;
+	}
+	.heart {
+        line-height: 51px !important;
+        font-size: 45px;
+    }
+}
